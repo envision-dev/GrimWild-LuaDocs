@@ -3,42 +3,42 @@
 UGAssetLib = {}
 
 ---Fired on any asset
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, MutableObject: UObject)
 function UGAssetLib.BindEventOnAnyAssetEditAllowed(Event) end
 
 ---Fired on any asset
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, LoadedObject: UObject)
 function UGAssetLib.BindEventOnAnyAssetLoaded(Event) end
 
 ---Fired on any Template
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, MutableObject: UObject)
 function UGAssetLib.BindEventOnAnyTemplateEditAllowed(Event) end
 
 ---Fired on any Template
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, LoadedObject: UObject)
 function UGAssetLib.BindEventOnAnyTemplateLoaded(Event) end
 
 ---Bind to a specific Asset
 ---@param AssetId FPrimaryAssetId
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, MutableObject: UObject)
 ---@return boolean
 function UGAssetLib.BindEventOnAssetEditAllowed(AssetId, Event) end
 
 ---Bind to a specific Asset
 ---@param AssetId FPrimaryAssetId
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, LoadedObject: UObject)
 ---@return boolean
 function UGAssetLib.BindEventOnAssetLoaded(AssetId, Event) end
 
 ---Bind to a specific asset Template
 ---@param AssetId FPrimaryAssetId
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, MutableObject: UObject)
 ---@return boolean
 function UGAssetLib.BindEventOnTemplateEditAllowed(AssetId, Event) end
 
 ---Bind to a specific asset Template
 ---@param AssetId FPrimaryAssetId
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, LoadedObject: UObject)
 ---@return boolean
 function UGAssetLib.BindEventOnTemplateLoaded(AssetId, Event) end
 
@@ -77,42 +77,42 @@ function UGAssetLib.LoadGAssetSync(AssetId) end
 function UGAssetLib.LoadGAssetTemplateSync(AssetId) end
 
 ---Fired on any asset
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, MutableObject: UObject)
 function UGAssetLib.UnbindEventOnAnyAssetEditAllowed(Event) end
 
 ---Fired on any asset
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, LoadedObject: UObject)
 function UGAssetLib.UnbindEventOnAnyAssetLoaded(Event) end
 
 ---Fired on any Template
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, MutableObject: UObject)
 function UGAssetLib.UnbindEventOnAnyTemplateEditAllowed(Event) end
 
 ---Fired on any Template
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, LoadedObject: UObject)
 function UGAssetLib.UnbindEventOnAnyTemplateLoaded(Event) end
 
 ---Unbind from a specific Asset. @@returns true even if the given event was not actually bound there.
 ---@param AssetId FPrimaryAssetId
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, MutableObject: UObject)
 ---@return boolean
 function UGAssetLib.UnbindEventOnAssetEditAllowed(AssetId, Event) end
 
 ---Unbind from a specific Asset. @@returns true even if the given event was not actually bound there.
 ---@param AssetId FPrimaryAssetId
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, LoadedObject: UObject)
 ---@return boolean
 function UGAssetLib.UnbindEventOnAssetLoaded(AssetId, Event) end
 
 ---Unbind from a specific asset Template. @@returns true even if the given event was not actually bound there.
 ---@param AssetId FPrimaryAssetId
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, MutableObject: UObject)
 ---@return boolean
 function UGAssetLib.UnbindEventOnTemplateEditAllowed(AssetId, Event) end
 
 ---Unbind from a specific asset Template. @@returns true even if the given event was not actually bound there.
 ---@param AssetId FPrimaryAssetId
----@param Event Delegate
+---@param Event Delegate|fun(AssetId: FPrimaryAssetId, LoadedObject: UObject)
 ---@return boolean
 function UGAssetLib.UnbindEventOnTemplateLoaded(AssetId, Event) end
 

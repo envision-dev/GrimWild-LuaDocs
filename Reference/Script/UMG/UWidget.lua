@@ -1,12 +1,12 @@
 ---This is the base class for all wrapped Slate controls that are exposed to UObjects.
 ---@class UWidget : UVisual
 ---@field public Slot UPanelSlot @The parent slot of the UWidget.  Allows us to easily inline edit the layout controlling this widget.
----@field public bIsEnabledDelegate Delegate @A bindable delegate for bIsEnabled
+---@field public bIsEnabledDelegate Delegate|fun(): boolean @A bindable delegate for bIsEnabled
 ---@field public ToolTipText string @Tooltip text to show when the user hovers over the widget with the mouse
----@field public ToolTipTextDelegate Delegate @A bindable delegate for ToolTipText
+---@field public ToolTipTextDelegate Delegate|fun(): string @A bindable delegate for ToolTipText
 ---@field public ToolTipWidget UWidget @Tooltip widget to show when the user hovers over the widget with the mouse
----@field public ToolTipWidgetDelegate Delegate @A bindable delegate for ToolTipWidget
----@field public VisibilityDelegate Delegate @A bindable delegate for Visibility
+---@field public ToolTipWidgetDelegate Delegate|fun(): UWidget @A bindable delegate for ToolTipWidget
+---@field public VisibilityDelegate Delegate|fun(): ESlateVisibility @A bindable delegate for Visibility
 ---@field public RenderTransform FWidgetTransform @The render transform of the widget allows for arbitrary 2D transforms to be applied to the widget.
 ---@field public RenderTransformPivot FVector2D @The render transform pivot controls the location about which transforms are applied. This value is a normalized coordinate about which things like rotations will occur.
 ---@field public FlowDirectionPreference EFlowDirectionPreference @Allows you to set a new flow direction
@@ -19,9 +19,9 @@
 ---@field public AccessibleBehavior ESlateAccessibleBehavior @Whether or not the widget is accessible, and how to describe it. If set to custom, additional customization options will appear.
 ---@field public AccessibleSummaryBehavior ESlateAccessibleBehavior @How to describe this widget when it's being presented through a summary of a parent widget. If set to custom, additional customization options will appear.
 ---@field public AccessibleText string @When AccessibleBehavior is set to Custom, this is the text that will be used to describe the widget.
----@field public AccessibleTextDelegate Delegate @An optional delegate that may be assigned in place of AccessibleText for creating a TAttribute
+---@field public AccessibleTextDelegate Delegate|fun(): string @An optional delegate that may be assigned in place of AccessibleText for creating a TAttribute
 ---@field public AccessibleSummaryText string @When AccessibleSummaryBehavior is set to Custom, this is the text that will be used to describe the widget.
----@field public AccessibleSummaryTextDelegate Delegate @An optional delegate that may be assigned in place of AccessibleSummaryText for creating a TAttribute
+---@field public AccessibleSummaryTextDelegate Delegate|fun(): string @An optional delegate that may be assigned in place of AccessibleSummaryText for creating a TAttribute
 ---@field protected bIsVolatile boolean @If true prevents the widget or its child's geometry or layout information from being cached.  If this widget changes every frame, but you want it to still be in an invalidation panel you should make it as volatile instead of invalidating it every frame, which would prevent the invalidation panel from actually ever caching anything.
 ---@field public bHiddenInDesigner boolean @Stores the design time flag setting if the widget is hidden inside the designer
 ---@field public bExpandedInDesigner boolean @Stores the design time flag setting if the widget is expanded inside the designer
@@ -215,14 +215,14 @@ function UWidget:IsRendered() end
 function UWidget:IsVisible() end
 
 ---@param FieldId FFieldNotificationId
----@param Delegate Delegate
+---@param Delegate Delegate|fun(Object: UObject, Field: FFieldNotificationId)
 function UWidget:K2_AddFieldValueChangedDelegate(FieldId, Delegate) end
 
 ---@param FieldId FFieldNotificationId
 function UWidget:K2_BroadcastFieldValueChanged(FieldId) end
 
 ---@param FieldId FFieldNotificationId
----@param Delegate Delegate
+---@param Delegate Delegate|fun(Object: UObject, Field: FFieldNotificationId)
 function UWidget:K2_RemoveFieldValueChangedDelegate(FieldId, Delegate) end
 
 ---@param MyGeometry FGeometry
@@ -276,12 +276,12 @@ function UWidget:SetNavigationRuleBase(Direction, Rule) end
 
 ---Sets the widget navigation rules for a specific direction. This can only be called on widgets that are in a widget tree. This works only for Custom Rule.
 ---@param Direction EUINavigation
----@param InCustomDelegate Delegate @Custom Delegate that will be called
+---@param InCustomDelegate Delegate|fun(Navigation: EUINavigation): UWidget @Custom Delegate that will be called
 function UWidget:SetNavigationRuleCustom(Direction, InCustomDelegate) end
 
 ---Sets the widget navigation rules for a specific direction. This can only be called on widgets that are in a widget tree. This works only for CustomBoundary Rule.
 ---@param Direction EUINavigation
----@param InCustomDelegate Delegate @Custom Delegate that will be called
+---@param InCustomDelegate Delegate|fun(Navigation: EUINavigation): UWidget @Custom Delegate that will be called
 function UWidget:SetNavigationRuleCustomBoundary(Direction, InCustomDelegate) end
 
 ---Sets the widget navigation rules for a specific direction. This can only be called on widgets that are in a widget tree. This works only for Explicit Rule.

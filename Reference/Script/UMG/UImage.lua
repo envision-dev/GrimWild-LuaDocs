@@ -2,11 +2,11 @@
 ---* No Children
 ---@class UImage : UWidget
 ---@field public Brush FSlateBrush @Image to draw
----@field public BrushDelegate Delegate @A bindable delegate for the Image.
+---@field public BrushDelegate Delegate|fun(): FSlateBrush @A bindable delegate for the Image.
 ---@field public ColorAndOpacity FLinearColor @Color and opacity
----@field public ColorAndOpacityDelegate Delegate @A bindable delegate for the ColorAndOpacity.
+---@field public ColorAndOpacityDelegate Delegate|fun(): FLinearColor @A bindable delegate for the ColorAndOpacity.
 ---@field public bFlipForRightToLeftFlowDirection boolean @Flips the image if the localization's flow direction is RightToLeft
----@field public OnMouseButtonDownEvent Delegate
+---@field public OnMouseButtonDownEvent Delegate|fun(MyGeometry: FGeometry, MouseEvent: FPointerEvent): FEventReply
 UImage = {}
 
 ---@return UMaterialInstanceDynamic

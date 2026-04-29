@@ -1,8 +1,8 @@
 ---Wrapper for interaction with FETranslationStorage.
 ---We can read values from FETranslationStorage directly.
 ---@class UTranslationManager : UGameInstanceSubsystem
----@field public GatherTranslation MulticastDelegate @Every game content module (like a Mod) should bind their custom translation gathering processes to this delegate. Fired when the game
----@field public OnCultureSet MulticastDelegate @Called when the user changes current culture, right after regeneration of the text map
+---@field public GatherTranslation MulticastDelegate|fun(TargetCulture: string) @Every game content module (like a Mod) should bind their custom translation gathering processes to this delegate. Fired when the game
+---@field public OnCultureSet MulticastDelegate|fun(NewCulture: string) @Called when the user changes current culture, right after regeneration of the text map
 UTranslationManager = {}
 
 ---Appends current text elements set from the elements of the given source

@@ -30,7 +30,7 @@
 ---@field public bVisualizeComponent boolean @This component should create a sprite component for visualization in the editor
 ---@field public Mobility integer @How often this component is allowed to move, used to make various optimizations. Only safe to set in constructor.
 ---@field public DetailMode integer @If detail mode is >= system detail mode, primitive won't be rendered.
----@field public PhysicsVolumeChangedDelegate MulticastDelegate @Delegate that will be called when PhysicsVolume has been changed *
+---@field public PhysicsVolumeChangedDelegate MulticastDelegate|fun(NewVolume: APhysicsVolume) @Delegate that will be called when PhysicsVolume has been changed *
 ---@field public ReplacementSceneComponent USceneComponent @ In World Partition Levels loaded actors are Registered in an atomic fashion meaning we register all their components and then call RerunConstructionScripts before loading the next actor. This means that a Parent can be Reconstructed and trash its components without notifying its attached actors. In Non World Partition Levels when adding actors to world we sort all actors based on hierarchy, register all actors and then RerunConstructionScripts on all actors which allows handling of Attachments as attached actors are already registered when the parent gets reconstructed and so attachment is preserved. ReplacementSceneComponent is there as a temp solution to allow finding of the replacement component of a trashed scene component.
 USceneComponent = {}
 

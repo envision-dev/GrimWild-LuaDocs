@@ -16,12 +16,12 @@
 UHUDBase = {}
 
 ---@param String string
----@param OnConfirmed Delegate
+---@param OnConfirmed Delegate|fun()
 ---@return UConfirmationWindow
 function UHUDBase:CreateConfirmationWindow(String, OnConfirmed) end
 
 ---@param Text FEText
----@param OnConfirmed Delegate
+---@param OnConfirmed Delegate|fun()
 ---@return UConfirmationWindow
 function UHUDBase:CreateConfirmationWindow_EText(Text, OnConfirmed) end
 

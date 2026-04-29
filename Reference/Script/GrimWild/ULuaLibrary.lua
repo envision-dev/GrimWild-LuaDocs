@@ -20,9 +20,8 @@ function ULuaLibrary.RestartScript(RequirePath) end
 
 ---Load and run a script.
 ---@param RequirePath string
----@param Mode? ELuaScriptRunMode @[default: Auto]
 ---@return boolean
-function ULuaLibrary.RunScript(RequirePath, Mode) end
+function ULuaLibrary.RunScript(RequirePath) end
 
 ---Toggle OnTick for a loaded persistent script.
 ---@param RequirePath string

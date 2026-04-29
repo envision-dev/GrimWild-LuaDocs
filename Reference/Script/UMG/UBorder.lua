@@ -7,18 +7,18 @@
 ---@field public VerticalAlignment integer @The alignment of the content vertically.
 ---@field public bShowEffectWhenDisabled boolean @Whether or not to show the disabled effect when this border is disabled
 ---@field public ContentColorAndOpacity FLinearColor @Color and opacity multiplier of content in the border
----@field public ContentColorAndOpacityDelegate Delegate @A bindable delegate for the ContentColorAndOpacity.
+---@field public ContentColorAndOpacityDelegate Delegate|fun(): FLinearColor @A bindable delegate for the ContentColorAndOpacity.
 ---@field public Padding FMargin @The padding area between the slot and the content it contains.
 ---@field public Background FSlateBrush @Brush to drag as the background
----@field public BackgroundDelegate Delegate @A bindable delegate for the Brush.
+---@field public BackgroundDelegate Delegate|fun(): FSlateBrush @A bindable delegate for the Brush.
 ---@field public BrushColor FLinearColor @Color and opacity of the actual border image
----@field public BrushColorDelegate Delegate @A bindable delegate for the BrushColor.
+---@field public BrushColorDelegate Delegate|fun(): FLinearColor @A bindable delegate for the BrushColor.
 ---@field public DesiredSizeScale FVector2D @Scales the computed desired size of this border and its contents. Useful for making things that slide open without having to hard-code their size. Note: if the parent widget is set up to ignore this widget's desired size, then changing this value will have no effect.
 ---@field public bFlipForRightToLeftFlowDirection boolean @Flips the background image if the localization's flow direction is RightToLeft
----@field public OnMouseButtonDownEvent Delegate
----@field public OnMouseButtonUpEvent Delegate
----@field public OnMouseMoveEvent Delegate
----@field public OnMouseDoubleClickEvent Delegate
+---@field public OnMouseButtonDownEvent Delegate|fun(MyGeometry: FGeometry, MouseEvent: FPointerEvent): FEventReply
+---@field public OnMouseButtonUpEvent Delegate|fun(MyGeometry: FGeometry, MouseEvent: FPointerEvent): FEventReply
+---@field public OnMouseMoveEvent Delegate|fun(MyGeometry: FGeometry, MouseEvent: FPointerEvent): FEventReply
+---@field public OnMouseDoubleClickEvent Delegate|fun(MyGeometry: FGeometry, MouseEvent: FPointerEvent): FEventReply
 UBorder = {}
 
 ---@return UMaterialInstanceDynamic

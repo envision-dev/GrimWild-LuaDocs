@@ -2,7 +2,7 @@
 ---@class AGPlayerController : AGPlayerControllerBase
 ---@field protected GameHUDClass TSoftClassPtr<UGameHUD>
 ---@field protected GameHUD UGameHUD
----@field public LuaSingleCastDelegateTest Delegate
+---@field public LuaSingleCastDelegateTest Delegate|fun(bSuccess: boolean)
 AGPlayerController = {}
 
 function AGPlayerController:CustomFunction() end
@@ -20,7 +20,7 @@ function AGPlayerController:Test_AddModification(AssetId, ModificationFilename) 
 ---@param Value string
 function AGPlayerController:Test_AddTranslation(Key, Value) end
 
----@param OnComplete Delegate
+---@param OnComplete Delegate|fun(bSuccess: boolean, PublishedFileId: integer)
 function AGPlayerController.Test_CreateWorkshopItem(OnComplete) end
 
 function AGPlayerController:Test_DestroyAllSprites() end
@@ -48,6 +48,6 @@ function AGPlayerController:Test_ImportColorPalette(Filename) end
 ---@param PreviewImagePath string
 ---@param Title string
 ---@param ChangeNote string
----@param OnComplete Delegate
+---@param OnComplete Delegate|fun(bSuccess: boolean)
 function AGPlayerController.Test_UploadWorkshopItem(PublishedFileId, ContentFolderPath, PreviewImagePath, Title, ChangeNote, OnComplete) end
 

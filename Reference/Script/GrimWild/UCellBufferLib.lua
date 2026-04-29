@@ -38,21 +38,21 @@ function UCellBufferLib.AddValue_Float(Buffer, CellIndex, Delta) end
 
 ---Binds a unique listener to the buffer's OnDownloadComplete delegate.
 ---@param Buffer FCellBufferHandle
----@param NewEvent Delegate
+---@param NewEvent Delegate|fun(Buffer: FCellBufferHandle)
 function UCellBufferLib.BindOnDownloadComplete(Buffer, NewEvent) end
 
 ---Binds a unique listener to the buffer's OnPreSync delegate.
 ---Fired before this buffer's sync cycle dependency graph is built.
 ---GPU work added here is caught in the current sync process.
 ---@param Buffer FCellBufferHandle
----@param NewEvent Delegate
+---@param NewEvent Delegate|fun(Buffer: FCellBufferHandle)
 function UCellBufferLib.BindOnPreSync(Buffer, NewEvent) end
 
 ---Binds a unique listener to the buffer's OnSyncStarted delegate.
 ---Fired after this buffer's GPU work has been dispatched for the current cycle.
 ---Changes made here take effect in the next sync process.
 ---@param Buffer FCellBufferHandle
----@param NewEvent Delegate
+---@param NewEvent Delegate|fun(Buffer: FCellBufferHandle)
 function UCellBufferLib.BindOnSyncStarted(Buffer, NewEvent) end
 
 ---Returns true if it's currently safe to modify the CPU-Side data directly.
@@ -480,15 +480,15 @@ function UCellBufferLib.TryResize(Buffer, NewSizeX, NewSizeY, bTransferPreviousD
 
 ---Removes a bound listener from the buffer's OnDownloadComplete delegate.
 ---@param Buffer FCellBufferHandle
----@param Event Delegate
+---@param Event Delegate|fun(Buffer: FCellBufferHandle)
 function UCellBufferLib.UnbindOnDownloadComplete(Buffer, Event) end
 
 ---@param Buffer FCellBufferHandle
----@param Event Delegate
+---@param Event Delegate|fun(Buffer: FCellBufferHandle)
 function UCellBufferLib.UnbindOnPreSync(Buffer, Event) end
 
 ---@param Buffer FCellBufferHandle
----@param Event Delegate
+---@param Event Delegate|fun(Buffer: FCellBufferHandle)
 function UCellBufferLib.UnbindOnSyncStarted(Buffer, Event) end
 
 ---Returns true if the buffer's next process should run synchronously.

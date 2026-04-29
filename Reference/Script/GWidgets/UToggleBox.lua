@@ -5,7 +5,7 @@
 ---@field public SecondPressDeselectsIndex boolean @false = pressing the same button again doesn't do anything true = pressing the same button again switches the selection off to -1
 ---@field public ActiveColorStyle FWidgetColorStyle
 ---@field public PassiveColorStyle FWidgetColorStyle
----@field public OnSelectionChanged MulticastDelegate
+---@field public OnSelectionChanged MulticastDelegate|fun(Index: integer)
 UToggleBox = {}
 
 ---@return integer

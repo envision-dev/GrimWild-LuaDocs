@@ -1,8 +1,8 @@
 ---Global singleton used to manage mods at runtime
 ---@class UModManager : UGameInstanceSubsystem
----@field public PreRefreshCurrentModPack MulticastDelegate @---- Delegates ----
----@field public OnModPackRefreshed MulticastDelegate
----@field public OnPostModsLoad MulticastDelegate @Broadcast after all enabled mods have loaded their Lua main scripts.
+---@field public PreRefreshCurrentModPack MulticastDelegate|fun() @---- Delegates ----
+---@field public OnModPackRefreshed MulticastDelegate|fun()
+---@field public OnPostModsLoad MulticastDelegate|fun() @Broadcast after all enabled mods have loaded their Lua main scripts.
 ---@field public DiscoveredMods TArray<UMod> @---- Data ----
 ---@field public EnabledMods TArray<UMod>
 UModManager = {}

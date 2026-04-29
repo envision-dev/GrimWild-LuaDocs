@@ -18,7 +18,7 @@
 ---@field public ScrollWhenFocusChanges EScrollWhenFocusChanges @Scroll behavior when user focus is given to a child widget
 ---@field public bAllowRightClickDragScrolling boolean @Option to disable right-click-drag scrolling
 ---@field public WheelScrollMultiplier number @The multiplier to apply when wheel scrolling
----@field public OnUserScrolled MulticastDelegate @Called when the scroll has changed
+---@field public OnUserScrolled MulticastDelegate|fun(CurrentOffset: number) @Called when the scroll has changed
 UScrollBox = {}
 
 ---Instantly stops any inertial scrolling that is currently in progress

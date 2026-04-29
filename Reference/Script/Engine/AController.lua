@@ -11,8 +11,8 @@
 ---direction of the controlled Pawn and is affected by input such as from a mouse or gamepad.
 ---@class AController : AActor
 ---@field public PlayerState APlayerState @PlayerState containing replicated information about the player using this controller (only exists for players, not NPCs).
----@field public OnInstigatedAnyDamage MulticastDelegate @Called when the controller has instigated damage in any way
----@field public OnPossessedPawnChanged MulticastDelegate @Called on both authorities and clients when the possessed pawn changes (either OldPawn or NewPawn might be nullptr)
+---@field public OnInstigatedAnyDamage MulticastDelegate|fun(Damage: number, DamageType: UDamageType, DamagedActor: AActor, DamageCauser: AActor) @Called when the controller has instigated damage in any way
+---@field public OnPossessedPawnChanged MulticastDelegate|fun(OldPawn: APawn, NewPawn: APawn) @Called on both authorities and clients when the possessed pawn changes (either OldPawn or NewPawn might be nullptr)
 ---@field public StateName string @Current gameplay state this controller is in
 ---@field private Pawn APawn @Pawn currently being controlled by this controller.  Use Pawn.Possess() to take control of a pawn
 ---@field private Character ACharacter @Character currently being controlled by this controller.  Value is same as Pawn if the controlled pawn is a character, otherwise nullptr

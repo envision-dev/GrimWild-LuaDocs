@@ -1,7 +1,7 @@
 ---@class UGSpinBox_Vector4 : UGSpinBoxVectorBase
 ---@field public Value FLinearColor
----@field public OnValueChanged MulticastDelegate
----@field public OnValueCommitted MulticastDelegate
+---@field public OnValueChanged MulticastDelegate|fun(Value: FLinearColor)
+---@field public OnValueCommitted MulticastDelegate|fun(Value: FLinearColor)
 UGSpinBox_Vector4 = {}
 
 ---@return FLinearColor

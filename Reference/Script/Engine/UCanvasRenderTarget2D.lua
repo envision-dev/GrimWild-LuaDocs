@@ -5,7 +5,7 @@
 ---function.  Also, remember to hold onto your new canvas render target with a reference so that it doesn't get
 ---garbage collected.
 ---@class UCanvasRenderTarget2D : UTextureRenderTarget2D
----@field public OnCanvasRenderTargetUpdate MulticastDelegate @Called when this Canvas Render Target is asked to update its texture resource.
+---@field public OnCanvasRenderTargetUpdate MulticastDelegate|fun(Canvas: UCanvas, Width: integer, Height: integer) @Called when this Canvas Render Target is asked to update its texture resource.
 ---@field protected World TWeakObjectPtr<UWorld> @The world this render target will be used with
 ---@field protected bShouldClearRenderTargetOnReceiveUpdate boolean @If true, clear the render target to green whenever OnReceiveUpdate() is called.  (Defaults to true.) If false, the render target will retain whatever values it had, allowing the user to update only areas that have changed.
 UCanvasRenderTarget2D = {}

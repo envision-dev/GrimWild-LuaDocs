@@ -10,7 +10,7 @@
 ---@field public bReadOnlyInGame boolean @True: this option can be changed in Main Menu level only
 ---@field public WidgetType EPropertySlotType
 ---@field public WidgetStyle UPropertySlotStyleBase
----@field public OnValueChanged MulticastDelegate @Fires after the option value changes and applies
+---@field public OnValueChanged MulticastDelegate|fun() @Fires after the option value changes and applies
 UOptionData = {}
 
 ---Fires when our underlying runtime option has changed, and we need to apply it.

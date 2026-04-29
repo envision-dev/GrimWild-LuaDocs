@@ -4,13 +4,13 @@
 ---* Popup
 ---@class UMenuAnchor : UContentWidget
 ---@field public MenuClass TSubclassOf<UUserWidget> @The widget class to spawn when the menu is required.  Creates the widget freshly each time. If you want to customize the creation of the popup, you should bind a function to OnGetMenuContentEvent instead.
----@field public OnGetMenuContentEvent Delegate
----@field public OnGetUserMenuContentEvent Delegate @Called when the menu content is requested to allow a more customized handling over what to display
+---@field public OnGetMenuContentEvent Delegate|fun(): UWidget
+---@field public OnGetUserMenuContentEvent Delegate|fun(): UUserWidget @Called when the menu content is requested to allow a more customized handling over what to display
 ---@field public Placement integer @The placement location of the summoned widget.
 ---@field public bFitInWindow boolean @Should the menu anchor attempt to fit the menu inside the window.
 ---@field public ShouldDeferPaintingAfterWindowContent boolean
 ---@field public UseApplicationMenuStack boolean @Does this menu behave like a normal stacked menu? Set it to false to control the menu's lifetime yourself.
----@field public OnMenuOpenChanged MulticastDelegate @Called when the opened state of the menu changes
+---@field public OnMenuOpenChanged MulticastDelegate|fun(bIsOpen: boolean) @Called when the opened state of the menu changes
 UMenuAnchor = {}
 
 ---Closes the menu if it is currently open.

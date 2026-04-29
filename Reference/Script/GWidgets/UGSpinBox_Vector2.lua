@@ -1,7 +1,7 @@
 ---@class UGSpinBox_Vector2 : UGSpinBoxVectorBase
 ---@field public Value FVector2D
----@field public OnValueChanged MulticastDelegate
----@field public OnValueCommitted MulticastDelegate
+---@field public OnValueChanged MulticastDelegate|fun(Value: FVector2D)
+---@field public OnValueCommitted MulticastDelegate|fun(Value: FVector2D)
 UGSpinBox_Vector2 = {}
 
 ---@return FVector2D

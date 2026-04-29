@@ -16,13 +16,13 @@
 ---@field protected EntrySpacing number @This deprecated property was originally BlueprintReadOnly. To satisfy the compiler requirment to have a BlueprintGetter for this property, it relies on the newly added UFunction GetHorizontalEntrySpacing() to act as its BlueprintGetter.
 ---@field private HorizontalEntrySpacing number
 ---@field private VerticalEntrySpacing number
----@field private BP_OnEntryInitialized MulticastDelegate @Called when a row widget is generated for a list item
----@field private BP_OnItemClicked MulticastDelegate
----@field private BP_OnItemDoubleClicked MulticastDelegate
----@field private BP_OnItemIsHoveredChanged MulticastDelegate
----@field private BP_OnItemSelectionChanged MulticastDelegate
----@field private BP_OnItemScrolledIntoView MulticastDelegate
----@field private BP_OnListViewScrolled MulticastDelegate
+---@field private BP_OnEntryInitialized MulticastDelegate|fun(Item: UObject, Widget: UUserWidget) @Called when a row widget is generated for a list item
+---@field private BP_OnItemClicked MulticastDelegate|fun(Item: UObject)
+---@field private BP_OnItemDoubleClicked MulticastDelegate|fun(Item: UObject)
+---@field private BP_OnItemIsHoveredChanged MulticastDelegate|fun(Item: UObject, bIsHovered: boolean)
+---@field private BP_OnItemSelectionChanged MulticastDelegate|fun(Item: UObject, bIsSelected: boolean)
+---@field private BP_OnItemScrolledIntoView MulticastDelegate|fun(Item: UObject, Widget: UUserWidget)
+---@field private BP_OnListViewScrolled MulticastDelegate|fun(ItemOffset: number, DistanceRemaining: number)
 UListView = {}
 
 ---Adds an the item to the list

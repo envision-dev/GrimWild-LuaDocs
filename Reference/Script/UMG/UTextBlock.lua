@@ -3,14 +3,14 @@
 ---* Text
 ---@class UTextBlock : UTextLayoutWidget
 ---@field public Text string @The text to display
----@field public TextDelegate Delegate @A bindable delegate to allow logic to drive the text of the widget
+---@field public TextDelegate Delegate|fun(): string @A bindable delegate to allow logic to drive the text of the widget
 ---@field public ColorAndOpacity FSlateColor @The color of the text
----@field public ColorAndOpacityDelegate Delegate @A bindable delegate for the ColorAndOpacity.
+---@field public ColorAndOpacityDelegate Delegate|fun(): FSlateColor @A bindable delegate for the ColorAndOpacity.
 ---@field public Font FSlateFontInfo @The font to render the text with
 ---@field public StrikeBrush FSlateBrush @The brush to strike through text with
 ---@field public ShadowOffset FVector2D @The direction the shadow is cast
 ---@field public ShadowColorAndOpacity FLinearColor @The color of the shadow
----@field public ShadowColorAndOpacityDelegate Delegate @A bindable delegate for the ShadowColorAndOpacity.
+---@field public ShadowColorAndOpacityDelegate Delegate|fun(): FLinearColor @A bindable delegate for the ShadowColorAndOpacity.
 ---@field public MinDesiredWidth number @The minimum desired size for the text
 ---@field public bWrapWithInvalidationPanel boolean @If true, it will automatically wrap this text widget with an invalidation panel
 ---@field public TextTransformPolicy ETextTransformPolicy @The text transformation policy to apply to this text block.

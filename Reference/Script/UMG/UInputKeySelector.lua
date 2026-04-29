@@ -9,8 +9,8 @@
 ---@field public bAllowModifierKeys boolean @When true modifier keys such as control and alt are allowed in the input chord representing the selected key, if false modifier keys are ignored.
 ---@field public bAllowGamepadKeys boolean @When true gamepad keys are allowed in the input chord representing the selected key, otherwise they are ignored.
 ---@field public EscapeKeys TArray<FKey> @When true gamepad keys are allowed in the input chord representing the selected key, otherwise they are ignored.
----@field public OnKeySelected MulticastDelegate @Called whenever a new key is selected by the user.
----@field public OnIsSelectingKeyChanged MulticastDelegate @Called whenever the key selection mode starts or stops.
+---@field public OnKeySelected MulticastDelegate|fun(SelectedKey: FInputChord) @Called whenever a new key is selected by the user.
+---@field public OnIsSelectingKeyChanged MulticastDelegate|fun() @Called whenever the key selection mode starts or stops.
 UInputKeySelector = {}
 
 ---Returns true if the widget is currently selecting a key, otherwise returns false.

@@ -15,8 +15,8 @@
 ---@field public LastHitBy AController @Controller of the last Actor that caused us damage.
 ---@field public Controller AController @Controller currently possessing this Actor
 ---@field public PreviousController AController @Previous controller that was controlling this pawn since the last controller change notification
----@field public ReceiveControllerChangedDelegate MulticastDelegate @Event called after a pawn's controller has changed, on the server and owning client. This will happen at the same time as the delegate on GameInstance
----@field public ReceiveRestartedDelegate MulticastDelegate @Event called after a pawn has been restarted, usually by a possession change. This is called on the server for all pawns and the owning client for player pawns
+---@field public ReceiveControllerChangedDelegate MulticastDelegate|fun(Pawn: APawn, OldController: AController, NewController: AController) @Event called after a pawn's controller has changed, on the server and owning client. This will happen at the same time as the delegate on GameInstance
+---@field public ReceiveRestartedDelegate MulticastDelegate|fun(Pawn: APawn) @Event called after a pawn has been restarted, usually by a possession change. This is called on the server for all pawns and the owning client for player pawns
 ---@field protected ControlInputVector FVector @Accumulated control input vector, stored in world space. This is the pending input, which is cleared (zeroed) once consumed.
 ---@field protected LastControlInputVector FVector @The last control input vector that was processed by ConsumeMovementInputVector().
 ---@field protected OverrideInputComponentClass TSubclassOf<UInputComponent> @If set, then this InputComponent class will be used instead of the Input Settings' DefaultInputComponentClass

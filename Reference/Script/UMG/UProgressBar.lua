@@ -7,9 +7,9 @@
 ---@field public BarFillStyle integer @Defines the visual style of the progress bar fill - scale or mask
 ---@field public bIsMarquee boolean
 ---@field public BorderPadding FVector2D
----@field public PercentDelegate Delegate @A bindable delegate to allow logic to drive the text of the widget
+---@field public PercentDelegate Delegate|fun(): number @A bindable delegate to allow logic to drive the text of the widget
 ---@field public FillColorAndOpacity FLinearColor @Fill Color and Opacity
----@field public FillColorAndOpacityDelegate Delegate
+---@field public FillColorAndOpacityDelegate Delegate|fun(): FLinearColor
 UProgressBar = {}
 
 ---Sets the fill color of the progress bar.

@@ -5,14 +5,14 @@
 ---* Toggle
 ---@class UCheckBox : UContentWidget
 ---@field public CheckedState ECheckBoxState @Whether the check box is currently in a checked state
----@field public CheckedStateDelegate Delegate @A bindable delegate for the IsChecked.
+---@field public CheckedStateDelegate Delegate|fun(): ECheckBoxState @A bindable delegate for the IsChecked.
 ---@field public WidgetStyle FCheckBoxStyle @The checkbox bar style
 ---@field public HorizontalAlignment integer @How the content of the toggle button should align within the given space
 ---@field public ClickMethod integer @The type of mouse action required by the user to trigger the buttons 'Click'
 ---@field public TouchMethod integer @The type of touch action required by the user to trigger the buttons 'Click'
 ---@field public PressMethod integer @The type of keyboard/gamepad button press action required by the user to trigger the buttons 'Click'
 ---@field public IsFocusable boolean @Sometimes a button should only be mouse-clickable and never keyboard focusable.
----@field public OnCheckStateChanged MulticastDelegate @Called when the checked state has changed
+---@field public OnCheckStateChanged MulticastDelegate|fun(bIsChecked: boolean) @Called when the checked state has changed
 UCheckBox = {}
 
 ---Returns the full current checked state.

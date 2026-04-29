@@ -1,7 +1,7 @@
 ---@class USliderSpin : UWidget
 ---@field public BarColorStyle FWidgetColorStyle
----@field public OnValueChanged MulticastDelegate
----@field public OnValueCommitted MulticastDelegate
+---@field public OnValueChanged MulticastDelegate|fun(Value: number)
+---@field public OnValueCommitted MulticastDelegate|fun(Value: number)
 ---@field protected Value number
 ---@field protected MinValue number
 ---@field protected MaxValue number

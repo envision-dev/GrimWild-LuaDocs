@@ -1,12 +1,12 @@
 ---Lua side (bind custom lua code to it)
 ---@class AGPlayerPawnBase : APawn
----@field public OnLeftMouseAction MulticastDelegate @Note: handles Game input, not UI interaction (e.g. pressing a UI button won't fire it)
----@field public OnRightMouseAction MulticastDelegate @Note: handles Game input, not UI interaction (e.g. pressing a UI button won't fire it)
----@field public OnMiddleMouseAction MulticastDelegate @Note: handles Game input, not UI interaction (e.g. pressing a UI button won't fire it)
----@field public OnEscapeAction MulticastDelegate
----@field public OnShiftAction MulticastDelegate
----@field public OnCtrlAction MulticastDelegate
----@field public OnAltAction MulticastDelegate
+---@field public OnLeftMouseAction MulticastDelegate|fun(Event: integer) @Note: handles Game input, not UI interaction (e.g. pressing a UI button won't fire it)
+---@field public OnRightMouseAction MulticastDelegate|fun(Event: integer) @Note: handles Game input, not UI interaction (e.g. pressing a UI button won't fire it)
+---@field public OnMiddleMouseAction MulticastDelegate|fun(Event: integer) @Note: handles Game input, not UI interaction (e.g. pressing a UI button won't fire it)
+---@field public OnEscapeAction MulticastDelegate|fun(Event: integer)
+---@field public OnShiftAction MulticastDelegate|fun(Event: integer)
+---@field public OnCtrlAction MulticastDelegate|fun(Event: integer)
+---@field public OnAltAction MulticastDelegate|fun(Event: integer)
 AGPlayerPawnBase = {}
 
 ---@return boolean

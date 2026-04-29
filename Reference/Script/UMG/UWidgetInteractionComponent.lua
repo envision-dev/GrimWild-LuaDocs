@@ -3,7 +3,7 @@
 ---to show as if the mouse were moving on top of it.  You'll then tell the component to simulate key presses,
 ---like Left Mouse, down and up, to simulate a mouse click.
 ---@class UWidgetInteractionComponent : USceneComponent
----@field public OnHoveredWidgetChanged MulticastDelegate @Called when the hovered Widget Component changes.  The interaction component functions at the Slate level - so it's unable to report anything about what UWidget is under the hit result.
+---@field public OnHoveredWidgetChanged MulticastDelegate|fun(WidgetComponent: UWidgetComponent, PreviousWidgetComponent: UWidgetComponent) @Called when the hovered Widget Component changes.  The interaction component functions at the Slate level - so it's unable to report anything about what UWidget is under the hit result.
 ---@field public VirtualUserIndex integer @Represents the Virtual User Index.  Each virtual user should be represented by a different index number, this will maintain separate capture and focus states for them.  Each controller or finger-tip should get a unique PointerIndex.
 ---@field public PointerIndex integer @Each user virtual controller or virtual finger tips being simulated should use a different pointer index.
 ---@field public TraceChannel integer @The trace channel to use when tracing for widget components in the world.

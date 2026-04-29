@@ -5,7 +5,7 @@
 ---TODO 25.03.2026: Pause handler is completely broken and needs a full internal logic rewrite.
 ---@class UCellBufferPauseHandler : UObject
 ---@field private Owner TScriptInterface<UCellBuffersHolder>
----@field public OnPauseReady MulticastDelegate @Fired when all buffers are fully paused and their Data arrays are safe to read or modify.
+---@field public OnPauseReady MulticastDelegate|fun() @Fired when all buffers are fully paused and their Data arrays are safe to read or modify.
 UCellBufferPauseHandler = {}
 
 ---Pauses all cell buffers owned by the holder and waits for any ongoing sync processes to complete.

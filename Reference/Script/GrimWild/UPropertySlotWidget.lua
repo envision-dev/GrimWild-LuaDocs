@@ -10,7 +10,7 @@
 ---@field public Content UBorder
 ---@field public B_Reset UButton
 ---@field public MyPriority number
----@field public OnPropertyValueChanged MulticastDelegate
+---@field public OnPropertyValueChanged MulticastDelegate|fun(NewValue: string)
 UPropertySlotWidget = {}
 
 ---We're forced to create UFUNCTIONs for each possible type of internal widget (CheckBox, SpinBox...),

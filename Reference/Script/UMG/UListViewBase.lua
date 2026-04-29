@@ -11,7 +11,7 @@
 ---            UListView* ListView_InventoryItems;
 ---}
 ---@class UListViewBase : UWidget
----@field protected BP_OnEntryGenerated MulticastDelegate @Called when a row widget is generated for a list item
+---@field protected BP_OnEntryGenerated MulticastDelegate|fun(Widget: UUserWidget) @Called when a row widget is generated for a list item
 ---@field protected EntryWidgetClass TSubclassOf<UUserWidget> @The type of widget to create for each entry displayed in the list.
 ---@field protected WheelScrollMultiplier number @The multiplier to apply when wheel scrolling
 ---@field protected bEnableScrollAnimation boolean @True to enable lerped animation when scrolling through the list
@@ -20,7 +20,7 @@
 ---@field protected bEnableFixedLineOffset boolean
 ---@field protected FixedLineScrollOffset number @Optional fixed offset (in lines) to always apply to the top/left (depending on orientation) of the list. If provided, all non-inertial means of scrolling will settle with exactly this offset of the topmost entry. Ex: A value of 0.25 would cause the topmost full entry to be offset down by a quarter length of the preceeding entry.
 ---@field protected bAllowDragging boolean @True to allow dragging of row widgets in the list
----@field protected BP_OnEntryReleased MulticastDelegate @Called when a row widget is released by the list (i.e. when it no longer represents a list item)
+---@field protected BP_OnEntryReleased MulticastDelegate|fun(Widget: UUserWidget) @Called when a row widget is released by the list (i.e. when it no longer represents a list item)
 ---@field private NumDesignerPreviewEntries integer @The number of dummy item entry widgets to preview in the widget designer
 ---@field private EntryWidgetPool FUserWidgetPool
 UListViewBase = {}

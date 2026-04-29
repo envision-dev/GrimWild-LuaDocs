@@ -5,22 +5,23 @@
 ---@field protected GlobalMatParamCollectionInstance UMaterialParameterCollectionInstance
 ---@field protected CurrentSyncTick integer @Current world time in SyncTicks
 ---@field protected BufferSyncManager UCellBufferSyncManager
----@field public OnGameSpeedChanged MulticastDelegate
----@field public OnTimeUpdated MulticastDelegate @Executes when the current Time has changed
----@field public OnSyncTick MulticastDelegate @Fires once per SyncTick
----@field public OnTestIntEvent MulticastDelegate @TEST-ONLY: remove when delegate tests are no longer needed Multicast delegate with one int32 parameter used by LuaDelegateTest for broadcast-with-args testing.
----@field public OnMinutePassed MulticastDelegate @Fires when CurrentSyncTick crosses a minute boundary. NOTE: If TicksInMinute is later set to 1, this delegate is useless — use OnSyncTick instead and remove it.
----@field public OnHourPassed MulticastDelegate
----@field public OnDayPassed MulticastDelegate
----@field public OnSeasonPassed MulticastDelegate
----@field public OnYearPassed MulticastDelegate
----@field public OnTick MulticastDelegate @Regular tick function. Executes every frame
----@field public OnPreTick MulticastDelegate @TODO
----@field public OnPostTick MulticastDelegate @Tick function that executes in TG_PostUpdateWorld group. Executes every frame
+---@field public OnGameSpeedChanged MulticastDelegate|fun(NewTimeSpeed: number)
+---@field public OnTimeUpdated MulticastDelegate|fun() @Executes when the current Time has changed
+---@field public OnSyncTick MulticastDelegate|fun() @Fires once per SyncTick
+---@field public OnTestIntEvent MulticastDelegate|fun(Value: integer) @TEST-ONLY: remove when delegate tests are no longer needed Multicast delegate with one int32 parameter used by LuaDelegateTest for broadcast-with-args testing.
+---@field public OnTestSCIntEvent Delegate|fun(Value: integer)
+---@field public OnMinutePassed MulticastDelegate|fun() @Fires when CurrentSyncTick crosses a minute boundary. NOTE: If TicksInMinute is later set to 1, this delegate is useless — use OnSyncTick instead and remove it.
+---@field public OnHourPassed MulticastDelegate|fun()
+---@field public OnDayPassed MulticastDelegate|fun()
+---@field public OnSeasonPassed MulticastDelegate|fun()
+---@field public OnYearPassed MulticastDelegate|fun()
+---@field public OnTick MulticastDelegate|fun(DeltaTime: number) @Regular tick function. Executes every frame
+---@field public OnPreTick MulticastDelegate|fun(DeltaTime: number) @TODO
+---@field public OnPostTick MulticastDelegate|fun(DeltaTime: number) @Tick function that executes in TG_PostUpdateWorld group. Executes every frame
 ---@field protected Objects TMap<integer, TWeakObjectPtr<UWorldObject>> @Object map. Keys = InstanceIds
 ---@field protected TopLevelObjects TMap<integer, UWorldObject>
----@field public OnTopLevelObjectAttached MulticastDelegate @Fired when an object is attached to the world as a Top-Level Object.
----@field public OnTopLevelObjectDetached MulticastDelegate @Fired when a Top-Level Object is detached from the world.
+---@field public OnTopLevelObjectAttached MulticastDelegate|fun(Object: UWorldObject) @Fired when an object is attached to the world as a Top-Level Object.
+---@field public OnTopLevelObjectDetached MulticastDelegate|fun(Object: UWorldObject) @Fired when a Top-Level Object is detached from the world.
 UGameWorld = {}
 
 ---Attaches a WorldInstance object to the world, making it a Top-Level Object. Only Strong Individual attachment is possible here. Static, Weak and COW-Awaiting objects can't be attached to the World directly.

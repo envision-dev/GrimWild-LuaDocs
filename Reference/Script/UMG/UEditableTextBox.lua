@@ -3,10 +3,10 @@
 ---* Text Entry
 ---@class UEditableTextBox : UWidget
 ---@field public Text string @The text content for this editable text box widget
----@field public TextDelegate Delegate @A bindable delegate to allow logic to drive the text of the widget
+---@field public TextDelegate Delegate|fun(): string @A bindable delegate to allow logic to drive the text of the widget
 ---@field public WidgetStyle FEditableTextBoxStyle @The style
 ---@field public HintText string @Hint text that appears when there is no text in the text box
----@field public HintTextDelegate Delegate @A bindable delegate to allow logic to drive the hint text of the widget
+---@field public HintTextDelegate Delegate|fun(): string @A bindable delegate to allow logic to drive the hint text of the widget
 ---@field public IsReadOnly boolean @Sets the Text Box as Readonly to prevent it from being modified interactively by the user
 ---@field public IsPassword boolean @Sets whether this text box is for storing a password
 ---@field public MinimumDesiredWidth number @The minimum desired size for the text
@@ -23,8 +23,8 @@
 ---@field public Justification integer @How the text should be aligned with the margin.
 ---@field public OverflowPolicy ETextOverflowPolicy @Sets what happens to text that is clipped and doesn't fit within the clip rect for this widget
 ---@field public ShapedTextOptions FShapedTextOptions @Controls how the text within this widget should be shaped.
----@field public OnTextChanged MulticastDelegate @Called whenever the text is changed programmatically or interactively by the user
----@field public OnTextCommitted MulticastDelegate @Called whenever the text is committed.  This happens when the user presses enter or the text box loses focus.
+---@field public OnTextChanged MulticastDelegate|fun(Text: string) @Called whenever the text is changed programmatically or interactively by the user
+---@field public OnTextCommitted MulticastDelegate|fun(Text: string, CommitMethod: integer) @Called whenever the text is committed.  This happens when the user presses enter or the text box loses focus.
 ---@field private bIsFontDeprecationDone boolean
 UEditableTextBox = {}
 

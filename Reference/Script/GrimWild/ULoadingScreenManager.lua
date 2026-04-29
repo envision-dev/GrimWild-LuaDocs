@@ -5,8 +5,8 @@
 ---Use plain MoviePlayer + Slate, make no UObject and DeveloperSettings references.
 ---@class ULoadingScreenManager : UGameInstanceSubsystem
 ---@field protected CurrentLoadingScreen ULoadingScreen
----@field public OnLoadingScreenStarted MulticastDelegate
----@field public OnLoadingScreenDestroyed MulticastDelegate
+---@field public OnLoadingScreenStarted MulticastDelegate|fun()
+---@field public OnLoadingScreenDestroyed MulticastDelegate|fun()
 ULoadingScreenManager = {}
 
 ---@param __WorldContext UObject

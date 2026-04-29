@@ -1,9 +1,6 @@
 ---@class UnLua
 local UnLua = {}
 
----Similar to "package.path" for lua module searching with UnLua loader. Used by FLuaEnv::LoadFromFileSystem.
-UnLua.PackagePath = "Content/Script/?.lua;Plugins/UnLua/Content/Script/?.lua"
-
 ---Whether or not enable FText support at lua runtime which will no longer be treated as a string.
 UnLua.FTextEnabled = false
 
@@ -377,6 +374,19 @@ function GetGameWorld() end
 ---Get Asset Manager singleton (an object used to handle runtime asset loading and management)
 ---@return UGAssetManager 
 function GetAssetManager() end
+
+----------
+
+--- Enables or disables OnTick calls for the caller module.
+--- Has no effect on modules that do not define OnTick.
+---@param bEnabled boolean
+function SetTickEnabled(bEnabled) end
+
+--- Unloads the caller module. OnDestruct is called before teardown.
+--- If called during OnConstruct or OnTick, the unload is deferred
+--- until the current operation completes.
+--- Has no effect if the caller module is not a persistent module.
+function Unload() end
 
 ---------- Log
 

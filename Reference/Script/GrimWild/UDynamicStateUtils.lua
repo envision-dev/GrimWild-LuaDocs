@@ -6,7 +6,7 @@ UDynamicStateUtils = {}
 ---@param InState FDynamicState @[out]
 ---@param PropertyName string
 ---@param PropertyType EStatePropertyType
----@param Event Delegate
+---@param Event Delegate|fun()
 ---@return boolean
 function UDynamicStateUtils.BindEventOnPropertyChange(InState, PropertyName, PropertyType, Event) end
 
@@ -159,7 +159,7 @@ function UDynamicStateUtils.SetPropertyValue_String(InState, PropertyName, NewVa
 ---@param InState FDynamicState @[out]
 ---@param PropertyName string
 ---@param PropertyType EStatePropertyType
----@param Event Delegate
+---@param Event Delegate|fun()
 ---@return boolean
 function UDynamicStateUtils.UnbindEventOnPropertyChange(InState, PropertyName, PropertyType, Event) end
 

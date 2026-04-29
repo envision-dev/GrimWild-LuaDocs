@@ -12,10 +12,10 @@
 ---@field public bHasDownArrow boolean @When false, the down arrow is not generated and it is up to the API consumer to make their own visual hint that this is a drop down.
 ---@field public bEnableGamepadNavigationMode boolean @When false, directional keys will change the selection. When true, ComboBox must be activated and will only capture arrow input while activated.
 ---@field public bIsFocusable boolean @When true, allows the combo box to receive keyboard focus
----@field public OnGenerateContentWidget Delegate @Called when the widget is needed for the content.
----@field public OnGenerateItemWidget Delegate @Called when the widget is needed for the item.
----@field public OnSelectionChanged MulticastDelegate @Called when a new item is selected in the combobox.
----@field public OnOpening MulticastDelegate @Called when the combobox is opening
+---@field public OnGenerateContentWidget Delegate|fun(Item: string): UWidget @Called when the widget is needed for the content.
+---@field public OnGenerateItemWidget Delegate|fun(Item: string): UWidget @Called when the widget is needed for the item.
+---@field public OnSelectionChanged MulticastDelegate|fun(SelectedItem: string, SelectionType: integer) @Called when a new item is selected in the combobox.
+---@field public OnOpening MulticastDelegate|fun() @Called when the combobox is opening
 UComboBoxKey = {}
 
 ---Add an element to the option list.

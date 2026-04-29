@@ -2,7 +2,7 @@
 ---* No Children
 ---@class USlider : UWidget
 ---@field public Value number @The volume value to display.
----@field public ValueDelegate Delegate @A bindable delegate to allow logic to drive the value of the widget
+---@field public ValueDelegate Delegate|fun(): number @A bindable delegate to allow logic to drive the value of the widget
 ---@field public MinValue number @The minimum value the slider can be set to.
 ---@field public MaxValue number @The maximum value the slider can be set to.
 ---@field public WidgetStyle FSliderStyle @The progress bar style
@@ -15,11 +15,11 @@
 ---@field public RequiresControllerLock boolean @Sets whether we have to lock input to change the slider value.
 ---@field public StepSize number @The amount to adjust the value by, when using a controller or keyboard
 ---@field public IsFocusable boolean @Should the slider be focusable?
----@field public OnMouseCaptureBegin MulticastDelegate @Invoked when the mouse is pressed and a capture begins.
----@field public OnMouseCaptureEnd MulticastDelegate @Invoked when the mouse is released and a capture ends.
----@field public OnControllerCaptureBegin MulticastDelegate @Invoked when the controller capture begins.
----@field public OnControllerCaptureEnd MulticastDelegate @Invoked when the controller capture ends.
----@field public OnValueChanged MulticastDelegate @Called when the value is changed by slider or typing.
+---@field public OnMouseCaptureBegin MulticastDelegate|fun() @Invoked when the mouse is pressed and a capture begins.
+---@field public OnMouseCaptureEnd MulticastDelegate|fun() @Invoked when the mouse is released and a capture ends.
+---@field public OnControllerCaptureBegin MulticastDelegate|fun() @Invoked when the controller capture begins.
+---@field public OnControllerCaptureEnd MulticastDelegate|fun() @Invoked when the controller capture ends.
+---@field public OnValueChanged MulticastDelegate|fun(Value: number) @Called when the value is changed by slider or typing.
 USlider = {}
 
 ---Get the current value scaled from 0 to 1

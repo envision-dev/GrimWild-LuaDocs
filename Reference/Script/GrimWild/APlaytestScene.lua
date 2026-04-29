@@ -24,7 +24,7 @@
 ---@field public bIsLeftMousePressing boolean
 ---@field public Overlays TMap<string, FPlaytestOverlayInstance>
 ---@field public CurrentOverlay string
----@field public OnOverlayListUpdated MulticastDelegate
+---@field public OnOverlayListUpdated MulticastDelegate|fun()
 ---@field public OverlayZOrder integer
 ---@field public CurrentTask UPlayerTask
 ---@field public bRunLevelChange boolean

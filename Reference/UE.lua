@@ -827,9 +827,6 @@ UE = {
     ---@type AGMenuPlayerPawn
     AGMenuPlayerPawn = nil,
 
-    ---@type AGPlayerController
-    AGPlayerController = nil,
-
     ---@type AGPlayerPawn
     AGPlayerPawn = nil,
 
@@ -1130,6 +1127,9 @@ UE = {
     ---@type UWidgetInspector
     UWidgetInspector = nil,
 
+    ---@type UWidgetLib
+    UWidgetLib = nil,
+
     ---@type UWorldStatics
     UWorldStatics = nil,
 
@@ -1139,8 +1139,8 @@ UE = {
     ---@type UEFloatCurveView
     UEFloatCurveView = nil,
 
-    ---@type UWidgetLib
-    UWidgetLib = nil,
+    ---@type AGPlayerController
+    AGPlayerController = nil,
 
     ---@type FSoftObjectPath
     FSoftObjectPath = nil,
@@ -2110,9 +2110,6 @@ UE = {
 
     ---@type ELoadingScreenType
     ELoadingScreenType = nil,
-
-    ---@type ELuaScriptRunMode
-    ELuaScriptRunMode = nil,
 
     ---@type ELuaTickType
     ELuaTickType = nil,

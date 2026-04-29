@@ -11,11 +11,11 @@
 ---@field public TouchMethod integer @The type of touch action required by the user to trigger the buttons 'Click'
 ---@field public PressMethod integer @The type of keyboard/gamepad button press action required by the user to trigger the buttons 'Click'
 ---@field public IsFocusable boolean @Sometimes a button should only be mouse-clickable and never keyboard focusable.
----@field public OnClicked MulticastDelegate @Called when the button is clicked
----@field public OnPressed MulticastDelegate @Called when the button is pressed
----@field public OnReleased MulticastDelegate @Called when the button is released
----@field public OnHovered MulticastDelegate
----@field public OnUnhovered MulticastDelegate
+---@field public OnClicked MulticastDelegate|fun() @Called when the button is clicked
+---@field public OnPressed MulticastDelegate|fun() @Called when the button is pressed
+---@field public OnReleased MulticastDelegate|fun() @Called when the button is released
+---@field public OnHovered MulticastDelegate|fun()
+---@field public OnUnhovered MulticastDelegate|fun()
 UButton = {}
 
 ---Returns true if the user is actively pressing the button.  Do not use this for detecting 'Clicks', use the OnClicked event instead.

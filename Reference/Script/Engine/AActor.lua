@@ -120,22 +120,22 @@
 ---@field private bHiddenEdTemporary boolean @Whether this actor is temporarily hidden within the editor; used for show/hide/etc functionality w/o dirtying the actor.
 ---@field private bForceExternalActorLevelReferenceForPIE boolean
 ---@field public Tags TArray<string> @Array of tags that can be used for grouping and categorizing.
----@field public OnTakeAnyDamage MulticastDelegate @Called when the actor is damaged in any way.
----@field public OnTakePointDamage MulticastDelegate @Called when the actor is damaged by point damage.
----@field public OnTakeRadialDamage MulticastDelegate @Called when the actor is damaged by radial damage.
----@field public OnActorBeginOverlap MulticastDelegate @Called when another actor begins to overlap this actor, for example a player walking into a trigger. For events when objects have a blocking collision, for example a player hitting a wall, see 'Hit' events.
----@field public OnActorEndOverlap MulticastDelegate @Called when another actor stops overlapping this actor.
----@field public OnBeginCursorOver MulticastDelegate @Called when the mouse cursor is moved over this actor if mouse over events are enabled in the player controller.
----@field public OnEndCursorOver MulticastDelegate @Called when the mouse cursor is moved off this actor if mouse over events are enabled in the player controller.
----@field public OnClicked MulticastDelegate @Called when the left mouse button is clicked while the mouse is over this actor and click events are enabled in the player controller.
----@field public OnReleased MulticastDelegate @Called when the left mouse button is released while the mouse is over this actor and click events are enabled in the player controller.
----@field public OnInputTouchBegin MulticastDelegate @Called when a touch input is received over this actor when touch events are enabled in the player controller.
----@field public OnInputTouchEnd MulticastDelegate @Called when a touch input is received over this component when touch events are enabled in the player controller.
----@field public OnInputTouchEnter MulticastDelegate @Called when a finger is moved over this actor when touch over events are enabled in the player controller.
----@field public OnInputTouchLeave MulticastDelegate @Called when a finger is moved off this actor when touch over events are enabled in the player controller.
----@field public OnActorHit MulticastDelegate @Called when this Actor hits (or is hit by) something solid. This could happen due to things like Character movement, using Set Location with 'sweep' enabled, or physics simulation. For events when objects overlap (e.g. walking into a trigger) see the 'Overlap' event.
----@field public OnDestroyed MulticastDelegate @Event triggered when the actor has been explicitly destroyed.
----@field public OnEndPlay MulticastDelegate @Event triggered when the actor is being deleted or removed from a level.
+---@field public OnTakeAnyDamage MulticastDelegate|fun(DamagedActor: AActor, Damage: number, DamageType: UDamageType, InstigatedBy: AController, DamageCauser: AActor) @Called when the actor is damaged in any way.
+---@field public OnTakePointDamage MulticastDelegate|fun(DamagedActor: AActor, Damage: number, InstigatedBy: AController, HitLocation: FVector, FHitComponent: UPrimitiveComponent, BoneName: string, ShotFromDirection: FVector, DamageType: UDamageType, DamageCauser: AActor) @Called when the actor is damaged by point damage.
+---@field public OnTakeRadialDamage MulticastDelegate|fun(DamagedActor: AActor, Damage: number, DamageType: UDamageType, Origin: FVector, HitInfo: FHitResult, InstigatedBy: AController, DamageCauser: AActor) @Called when the actor is damaged by radial damage.
+---@field public OnActorBeginOverlap MulticastDelegate|fun(OverlappedActor: AActor, OtherActor: AActor) @Called when another actor begins to overlap this actor, for example a player walking into a trigger. For events when objects have a blocking collision, for example a player hitting a wall, see 'Hit' events.
+---@field public OnActorEndOverlap MulticastDelegate|fun(OverlappedActor: AActor, OtherActor: AActor) @Called when another actor stops overlapping this actor.
+---@field public OnBeginCursorOver MulticastDelegate|fun(TouchedActor: AActor) @Called when the mouse cursor is moved over this actor if mouse over events are enabled in the player controller.
+---@field public OnEndCursorOver MulticastDelegate|fun(TouchedActor: AActor) @Called when the mouse cursor is moved off this actor if mouse over events are enabled in the player controller.
+---@field public OnClicked MulticastDelegate|fun(TouchedActor: AActor, ButtonPressed: FKey) @Called when the left mouse button is clicked while the mouse is over this actor and click events are enabled in the player controller.
+---@field public OnReleased MulticastDelegate|fun(TouchedActor: AActor, ButtonReleased: FKey) @Called when the left mouse button is released while the mouse is over this actor and click events are enabled in the player controller.
+---@field public OnInputTouchBegin MulticastDelegate|fun(FingerIndex: integer, TouchedActor: AActor) @Called when a touch input is received over this actor when touch events are enabled in the player controller.
+---@field public OnInputTouchEnd MulticastDelegate|fun(FingerIndex: integer, TouchedActor: AActor) @Called when a touch input is received over this component when touch events are enabled in the player controller.
+---@field public OnInputTouchEnter MulticastDelegate|fun(FingerIndex: integer, TouchedActor: AActor) @Called when a finger is moved over this actor when touch over events are enabled in the player controller.
+---@field public OnInputTouchLeave MulticastDelegate|fun(FingerIndex: integer, TouchedActor: AActor) @Called when a finger is moved off this actor when touch over events are enabled in the player controller.
+---@field public OnActorHit MulticastDelegate|fun(SelfActor: AActor, OtherActor: AActor, NormalImpulse: FVector, Hit: FHitResult) @Called when this Actor hits (or is hit by) something solid. This could happen due to things like Character movement, using Set Location with 'sweep' enabled, or physics simulation. For events when objects overlap (e.g. walking into a trigger) see the 'Overlap' event.
+---@field public OnDestroyed MulticastDelegate|fun(DestroyedActor: AActor) @Event triggered when the actor has been explicitly destroyed.
+---@field public OnEndPlay MulticastDelegate|fun(Actor: AActor, EndPlayReason: integer) @Event triggered when the actor is being deleted or removed from a level.
 ---@field private InstanceComponents TArray<UActorComponent> @Array of ActorComponents that have been added by the user on a per-instance basis.
 ---@field public BlueprintCreatedComponents TArray<UActorComponent> @Array of ActorComponents that are created by blueprints and serialized per-instance.
 AActor = {}

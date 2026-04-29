@@ -6,9 +6,9 @@
 ---@field protected LocalPlayers TArray<ULocalPlayer> @List of locally participating players in this game instance
 ---@field protected OnlineSession UOnlineSession @Class to manage online services
 ---@field protected ReferencedObjects TArray<UObject> @List of objects that are being kept alive by this game instance. Stored as array for fast iteration, should not be modified every frame
----@field protected OnPawnControllerChangedDelegates MulticastDelegate @gets triggered shortly after a pawn's controller is set. Most of the time     it signals that the Controller has changed but in edge cases (like during     replication) it might end up broadcasting the same pawn-controller pair     more than once
----@field public OnInputDeviceConnectionChange MulticastDelegate @Callback for when an input device connection state has changed (a new gamepad was connected or disconnected)
----@field public OnUserInputDevicePairingChange MulticastDelegate @Callback when an input device has changed pairings (the owning platform user has changed for that device)
+---@field protected OnPawnControllerChangedDelegates MulticastDelegate|fun(Pawn: APawn, Controller: AController) @gets triggered shortly after a pawn's controller is set. Most of the time     it signals that the Controller has changed but in edge cases (like during     replication) it might end up broadcasting the same pawn-controller pair     more than once
+---@field public OnInputDeviceConnectionChange MulticastDelegate|fun(NewConnectionState: EInputDeviceConnectionState, PlatformUserId: FPlatformUserId, InputDeviceId: FInputDeviceId) @Callback for when an input device connection state has changed (a new gamepad was connected or disconnected)
+---@field public OnUserInputDevicePairingChange MulticastDelegate|fun(InputDeviceId: FInputDeviceId, NewUserPlatformId: FPlatformUserId, OldUserPlatformId: FPlatformUserId) @Callback when an input device has changed pairings (the owning platform user has changed for that device)
 UGameInstance = {}
 
 ---Debug console command to create a player.

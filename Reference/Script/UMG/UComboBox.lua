@@ -2,7 +2,7 @@
 ---@class UComboBox : UWidget
 ---@field public ScrollBarStyle FScrollBarStyle
 ---@field public Items TArray<UObject> @The list of items to be displayed on the combobox.
----@field public OnGenerateWidgetEvent Delegate @Called when the widget is needed for the item.
+---@field public OnGenerateWidgetEvent Delegate|fun(Item: UObject): UWidget @Called when the widget is needed for the item.
 ---@field public bIsFocusable boolean
 UComboBox = {}
 

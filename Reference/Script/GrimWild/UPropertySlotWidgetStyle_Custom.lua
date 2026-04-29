@@ -2,10 +2,10 @@
 ---NOTE: Use AddUniqueDynamic() to avoid UE Editor problems (binding multiple times at PIE begin play).
 ---NOTE 2: The logic works as long as widget's Style instance is alive.
 ---@class UPropertySlotWidgetStyle_Custom : UPropertySlotStyleBase
----@field public CreateWidgetFunc MulticastDelegate @Binding this to BP function is possible! Just make a "Create Event" node and select "Create a matching function" button. NOTE: BPs will give the "no value will be returned by reference" Warning, but in reality it works perfectly.
----@field public ApplyStyleFunc MulticastDelegate
----@field public GetWidgetValueFunc MulticastDelegate
----@field public SetWidgetValueFunc MulticastDelegate
+---@field public CreateWidgetFunc MulticastDelegate|fun(InParent: UPropertySlotWidget, OutWidget: UWidget) @Binding this to BP function is possible! Just make a "Create Event" node and select "Create a matching function" button. NOTE: BPs will give the "no value will be returned by reference" Warning, but in reality it works perfectly.
+---@field public ApplyStyleFunc MulticastDelegate|fun(TargetWidget: UWidget)
+---@field public GetWidgetValueFunc MulticastDelegate|fun(TargetWidget: UWidget, OutValue: string)
+---@field public SetWidgetValueFunc MulticastDelegate|fun(TargetWidget: UWidget, InValue: string)
 UPropertySlotWidgetStyle_Custom = {}
 
 ---@param TargetWidget UWidget

@@ -11,9 +11,9 @@
 ---@field protected CameraMovementSpeedScaleRatio number @The multiplier applied to the speed that is being added to the Base value based on current zoom. The formula is (Base + CameraMovementSpeedScaleRatio * ZoomNormalized * Base). So 1.f = doubling the speed. 0 = removing the speed scaling
 ---@field protected StickMovementFullSpeed number @Camera movement speed at full stick length
 ---@field protected StickMovementFullLengthSquared number @Squared length (in uu) of a vector from initial stick world location considered as "full speed". Note: We can change this at runtime with no additional code updates.
----@field public CustomInputActions TMap<string, MulticastDelegate> @Delegates to be bound from Lua for custom input actions (VAsset options)
----@field protected OnStickMovementAction MulticastDelegate
----@field protected OnDragMovementAction MulticastDelegate
+---@field public CustomInputActions TMap<string, MulticastDelegate|fun(InputEvent: integer)> @Delegates to be bound from Lua for custom input actions (VAsset options)
+---@field protected OnStickMovementAction MulticastDelegate|fun(Event: integer)
+---@field protected OnDragMovementAction MulticastDelegate|fun(Event: integer)
 AGPlayerPawn = {}
 
 ---@param LocationToAdd FVector2D

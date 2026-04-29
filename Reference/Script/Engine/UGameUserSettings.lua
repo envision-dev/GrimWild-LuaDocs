@@ -29,7 +29,7 @@
 ---@field protected LastGPUBenchmarkMultiplier number @Multiplier used against the last GPU benchmark
 ---@field protected bUseHDRDisplayOutput boolean @HDR
 ---@field protected HDRDisplayOutputNits integer @HDR
----@field private OnGameUserSettingsUINeedsUpdate MulticastDelegate
+---@field private OnGameUserSettingsUINeedsUpdate MulticastDelegate|fun()
 UGameUserSettings = {}
 
 ---Applies the settings stored in ScalabilityQuality and saves settings

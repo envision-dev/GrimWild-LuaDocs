@@ -8,7 +8,7 @@
 ---@field public MaxHeight number @The maximum height of the area
 ---@field public HeaderPadding FMargin
 ---@field public AreaPadding FMargin
----@field public OnExpansionChanged MulticastDelegate @A bindable delegate for the IsChecked.
+---@field public OnExpansionChanged MulticastDelegate|fun(bIsExpanded: boolean) @A bindable delegate for the IsChecked.
 ---@field protected HeaderContent UWidget
 ---@field protected BodyContent UWidget
 UGExpandableArea = {}

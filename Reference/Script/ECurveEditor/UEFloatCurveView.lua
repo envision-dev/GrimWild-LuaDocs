@@ -5,9 +5,9 @@
 ---@field public ViewMaxTime number
 ---@field public ViewMinValue number
 ---@field public ViewMaxValue number
----@field public OnCurveChanged MulticastDelegate @----------------------------------------------------------------- events
----@field public OnCurveCommitted MulticastDelegate
----@field public OnViewChanged MulticastDelegate
+---@field public OnCurveChanged MulticastDelegate|fun(Curve: FEFloatCurve) @----------------------------------------------------------------- events
+---@field public OnCurveCommitted MulticastDelegate|fun(Curve: FEFloatCurve)
+---@field public OnViewChanged MulticastDelegate|fun(MinTime: number, MaxTime: number, MinValue: number, MaxValue: number)
 UEFloatCurveView = {}
 
 ---@return FEFloatCurve

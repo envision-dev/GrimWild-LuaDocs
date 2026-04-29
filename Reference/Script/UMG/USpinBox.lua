@@ -1,7 +1,7 @@
 ---A numerical entry box that allows for direct entry of the number or allows the user to click and slide the number.
 ---@class USpinBox : UWidget
 ---@field public Value number @Value stored in this spin box
----@field public ValueDelegate Delegate @A bindable delegate to allow logic to drive the value of the widget
+---@field public ValueDelegate Delegate|fun(): number @A bindable delegate to allow logic to drive the value of the widget
 ---@field public WidgetStyle FSpinBoxStyle @The Style
 ---@field public MinFractionalDigits integer @The minimum required fractional digits - default 1
 ---@field public MaxFractionalDigits integer @The maximum required fractional digits - default 6
@@ -16,10 +16,10 @@
 ---@field public ClearKeyboardFocusOnCommit boolean @Whether to remove the keyboard focus from the spin box when the value is committed
 ---@field public SelectAllTextOnCommit boolean @Whether to select the text in the spin box when the value is committed
 ---@field public ForegroundColor FSlateColor
----@field public OnValueChanged MulticastDelegate @Called when the value is changed interactively by the user
----@field public OnValueCommitted MulticastDelegate @Called when the value is committed. Occurs when the user presses Enter or the text box loses focus.
----@field public OnBeginSliderMovement MulticastDelegate @Called right before the slider begins to move
----@field public OnEndSliderMovement MulticastDelegate @Called right after the slider handle is released by the user
+---@field public OnValueChanged MulticastDelegate|fun(InValue: number) @Called when the value is changed interactively by the user
+---@field public OnValueCommitted MulticastDelegate|fun(InValue: number, CommitMethod: integer) @Called when the value is committed. Occurs when the user presses Enter or the text box loses focus.
+---@field public OnBeginSliderMovement MulticastDelegate|fun() @Called right before the slider begins to move
+---@field public OnEndSliderMovement MulticastDelegate|fun(InValue: number) @Called right after the slider handle is released by the user
 ---@field protected bOverride_MinValue boolean @Whether the optional MinValue attribute of the widget is set
 ---@field protected bOverride_MaxValue boolean @Whether the optional MaxValue attribute of the widget is set
 ---@field protected bOverride_MinSliderValue boolean @Whether the optional MinSliderValue attribute of the widget is set

@@ -3,8 +3,8 @@
 ---There is no hard limit to the nesting - child items can have children and so on
 ---To make a widget usable as an entry in a TreeView, it must inherit from the IUserObjectListEntry interface.
 ---@class UTreeView : UListView
----@field private BP_OnGetItemChildren Delegate @Called to get the list of children (if any) that correspond to the given item. Only called if the native C++ version of the event is not bound.
----@field private BP_OnItemExpansionChanged MulticastDelegate
+---@field private BP_OnGetItemChildren Delegate|fun(Item: UObject, Children: TArray<UObject>) @Called to get the list of children (if any) that correspond to the given item. Only called if the native C++ version of the event is not bound.
+---@field private BP_OnItemExpansionChanged MulticastDelegate|fun(Item: UObject, bIsExpanded: boolean)
 UTreeView = {}
 
 ---Collapses all currently expanded items

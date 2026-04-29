@@ -5,9 +5,9 @@
 ---@field public DefaultDragVisual UWidget @The Drag Visual is the widget to display when dragging the item.  Normally people create a new widget to represent the temporary drag.
 ---@field public Pivot EDragPivot @Controls where the drag widget visual will appear when dragged relative to the pointer performing the drag operation.
 ---@field public Offset FVector2D @A percentage offset (-1..+1) from the Pivot location, the percentage is of the desired size of the dragged visual.
----@field public OnDrop MulticastDelegate
----@field public OnDragCancelled MulticastDelegate
----@field public OnDragged MulticastDelegate
+---@field public OnDrop MulticastDelegate|fun(Operation: UDragDropOperation)
+---@field public OnDragCancelled MulticastDelegate|fun(Operation: UDragDropOperation)
+---@field public OnDragged MulticastDelegate|fun(Operation: UDragDropOperation)
 UDragDropOperation = {}
 
 ---@param PointerEvent FPointerEvent

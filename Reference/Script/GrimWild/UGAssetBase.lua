@@ -5,10 +5,10 @@
 ---@field public State FDynamicState
 ---@field public bUAsset boolean @true = Unreal Asset (base game), false = VAsset (from mod)
 ---@field protected TemplateClass TSubclassOf<UWorldObject> @Inherited assets: leave null to use Parent Template as our Native Template; Define something, and instead of copying we'll create our own Native Template. TLDR: Inherited + TemplateClass == Parent.TemplateClass: copy template from Parent Template Inherited + TemplateClass != Parent.TemplateClass: create new template with our own class
----@field public OnInitialized MulticastDelegate @Fires when the asset object is created but not yet loaded. Ideal place to bind delegates.
----@field public OnLoadComplete MulticastDelegate @Fires when the basic asset info (not the Template object) has been loaded.
----@field public OnPreUnload MulticastDelegate @Fires before unloading the whole asset.
----@field public OnTemplatePreUnload MulticastDelegate @Fires before unloading the template object. Also fires when unloading the whole asset, since the template is unloaded too.
+---@field public OnInitialized MulticastDelegate|fun() @Fires when the asset object is created but not yet loaded. Ideal place to bind delegates.
+---@field public OnLoadComplete MulticastDelegate|fun() @Fires when the basic asset info (not the Template object) has been loaded.
+---@field public OnPreUnload MulticastDelegate|fun() @Fires before unloading the whole asset.
+---@field public OnTemplatePreUnload MulticastDelegate|fun() @Fires before unloading the template object. Also fires when unloading the whole asset, since the template is unloaded too.
 ---@field protected TemplateObjects TMap<integer, TWeakObjectPtr<UWorldObject>>
 ---@field protected TopLevelObjects TMap<integer, UWorldObject>
 UGAssetBase = {}

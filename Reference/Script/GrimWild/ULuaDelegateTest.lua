@@ -9,7 +9,7 @@
 ---@field private LuaSubsystem ULuaSubsystem @--------------- resolved references ---------------
 ---@field private DevOwner UDevScriptOwner
 ---@field private GameWorld UGameWorld
----@field private PlayerController AGPlayerController
+---@field private PlayerController ALIVECODING_GPlayerController_0
 ULuaDelegateTest = {}
 
 ---@return ULuaDelegateTest

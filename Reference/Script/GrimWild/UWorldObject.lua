@@ -4,17 +4,17 @@
 ---@field protected AttachChildren TMap<string, FObjectAttachment>
 ---@field protected AttachParent TWeakObjectPtr<UWorldObject> @Stores the Parent we've been strongly attached to. Note: Valid for Individual copies only. Static components can't know how many template copies and world instances have them referenced. Note: Does not store weak parents (objects we've been attached to with Weak Attachment).
 ---@field protected Owner TWeakObjectPtr<UWorldObject> @The object that owns this one. Separate from the attachment parent - ownership is a gameplay concept.
----@field public OnChildAttached MulticastDelegate @Fired when a new child has been attached to us.
----@field public OnAttached MulticastDelegate @Fired when this object has been attached to a new parent. Called for Strong or Weak individual copies only (not Static reference, not COW-Awaiting). Also called when a COW-Awaiting slot gets an individual copy. Note: fires for Individually attached objects only (Strong and Weak); not for Static one
----@field public OnChildDetached MulticastDelegate @Fired when any child (individual, weak or static) has been detached from us.
----@field public OnDetached MulticastDelegate @Fired when this object has been detached from its parent. TODO
----@field public OnOwnerChanged MulticastDelegate @Fired when our Owner changes. Null Owner means we're owned by the Game World or it's invalid (check for ObjectFlags: ValidOwner)
+---@field public OnChildAttached MulticastDelegate|fun(Object: UWorldObject, AttachmentSlot: string, AttachmentFlags: EObjectAttachmentFlags) @Fired when a new child has been attached to us.
+---@field public OnAttached MulticastDelegate|fun(Object: UWorldObject, AttachmentSlot: string, AttachmentFlags: EObjectAttachmentFlags) @Fired when this object has been attached to a new parent. Called for Strong or Weak individual copies only (not Static reference, not COW-Awaiting). Also called when a COW-Awaiting slot gets an individual copy. Note: fires for Individually attached objects only (Strong and Weak); not for Static one
+---@field public OnChildDetached MulticastDelegate|fun(Object: UWorldObject, AttachmentSlot: string, AttachmentFlags: EObjectAttachmentFlags) @Fired when any child (individual, weak or static) has been detached from us.
+---@field public OnDetached MulticastDelegate|fun(Object: UWorldObject, AttachmentSlot: string, AttachmentFlags: EObjectAttachmentFlags) @Fired when this object has been detached from its parent. TODO
+---@field public OnOwnerChanged MulticastDelegate|fun(PreviousOwner: UWorldObject, NewOwner: UWorldObject) @Fired when our Owner changes. Null Owner means we're owned by the Game World or it's invalid (check for ObjectFlags: ValidOwner)
 ---@field protected bSelfVisible boolean
----@field public OnVisibilityChanged MulticastDelegate @Fired when the object's real Visibility changes (not SelfVisibility).
----@field public OnCollisionChanged MulticastDelegate @Fired when the object's real Collision changes (not SelfCollision).
----@field public OnInitialized MulticastDelegate @Fires right after the object has been initialized (AssetId, InstanceId, Archetype, Flags set), but no attachment (Parent, Owner), data loading and BeginPlay performed. It's a good place to bind game logic delegates.
----@field public OnBeganPlay MulticastDelegate @Fires right after BeginPlay() execution.
----@field public OnPreDestroy MulticastDelegate @Fires before object destruction. Our children are still valid, they'll be destroyed (strong individual) or detached (weak) after.
+---@field public OnVisibilityChanged MulticastDelegate|fun(bNewState: boolean) @Fired when the object's real Visibility changes (not SelfVisibility).
+---@field public OnCollisionChanged MulticastDelegate|fun(bNewState: boolean) @Fired when the object's real Collision changes (not SelfCollision).
+---@field public OnInitialized MulticastDelegate|fun() @Fires right after the object has been initialized (AssetId, InstanceId, Archetype, Flags set), but no attachment (Parent, Owner), data loading and BeginPlay performed. It's a good place to bind game logic delegates.
+---@field public OnBeganPlay MulticastDelegate|fun() @Fires right after BeginPlay() execution.
+---@field public OnPreDestroy MulticastDelegate|fun() @Fires before object destruction. Our children are still valid, they'll be destroyed (strong individual) or detached (weak) after.
 ---@field public State FDynamicState
 UWorldObject = {}
 

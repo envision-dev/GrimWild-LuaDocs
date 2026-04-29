@@ -1,5 +1,5 @@
 ---@class UPropertySlotWidget_Color : UUserWidget
----@field public OnColorCommitted MulticastDelegate
+---@field public OnColorCommitted MulticastDelegate|fun(Color: FLinearColor)
 UPropertySlotWidget_Color = {}
 
 ---@return UUserWidget

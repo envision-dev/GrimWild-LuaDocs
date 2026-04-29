@@ -1085,7 +1085,7 @@ function UKismetSystemLibrary.K2_ClearAndInvalidateTimerHandle(WorldContextObjec
 function UKismetSystemLibrary.K2_ClearTimer(Object, FunctionName) end
 
 ---Clears a set timer.
----@param Delegate Delegate
+---@param Delegate Delegate|fun()
 function UKismetSystemLibrary.K2_ClearTimerDelegate(Delegate) end
 
 ---Clears a set timer.
@@ -1100,7 +1100,7 @@ function UKismetSystemLibrary.K2_ClearTimerHandle(WorldContextObject, Handle) en
 function UKismetSystemLibrary.K2_GetTimerElapsedTime(Object, FunctionName) end
 
 ---Returns elapsed time for the given delegate (time since current countdown iteration began).
----@param Delegate Delegate
+---@param Delegate Delegate|fun()
 ---@return number
 function UKismetSystemLibrary.K2_GetTimerElapsedTimeDelegate(Delegate) end
 
@@ -1117,7 +1117,7 @@ function UKismetSystemLibrary.K2_GetTimerElapsedTimeHandle(WorldContextObject, H
 function UKismetSystemLibrary.K2_GetTimerRemainingTime(Object, FunctionName) end
 
 ---Returns time until the timer will next execute its delegate.
----@param Delegate Delegate
+---@param Delegate Delegate|fun()
 ---@return number
 function UKismetSystemLibrary.K2_GetTimerRemainingTimeDelegate(Delegate) end
 
@@ -1139,7 +1139,7 @@ function UKismetSystemLibrary.K2_InvalidateTimerHandle(Handle) end
 function UKismetSystemLibrary.K2_IsTimerActive(Object, FunctionName) end
 
 ---Returns true if a timer exists and is active for the given delegate, false otherwise.
----@param Delegate Delegate
+---@param Delegate Delegate|fun()
 ---@return boolean
 function UKismetSystemLibrary.K2_IsTimerActiveDelegate(Delegate) end
 
@@ -1156,7 +1156,7 @@ function UKismetSystemLibrary.K2_IsTimerActiveHandle(WorldContextObject, Handle)
 function UKismetSystemLibrary.K2_IsTimerPaused(Object, FunctionName) end
 
 ---Returns true if a timer exists and is paused for the given delegate, false otherwise.
----@param Delegate Delegate
+---@param Delegate Delegate|fun()
 ---@return boolean
 function UKismetSystemLibrary.K2_IsTimerPausedDelegate(Delegate) end
 
@@ -1177,7 +1177,7 @@ function UKismetSystemLibrary.K2_IsValidTimerHandle(Handle) end
 function UKismetSystemLibrary.K2_PauseTimer(Object, FunctionName) end
 
 ---Pauses a set timer at its current elapsed time.
----@param Delegate Delegate
+---@param Delegate Delegate|fun()
 function UKismetSystemLibrary.K2_PauseTimerDelegate(Delegate) end
 
 ---Pauses a set timer at its current elapsed time.
@@ -1196,7 +1196,7 @@ function UKismetSystemLibrary.K2_PauseTimerHandle(WorldContextObject, Handle) en
 function UKismetSystemLibrary.K2_SetTimer(Object, FunctionName, Time, bLooping, InitialStartDelay, InitialStartDelayVariance) end
 
 ---Set a timer to execute delegate. Setting an existing timer will reset that timer with updated parameters.
----@param Delegate Delegate
+---@param Delegate Delegate|fun()
 ---@param Time number
 ---@param bLooping boolean
 ---@param InitialStartDelay? number @[default: 0.000000]
@@ -1211,7 +1211,7 @@ function UKismetSystemLibrary.K2_SetTimerDelegate(Delegate, Time, bLooping, Init
 function UKismetSystemLibrary.K2_SetTimerForNextTick(Object, FunctionName) end
 
 ---Set a timer to execute a delegate next tick.
----@param Delegate Delegate
+---@param Delegate Delegate|fun()
 ---@return FTimerHandle
 function UKismetSystemLibrary.K2_SetTimerForNextTickDelegate(Delegate) end
 
@@ -1222,7 +1222,7 @@ function UKismetSystemLibrary.K2_SetTimerForNextTickDelegate(Delegate) end
 function UKismetSystemLibrary.K2_TimerExists(Object, FunctionName) end
 
 ---Returns true is a timer for the given delegate exists, false otherwise.
----@param Delegate Delegate
+---@param Delegate Delegate|fun()
 ---@return boolean
 function UKismetSystemLibrary.K2_TimerExistsDelegate(Delegate) end
 
@@ -1238,7 +1238,7 @@ function UKismetSystemLibrary.K2_TimerExistsHandle(WorldContextObject, Handle) e
 function UKismetSystemLibrary.K2_UnPauseTimer(Object, FunctionName) end
 
 ---Resumes a paused timer from its current elapsed time.
----@param Delegate Delegate
+---@param Delegate Delegate|fun()
 function UKismetSystemLibrary.K2_UnPauseTimerDelegate(Delegate) end
 
 ---Resumes a paused timer from its current elapsed time.
@@ -1354,7 +1354,7 @@ function UKismetSystemLibrary.LineTraceSingleForObjects(WorldContextObject, Star
 
 ---@param WorldContextObject UObject
 ---@param Asset TSoftObjectPtr<UObject>
----@param OnLoaded Delegate
+---@param OnLoaded Delegate|fun(Loaded: UObject)
 function UKismetSystemLibrary.LoadAsset(WorldContextObject, Asset, OnLoaded) end
 
 ---Resolves or loads a Soft Object Reference immediately, this will cause hitches and Async Load Asset should be used if possible
@@ -1364,7 +1364,7 @@ function UKismetSystemLibrary.LoadAsset_Blocking(Asset) end
 
 ---@param WorldContextObject UObject
 ---@param AssetClass TSoftClassPtr<UObject>
----@param OnLoaded Delegate
+---@param OnLoaded Delegate|fun(Loaded: TSubclassOf<UObject>)
 function UKismetSystemLibrary.LoadAssetClass(WorldContextObject, AssetClass, OnLoaded) end
 
 ---Resolves or loads a Soft Class Reference immediately, this will cause hitches and Async Load Class Asset should be used if possible

@@ -12,9 +12,9 @@
 ---@field public Font FSlateFontInfo @The default font to use in the combobox, only applies if you're not implementing OnGenerateWidgetEvent to factory each new entry.
 ---@field public ForegroundColor FSlateColor @The foreground color to pass through the hierarchy.
 ---@field public bIsFocusable boolean
----@field public OnGenerateWidgetEvent Delegate @Called when the widget is needed for the item.
----@field public OnSelectionChanged MulticastDelegate @Called when a new item is selected in the combobox.
----@field public OnOpening MulticastDelegate @Called when the combobox is opening
+---@field public OnGenerateWidgetEvent Delegate|fun(Item: string): UWidget @Called when the widget is needed for the item.
+---@field public OnSelectionChanged MulticastDelegate|fun(SelectedItem: string, SelectionType: integer) @Called when a new item is selected in the combobox.
+---@field public OnOpening MulticastDelegate|fun() @Called when the combobox is opening
 UComboBoxString = {}
 
 ---@param Option string
