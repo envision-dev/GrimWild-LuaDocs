@@ -1,0 +1,3 @@
+---@class UDynamicStateHolder : UInterface
+UDynamicStateHolder = {}
+

@@ -1,0 +1,3 @@
+---@class URichTextBlockDecorator : UObject
+URichTextBlockDecorator = {}
+

@@ -1,0 +1,17 @@
+---Mouse cursor types (mirrored from ICursor.h)
+---@class EMouseCursor
+---@field public None EMouseCursor [0] Causes no mouse cursor to be visible.
+---@field public Default EMouseCursor [1] Default cursor (arrow).
+---@field public TextEditBeam EMouseCursor [2] Text edit beam.
+---@field public ResizeLeftRight EMouseCursor [3] Resize horizontal.
+---@field public ResizeUpDown EMouseCursor [4] Resize vertical.
+---@field public ResizeSouthEast EMouseCursor [5] Resize diagonal.
+---@field public ResizeSouthWest EMouseCursor [6] Resize other diagonal.
+---@field public CardinalCross EMouseCursor [7] MoveItem.
+---@field public Crosshairs EMouseCursor [8] Target Cross.
+---@field public Hand EMouseCursor [9] Hand cursor.
+---@field public GrabHand EMouseCursor [10] Grab Hand cursor.
+---@field public GrabHandClosed EMouseCursor [11] Grab Hand cursor closed.
+---@field public SlashedCircle EMouseCursor [12] a circle with a diagonal line through it.
+---@field public EyeDropper EMouseCursor [13] Eye-dropper cursor for picking colors.
+EMouseCursor = {}

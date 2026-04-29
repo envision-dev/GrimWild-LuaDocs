@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		// Lua language server: index those folders for completions/definitions
+		"Lua.workspace.library": [
+			"Reference/"
+]
+	}
+}

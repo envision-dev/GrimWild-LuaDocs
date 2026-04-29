@@ -1,0 +1,14 @@
+---Subset of EPixelFormat exposed to UTextureRenderTarget2D
+---@class ETextureRenderTargetFormat
+---@field public RTF_R8 ETextureRenderTargetFormat [0] R channel, 8 bit per channel fixed point, range [0, 1].
+---@field public RTF_RG8 ETextureRenderTargetFormat [1] RG channels, 8 bit per channel fixed point, range [0, 1].
+---@field public RTF_RGBA8 ETextureRenderTargetFormat [2] RGBA channels, 8 bit per channel fixed point, range [0, 1].
+---@field public RTF_RGBA8_SRGB ETextureRenderTargetFormat [3] RGBA channels, 8 bit per channel fixed point, range [0, 1]. RGB is encoded with sRGB gamma curve. A is always stored as linear.
+---@field public RTF_R16f ETextureRenderTargetFormat [4] R channel, 16 bit per channel floating point, range [-65504, 65504]
+---@field public RTF_RG16f ETextureRenderTargetFormat [5] RG channels, 16 bit per channel floating point, range [-65504, 65504]
+---@field public RTF_RGBA16f ETextureRenderTargetFormat [6] RGBA channels, 16 bit per channel floating point, range [-65504, 65504]
+---@field public RTF_R32f ETextureRenderTargetFormat [7] R channel, 32 bit per channel floating point, range [-3.402823 x 10^38, 3.402823 x 10^38]
+---@field public RTF_RG32f ETextureRenderTargetFormat [8] RG channels, 32 bit per channel floating point, range [-3.402823 x 10^38, 3.402823 x 10^38]
+---@field public RTF_RGBA32f ETextureRenderTargetFormat [9] RGBA channels, 32 bit per channel floating point, range [-3.402823 x 10^38, 3.402823 x 10^38]
+---@field public RTF_RGB10A2 ETextureRenderTargetFormat [10] RGBA channels, 10 bit per channel fixed point and 2 bit of alpha
+ETextureRenderTargetFormat = {}

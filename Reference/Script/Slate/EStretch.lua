@@ -1,0 +1,11 @@
+---@class EStretch
+---@field public None EStretch [0] Does not scale the content.
+---@field public Fill EStretch [1] Scales the content non-uniformly filling the entire space of the area.
+---@field public ScaleToFit EStretch [2] Scales the content uniformly (preserving aspect ratio) until it can no longer scale the content without clipping it.
+---@field public ScaleToFitX EStretch [3] Scales the content uniformly (preserving aspect ratio) until it can no longer scale the content without clipping it along the x-axis, the y-axis can/will be clipped.
+---@field public ScaleToFitY EStretch [4] Scales the content uniformly (preserving aspect ratio) until it can no longer scale the content without clipping it along the y-axis, the x-axis can/will be clipped.
+---@field public ScaleToFill EStretch [5] Scales the content uniformly (preserving aspect ratio), until all sides meet or exceed the size of the area.  Will result in clipping the longer side.
+---@field public ScaleBySafeZone EStretch [6] Scales the content according to the size of the safe zone currently applied to the viewport.
+---@field public UserSpecified EStretch [7] Scales the content by the scale specified by the user.
+---@field public UserSpecifiedWithClipping EStretch [8] Scales the content by the scale specified by the user and also clips.
+EStretch = {}

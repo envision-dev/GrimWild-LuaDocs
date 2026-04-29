@@ -1,0 +1,14 @@
+---Structure with publicly exposed information about an asset type. These can be loaded out of a config file.
+---@class FPrimaryAssetTypeInfo
+---@field public PrimaryAssetType string @The logical name for this type of Primary Asset
+---@field private AssetBaseClass TSoftClassPtr<UObject> @Base Class of all assets of this type
+---@field public AssetBaseClassLoaded TSubclassOf<UObject> @Base Class of all assets of this type
+---@field public bHasBlueprintClasses boolean @True if the assets loaded are blueprints classes, false if they are normal UObjects
+---@field public bIsEditorOnly boolean @True if this type is editor only. Disable this to consider content that is part of the engine or engine plugins.
+---@field private Directories TArray<FDirectoryPath> @Directories to search for this asset type
+---@field private SpecificAssets TArray<FSoftObjectPath> @Individual assets to scan
+---@field public Rules FPrimaryAssetRules @Default management rules for this type, individual assets can be overridden
+---@field public AssetScanPaths TArray<string> @Combination of directories and individual assets to search for this asset type. Will have the Directories and Assets added to it but may include virtual paths
+---@field public bIsDynamicAsset boolean @True if this is an asset created at runtime that has no on disk representation. Cannot be set in config
+---@field public NumberOfAssets integer @Number of tracked assets of that type
+FPrimaryAssetTypeInfo = {}

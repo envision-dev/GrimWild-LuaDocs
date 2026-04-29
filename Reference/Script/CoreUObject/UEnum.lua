@@ -1,0 +1,3 @@
+---@class UEnum : UField
+UEnum = {}
+

@@ -1,0 +1,13 @@
+---Specifies which component of the scene rendering should be output to the final render target.
+---@class ESceneCaptureSource
+---@field public SCS_SceneColorHDR ESceneCaptureSource [0]
+---@field public SCS_SceneColorHDRNoAlpha ESceneCaptureSource [1]
+---@field public SCS_FinalColorLDR ESceneCaptureSource [2]
+---@field public SCS_SceneColorSceneDepth ESceneCaptureSource [3]
+---@field public SCS_SceneDepth ESceneCaptureSource [4]
+---@field public SCS_DeviceDepth ESceneCaptureSource [5]
+---@field public SCS_Normal ESceneCaptureSource [6]
+---@field public SCS_BaseColor ESceneCaptureSource [7]
+---@field public SCS_FinalColorHDR ESceneCaptureSource [8]
+---@field public SCS_FinalToneCurveHDR ESceneCaptureSource [9]
+ESceneCaptureSource = {}

@@ -1,0 +1,3 @@
+---@class USlateTextureAtlasInterface : UInterface
+USlateTextureAtlasInterface = {}
+

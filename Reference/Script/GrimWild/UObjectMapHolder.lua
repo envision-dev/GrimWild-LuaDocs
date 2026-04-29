@@ -1,0 +1,3 @@
+---@class UObjectMapHolder : UInterface
+UObjectMapHolder = {}
+

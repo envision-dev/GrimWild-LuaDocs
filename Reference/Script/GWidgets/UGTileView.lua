@@ -1,0 +1,3 @@
+---@class UGTileView : UTileView
+UGTileView = {}
+

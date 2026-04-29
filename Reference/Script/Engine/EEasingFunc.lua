@@ -1,0 +1,17 @@
+---Provides different easing functions that can be used in blueprints
+---@class EEasingFunc
+---@field public Linear EEasingFunc [0] Simple linear interpolation.
+---@field public Step EEasingFunc [1] Simple step interpolation.
+---@field public SinusoidalIn EEasingFunc [2] Sinusoidal in interpolation.
+---@field public SinusoidalOut EEasingFunc [3] Sinusoidal out interpolation.
+---@field public SinusoidalInOut EEasingFunc [4] Sinusoidal in/out interpolation.
+---@field public EaseIn EEasingFunc [5] Smoothly accelerates, but does not decelerate into the target.  Ease amount controlled by BlendExp.
+---@field public EaseOut EEasingFunc [6] Immediately accelerates, but smoothly decelerates into the target.  Ease amount controlled by BlendExp.
+---@field public EaseInOut EEasingFunc [7] Smoothly accelerates and decelerates.  Ease amount controlled by BlendExp.
+---@field public ExpoIn EEasingFunc [8] Easing in using an exponential
+---@field public ExpoOut EEasingFunc [9] Easing out using an exponential
+---@field public ExpoInOut EEasingFunc [10] Easing in/out using an exponential method
+---@field public CircularIn EEasingFunc [11] Easing is based on a half circle.
+---@field public CircularOut EEasingFunc [12] Easing is based on an inverted half circle.
+---@field public CircularInOut EEasingFunc [13] Easing is based on two half circles.
+EEasingFunc = {}

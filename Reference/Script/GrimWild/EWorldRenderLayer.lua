@@ -1,0 +1,31 @@
+---This enum controls the rendering order of objects placed inside World.
+---Previously, it had controlled logical layers. Note: now they're replaced with FEntityId::Type
+---@class EWorldRenderLayer
+---@field public None EWorldRenderLayer [0]
+---@field public Ground EWorldRenderLayer [1] ----- Level layers
+---@field public Floor EWorldRenderLayer [2] What nature builds: Grass, stone, sand...
+---@field public TopFloor EWorldRenderLayer [3] What player builds: concrete, tiles
+---@field public Decal EWorldRenderLayer [4] Special surfaces: Snow, grass
+---@field public Liquid EWorldRenderLayer [5] Decals (blood or water spots)
+---@field public Shadow EWorldRenderLayer [6] Liquids
+---@field public Zone EWorldRenderLayer [7]
+---@field public Block EWorldRenderLayer [8]
+---@field public Building EWorldRenderLayer [9]
+---@field public Plant EWorldRenderLayer [10]
+---@field public Item EWorldRenderLayer [11]
+---@field public Pawn EWorldRenderLayer [12]
+---@field public Projectile EWorldRenderLayer [13]
+---@field public LitParticle EWorldRenderLayer [14]
+---@field public Light EWorldRenderLayer [15] Particles that will be placed under light surface
+---@field public UnlitParticle EWorldRenderLayer [16]
+---@field public FogOfWar EWorldRenderLayer [17] Particles that will be placed on top of light surface and won't be affected by it
+---@field public Weather EWorldRenderLayer [18]
+---@field public Project EWorldRenderLayer [19]
+---@field public Order EWorldRenderLayer [20]
+---@field public Overlay EWorldRenderLayer [21]
+---@field public Selection EWorldRenderLayer [22]
+---@field public Planet EWorldRenderLayer [23] ----- World layers
+---@field public Faction EWorldRenderLayer [24]
+---@field public ObjectComponent EWorldRenderLayer [25]
+---@field public BodyPart EWorldRenderLayer [26]
+EWorldRenderLayer = {}

@@ -1,0 +1,2 @@
+---@class UClass
+UClass = {}

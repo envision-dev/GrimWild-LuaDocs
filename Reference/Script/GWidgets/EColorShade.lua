@@ -1,0 +1,15 @@
+---Brightness (Value) of the Color tones.
+---@class EColorShade
+---@field public Min EColorShade [0]
+---@field public DEPRECATED_0 EColorShade [1]
+---@field public DEPRECATED_1 EColorShade [2]
+---@field public Dark4 EColorShade [3]
+---@field public Dark3 EColorShade [4]
+---@field public Dark2 EColorShade [5]
+---@field public Dark1 EColorShade [6]
+---@field public Dark0 EColorShade [7]
+---@field public Default EColorShade [8]
+---@field public Bright EColorShade [9]
+---@field public Max EColorShade [10]
+---@field public NUM EColorShade [11]
+EColorShade = {}

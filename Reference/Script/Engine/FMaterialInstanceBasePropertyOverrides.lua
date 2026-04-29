@@ -1,0 +1,23 @@
+---Properties from the base material that can be overridden in material instances.
+---@class FMaterialInstanceBasePropertyOverrides
+---@field public bOverride_OpacityMaskClipValue boolean @Enables override of the opacity mask clip value.
+---@field public bOverride_BlendMode boolean @Enables override of the blend mode.
+---@field public bOverride_ShadingModel boolean @Enables override of the shading model.
+---@field public bOverride_DitheredLODTransition boolean @Enables override of the dithered LOD transition property.
+---@field public bOverride_CastDynamicShadowAsMasked boolean @Enables override of whether to shadow using masked opacity on translucent materials.
+---@field public bOverride_TwoSided boolean @Enables override of the two sided property.
+---@field public bOverride_bIsThinSurface boolean @Enables override of the IsThinSurface property.
+---@field public bOverride_OutputTranslucentVelocity boolean @Enables override of the output velocity property.
+---@field public bOverride_DisplacementScaling boolean @Enables override of the displacement magnitude and center property.
+---@field public bOverride_MaxWorldPositionOffsetDisplacement boolean @Enables override of the max world position offset property.
+---@field public TwoSided boolean @Indicates that the material should be rendered without backface culling and the normal should be flipped for backfaces.
+---@field public bIsThinSurface boolean @Indicates that the material should be rendered as.
+---@field public DitheredLODTransition boolean @Whether the material should support a dithered LOD transition when used with the foliage system.
+---@field public bCastDynamicShadowAsMasked boolean @Whether the material should cast shadows as masked even though it has a translucent blend mode.
+---@field public bOutputTranslucentVelocity boolean @Whether the material should output velocity even though it has a translucent blend mode.
+---@field public BlendMode integer @The blend mode
+---@field public ShadingModel integer @The shading model
+---@field public OpacityMaskClipValue number @If BlendMode is BLEND_Masked, the surface is not rendered where OpacityMask < OpacityMaskClipValue.
+---@field public DisplacementScaling FDisplacementScaling
+---@field public MaxWorldPositionOffsetDisplacement number @The maximum World Position Offset distance. Zero means no maximum.
+FMaterialInstanceBasePropertyOverrides = {}

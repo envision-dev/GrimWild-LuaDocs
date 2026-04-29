@@ -1,0 +1,24 @@
+---Sprite Proxy is the persistent data storage between different Sprite Components switch.
+---Doing this in Sprite Component itself is impossible, since Sprite Pool may reuse any of them with new data inserted.
+---This is interface (one-way bridge) for controlling Sprite behavior from other game modules.
+---This storage is Transient.
+---Example: we need to have a "Wooden Crate" sprite on the scene. In Game module, we create a new proxy and set fields:
+---Sprite == Crate, Tint = #FF0000. The actual SpriteComponent is chosen either from scratch or from Sprite Pool.
+---When the player moves out from the chunk, the "Wooden Crate" releases its SpriteComponent (from now it may be reused for the next chunk content).
+---But we should still have all the data (Sprite, Tint) to be referenced from Game and to be able to restore the Wooden Crate when the player moves back.
+---We can freely change "heavy" properties of the Proxy (like Material), and it will configure the visual representation
+---Made struct for better Blueprint exposure
+---@class FSpriteProxy : FDebuggable
+---@field protected Subsystem UStaticSpriteSubsystem @Parent Subsystem
+---@field protected MyId integer @Runtime ID of the Sprite Proxy inside the Subsystem. Constant (does not change after spawn)
+---@field protected Material UMaterialInterface @Always valid, even for empty scenes. Can't be nullptr by design (falls back to Default one every time we set to 'nullptr') //Validness: instant
+---@field protected MaterialSource EMaterialSource
+---@field protected Params FSpriteProxyParameters @All the parameters exposed to spawn and Blueprints/Lua //Validness: instant
+---@field protected bParentVisible boolean @Sent to this Proxy from one of the recursive attach Parents on DTU() //Validness: DTU
+---@field protected bParentActive boolean @Sent to this Proxy from one of the recursive attach Parents on DTU() //Validness: DTU
+---@field protected AttachParent integer @ProxyId of our parent (that we are attached to). Active + INDEX_NONE = we're scene Root. Inactive or INDEX_INVALID_PARENT = we're not attached to anything         //Validness: instant
+---@field protected AttachedToParentSocket string @Name of the socket on the parent proxy this proxy is attached to. NAME_None means we're attached directly to the parent's pivot point (no socket). Stored persistently so we can recalculate AttachmentTransform when the parent's sprite changes (and socket positions shift).
+---@field protected AttachChildren TArray<integer> @An array of proxies attached to us //Validness: instant
+---@field protected RelativeRenderPriority integer @Roots: includes render layer (surface, pawn...), set from Game module. Rules are defined in Game module Children: includes only manually-set RP offset from Parent. Validness: instant
+---@field protected ActiveSpriteComponent UStaticSpriteComponent @Component we're using right now to represent the sprite. Only valid when we're Active and SpriteId it not null (so we're not an empty scene)         //Validness: instant (releasing on proxy destruction) or DTU (common path of changing and releasing the SC)
+FSpriteProxy = {}

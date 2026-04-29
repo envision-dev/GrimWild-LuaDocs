@@ -1,0 +1,3 @@
+---@class ULuaOwnedHandle : UInterface
+ULuaOwnedHandle = {}
+

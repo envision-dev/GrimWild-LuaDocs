@@ -1,0 +1,95 @@
+---Describes the format of a each pixel in a graphics buffer.
+---@class EPixelFormat
+---@field public PF_Unknown EPixelFormat [0]
+---@field public PF_A32B32G32R32F EPixelFormat [1]
+---@field public PF_B8G8R8A8 EPixelFormat [2] UNORM (0..1), corresponds to FColor.  Unpacks as rgba in the shader.
+---@field public PF_G8 EPixelFormat [3] UNORM red (0..1)
+---@field public PF_G16 EPixelFormat [4]
+---@field public PF_DXT1 EPixelFormat [5]
+---@field public PF_DXT3 EPixelFormat [6]
+---@field public PF_DXT5 EPixelFormat [7]
+---@field public PF_UYVY EPixelFormat [8]
+---@field public PF_FloatRGB EPixelFormat [9] Same as PF_FloatR11G11B10
+---@field public PF_FloatRGBA EPixelFormat [10] RGBA 16 bit signed FP format.  Use FFloat16Color on the CPU.
+---@field public PF_DepthStencil EPixelFormat [11] A depth+stencil format with platform-specific implementation, for use with render targets.
+---@field public PF_ShadowDepth EPixelFormat [12] A depth format with platform-specific implementation, for use with render targets.
+---@field public PF_R32_FLOAT EPixelFormat [13]
+---@field public PF_G16R16 EPixelFormat [14]
+---@field public PF_G16R16F EPixelFormat [15]
+---@field public PF_G16R16F_FILTER EPixelFormat [16]
+---@field public PF_G32R32F EPixelFormat [17]
+---@field public PF_A2B10G10R10 EPixelFormat [18]
+---@field public PF_A16B16G16R16 EPixelFormat [19]
+---@field public PF_D24 EPixelFormat [20]
+---@field public PF_R16F EPixelFormat [21]
+---@field public PF_R16F_FILTER EPixelFormat [22]
+---@field public PF_BC5 EPixelFormat [23]
+---@field public PF_V8U8 EPixelFormat [24] SNORM red, green (-1..1). Not supported on all RHI e.g. Metal
+---@field public PF_A1 EPixelFormat [25]
+---@field public PF_FloatR11G11B10 EPixelFormat [26] A low precision floating point format, unsigned.  Use FFloat3Packed on the CPU.
+---@field public PF_A8 EPixelFormat [27]
+---@field public PF_R32_UINT EPixelFormat [28]
+---@field public PF_R32_SINT EPixelFormat [29]
+---@field public PF_PVRTC2 EPixelFormat [30]
+---@field public PF_PVRTC4 EPixelFormat [31]
+---@field public PF_R16_UINT EPixelFormat [32]
+---@field public PF_R16_SINT EPixelFormat [33]
+---@field public PF_R16G16B16A16_UINT EPixelFormat [34]
+---@field public PF_R16G16B16A16_SINT EPixelFormat [35]
+---@field public PF_R5G6B5_UNORM EPixelFormat [36]
+---@field public PF_R8G8B8A8 EPixelFormat [37]
+---@field public PF_A8R8G8B8 EPixelFormat [38] Only used for legacy loading; do NOT use!
+---@field public PF_BC4 EPixelFormat [39] High precision single channel block compressed, equivalent to a single channel BC5, 8 bytes per 4x4 block.
+---@field public PF_R8G8 EPixelFormat [40] UNORM red, green (0..1).
+---@field public PF_ATC_RGB EPixelFormat [41] ATITC format.
+---@field public PF_ATC_RGBA_E EPixelFormat [42] ATITC format.
+---@field public PF_ATC_RGBA_I EPixelFormat [43] ATITC format.
+---@field public PF_X24_G8 EPixelFormat [44] Used for creating SRVs to alias a DepthStencil buffer to read Stencil.  Don't use for creating textures.
+---@field public PF_ETC1 EPixelFormat [45]
+---@field public PF_ETC2_RGB EPixelFormat [46]
+---@field public PF_ETC2_RGBA EPixelFormat [47]
+---@field public PF_R32G32B32A32_UINT EPixelFormat [48]
+---@field public PF_R16G16_UINT EPixelFormat [49]
+---@field public PF_ASTC_4x4 EPixelFormat [50] 8.00 bpp
+---@field public PF_ASTC_6x6 EPixelFormat [51] 3.56 bpp
+---@field public PF_ASTC_8x8 EPixelFormat [52] 2.00 bpp
+---@field public PF_ASTC_10x10 EPixelFormat [53] 1.28 bpp
+---@field public PF_ASTC_12x12 EPixelFormat [54] 0.89 bpp
+---@field public PF_BC6H EPixelFormat [55]
+---@field public PF_BC7 EPixelFormat [56]
+---@field public PF_R8_UINT EPixelFormat [57]
+---@field public PF_L8 EPixelFormat [58]
+---@field public PF_XGXR8 EPixelFormat [59]
+---@field public PF_R8G8B8A8_UINT EPixelFormat [60]
+---@field public PF_R8G8B8A8_SNORM EPixelFormat [61] SNORM (-1..1), corresponds to FFixedRGBASigned8.
+---@field public PF_R16G16B16A16_UNORM EPixelFormat [62]
+---@field public PF_R16G16B16A16_SNORM EPixelFormat [63]
+---@field public PF_PLATFORM_HDR_0 EPixelFormat [64]
+---@field public PF_PLATFORM_HDR_1 EPixelFormat [65]
+---@field public PF_PLATFORM_HDR_2 EPixelFormat [66]
+---@field public PF_NV12 EPixelFormat [67]
+---@field public PF_R32G32_UINT EPixelFormat [68]
+---@field public PF_ETC2_R11_EAC EPixelFormat [69]
+---@field public PF_ETC2_RG11_EAC EPixelFormat [70]
+---@field public PF_R8 EPixelFormat [71]
+---@field public PF_B5G5R5A1_UNORM EPixelFormat [72]
+---@field public PF_ASTC_4x4_HDR EPixelFormat [73]
+---@field public PF_ASTC_6x6_HDR EPixelFormat [74]
+---@field public PF_ASTC_8x8_HDR EPixelFormat [75]
+---@field public PF_ASTC_10x10_HDR EPixelFormat [76]
+---@field public PF_ASTC_12x12_HDR EPixelFormat [77]
+---@field public PF_G16R16_SNORM EPixelFormat [78]
+---@field public PF_R8G8_UINT EPixelFormat [79]
+---@field public PF_R32G32B32_UINT EPixelFormat [80]
+---@field public PF_R32G32B32_SINT EPixelFormat [81]
+---@field public PF_R32G32B32F EPixelFormat [82]
+---@field public PF_R8_SINT EPixelFormat [83]
+---@field public PF_R64_UINT EPixelFormat [84]
+---@field public PF_R9G9B9EXP5 EPixelFormat [85]
+---@field public PF_P010 EPixelFormat [86]
+---@field public PF_ASTC_4x4_NORM_RG EPixelFormat [87]
+---@field public PF_ASTC_6x6_NORM_RG EPixelFormat [88]
+---@field public PF_ASTC_8x8_NORM_RG EPixelFormat [89]
+---@field public PF_ASTC_10x10_NORM_RG EPixelFormat [90]
+---@field public PF_ASTC_12x12_NORM_RG EPixelFormat [91]
+EPixelFormat = {}

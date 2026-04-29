@@ -1,0 +1,21 @@
+---STRONG and WEAK Attachment:
+---Valid only for IndividualCopy attachment (we can get non-const version of it).
+---Valid only for World Instances (attachment subjects and objects are all WIs), placed in the same World.
+---Strong Attachment = each side (Parent and Child) is connected to the other. Child.Parent=Parent, Parent.Children contains Child.
+---Weak Attachment = one-side only. Child is unaware of this attachment. Child.Parent=some another Parent, but not us.
+---So, non-Individual attachment is just an attachment. Individual one has two subtypes: Strong and Weak.
+---Strong = a regular one. We're holding a hard reference to the attached object. We're its Parent. We're in charge of its saving and loading.
+---Weak = just referring to someone else's attached object (like Shared Component). We're not its Parent, we're not responsible for its saving and loading.
+---This means that we cannot hold a hard reference to it (there is no strict loading order between us, and we might spawn when there is no referenced object yet).
+---So, instead of holding a pointer here, we just refer to its World Instance Id.
+--- //Note: not using BP Bitmasks, because it ruins delegate signature creation
+---@class EObjectAttachmentFlags
+---@field public None EObjectAttachmentFlags [0]
+---@field public ADDED EObjectAttachmentFlags [1] These properties are valid in SaveGame or RawData disk file only (FSavedAttachment)
+---@field public REMOVED EObjectAttachmentFlags [2] Similar to REMOVED flag in Dynamic State, inverted. Explicitly marks that the referenced object should be added during the loading
+---@field public TreatAsNonConst EObjectAttachmentFlags [4] Gameplay
+---@field public CopyOnWriteAwaiting EObjectAttachmentFlags [8] Allows us to use the owned object as non-const (Including Weak Attachment). HUGE NOTE: The object pointer inside the slot might possibly be Static even if this flag is set to true. Real Individual Copies are (TreatAsNonConst + !CopyOnWriteAwaiting); False = always static reference
+---@field public WeakAttachment EObjectAttachmentFlags [16] Whether to create an individual copy on the first Mutable request (should be set to 0 when it's done). Works for Individual Copies only; but should be set from templates.
+---@field public FullCOW EObjectAttachmentFlags [12] Whether this attachment is Weak, and we should use referenced World InstanceId to get the object (works for WorldInstances with IndividualCopy only)
+---@field public FullWeak EObjectAttachmentFlags [20] Used to create COW component flags
+EObjectAttachmentFlags = {}

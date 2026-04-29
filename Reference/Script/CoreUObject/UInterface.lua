@@ -1,0 +1,3 @@
+---@class UInterface : UObject
+UInterface = {}
+

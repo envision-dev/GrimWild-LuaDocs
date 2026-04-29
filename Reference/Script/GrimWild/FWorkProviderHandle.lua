@@ -1,0 +1,2 @@
+---@class FWorkProviderHandle
+FWorkProviderHandle = {}

@@ -1,0 +1,74 @@
+---
+---    update BaseEngine.ini [SystemSettings]
+---    you might have to update the update Game's DefaultEngine.ini [SystemSettings]
+---    order and actual name can never change (order is important!)
+---TEXTUREGROUP_Cinematic: should be used for Cinematics which will be baked out
+---                        and want to have the highest settings
+---@class TextureGroup
+---@field public TEXTUREGROUP_World TextureGroup [0]
+---@field public TEXTUREGROUP_WorldNormalMap TextureGroup [1]
+---@field public TEXTUREGROUP_WorldSpecular TextureGroup [2]
+---@field public TEXTUREGROUP_Character TextureGroup [3]
+---@field public TEXTUREGROUP_CharacterNormalMap TextureGroup [4]
+---@field public TEXTUREGROUP_CharacterSpecular TextureGroup [5]
+---@field public TEXTUREGROUP_Weapon TextureGroup [6]
+---@field public TEXTUREGROUP_WeaponNormalMap TextureGroup [7]
+---@field public TEXTUREGROUP_WeaponSpecular TextureGroup [8]
+---@field public TEXTUREGROUP_Vehicle TextureGroup [9]
+---@field public TEXTUREGROUP_VehicleNormalMap TextureGroup [10]
+---@field public TEXTUREGROUP_VehicleSpecular TextureGroup [11]
+---@field public TEXTUREGROUP_Cinematic TextureGroup [12]
+---@field public TEXTUREGROUP_Effects TextureGroup [13]
+---@field public TEXTUREGROUP_EffectsNotFiltered TextureGroup [14]
+---@field public TEXTUREGROUP_Skybox TextureGroup [15]
+---@field public TEXTUREGROUP_UI TextureGroup [16]
+---@field public TEXTUREGROUP_Lightmap TextureGroup [17]
+---@field public TEXTUREGROUP_RenderTarget TextureGroup [18]
+---@field public TEXTUREGROUP_MobileFlattened TextureGroup [19]
+---@field public TEXTUREGROUP_ProcBuilding_Face TextureGroup [20] Obsolete - kept for backwards compatibility.
+---@field public TEXTUREGROUP_ProcBuilding_LightMap TextureGroup [21] Obsolete - kept for backwards compatibility.
+---@field public TEXTUREGROUP_Shadowmap TextureGroup [22]
+---@field public TEXTUREGROUP_ColorLookupTable TextureGroup [23] No compression, no mips.
+---@field public TEXTUREGROUP_Terrain_Heightmap TextureGroup [24]
+---@field public TEXTUREGROUP_Terrain_Weightmap TextureGroup [25]
+---@field public TEXTUREGROUP_Bokeh TextureGroup [26] Using this TextureGroup triggers special mip map generation code only useful for the BokehDOF post process.
+---@field public TEXTUREGROUP_IESLightProfile TextureGroup [27] No compression, created on import of a .IES file.
+---@field public TEXTUREGROUP_Pixels2D TextureGroup [28] Non-filtered, useful for 2D rendering.
+---@field public TEXTUREGROUP_HierarchicalLOD TextureGroup [29] Hierarchical LOD generated textures
+---@field public TEXTUREGROUP_Impostor TextureGroup [30] Impostor Color Textures
+---@field public TEXTUREGROUP_ImpostorNormalDepth TextureGroup [31] Impostor Normal and Depth, use default compression
+---@field public TEXTUREGROUP_8BitData TextureGroup [32] 8 bit data stored in textures
+---@field public TEXTUREGROUP_16BitData TextureGroup [33] 16 bit data stored in textures
+---@field public TEXTUREGROUP_Project01 TextureGroup [34] Project specific group, rename in Engine.ini, [EnumRemap] TEXTUREGROUP_Project**.DisplayName=My Fun Group
+---@field public TEXTUREGROUP_Project02 TextureGroup [35]
+---@field public TEXTUREGROUP_Project03 TextureGroup [36]
+---@field public TEXTUREGROUP_Project04 TextureGroup [37]
+---@field public TEXTUREGROUP_Project05 TextureGroup [38]
+---@field public TEXTUREGROUP_Project06 TextureGroup [39]
+---@field public TEXTUREGROUP_Project07 TextureGroup [40]
+---@field public TEXTUREGROUP_Project08 TextureGroup [41]
+---@field public TEXTUREGROUP_Project09 TextureGroup [42]
+---@field public TEXTUREGROUP_Project10 TextureGroup [43]
+---@field public TEXTUREGROUP_Project11 TextureGroup [44]
+---@field public TEXTUREGROUP_Project12 TextureGroup [45]
+---@field public TEXTUREGROUP_Project13 TextureGroup [46]
+---@field public TEXTUREGROUP_Project14 TextureGroup [47]
+---@field public TEXTUREGROUP_Project15 TextureGroup [48]
+---@field public TEXTUREGROUP_Project16 TextureGroup [49]
+---@field public TEXTUREGROUP_Project17 TextureGroup [50]
+---@field public TEXTUREGROUP_Project18 TextureGroup [51]
+---@field public TEXTUREGROUP_Project19 TextureGroup [52]
+---@field public TEXTUREGROUP_Project20 TextureGroup [53]
+---@field public TEXTUREGROUP_Project21 TextureGroup [54]
+---@field public TEXTUREGROUP_Project22 TextureGroup [55]
+---@field public TEXTUREGROUP_Project23 TextureGroup [56]
+---@field public TEXTUREGROUP_Project24 TextureGroup [57]
+---@field public TEXTUREGROUP_Project25 TextureGroup [58]
+---@field public TEXTUREGROUP_Project26 TextureGroup [59]
+---@field public TEXTUREGROUP_Project27 TextureGroup [60]
+---@field public TEXTUREGROUP_Project28 TextureGroup [61]
+---@field public TEXTUREGROUP_Project29 TextureGroup [62]
+---@field public TEXTUREGROUP_Project30 TextureGroup [63]
+---@field public TEXTUREGROUP_Project31 TextureGroup [64]
+---@field public TEXTUREGROUP_Project32 TextureGroup [65]
+TextureGroup = {}

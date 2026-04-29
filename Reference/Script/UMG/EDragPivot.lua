@@ -1,0 +1,14 @@
+---Controls where the drag widget visual will appear when dragged relative to the pointer performing
+---the drag operation.
+---@class EDragPivot
+---@field public MouseDown EDragPivot [0]
+---@field public TopLeft EDragPivot [1]
+---@field public TopCenter EDragPivot [2]
+---@field public TopRight EDragPivot [3]
+---@field public CenterLeft EDragPivot [4]
+---@field public CenterCenter EDragPivot [5]
+---@field public CenterRight EDragPivot [6]
+---@field public BottomLeft EDragPivot [7]
+---@field public BottomCenter EDragPivot [8]
+---@field public BottomRight EDragPivot [9]
+EDragPivot = {}

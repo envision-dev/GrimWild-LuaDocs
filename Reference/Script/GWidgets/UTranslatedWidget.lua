@@ -1,0 +1,3 @@
+---@class UTranslatedWidget : UInterface
+UTranslatedWidget = {}
+

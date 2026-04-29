@@ -1,0 +1,11 @@
+---Navigation context for event
+---@class EUINavigation
+---@field public Left EUINavigation [0] Four cardinal directions
+---@field public Right EUINavigation [1]
+---@field public Up EUINavigation [2]
+---@field public Down EUINavigation [3]
+---@field public Next EUINavigation [4] Conceptual next and previous
+---@field public Previous EUINavigation [5]
+---@field public Num EUINavigation [6] Number of navigation types
+---@field public Invalid EUINavigation [7] Denotes an invalid navigation, more important used to denote no specified navigation
+EUINavigation = {}

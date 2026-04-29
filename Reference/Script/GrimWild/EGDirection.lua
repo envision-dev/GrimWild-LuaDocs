@@ -1,0 +1,12 @@
+---@class EGDirection
+---@field public None EGDirection [0]
+---@field public South EGDirection [1]
+---@field public East EGDirection [2]
+---@field public West EGDirection [4]
+---@field public North EGDirection [8]
+---@field public NW EGDirection [12]
+---@field public NE EGDirection [10]
+---@field public SE EGDirection [3]
+---@field public SW EGDirection [5]
+---@field public Side EGDirection [6]
+EGDirection = {}

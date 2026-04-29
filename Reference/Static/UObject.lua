@@ -1,0 +1,2 @@
+---@class UObject
+UObject = {}

@@ -1,0 +1,20 @@
+---Gameplay and Technical flags
+---@class EWorldObjectFlags
+---@field public None EWorldObjectFlags [0]
+---@field public NativeTemplate EWorldObjectFlags [1] Assets and Templates
+---@field public TemplateCopy EWorldObjectFlags [2]
+---@field public AnyTemplate EWorldObjectFlags [3]
+---@field public Template_CopyToAssets EWorldObjectFlags [4]
+---@field public Template_CopyToWorldInstances EWorldObjectFlags [8] Used in Native Templates and Template Copies. Indicates whether we should copy the object in assets instead of referring to the original one. Can be overridden individually, so it's just a Default value. NOTE: It's not recommended to change this field if there are assets inherited from the original one. They just won't be updated
+---@field public Template_WorldInstancesWithCOW EWorldObjectFlags [16] See CopyToAssets comment
+---@field public Initialized EWorldObjectFlags [1024] Lifecycle
+---@field public InitialAttachmentPropertySyncPerformed EWorldObjectFlags [2048] False = invalid World, InstanceId, Archetype...
+---@field public ValidParent EWorldObjectFlags [4096]
+---@field public ValidOwner EWorldObjectFlags [8192] False = invalid AttachParent field. (HasAttachment==true + AttachParent==nullptr = valid attachment, the object is top-level object)
+---@field public BeganPlay EWorldObjectFlags [16384] See ValidParent comment
+---@field public BeginPlayRequirements EWorldObjectFlags [15360] Indicates that object's BeginPlay() was called. Executing game logic before BeginPlay() may lead to unexpected results, avoid it.
+---@field public CanFinalizeChildrenAttachment EWorldObjectFlags [31744]
+---@field public ValidAttachment EWorldObjectFlags [12288] If we don't have a valid Parent/Owner, it means we're currently detached. There's no point in finalizing them now. It'll be done when we (or our parent) get a valid attachment.
+---@field public DuplicateTransientFlags EWorldObjectFlags [31747]
+---@field public WorldInstance_SaveToDisk EWorldObjectFlags [1048576] Gameplay
+EWorldObjectFlags = {}

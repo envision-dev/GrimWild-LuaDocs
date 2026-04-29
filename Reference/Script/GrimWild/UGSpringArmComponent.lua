@@ -1,0 +1,3 @@
+---@class UGSpringArmComponent : USpringArmComponent
+UGSpringArmComponent = {}
+

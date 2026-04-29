@@ -1,0 +1,3 @@
+---@class UGGameViewportClient : UGameViewportClient
+UGGameViewportClient = {}
+

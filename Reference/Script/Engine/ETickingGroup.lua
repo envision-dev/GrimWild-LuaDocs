@@ -1,0 +1,11 @@
+---Determines which ticking group a tick function belongs to.
+---@class ETickingGroup
+---@field public TG_PrePhysics ETickingGroup [0] Any item that needs to be executed before physics simulation starts.
+---@field public TG_StartPhysics ETickingGroup [1] Special tick group that starts physics simulation.
+---@field public TG_DuringPhysics ETickingGroup [2] Any item that can be run in parallel with our physics simulation work.
+---@field public TG_EndPhysics ETickingGroup [3] Special tick group that ends physics simulation.
+---@field public TG_PostPhysics ETickingGroup [4] Any item that needs rigid body and cloth simulation to be complete before being executed.
+---@field public TG_PostUpdateWork ETickingGroup [5] Any item that needs the update work to be done before being ticked.
+---@field public TG_LastDemotable ETickingGroup [6] Catchall for anything demoted to the end.
+---@field public TG_NewlySpawned ETickingGroup [7] Special tick group that is not actually a tick group. After every tick group this is repeatedly re-run until there are no more newly spawned items to run.
+ETickingGroup = {}

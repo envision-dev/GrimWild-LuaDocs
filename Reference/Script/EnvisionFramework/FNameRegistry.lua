@@ -1,0 +1,17 @@
+---FName <-> int32 bidirectional mapping.
+---Values are stable by default: once assigned, a value is never reused even after removal.
+---This makes values safe to persist in save files and GPU buffers without fixup passes.
+---bByteMode restricts values to [0, 255] for direct use as R8_UINT render target indices.
+---bCompactByteValues recycles freed slots to prevent permanent exhaustion of the 256-slot space.
+---Recycling is only meaningful when the value space is bounded, which is why it requires bByteMode.
+---For unbounded int32 registries, tracking and serializing holes costs more than it saves.
+---Prefer compact mode only for small registries; it does not scale well for large ones.
+---WARNING: when bCompactByteValues is true, external code must not cache Values.
+---A removed Value may be reassigned to a different Name. Always look up by Name.
+---Common use cases:
+---  bByteMode=true,  bCompactByteValues=true  -- small GPU-backed registries (up to 256 types)
+---  bByteMode=false -- large persistent registries
+---@class FNameRegistry
+---@field public bByteMode boolean @Restricts values to [0, 255] so this registry can be safely uploaded to an R8_UINT render target without silent data corruption. Violations are rejected at insertion time with an error log. Set once before any data insertion. Changing this mid-lifecycle invalidates the guarantee it provides for existing entries.
+---@field public bCompactByteValues boolean @Recycles freed slots so the [0, 255] space is never permanently exhausted. Requires bByteMode. Has no effect and should not be set without it. Set once before any data insertion. Enabling mid-lifecycle loses all holes from previous removals; they will not be recycled. When true, external code must not cache int32 values outside this registry. A removed value may be reassigned to a different Name. Always look up by Name.
+FNameRegistry = {}
