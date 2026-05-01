@@ -827,6 +827,9 @@ UE = {
     ---@type AGMenuPlayerPawn
     AGMenuPlayerPawn = nil,
 
+    ---@type AGPlayerController
+    AGPlayerController = nil,
+
     ---@type AGPlayerPawn
     AGPlayerPawn = nil,
 
@@ -1138,9 +1141,6 @@ UE = {
 
     ---@type UEFloatCurveView
     UEFloatCurveView = nil,
-
-    ---@type AGPlayerController
-    AGPlayerController = nil,
 
     ---@type FSoftObjectPath
     FSoftObjectPath = nil,
