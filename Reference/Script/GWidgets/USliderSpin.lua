@@ -61,5 +61,9 @@ function USliderSpin:SetSpinBoxDisplayFormat(NewFormat) end
 ---@param NewValue number
 function USliderSpin:SetValue(NewValue) end
 
+---Data -> Widget sync. Does not trigger OnValueChanged or OnValueCommitted.
+---@param NewValue number
+function USliderSpin:UpdateValue(NewValue) end
+
 function USliderSpin:ApplyStyle() end
 

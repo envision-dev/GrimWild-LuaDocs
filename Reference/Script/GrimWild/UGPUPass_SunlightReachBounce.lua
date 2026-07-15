@@ -7,9 +7,7 @@
 ---@field public CellRestrictionsRT UTexture @CellRestrictions buffer data render target.
 ---@field public RoofMap UTexture @CellFeatures buffer data render target (used as RoofMap).
 ---@field public Steps integer @Number of bounce iterations.
----@field public BounceRadius integer @Square neighbourhood radius for gathering re-emitters (cells).
 ---@field public BounceStrength number @Bounce contribution multiplier.
 ---@field public LightBlockedBitIndex integer @Bit index in CellRestrictions marking light-blocked cells.
----@field public RoofBitIndex integer @Bit index in RoofMap marking roofed cells (e.g. 5 = bit 1<<5).
 UGPUPass_SunlightReachBounce = {}
 

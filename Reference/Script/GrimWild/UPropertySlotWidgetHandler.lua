@@ -1,0 +1,3 @@
+---@class UPropertySlotWidgetHandler : UObject
+UPropertySlotWidgetHandler = {}
+

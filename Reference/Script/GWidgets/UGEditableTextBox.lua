@@ -5,5 +5,13 @@ UGEditableTextBox = {}
 
 function UGEditableTextBox:ClearFTextHint() end
 
+---@param InText string
+---@param CommitMethod integer
+function UGEditableTextBox:HandleTextCommitted(InText, CommitMethod) end
+
+---Data -> Widget sync. Does not trigger change/commit delegates. Defers while the user is typing.
+---@param NewText string
+function UGEditableTextBox:UpdateText(NewText) end
+
 function UGEditableTextBox:ApplyStyle() end
 

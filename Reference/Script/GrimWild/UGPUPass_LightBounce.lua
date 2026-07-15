@@ -5,7 +5,6 @@
 ---@class UGPUPass_LightBounce : UGPUPass
 ---@field public CellRestrictionsRT UTexture @CellRestrictions buffer data render target.
 ---@field public Steps integer @Number of bounce iterations.
----@field public BounceRadius integer @Square neighbourhood radius for gathering re-emitters (cells).
 ---@field public BounceStrength number @Bounce contribution multiplier.
 UGPUPass_LightBounce = {}
 

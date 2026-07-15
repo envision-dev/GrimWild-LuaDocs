@@ -1,4 +1,5 @@
 ---We need that to be USTRUCT, so we can use it as UPROPERTY map key
 ---@class FRenderProxyContainer
----@field public ReleasedComponents TArray<integer> @Sprite Pool: An array of Released Components that wait to be reused as newly created sprites. We store them here, because pooling requires Components to have the same Texture Atlas and Material Interface. So here we are stored in particular Atlas, and the container is used as a value to a map key of Material Interface. This container represents a stack of components. New elements are added to the end, and reusing is done from the end as well. This means that if the component stays unused in the array for too long, it'll be destroyed, because we don't need that many elements in the pool. See Sprite Pool for more information.
+---@field public ReleasedComponents_Stationary TArray<integer> @Sprite Pool split by mobility. Stationary and Movable components are pooled separately so same-mode reuse avoids a render-proxy recreate. A cross-bucket borrow is still possible (see ClaimSpriteComponent) but triggers one recreate. Both arrays are stacks: newest elements are reused first; oldest expire via the cycle GC.
+---@field public ReleasedComponents_Movable TArray<integer>
 FRenderProxyContainer = {}

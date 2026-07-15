@@ -1,6 +1,6 @@
 ---@class UOptionsWindow : UUserWidget
 ---@field protected B_Close UGButton
----@field protected ETB_Search UGEditableTextBox
+---@field protected SearchBox USearchBox
 ---@field protected B_Reimport UGButton @TODO: Just testing; Probably, it won't stay in production release. Do we even need this functionality?
 ---@field protected B_ResetToDefault UGButton
 ---@field protected SB_Categories UGScrollBox
@@ -18,9 +18,6 @@ function UOptionsWindow:OnClosePressed() end
 function UOptionsWindow:OnReimportPressed() end
 
 function UOptionsWindow:OnResetToDefaultPressed() end
-
----@param Text string
-function UOptionsWindow:OnSearchTextChanged(Text) end
 
 function UOptionsWindow:ResetToDefault_Confirmed() end
 

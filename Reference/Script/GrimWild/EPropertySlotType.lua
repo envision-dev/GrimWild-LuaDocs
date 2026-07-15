@@ -2,7 +2,7 @@
 ---@field public None EPropertySlotType [0]
 ---@field public CheckBox EPropertySlotType [1]
 ---@field public ProgressBar EPropertySlotType [2]
----@field public Slider EPropertySlotType [3] //Read-only, 0..1 value range
+---@field public Slider EPropertySlotType [3]
 ---@field public SpinBox EPropertySlotType [4]
 ---@field public ComboBox EPropertySlotType [5]
 ---@field public TextBox EPropertySlotType [6]
@@ -10,7 +10,9 @@
 ---@field public SliderSpin EPropertySlotType [8]
 ---@field public Vector2D EPropertySlotType [9]
 ---@field public Vector EPropertySlotType [10]
----@field public Color EPropertySlotType [11] 3D
----@field public Custom EPropertySlotType [12] Color preview with the Color Picker opening feature
----@field public TextBlock EPropertySlotType [13] Fully custom, see UPropertySlotStyle_Custom for more details
+---@field public Color EPropertySlotType [11]
+---@field public Custom EPropertySlotType [12]
+---@field public TextBlock EPropertySlotType [13]
+---@field public Vector4 EPropertySlotType [14]
+---@field public TexturePreview EPropertySlotType [15]
 EPropertySlotType = {}

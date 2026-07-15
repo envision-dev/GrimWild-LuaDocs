@@ -4,8 +4,8 @@
 -- effectively covering or uncovering the entire level with roofs.
 
 -- ── Inputs ────────────────────────────────────────────────────────────────────
-RoofBitIndex = 5     -- Bit index of the roof flag inside the Features byte [0..7], corresponds to ECellFeatures.HasRoof
-PlaceRoof    = true  -- true = set roof on all cells, false = clear roof on all cells
+local RoofBitIndex = 5     -- Bit index of the roof flag inside the Features byte [0..7], corresponds to ECellFeatures.HasRoof
+local PlaceRoof    = true  -- true = set roof on all cells, false = clear roof on all cells
 -- ─────────────────────────────────────────────────────────────────────────────
 
 ---@class APlaytestScene

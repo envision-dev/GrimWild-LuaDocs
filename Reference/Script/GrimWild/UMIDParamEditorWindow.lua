@@ -1,7 +1,6 @@
 ---@class UMIDParamEditorWindow : UDraggableWindow
 ---@field public VB_Content UVerticalBox
 ---@field public MIDPtr TWeakObjectPtr<UMaterialInstanceDynamic>
----@field public SlotClass TSubclassOf<UMIDParamEditorSlot>
 UMIDParamEditorWindow = {}
 
 ---@param SearchText string

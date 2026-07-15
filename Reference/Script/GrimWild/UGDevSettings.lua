@@ -9,6 +9,7 @@
 ---@field public PropertySlotWidgetClass TSoftClassPtr<UPropertySlotWidget>
 ---@field public PropertySlotWidget_OptionLockedInGameMapClass TSoftClassPtr<UUserWidget>
 ---@field public PropertySlotWidget_Color TSoftClassPtr<UPropertySlotWidget_Color>
+---@field public PropertySlotElementActionsClass TSoftClassPtr<UPropertySlotElementActions>
 ---@field public CategoryButtonClass TSoftClassPtr<UCategoryButton>
 ---@field public GlobalMatParamCollection TSoftObjectPtr<UMaterialParameterCollection>
 ---@field public LevelLightOverlay TSoftObjectPtr<UMaterialInterface> @Material used for visual light overlay on levels

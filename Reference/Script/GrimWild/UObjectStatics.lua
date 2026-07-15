@@ -15,9 +15,9 @@ function UObjectStatics.IsAttachmentIndividualStrong(Attachment) end
 
 ---@param Attachment FObjectAttachment
 ---@return boolean
-function UObjectStatics.IsAttachmentStaticNow(Attachment) end
+function UObjectStatics.IsAttachmentShared(Attachment) end
 
 ---@param Attachment FObjectAttachment
 ---@return boolean
-function UObjectStatics.IsAttachmentWeak(Attachment) end
+function UObjectStatics.IsAttachmentStaticNow(Attachment) end
 

@@ -1,0 +1,3 @@
+---@class UPhotoModeWindow : UUserWidget
+UPhotoModeWindow = {}
+

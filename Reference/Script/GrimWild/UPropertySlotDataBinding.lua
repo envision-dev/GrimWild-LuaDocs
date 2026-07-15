@@ -1,0 +1,3 @@
+---@class UPropertySlotDataBinding : UInterface
+UPropertySlotDataBinding = {}
+

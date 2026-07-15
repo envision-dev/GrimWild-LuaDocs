@@ -9,7 +9,6 @@
 ---@class UGPUPass_SunlightReach : UGPUPass
 ---@field public RoofMap UTexture @Texture whose R channel encodes roofed-cell bitmask data.
 ---@field public RestrictionMap UTexture @Texture whose R channel encodes light-blocked-cell bitmask data.
----@field public RoofBitIndex integer @Bit index in RoofMap that marks a cell as roofed (0..7). e.g. 5 means bit (1<<5) = 0b00100000.
 ---@field public LightBlockedBitIndex integer @Bit index in RestrictionMap that marks a cell as blocking light (0..7). e.g. 0 means bit (1<<0) = 0b00000001.
 ---@field public BlurRadius number @Fade distance in cells from the roof edge inward. Clamped to a maximum of 32.
 ---@field public MaxRoofEdgeInfluence number @Scales the peak sunlight influence at the roof edge (0..1). Cells deeper under the roof fade to 0. Open-sky cells are unaffected.

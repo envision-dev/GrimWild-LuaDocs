@@ -5,12 +5,12 @@
 -- The affected region starts at (StartX, StartY) and spans (AreaSizeX x AreaSizeY) cells.
 
 -- ── Inputs ────────────────────────────────────────────────────────────────────
-StartX = 0 -- Left cell of the target area (X, in cells)
-StartY = 0 -- Top cell of the target area (Y, in cells)
-AreaSizeX = 32 -- Width of the target area (in cells)
-AreaSizeY = 32 -- Height of the target area (in cells)
-RoofBitIndex = 5 -- Bit index of the roof flag inside the Features byte [0..7], corresponds to ECellFeatures.HasRoof
-PlaceRoof = true -- true = set roof bit, false = clear roof bit
+local StartX = 0 -- Left cell of the target area (X, in cells)
+local StartY = 0 -- Top cell of the target area (Y, in cells)
+local AreaSizeX = 32 -- Width of the target area (in cells)
+local AreaSizeY = 32 -- Height of the target area (in cells)
+local RoofBitIndex = 5 -- Bit index of the roof flag inside the Features byte [0..7], corresponds to ECellFeatures.HasRoof
+local PlaceRoof = true -- true = set roof bit, false = clear roof bit
 -- ─────────────────────────────────────────────────────────────────────────────
 
 ---@class APlaytestScene

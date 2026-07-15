@@ -1,3 +1,9 @@
+---Describes a single light source. The bDynamic flag is set at creation time
+---and must not be changed during the lifetime of the source. To change a light
+---from static to dynamic (or vice versa), remove it and re-add it with the
+---desired type.
+---Fields CosHalfAngle and Direction are only meaningful for static lights.
+---They are stored but ignored by the GPU pass for dynamic lights.
 ---@class FLightSource
 ---@field public Position FVector2D @Integer part = cell index, fractional part = in-cell UV offset (0..1). Example: (10.3, 5.7) means cell (10,5), offset (0.3, 0.7) within that cell.
 ---@field public Color FColor

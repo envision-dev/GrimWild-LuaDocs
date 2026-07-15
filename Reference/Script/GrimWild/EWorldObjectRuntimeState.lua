@@ -1,0 +1,13 @@
+---Runtime lifecycle and attachment state flags. Managed internally, do not set directly.
+---Replaces the old EWorldObjectFlags lifecycle section.
+---@class EWorldObjectRuntimeState
+---@field public None EWorldObjectRuntimeState [0]
+---@field public Initialized EWorldObjectRuntimeState [1] Initialize() has been called. False = invalid World, InstanceId, Archetype...
+---@field public InitialAttachmentSyncDone EWorldObjectRuntimeState [2] Initial attachment chain property sync has been performed
+---@field public ValidParent EWorldObjectRuntimeState [4] False = invalid AttachParent. (HasAttachment==true + AttachParent==nullptr = valid; object is TLO)
+---@field public ValidOwner EWorldObjectRuntimeState [8] See ValidParent comment
+---@field public BeganPlay EWorldObjectRuntimeState [16] BeginPlay() has been called. Do not run gameplay logic before this.
+---@field public BeginPlayRequirements EWorldObjectRuntimeState [15]
+---@field public CanFinalizeChildrenAttachment EWorldObjectRuntimeState [31]
+---@field public ValidAttachment EWorldObjectRuntimeState [12]
+EWorldObjectRuntimeState = {}

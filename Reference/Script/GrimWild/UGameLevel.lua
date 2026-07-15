@@ -1,6 +1,7 @@
 ---Represents an isolated grid of cells.
 ---Usage: Levels and Planets
 ---@class UGameLevel : UWorldObject
+---@field protected ActiveForceStopHandler UCellBufferForceStopHandler
 ---@field protected LightManager ULightManager
 UGameLevel = {}
 

@@ -27,7 +27,7 @@
 ---@field protected LightOverlayMID UMaterialInstanceDynamic
 ULightManager = {}
 
----Blueprint-callable version of AddLightSource.
+---Blueprint-callable wrapper for AddLightSource. Passes the source by value (copied on call).
 ---@param Source FLightSource
 ---@return integer
 function ULightManager:AddLightSource_BP(Source) end
@@ -47,6 +47,8 @@ function ULightManager.CosHalfAngleToConeWidth(CosHalfAngle) end
 ---Creates the optional CellGlow (FColor) buffer and binds its pipeline.
 function ULightManager:CreateCellGlowSupport() end
 
+---Returns the facing angle in degrees for the given direction vector.
+---A zero vector returns 0 degrees (atan2 of (0,0) is implementation-defined; treat it as invalid input).
 ---@param Direction FVector2D
 ---@return number
 function ULightManager.DirectionToFacingAngle(Direction) end
@@ -54,9 +56,6 @@ function ULightManager.DirectionToFacingAngle(Direction) end
 ---@param FacingAngleDeg number
 ---@return FVector2D
 function ULightManager.FacingAngleToDirection(FacingAngleDeg) end
-
----@return integer
-function ULightManager:GetBounceRadius() end
 
 ---@return integer
 function ULightManager:GetBounceSteps() end
@@ -80,6 +79,9 @@ function ULightManager:GetCellGlowIntensity(Cell) end
 ---@return integer
 function ULightManager:GetCellGlowRadius(Cell) end
 
+---@return TMap<integer, FLightSource>
+function ULightManager:GetDynamicLightSources() end
+
 ---@return UMaterialInstanceDynamic
 function ULightManager:GetLightOverlayMaterial() end
 
@@ -88,7 +90,7 @@ function ULightManager:GetLightOverlayMaterial() end
 ---@return boolean
 function ULightManager:GetLightSource(LightSourceId, OutLightSource) end
 
----TODO; use only after checking for ContainsLightSource()
+---Asserts that LightSourceId exists. Call only when the ID is guaranteed to be valid.
 ---@param LightSourceId integer
 ---@return FLightSource
 function ULightManager:GetLightSourceChecked(LightSourceId) end
@@ -97,16 +99,15 @@ function ULightManager:GetLightSourceChecked(LightSourceId) end
 ---@return number
 function ULightManager.GetLightSourceFalloffExponent() end
 
----Returns static sources only. For debugging purposes.
----@return TMap<integer, FLightSource>
-function ULightManager:GetLightSources() end
-
----TODO; for debugging purposes.
+---Returns the handle that will be assigned to the next added light source. Does not increment the counter.
 ---@return integer
 function ULightManager:GetNextLightSourceHandle() end
 
 ---@return number
 function ULightManager:GetNoSunlightBrightness() end
+
+---@return TMap<integer, FLightSource>
+function ULightManager:GetStaticLightSources() end
 
 ---@return FLinearColor
 function ULightManager:GetSunlightColor() end
@@ -135,7 +136,8 @@ function ULightManager:RecalculateSunlightReach() end
 ---Sets the buffer value to FColor::Black (radius 0 = inactive emitter).
 ---Safe to call on a cell with no active glow.
 ---@param Cell integer
-function ULightManager:RemoveCellGlow(Cell) end
+---@param bMarkAsEagerUpdate? boolean @[default: false]
+function ULightManager:RemoveCellGlow(Cell, bMarkAsEagerUpdate) end
 
 ---Destroys the CellGlow buffer and removes it from the pipeline.
 function ULightManager:RemoveCellGlowSupport() end
@@ -146,10 +148,6 @@ function ULightManager:RemoveCellGlowSupport() end
 function ULightManager:RemoveLightSource(LightSourceId) end
 
 function ULightManager:ScheduleMergeAndLuminance() end
-
----@param NewValue integer
----@param bRecalculate? boolean @[default: false]
-function ULightManager:SetBounceRadius(NewValue, bRecalculate) end
 
 ---@param NewValue integer
 ---@param bRecalculate? boolean @[default: false]
@@ -167,7 +165,8 @@ function ULightManager:SetBounceStrength(NewValue, bRecalculate) end
 ---@param Color FColor
 ---@param Radius integer
 ---@param Intensity number
-function ULightManager:SetCellGlow(Cell, Color, Radius, Intensity) end
+---@param bMarkAsEagerUpdate? boolean @[default: false]
+function ULightManager:SetCellGlow(Cell, Color, Radius, Intensity, bMarkAsEagerUpdate) end
 
 ---Changes only the intensity. Color and radius are preserved.
 ---Intensity: normalized value in [0, 1]. Values outside this range trigger a warning and are clamped.
@@ -194,7 +193,8 @@ function ULightManager:SetLightSourceColor(LightSourceId, NewColor) end
 ---  90  = narrow spotlight
 ---  180 = wide spotlight
 ---Note: changing cone width on an omni light will also require setting a facing
----angle via SetLightFacingAngle, otherwise Direction keeps its default value of (1, 0).
+---angle via SetLightSourceFacingAngle, otherwise Direction keeps its default value of (1, 0).
+---Note: static lights only. CosHalfAngle is ignored for dynamic lights.
 ---@param LightSourceId integer
 ---@param ConeWidthDeg number
 ---@return boolean
@@ -205,14 +205,16 @@ function ULightManager:SetLightSourceConeWidth(LightSourceId, ConeWidthDeg) end
 ---@return boolean
 function ULightManager:SetLightSourceEnabled(LightSourceId, bEnabled) end
 
----Sets the facing angle of a spotlight.
----Has no effect on omni lights (ConeWidthDeg >= 360 / CosHalfAngle == -1.0).
----To convert a spotlight back to omni, use SetLightConeWidth with ConeWidthDeg >= 360.
+---Sets the facing direction of a light source.
+---Direction is stored even on omni lights (CosHalfAngle == -1.0) so that calling
+---SetLightSourceConeWidth later picks it up without an extra SetLightSourceFacingAngle call.
+---To convert a spotlight back to omni, use SetLightSourceConeWidth with ConeWidthDeg >= 360.
 ---FacingAngleDeg: angle in degrees, measured from the +X axis counter-clockwise.
 ---  0   = faces right
 ---  90  = faces up
 ---  180 = faces left
 ---  270 = faces down
+---Note: static lights only. Direction is ignored for dynamic lights.
 ---@param LightSourceId integer
 ---@param FacingAngleDeg number
 ---@return boolean

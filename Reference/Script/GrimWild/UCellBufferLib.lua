@@ -189,6 +189,11 @@ function UCellBufferLib.FindGPUWorkIndex(Buffer, WorkName) end
 ---@return string
 function UCellBufferLib.GatherDebugData(Buffer) end
 
+---Bit buffers only. Returns the mask of bits modified since the previous sync cycle started. Returns 0 (with warning) on non-bit buffers.
+---@param Buffer FCellBufferHandle
+---@return integer
+function UCellBufferLib.GetBitsChangedSinceLastSync(Buffer) end
+
 ---Reads a single bit from the cell at the given BitIndex.
 ---Byte buffers: 8-bit field (0..7), FColor buffers: 32-bit field (packed in R (0..7), G (8..15), B (16..23), A (24..31) order).
 ---Float buffers: bit manipulation is not supported.
@@ -354,6 +359,12 @@ function UCellBufferLib.HasMinValue(Buffer) end
 ---@return boolean
 function UCellBufferLib.HasScheduledWork(Buffer) end
 
+---Bit buffers only. Returns true if any bit in Mask was modified since the previous sync cycle started. Returns false (with warning) on non-bit buffers.
+---@param Buffer FCellBufferHandle
+---@param Mask integer
+---@return boolean
+function UCellBufferLib.HaveBitsChangedSinceLastSync(Buffer, Mask) end
+
 ---Schedules a new GPU Work at the given index. bOverrideIfFound: Overrides an existing entry with the same name. Otherwise, the work with the same name is left on its previous index.
 ---@param Buffer FCellBufferHandle
 ---@param Work FScheduledGPUWork
@@ -381,15 +392,14 @@ function UCellBufferLib.IsBitBuffer(Buffer) end
 ---@return boolean
 function UCellBufferLib.IsDownloadDirty(Buffer) end
 
+---@param Buffer FCellBufferHandle
+---@return boolean
+function UCellBufferLib.IsForceStopped(Buffer) end
+
 ---Returns true if the next Upload will sync the entire buffer instead of individual chunks. @@see MarkAsHardUploadAwaiting()
 ---@param Buffer FCellBufferHandle
 ---@return boolean
 function UCellBufferLib.IsHardUploadAwaiting(Buffer) end
-
----Pause means that new lifecycle updates will not start (but the current one will be finished).
----@param Buffer FCellBufferHandle
----@return boolean
-function UCellBufferLib.IsPaused(Buffer) end
 
 ---Returns true if the buffer has CPU-Side changes waiting to be uploaded to GPU.
 ---@param Buffer FCellBufferHandle
@@ -402,6 +412,12 @@ function UCellBufferLib.IsUploadDirty(Buffer) end
 ---Note: this must be used with UploadDirty flag. It has no effect on its own.
 ---@param Buffer FCellBufferHandle
 function UCellBufferLib.MarkAsHardUploadAwaiting(Buffer) end
+
+---Requests that this Game buffer participate in the next sync process call.
+---bUploadOnly=true: upload only; bUploadOnly=false: full pipeline including GPU work and readback.
+---@param Buffer FCellBufferHandle
+---@param bUploadOnly boolean
+function UCellBufferLib.MarkGameBufferForEagerSync(Buffer, bUploadOnly) end
 
 ---Tries to remove the buffer of the given ValueType. Returns false if nothing is removed.
 ---Note: Corresponding render target may stay in memory if it has external strong references.
@@ -432,11 +448,9 @@ function UCellBufferLib.RemoveGPUWork(Buffer, WorkName) end
 ---@param NewValue boolean
 function UCellBufferLib.SetBitValue(Buffer, CellIndex, BitIndex, NewValue) end
 
----Switches the buffer's pause state.
----Pause means that new lifecycle updates will not start (but the current one will be finished).
 ---@param Buffer FCellBufferHandle
----@param bPausedNow boolean
-function UCellBufferLib.SetIsPaused(Buffer, bPausedNow) end
+---@param bForceStopped boolean
+function UCellBufferLib.SetForceStopped(Buffer, bForceStopped) end
 
 ---Sets the value at the given cell index. Safe to call during any SyncStatus step.
 ---Prefer AddValue() for performance when the Sync process is ongoing (i.e. ShouldWriteChangesToDeferredBuffers() returns true).

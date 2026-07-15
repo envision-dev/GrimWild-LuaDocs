@@ -539,6 +539,54 @@ UE = {
     ---@type UPlayerInput
     UPlayerInput = nil,
 
+    ---@type UPropertySlotWidgetHandler
+    UPropertySlotWidgetHandler = nil,
+
+    ---@type UPropertySlotWidgetHandler_CheckBox
+    UPropertySlotWidgetHandler_CheckBox = nil,
+
+    ---@type UPropertySlotWidgetHandler_Color
+    UPropertySlotWidgetHandler_Color = nil,
+
+    ---@type UPropertySlotWidgetHandler_ComboBox
+    UPropertySlotWidgetHandler_ComboBox = nil,
+
+    ---@type UPropertySlotWidgetHandler_Custom
+    UPropertySlotWidgetHandler_Custom = nil,
+
+    ---@type UPropertySlotWidgetHandler_InputKeySelector
+    UPropertySlotWidgetHandler_InputKeySelector = nil,
+
+    ---@type UPropertySlotWidgetHandler_ProgressBar
+    UPropertySlotWidgetHandler_ProgressBar = nil,
+
+    ---@type UPropertySlotWidgetHandler_Slider
+    UPropertySlotWidgetHandler_Slider = nil,
+
+    ---@type UPropertySlotWidgetHandler_SliderSpin
+    UPropertySlotWidgetHandler_SliderSpin = nil,
+
+    ---@type UPropertySlotWidgetHandler_SpinBox
+    UPropertySlotWidgetHandler_SpinBox = nil,
+
+    ---@type UPropertySlotWidgetHandler_TextBlock
+    UPropertySlotWidgetHandler_TextBlock = nil,
+
+    ---@type UPropertySlotWidgetHandler_TextBox
+    UPropertySlotWidgetHandler_TextBox = nil,
+
+    ---@type UPropertySlotWidgetHandler_TexturePreview
+    UPropertySlotWidgetHandler_TexturePreview = nil,
+
+    ---@type UPropertySlotWidgetHandler_Vector
+    UPropertySlotWidgetHandler_Vector = nil,
+
+    ---@type UPropertySlotWidgetHandler_Vector2D
+    UPropertySlotWidgetHandler_Vector2D = nil,
+
+    ---@type UPropertySlotWidgetHandler_Vector4
+    UPropertySlotWidgetHandler_Vector4 = nil,
+
     ---@type UBPTextCleaner
     UBPTextCleaner = nil,
 
@@ -625,6 +673,9 @@ UE = {
 
     ---@type UGTreeView
     UGTreeView = nil,
+
+    ---@type USearchBox
+    USearchBox = nil,
 
     ---@type USliderSpin
     USliderSpin = nil,
@@ -719,11 +770,11 @@ UE = {
     ---@type UCategoryData
     UCategoryData = nil,
 
+    ---@type UCellBufferForceStopHandler
+    UCellBufferForceStopHandler = nil,
+
     ---@type UCellBufferLib
     UCellBufferLib = nil,
-
-    ---@type UCellBufferPauseHandler
-    UCellBufferPauseHandler = nil,
 
     ---@type UCellBufferSyncManager
     UCellBufferSyncManager = nil,
@@ -751,6 +802,9 @@ UE = {
 
     ---@type UDynamicStateUtils
     UDynamicStateUtils = nil,
+
+    ---@type UDynamicStateViewer
+    UDynamicStateViewer = nil,
 
     ---@type UFAQWindow
     UFAQWindow = nil,
@@ -929,9 +983,6 @@ UE = {
     ---@type ULogWindow
     ULogWindow = nil,
 
-    ---@type ULuaDelegateTest
-    ULuaDelegateTest = nil,
-
     ---@type ULuaLibrary
     ULuaLibrary = nil,
 
@@ -941,17 +992,11 @@ UE = {
     ---@type ULuaSubsystem
     ULuaSubsystem = nil,
 
-    ---@type ULuaTest
-    ULuaTest = nil,
-
     ---@type ULuaTickManager
     ULuaTickManager = nil,
 
     ---@type UMenuHUD
     UMenuHUD = nil,
-
-    ---@type UMIDParamEditorSlot
-    UMIDParamEditorSlot = nil,
 
     ---@type UMIDParamEditorWindow
     UMIDParamEditorWindow = nil,
@@ -1010,6 +1055,9 @@ UE = {
     ---@type UObjectStatics
     UObjectStatics = nil,
 
+    ---@type UObjectUPropertyViewer
+    UObjectUPropertyViewer = nil,
+
     ---@type UOptionData
     UOptionData = nil,
 
@@ -1021,6 +1069,9 @@ UE = {
 
     ---@type UOption_Language
     UOption_Language = nil,
+
+    ---@type UPhotoModeWindow
+    UPhotoModeWindow = nil,
 
     ---@type UPlayerData
     UPlayerData = nil,
@@ -1037,56 +1088,80 @@ UE = {
     ---@type APlaytestScene
     APlaytestScene = nil,
 
-    ---@type UPropertySlotStyleBase
-    UPropertySlotStyleBase = nil,
+    ---@type UPropertySlotDataBinding
+    UPropertySlotDataBinding = nil,
 
-    ---@type UPropertySlotWidgetStyle_CheckBox
-    UPropertySlotWidgetStyle_CheckBox = nil,
+    ---@type UPropertySlotDataBinding_Delegate
+    UPropertySlotDataBinding_Delegate = nil,
 
-    ---@type UPropertySlotWidgetStyle_Slider
-    UPropertySlotWidgetStyle_Slider = nil,
+    ---@type UPropertySlotDataBinding_DynamicState
+    UPropertySlotDataBinding_DynamicState = nil,
 
-    ---@type UPropertySlotWidgetStyle_SpinBox
-    UPropertySlotWidgetStyle_SpinBox = nil,
+    ---@type UPropertySlotDataBinding_MIDParam
+    UPropertySlotDataBinding_MIDParam = nil,
 
-    ---@type UPropertySlotWidgetStyle_SliderSpin
-    UPropertySlotWidgetStyle_SliderSpin = nil,
+    ---@type UPropertySlotDataBinding_Option
+    UPropertySlotDataBinding_Option = nil,
 
-    ---@type UPropertySlotWidgetStyle_ComboBox
-    UPropertySlotWidgetStyle_ComboBox = nil,
+    ---@type UPropertySlotDataBinding_UProperty
+    UPropertySlotDataBinding_UProperty = nil,
 
-    ---@type UPropertySlotWidgetStyle_ProgressBar
-    UPropertySlotWidgetStyle_ProgressBar = nil,
+    ---@type UPropertySlotElementActions
+    UPropertySlotElementActions = nil,
 
-    ---@type UPropertySlotWidgetStyle_TextBox
-    UPropertySlotWidgetStyle_TextBox = nil,
-
-    ---@type UPropertySlotWidgetStyle_InputKeySelector
-    UPropertySlotWidgetStyle_InputKeySelector = nil,
-
-    ---@type UPropertySlotWidgetStyle_Vector2D
-    UPropertySlotWidgetStyle_Vector2D = nil,
-
-    ---@type UPropertySlotWidgetStyle_Vector
-    UPropertySlotWidgetStyle_Vector = nil,
-
-    ---@type UPropertySlotWidgetStyle_Color
-    UPropertySlotWidgetStyle_Color = nil,
-
-    ---@type UPropertySlotWidgetStyle_Custom
-    UPropertySlotWidgetStyle_Custom = nil,
-
-    ---@type UPropertySlotWidgetStyle_TextBlock
-    UPropertySlotWidgetStyle_TextBlock = nil,
-
-    ---@type UPropertySlotUtils
-    UPropertySlotUtils = nil,
+    ---@type UPropertySlotStyle
+    UPropertySlotStyle = nil,
 
     ---@type UPropertySlotWidget
     UPropertySlotWidget = nil,
 
     ---@type UPropertySlotWidget_Color
     UPropertySlotWidget_Color = nil,
+
+    ---@type UPropertySlotStyle_CheckBox
+    UPropertySlotStyle_CheckBox = nil,
+
+    ---@type UPropertySlotStyle_Color
+    UPropertySlotStyle_Color = nil,
+
+    ---@type UPropertySlotStyle_ComboBox
+    UPropertySlotStyle_ComboBox = nil,
+
+    ---@type UPropertySlotStyle_Custom
+    UPropertySlotStyle_Custom = nil,
+
+    ---@type UPropertySlotStyle_InputKeySelector
+    UPropertySlotStyle_InputKeySelector = nil,
+
+    ---@type UPropertySlotStyle_ProgressBar
+    UPropertySlotStyle_ProgressBar = nil,
+
+    ---@type UPropertySlotStyle_Slider
+    UPropertySlotStyle_Slider = nil,
+
+    ---@type UPropertySlotStyle_SliderSpin
+    UPropertySlotStyle_SliderSpin = nil,
+
+    ---@type UPropertySlotStyle_SpinBox
+    UPropertySlotStyle_SpinBox = nil,
+
+    ---@type UPropertySlotStyle_TextBlock
+    UPropertySlotStyle_TextBlock = nil,
+
+    ---@type UPropertySlotStyle_TextBox
+    UPropertySlotStyle_TextBox = nil,
+
+    ---@type UPropertySlotStyle_TexturePreview
+    UPropertySlotStyle_TexturePreview = nil,
+
+    ---@type UPropertySlotStyle_Vector
+    UPropertySlotStyle_Vector = nil,
+
+    ---@type UPropertySlotStyle_Vector2D
+    UPropertySlotStyle_Vector2D = nil,
+
+    ---@type UPropertySlotStyle_Vector4
+    UPropertySlotStyle_Vector4 = nil,
 
     ---@type URenderComponent
     URenderComponent = nil,
@@ -1105,6 +1180,12 @@ UE = {
 
     ---@type UStaticSpriteGameLib
     UStaticSpriteGameLib = nil,
+
+    ---@type USteamUtilityLibrary
+    USteamUtilityLibrary = nil,
+
+    ---@type UTemplateDataContainer
+    UTemplateDataContainer = nil,
 
     ---@type UTextTooltip
     UTextTooltip = nil,
@@ -1607,6 +1688,9 @@ UE = {
     ---@type FGExpandableAreaStyle
     FGExpandableAreaStyle = nil,
 
+    ---@type FGSearchBoxStyle
+    FGSearchBoxStyle = nil,
+
     ---@type FCompositeTextureRawChannel
     FCompositeTextureRawChannel = nil,
 
@@ -1721,6 +1805,12 @@ UE = {
     ---@type FObjectAttachment
     FObjectAttachment = nil,
 
+    ---@type FAttachmentSlot
+    FAttachmentSlot = nil,
+
+    ---@type FObjectCreationParams
+    FObjectCreationParams = nil,
+
     ---@type FOptionWindowSpawnedCategory
     FOptionWindowSpawnedCategory = nil,
 
@@ -1742,11 +1832,8 @@ UE = {
     ---@type FPlaytestLiquidInstance
     FPlaytestLiquidInstance = nil,
 
-    ---@type FPropertyWidgetStyle_Slider
-    FPropertyWidgetStyle_Slider = nil,
-
-    ---@type FPropertyWidgetStyle_SpinBox
-    FPropertyWidgetStyle_SpinBox = nil,
+    ---@type FPropertySlotBuildContext
+    FPropertySlotBuildContext = nil,
 
     ---@type FEFloatCurve
     FEFloatCurve = nil,
@@ -2027,6 +2114,9 @@ UE = {
     ---@type ECompositeTextureChannel
     ECompositeTextureChannel = nil,
 
+    ---@type ESpriteMobility
+    ESpriteMobility = nil,
+
     ---@type ESpriteSocketSpace
     ESpriteSocketSpace = nil,
 
@@ -2047,9 +2137,6 @@ UE = {
 
     ---@type EObjectAttachmentFlags
     EObjectAttachmentFlags = nil,
-
-    ---@type EPropertySlotType
-    EPropertySlotType = nil,
 
     ---@type EAnimationAxis
     EAnimationAxis = nil,
@@ -2120,11 +2207,32 @@ UE = {
     ---@type EModOrderIssueType
     EModOrderIssueType = nil,
 
-    ---@type EWorldObjectFlags
-    EWorldObjectFlags = nil,
+    ---@type EWorldObjectRuntimeState
+    EWorldObjectRuntimeState = nil,
+
+    ---@type EWorldObjectRole
+    EWorldObjectRole = nil,
+
+    ---@type ETemplateCopyPolicy
+    ETemplateCopyPolicy = nil,
+
+    ---@type EWorldObjectUserFlags
+    EWorldObjectUserFlags = nil,
 
     ---@type EObjectMapType
     EObjectMapType = nil,
+
+    ---@type EAttachmentSlotFlags
+    EAttachmentSlotFlags = nil,
+
+    ---@type EPropertySlotType
+    EPropertySlotType = nil,
+
+    ---@type EPropertySlotMode
+    EPropertySlotMode = nil,
+
+    ---@type EGMaterialParameterType
+    EGMaterialParameterType = nil,
 
     ---@type ESpriteDataType
     ESpriteDataType = nil,

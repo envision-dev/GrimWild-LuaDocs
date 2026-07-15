@@ -17,6 +17,7 @@
 ---@field public ComboBoxStyle FGComboBoxStyle
 ---@field public InputKeySelectorButtonStyle FGInputKeySelectorStyle
 ---@field public ExpandableAreaStyle FGExpandableAreaStyle
+---@field public SearchBoxStyle FGSearchBoxStyle
 ---@field public LogMessageColor_Note FLinearColor
 ---@field public LogMessageColor_Warning FLinearColor
 ---@field public LogMessageColor_Error FLinearColor

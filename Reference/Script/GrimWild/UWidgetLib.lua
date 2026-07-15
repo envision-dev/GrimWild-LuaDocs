@@ -163,6 +163,12 @@ function UWidgetLib.CreateScaleBox(ParentUserWidget, OptionalName) end
 ---@return UGScrollBox
 function UWidgetLib.CreateScrollBox(ParentUserWidget, OptionalName) end
 
+---Creates a USearchBox widget instance. OptionalName: use if you want a consistent name over game sessions.
+---@param ParentUserWidget UUserWidget
+---@param OptionalName string
+---@return USearchBox
+function UWidgetLib.CreateSearchBox(ParentUserWidget, OptionalName) end
+
 ---Creates a USizeBox widget instance. OptionalName: use if you want a consistent name over game sessions.
 ---@param ParentUserWidget UUserWidget
 ---@param OptionalName string

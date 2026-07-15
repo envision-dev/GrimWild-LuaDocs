@@ -4,4 +4,5 @@
 ---@field public bSelfActive boolean @Active = has visual representation (claimed Static Sprite Component) Inactive / Released = exists as data storage, not represented visually
 ---@field public SelfVisible boolean
 ---@field public Tint FColor
+---@field public Mobility ESpriteMobility
 FSpriteProxyParameters = {}

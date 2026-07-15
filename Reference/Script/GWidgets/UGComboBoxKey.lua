@@ -55,9 +55,21 @@ function UGComboBoxKey:RemoveOption(Option) end
 ---@param NewListener Delegate|fun(OptionId: string): string
 function UGComboBoxKey:SetOnGenerateItemText(NewListener) end
 
----Set the current selected option.
+---Set the selected option by index. Widget -> Data
+---@param Index integer
+function UGComboBoxKey:SetSelectedIndex(Index) end
+
+---Set the current selected option. Widget -> Data
 ---@param Option string
 function UGComboBoxKey:SetSelectedOption(Option) end
+
+---Updates the selected option by index, without triggering delegates. Data -> Widget
+---@param Index integer
+function UGComboBoxKey:UpdateSelectedIndex(Index) end
+
+---Updates the current selection option, without triggering delegates. Data -> Widget
+---@param Option string
+function UGComboBoxKey:UpdateSelectedOption(Option) end
 
 function UGComboBoxKey:ApplyStyle() end
 

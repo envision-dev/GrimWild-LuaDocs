@@ -6,6 +6,19 @@
 ---@field protected WorldHeightDiffMaker UGPUPass
 ---@field protected WallShadowsMaterial UMaterialInterface
 ---@field protected MID_WallShadows UMaterialInstanceDynamic
+---@field public Sprites TArray<USpriteData>
+---@field public ObjectNum FVector2D
+---@field public ObjDistance number
+---@field public CameraCurve UCurveFloat
+---@field public StartingOrthoWidth number
+---@field public EndingOrthoWidth number
+---@field public CameraMoveTime number
+---@field public SceneLength number
+---@field public IntroSound USoundBase
+---@field public M_DefaultMaterial_Playtest UMaterialInterface
+---@field public bRunScene boolean
+---@field public bSceneStartedPlaying boolean
+---@field public SceneAccumulatedTime number
 ---@field public InitialLevelSize FVector2D
 ---@field public InputWorldHeight UTexture @Texture we create initial WorldHeight buffer values from
 ---@field public BufferName_WorldHeight string
@@ -128,7 +141,12 @@ function APlaytestScene:SetLevelChangeType(NewType) end
 
 ---@param LiquidName string
 ---@param Cell integer
-function APlaytestScene:SetLiquidAtCell(LiquidName, Cell) end
+---@param bMarkAsEagerUpdate? boolean @[default: false]
+function APlaytestScene:SetLiquidAtCell(LiquidName, Cell, bMarkAsEagerUpdate) end
+
+function APlaytestScene:SpawnObjects() end
 
 function APlaytestScene:SwitchLevelChange() end
+
+function APlaytestScene:SwitchPlay() end
 

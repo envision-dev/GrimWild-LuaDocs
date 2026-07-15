@@ -70,7 +70,7 @@ PlayerPawn.OnEscapeAction:Remove(LuaFunction) --Removed Lua function from C++ ev
 
 --works
 -- NOTE: Path format is: {Path}/Name.Name_C 
---local Actor = UGameplayStatics.GetActorOfClass(GetWorld(), UE.UClass.Load("/Game/Tests/GW8/Intro/BP_GW8_Intro.BP_GW8_Intro_C"))
+--local Actor = UGameplayStatics.GetActorOfClass(GetWorld(), UClass.Load("/Game/Tests/GW8/Intro/BP_GW8_Intro.BP_GW8_Intro_C"))
 --print(Actor)
 
 --also works; APlaytestScene = UE class name, also a table name in Lua documentation "APlaytestScene = {}"
@@ -83,7 +83,7 @@ PlayerPawn.OnEscapeAction:Remove(LuaFunction) --Removed Lua function from C++ ev
 --local Settings = UGDevSettings:Get()
 
 --Get any asset from Content Browser
---local Sound = UE.USoundCue.Load("/Game/Tests/Audio/Gameplaywav.Gameplaywav")
+--local Sound = USoundCue.Load("/Game/Tests/Audio/Gameplaywav.Gameplaywav")
 
 
 

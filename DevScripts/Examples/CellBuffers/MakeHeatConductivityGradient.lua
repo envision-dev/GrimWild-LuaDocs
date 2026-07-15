@@ -7,12 +7,12 @@
 -- After writing, the buffer is marked dirty and an upload to GPU is requested.
 
 -- ── Inputs ────────────────────────────────────────────────────────────────────
-StartPointX = 0 -- Left cell of the gradient region (X, in cells)
-StartPointY = 0 -- Top cell of the gradient region (Y, in cells)
-GradientSizeX = 64 -- Width of the gradient region (in cells)
-GradientSizeY = 64 -- Height of the gradient region (in cells)
-GradientStartValue = 0 -- Byte value at the leftmost column  [0..255]
-GradientEndValue = 255 -- Byte value at the rightmost column [0..255]
+local StartPointX = 0 -- Left cell of the gradient region (X, in cells)
+local StartPointY = 0 -- Top cell of the gradient region (Y, in cells)
+local GradientSizeX = 64 -- Width of the gradient region (in cells)
+local GradientSizeY = 64 -- Height of the gradient region (in cells)
+local GradientStartValue = 0 -- Byte value at the leftmost column  [0..255]
+local GradientEndValue = 255 -- Byte value at the rightmost column [0..255]
 -- ─────────────────────────────────────────────────────────────────────────────
 
 ---@class APlaytestScene

@@ -25,6 +25,9 @@ function UHUDBase:CreateConfirmationWindow(String, OnConfirmed) end
 ---@return UConfirmationWindow
 function UHUDBase:CreateConfirmationWindow_EText(Text, OnConfirmed) end
 
+---@param bNewVisible boolean
+function UHUDBase:ForceSetVisibility(bNewVisible) end
+
 ---@return UColorPicker
 function UHUDBase:GetColorPicker() end
 
@@ -59,6 +62,8 @@ function UHUDBase.SetupTooltip_EText(__WorldContext, Text) end
 function UHUDBase:SwitchDevConsole() end
 
 function UHUDBase:SwitchLogWindow() end
+
+function UHUDBase:SwitchPhotoModeWindow() end
 
 function UHUDBase:SwitchVisibility() end
 

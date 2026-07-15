@@ -9,7 +9,7 @@
 ---@field public Priority number @Determines the order in which all widgets are placed in Options Window
 ---@field public bReadOnlyInGame boolean @True: this option can be changed in Main Menu level only
 ---@field public WidgetType EPropertySlotType
----@field public WidgetStyle UPropertySlotStyleBase
+---@field public WidgetStyle UPropertySlotStyle
 ---@field public OnValueChanged MulticastDelegate|fun() @Fires after the option value changes and applies
 UOptionData = {}
 

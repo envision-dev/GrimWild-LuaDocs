@@ -20,6 +20,10 @@ function AGPlayerController:Test_AddModification(AssetId, ModificationFilename) 
 ---@param Value string
 function AGPlayerController:Test_AddTranslation(Key, Value) end
 
+---@param InObject UWorldObject
+---@param NewArchetype UWorldObject
+function AGPlayerController:Test_ChangeObjectArchetype(InObject, NewArchetype) end
+
 ---@param OnComplete Delegate|fun(bSuccess: boolean, PublishedFileId: integer)
 function AGPlayerController.Test_CreateWorkshopItem(OnComplete) end
 

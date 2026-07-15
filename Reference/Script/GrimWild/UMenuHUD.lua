@@ -11,7 +11,6 @@
 ---@field public B_Mods UGButton
 ---@field public B_Options UGButton
 ---@field public B_Quit UGButton
----@field public TB_GameVersion UGTextBlock
 ---@field public B_OpenLog UGButton
 ---@field public B_OpenDevConsole UGButton
 UMenuHUD = {}

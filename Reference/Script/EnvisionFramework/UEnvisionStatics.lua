@@ -75,6 +75,9 @@ function UEnvisionStatics.GetOuterObjectOfClass(Object, OuterClass) end
 ---@return string
 function UEnvisionStatics.GetProjectVersion() end
 
+---@return string
+function UEnvisionStatics.GetProjectVersionVisibleName() end
+
 ---Gets the current size of the object in memory
 ---@param Object UObject
 ---@return integer
