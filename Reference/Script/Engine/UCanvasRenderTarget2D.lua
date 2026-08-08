@@ -19,9 +19,9 @@ UCanvasRenderTarget2D = {}
 function UCanvasRenderTarget2D.CreateCanvasRenderTarget2D(WorldContextObject, CanvasRenderTarget2DClass, Width, Height) end
 
 ---Gets a specific render target's size from the global map of canvas render targets.
----@param Width integer @[out]
----@param Height integer @[out]
-function UCanvasRenderTarget2D:GetSize(Width, Height) end
+---@return integer Width
+---@return integer Height
+function UCanvasRenderTarget2D:GetSize() end
 
 ---Allows a Blueprint to implement how this Canvas Render Target 2D should be updated.
 ---@param Canvas UCanvas

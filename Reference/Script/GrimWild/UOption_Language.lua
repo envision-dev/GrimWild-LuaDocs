@@ -9,6 +9,6 @@ UOption_Language = {}
 function UOption_Language:GetComboBoxOptionName(OptionId) end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UOption_Language:GatherDebugData(DebugString) end
+---@return string DebugString
+function UOption_Language:GatherDebugData() end
 

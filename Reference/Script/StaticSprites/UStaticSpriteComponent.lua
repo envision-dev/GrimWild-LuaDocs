@@ -38,6 +38,6 @@ function UStaticSpriteComponent:GetSpriteTexture() end
 function UStaticSpriteComponent:IsComponentActive() end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UStaticSpriteComponent:GatherDebugData(DebugString) end
+---@return string DebugString
+function UStaticSpriteComponent:GatherDebugData() end
 

@@ -102,16 +102,16 @@ function UGameplayStatics.BeginSpawningActorFromBlueprint(WorldContextObject, Bl
 ---Returns true if it hit something.
 ---@param WorldContextObject UObject
 ---@param PredictParams FPredictProjectilePathParams
----@param PredictResult FPredictProjectilePathResult @[out]
+---@param PredictResult FPredictProjectilePathResult @[out, modified in place]
 ---@return boolean
 function UGameplayStatics.Blueprint_PredictProjectilePath_Advanced(WorldContextObject, PredictParams, PredictResult) end
 
 ---Predict the arc of a virtual projectile affected by gravity with collision checks along the arc. Returns a list of positions of the simulated arc and the destination reached by the simulation.
 ---Returns true if it hit something.
 ---@param WorldContextObject UObject
----@param OutHit FHitResult @[out]
----@param OutPathPositions TArray<FVector> @[out]
----@param OutLastTraceDestination FVector @[out]
+---@param OutHit FHitResult @[out, modified in place]
+---@param OutPathPositions TArray<FVector> @[out, modified in place]
+---@param OutLastTraceDestination FVector @[out, modified in place]
 ---@param StartPos FVector
 ---@param LaunchVelocity FVector
 ---@param bTracePath boolean
@@ -130,9 +130,9 @@ function UGameplayStatics.Blueprint_PredictProjectilePath_ByObjectType(WorldCont
 ---Predict the arc of a virtual projectile affected by gravity with collision checks along the arc. Returns a list of positions of the simulated arc and the destination reached by the simulation.
 ---Returns true if it hit something (if tracing with collision).
 ---@param WorldContextObject UObject
----@param OutHit FHitResult @[out]
----@param OutPathPositions TArray<FVector> @[out]
----@param OutLastTraceDestination FVector @[out]
+---@param OutHit FHitResult @[out, modified in place]
+---@param OutPathPositions TArray<FVector> @[out, modified in place]
+---@param OutLastTraceDestination FVector @[out, modified in place]
 ---@param StartPos FVector
 ---@param LaunchVelocity FVector
 ---@param bTracePath boolean
@@ -150,7 +150,7 @@ function UGameplayStatics.Blueprint_PredictProjectilePath_ByTraceChannel(WorldCo
 
 ---Calculates an launch velocity for a projectile to hit a specified point.
 ---@param WorldContextObject UObject
----@param TossVelocity FVector @[out]
+---@param TossVelocity FVector @[out, modified in place]
 ---@param StartLocation FVector
 ---@param EndLocation FVector
 ---@param LaunchSpeed number
@@ -164,25 +164,25 @@ function UGameplayStatics.BlueprintSuggestProjectileVelocity(WorldContextObject,
 
 ---Extracts data from a HitResult.
 ---@param Hit FHitResult
----@param bBlockingHit boolean @[out]
----@param bInitialOverlap boolean @[out] True if the hit started in an initial overlap. In this case some other values should be interpreted differently. Time will be 0, ImpactPoint will equal Location, and normals will be equal and indicate a depenetration vector.
----@param Time number @[out]
----@param Distance number @[out]
----@param Location FVector @[out]
----@param ImpactPoint FVector @[out]
----@param Normal FVector @[out]
----@param ImpactNormal FVector @[out]
----@param PhysMat UPhysicalMaterial @[out]
----@param HitActor AActor @[out]
----@param HitComponent UPrimitiveComponent @[out]
----@param HitBoneName string @[out]
----@param BoneName string @[out]
----@param HitItem integer @[out]
----@param ElementIndex integer @[out]
----@param FaceIndex integer @[out]
----@param TraceStart FVector @[out]
----@param TraceEnd FVector @[out]
-function UGameplayStatics.BreakHitResult(Hit, bBlockingHit, bInitialOverlap, Time, Distance, Location, ImpactPoint, Normal, ImpactNormal, PhysMat, HitActor, HitComponent, HitBoneName, BoneName, HitItem, ElementIndex, FaceIndex, TraceStart, TraceEnd) end
+---@param Location FVector @[out, modified in place]
+---@param ImpactPoint FVector @[out, modified in place]
+---@param Normal FVector @[out, modified in place]
+---@param ImpactNormal FVector @[out, modified in place]
+---@param PhysMat UPhysicalMaterial @[out, modified in place]
+---@param HitActor AActor @[out, modified in place]
+---@param HitComponent UPrimitiveComponent @[out, modified in place]
+---@param TraceStart FVector @[out, modified in place]
+---@param TraceEnd FVector @[out, modified in place]
+---@return boolean bBlockingHit
+---@return boolean bInitialOverlap @True if the hit started in an initial overlap. In this case some other values should be interpreted differently. Time will be 0, ImpactPoint will equal Location, and normals will be equal and indicate a depenetration vector.
+---@return number Time
+---@return number Distance
+---@return string HitBoneName
+---@return string BoneName
+---@return integer HitItem
+---@return integer ElementIndex
+---@return integer FaceIndex
+function UGameplayStatics.BreakHitResult(Hit, Location, ImpactPoint, Normal, ImpactNormal, PhysMat, HitActor, HitComponent, TraceStart, TraceEnd) end
 
 ---Cancels all currently queued streaming packages
 function UGameplayStatics.CancelAsyncLoading() end
@@ -245,16 +245,16 @@ function UGameplayStatics.DeleteGameInSlot(SlotName, UserIndex) end
 ---Transforms the given 2D UV coordinate into a 3D world-space point and direction.
 ---@param SceneCapture2D ASceneCapture2D
 ---@param TargetUV FVector2D
----@param WorldPosition FVector @[out]
----@param WorldDirection FVector @[out]
+---@param WorldPosition FVector @[out, modified in place]
+---@param WorldDirection FVector @[out, modified in place]
 ---@return boolean
 function UGameplayStatics.DeprojectSceneCaptureToWorld(SceneCapture2D, TargetUV, WorldPosition, WorldDirection) end
 
 ---Transforms the given 2D screen space coordinate into a 3D world-space point and direction.
 ---@param Player APlayerController
 ---@param ScreenPosition FVector2D
----@param WorldPosition FVector @[out]
----@param WorldDirection FVector @[out]
+---@param WorldPosition FVector @[out, modified in place]
+---@param WorldDirection FVector @[out, modified in place]
 ---@return boolean
 function UGameplayStatics.DeprojectScreenToWorld(Player, ScreenPosition, WorldPosition, WorldDirection) end
 
@@ -271,16 +271,16 @@ function UGameplayStatics.EnableLiveStreaming(Enable) end
 ---Try and find the UV for a collision impact. Note this ONLY works if 'Support UV From Hit Results' is enabled in Physics Settings.
 ---@param Hit FHitResult
 ---@param UVChannel integer
----@param UV FVector2D @[out]
+---@param UV FVector2D @[out, modified in place]
 ---@return boolean
 function UGameplayStatics.FindCollisionUV(Hit, UVChannel, UV) end
 
 ---Returns an Actor nearest to Origin from ActorsToCheck array.
 ---@param Origin FVector
 ---@param ActorsToCheck TArray<AActor>
----@param Distance number @[out]
 ---@return AActor
-function UGameplayStatics.FindNearestActor(Origin, ActorsToCheck, Distance) end
+---@return number Distance
+function UGameplayStatics.FindNearestActor(Origin, ActorsToCheck) end
 
 ---'Finish' spawning an actor.  This will run the construction script.
 ---@param Actor AActor
@@ -294,9 +294,9 @@ function UGameplayStatics.FinishSpawningActor(Actor, SpawnTransform, TransformSc
 function UGameplayStatics.FlushLevelStreaming(WorldContextObject) end
 
 ---Returns time in seconds since the application was started. Unlike the other time functions this is accurate to the exact time this function is called instead of set once per frame.
----@param Seconds integer @[out]
----@param PartialSeconds number @[out]
-function UGameplayStatics.GetAccurateRealTime(Seconds, PartialSeconds) end
+---@return integer Seconds
+---@return number PartialSeconds
+function UGameplayStatics.GetAccurateRealTime() end
 
 ---Get currently active Audio Spatialization Plugin name
 ---@param WorldContextObject UObject
@@ -311,8 +311,8 @@ function UGameplayStatics.GetActorArrayAverageLocation(Actors) end
 ---Bind the bounds of an array of Actors
 ---@param Actors TArray<AActor>
 ---@param bOnlyCollidingComponents boolean
----@param Center FVector @[out]
----@param BoxExtent FVector @[out]
+---@param Center FVector @[out, modified in place]
+---@param BoxExtent FVector @[out, modified in place]
 function UGameplayStatics.GetActorArrayBounds(Actors, bOnlyCollidingComponents, Center, BoxExtent) end
 
 ---Find the first Actor in the world of the specified class.
@@ -326,7 +326,7 @@ function UGameplayStatics.GetActorOfClass(WorldContextObject, ActorClass) end
 ---This is a slow operation, use with caution e.g. do not use every frame.
 ---@param WorldContextObject UObject
 ---@param ActorClass TSubclassOf<AActor>
----@param OutActors TArray<AActor> @[out]
+---@param OutActors TArray<AActor> @[out, modified in place]
 function UGameplayStatics.GetAllActorsOfClass(WorldContextObject, ActorClass, OutActors) end
 
 ---Find all Actors in the world of the specified class with the specified tag.
@@ -334,21 +334,21 @@ function UGameplayStatics.GetAllActorsOfClass(WorldContextObject, ActorClass, Ou
 ---@param WorldContextObject UObject
 ---@param ActorClass TSubclassOf<AActor>
 ---@param Tag string
----@param OutActors TArray<AActor> @[out]
+---@param OutActors TArray<AActor> @[out, modified in place]
 function UGameplayStatics.GetAllActorsOfClassWithTag(WorldContextObject, ActorClass, Tag, OutActors) end
 
 ---Find all Actors in the world with the specified interface.
 ---This is a slow operation, use with caution e.g. do not use every frame.
 ---@param WorldContextObject UObject
 ---@param Interface TSubclassOf<UInterface>
----@param OutActors TArray<AActor> @[out]
+---@param OutActors TArray<AActor> @[out, modified in place]
 function UGameplayStatics.GetAllActorsWithInterface(WorldContextObject, Interface, OutActors) end
 
 ---Find all Actors in the world with the specified tag.
 ---This is a slow operation, use with caution e.g. do not use every frame.
 ---@param WorldContextObject UObject
 ---@param Tag string
----@param OutActors TArray<AActor> @[out]
+---@param OutActors TArray<AActor> @[out, modified in place]
 function UGameplayStatics.GetAllActorsWithTag(WorldContextObject, Tag, OutActors) end
 
 ---Returns time in seconds since world was brought up for play, IS stopped when game pauses, NOT dilated/clamped.
@@ -366,7 +366,7 @@ function UGameplayStatics.GetAvailableSpatialPluginNames(WorldContextObject) end
 ---@param Location FVector
 ---@param MaximumRange number
 ---@param bAllowAttenuationOverride boolean
----@param ListenerPosition FVector @[out]
+---@param ListenerPosition FVector @[out, modified in place]
 ---@return boolean
 function UGameplayStatics.GetClosestListenerLocation(WorldContextObject, Location, MaximumRange, bAllowAttenuationOverride, ListenerPosition) end
 
@@ -415,9 +415,9 @@ function UGameplayStatics.GetIntOption(Options, Key, DefaultValue) end
 
 ---Break up a key=value pair into its key and value.
 ---@param Pair string
----@param Key string @[out]
----@param Value string @[out]
-function UGameplayStatics.GetKeyValue(Pair, Key, Value) end
+---@return string Key
+---@return string Value
+function UGameplayStatics.GetKeyValue(Pair) end
 
 ---Retrieves the max voice count currently used by the audio engine.
 ---@param WorldContextObject UObject
@@ -547,9 +547,9 @@ function UGameplayStatics.GetViewportMouseCaptureMode(WorldContextObject) end
 
 ---Returns the View Matrix, Projection Matrix and the View x Projection Matrix for a given view
 ---@param DesiredView FMinimalViewInfo
----@param ViewMatrix FMatrix @[out]
----@param ProjectionMatrix FMatrix @[out]
----@param ViewProjectionMatrix FMatrix @[out]
+---@param ViewMatrix FMatrix @[out, modified in place]
+---@param ProjectionMatrix FMatrix @[out, modified in place]
+---@param ViewProjectionMatrix FMatrix @[out, modified in place]
 function UGameplayStatics.GetViewProjectionMatrix(DesiredView, ViewMatrix, ProjectionMatrix, ViewProjectionMatrix) end
 
 ---Returns the frame delta time in seconds, adjusted by time dilation.
@@ -747,7 +747,7 @@ function UGameplayStatics.PrimeSound(InSound) end
 ---Transforms the given 3D world-space point into a its 2D screen space coordinate.
 ---@param Player APlayerController
 ---@param WorldPosition FVector
----@param ScreenPosition FVector2D @[out]
+---@param ScreenPosition FVector2D @[out, modified in place]
 ---@param bPlayerViewportRelative? boolean @[default: false]
 ---@return boolean
 function UGameplayStatics.ProjectWorldToScreen(Player, WorldPosition, ScreenPosition, bPlayerViewportRelative) end
@@ -1088,7 +1088,7 @@ function UGameplayStatics.SpawnSoundAttached(Sound, AttachToComponent, AttachPoi
 ---Assumes a medium arc (e.g. 45 deg on level ground). Projectile velocity is variable and unconstrained.
 ---Does no tracing.
 ---@param WorldContextObject UObject
----@param OutLaunchVelocity FVector @[out]
+---@param OutLaunchVelocity FVector @[out, modified in place]
 ---@param StartPos FVector
 ---@param EndPos FVector
 ---@param OverrideGravityZ? number @[default: 0.000000]
@@ -1099,7 +1099,7 @@ function UGameplayStatics.SuggestProjectileVelocity_CustomArc(WorldContextObject
 ---Returns a launch velocity need for a projectile to hit the TargetActor in TimeToTarget seconds based on the TargetActor's current velocity.
 ---This assumes the projectile is only accelerated by gravity (i.e. no outside forces), and that the TargetActor is moving at a constant velocity.
 ---@param WorldContextObject UObject
----@param OutLaunchVelocity FVector @[out]
+---@param OutLaunchVelocity FVector @[out, modified in place]
 ---@param ProjectileStartLocation FVector
 ---@param TargetActor AActor
 ---@param TargetLocationOffset FVector

@@ -5,6 +5,6 @@
 UVAssetTest = {}
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UVAssetTest:GatherDebugData(DebugString) end
+---@return string DebugString
+function UVAssetTest:GatherDebugData() end
 

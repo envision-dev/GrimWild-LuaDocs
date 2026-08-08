@@ -18,8 +18,8 @@ UCanvas = {}
 
 ---Performs a deprojection of a screen space coordinate using the projection matrix set up for the Canvas.
 ---@param ScreenPosition FVector2D
----@param WorldOrigin FVector @[out]
----@param WorldDirection FVector @[out]
+---@param WorldOrigin FVector @[out, modified in place]
+---@param WorldDirection FVector @[out, modified in place]
 function UCanvas:K2_Deproject(ScreenPosition, WorldOrigin, WorldDirection) end
 
 ---Draws a 3x3 grid border with tiled frame and tiled interior on the Canvas.

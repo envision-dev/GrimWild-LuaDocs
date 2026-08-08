@@ -10,10 +10,10 @@ UAnimationData = {}
 ---Others remain untouched, so to prevent mixing the old and new data, pass an empty OutTransform value.
 ---@param InTime number
 ---@param InElementName string
----@param OutTransform FSpriteTransform @[out]
+---@param OutTransform FSpriteTransform @[out, modified in place]
 function UAnimationData:EvaluateElement(InTime, InElementName, OutTransform) end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UAnimationData:GatherDebugData(DebugString) end
+---@return string DebugString
+function UAnimationData:GatherDebugData() end
 

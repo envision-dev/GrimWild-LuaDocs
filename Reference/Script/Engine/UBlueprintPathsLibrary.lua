@@ -37,9 +37,9 @@ function UBlueprintPathsLibrary.CloudDir() end
 ---and converts it to:
 ---      BaseDirectory/SomeOtherDirectory/Filename.ext
 ---@param InPath string
----@param OutPath string @[out]
 ---@return boolean
-function UBlueprintPathsLibrary.CollapseRelativeDirectories(InPath, OutPath) end
+---@return string OutPath
+function UBlueprintPathsLibrary.CollapseRelativeDirectories(InPath) end
 
 ---Combine two or more Paths into one single Path
 ---@param InPaths TArray<string>
@@ -256,14 +256,14 @@ function UBlueprintPathsLibrary.LaunchDir() end
 ---Assuming both paths (or filenames) are relative to the same base dir, converts InPath to be relative to InRelativeTo
 ---@param InPath string @New path relative to InRelativeTo
 ---@param InRelativeTo string @Path to use as the new relative base
----@param OutPath string @[out]
 ---@return boolean
-function UBlueprintPathsLibrary.MakePathRelativeTo(InPath, InRelativeTo, OutPath) end
+---@return string OutPath
+function UBlueprintPathsLibrary.MakePathRelativeTo(InPath, InRelativeTo) end
 
 ---Takes an "Unreal" pathname and converts it to a platform filename.
 ---@param InPath string
----@param OutPath string @[out]
-function UBlueprintPathsLibrary.MakePlatformFilename(InPath, OutPath) end
+---@return string OutPath
+function UBlueprintPathsLibrary.MakePlatformFilename(InPath) end
 
 ---Make fully standard "Unreal" pathname:
 ---   - Normalizes path separators [NormalizeFilename]
@@ -271,8 +271,8 @@ function UBlueprintPathsLibrary.MakePlatformFilename(InPath, OutPath) end
 ---   - Collapses internal ..'s
 ---   - Makes relative to Engine\Binaries\<Platform> (will ALWAYS start with ..\..\..)
 ---@param InPath string
----@param OutPath string @[out]
-function UBlueprintPathsLibrary.MakeStandardFilename(InPath, OutPath) end
+---@return string OutPath
+function UBlueprintPathsLibrary.MakeStandardFilename(InPath) end
 
 ---Returns a string that is safe to use as a filename because all items in
 ---GetInvalidFileSystemChars() are removed
@@ -284,13 +284,13 @@ function UBlueprintPathsLibrary.MakeValidFileName(InString, InReplacementChar) e
 
 ---Normalize all / and \ to TEXT("/") and remove any trailing TEXT("/") if the character before that is not a TEXT("/") or a colon
 ---@param InPath string
----@param OutPath string @[out]
-function UBlueprintPathsLibrary.NormalizeDirectoryName(InPath, OutPath) end
+---@return string OutPath
+function UBlueprintPathsLibrary.NormalizeDirectoryName(InPath) end
 
 ---Convert all / and \ to TEXT("/")
 ---@param InPath string
----@param OutPath string @[out]
-function UBlueprintPathsLibrary.NormalizeFilename(InPath, OutPath) end
+---@return string OutPath
+function UBlueprintPathsLibrary.NormalizeFilename(InPath) end
 
 ---Returns the directory the engine uses to output profiling files.
 ---@return string
@@ -348,8 +348,8 @@ function UBlueprintPathsLibrary.ProjectUserDir() end
 ---and converts it to:
 ---      BaseDirectory/SomeDirectory/SomeOtherDirectory/Filename.ext
 ---@param InPath string
----@param OutPath string @[out]
-function UBlueprintPathsLibrary.RemoveDuplicateSlashes(InPath, OutPath) end
+---@return string OutPath
+function UBlueprintPathsLibrary.RemoveDuplicateSlashes(InPath) end
 
 ---Returns the root directory of the engine directory tree
 ---@return string
@@ -388,17 +388,17 @@ function UBlueprintPathsLibrary.SourceConfigDir() end
 
 ---Parses a fully qualified or relative filename into its components (filename, path, extension).
 ---@param InPath string
----@param PathPart string @[out]
----@param FilenamePart string @[out]
----@param ExtensionPart string @[out]
-function UBlueprintPathsLibrary.Split(InPath, PathPart, FilenamePart, ExtensionPart) end
+---@return string PathPart
+---@return string FilenamePart
+---@return string ExtensionPart
+function UBlueprintPathsLibrary.Split(InPath) end
 
 ---Validates that the parts that make up the path contain no invalid characters as dictated by the operating system
 ---Note that this is a different set of restrictions to those imposed by FPackageName
 ---@param InPath string @- path to validate
----@param bDidSucceed boolean @[out] - Whether the path could be validated
----@param OutReason string @[out] - If validation fails, this is filled with the failure reason
-function UBlueprintPathsLibrary.ValidatePath(InPath, bDidSucceed, OutReason) end
+---@return boolean bDidSucceed @- Whether the path could be validated
+---@return string OutReason @- If validation fails, this is filled with the failure reason
+function UBlueprintPathsLibrary.ValidatePath(InPath) end
 
 ---Returns the directory the engine uses to output user requested video capture files.
 ---@return string

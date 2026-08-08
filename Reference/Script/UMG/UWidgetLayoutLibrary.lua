@@ -15,10 +15,10 @@ function UWidgetLayoutLibrary.GetMousePositionOnViewport(WorldContextObject) end
 ---MousePositionScaledByDPI = MousePosition * (1 / ViewportScale).
 ---        //UE_DEPRECATED(4.17, "Use GetMousePositionOnViewport() instead.  Optionally and for more options, you can use GetViewportWidgetGeometry and GetPlayerScreenWidgetGeometry are newly introduced to give you the geometry of the viewport and the player screen for widgets to help convert between spaces.")
 ---@param Player APlayerController
----@param LocationX number @[out]
----@param LocationY number @[out]
 ---@return boolean
-function UWidgetLayoutLibrary.GetMousePositionScaledByDPI(Player, LocationX, LocationY) end
+---@return number LocationX
+---@return number LocationY
+function UWidgetLayoutLibrary.GetMousePositionScaledByDPI(Player) end
 
 ---Gets the geometry of the widget holding all widgets added to the "Player Screen". You
 ---can use this geometry to convert between absolute and local space of widgets held on this
@@ -48,7 +48,7 @@ function UWidgetLayoutLibrary.GetViewportWidgetGeometry(WorldContextObject) end
 ---position, which takes into account any quality scaling.
 ---@param PlayerController APlayerController @The player controller to project the position in the world to their screen.
 ---@param WorldLocation FVector @The world location to project from.
----@param ScreenPosition FVector2D @[out] The position in the viewport with quality scale removed and DPI scale remove.
+---@param ScreenPosition FVector2D @[out, modified in place] The position in the viewport with quality scale removed and DPI scale remove.
 ---@param bPlayerViewportRelative boolean @Should this be relative to the player viewport subregion (useful when using player attached widgets in split screen or when aspect-ratio constrained)
 ---@return boolean
 function UWidgetLayoutLibrary.ProjectWorldLocationToWidgetPosition(PlayerController, WorldLocation, ScreenPosition, bPlayerViewportRelative) end

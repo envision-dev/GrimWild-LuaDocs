@@ -16,9 +16,9 @@ function UGameLevel.CellRestrictionsToString(Restrictions) end
 ---@return ULightManager
 function UGameLevel:GetLightManager() end
 
----@param OutSizeX integer @[out]
----@param OutSizeY integer @[out]
-function UGameLevel:GetSize(OutSizeX, OutSizeY) end
+---@return integer OutSizeX
+---@return integer OutSizeY
+function UGameLevel:GetSize() end
 
 ---@param SizeX integer
 ---@param SizeY integer
@@ -59,6 +59,6 @@ function UGameLevel:GetCellBuffer_Color(BufferName) end
 function UGameLevel:GetCellBuffer_Byte(BufferName) end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UGameLevel:GatherDebugData(DebugString) end
+---@return string DebugString
+function UGameLevel:GatherDebugData() end
 

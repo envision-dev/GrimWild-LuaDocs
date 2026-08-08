@@ -10,6 +10,6 @@ UGAssetManager = {}
 function UGAssetManager.Test_AddVAsset(InId, InFilename, InParentId) end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UGAssetManager:GatherDebugData(DebugString) end
+---@return string DebugString
+function UGAssetManager:GatherDebugData() end
 

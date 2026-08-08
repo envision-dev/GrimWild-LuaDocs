@@ -117,6 +117,9 @@ function UWorldObject:GetOwner() end
 ---@return FDynamicState
 function UWorldObject:GetState() end
 
+---@return FDynamicStateHandle
+function UWorldObject:GetStateHandle() end
+
 ---Returns a non-const reference to the state of the object
 ---@return FDynamicState
 function UWorldObject:GetStateRef() end
@@ -214,6 +217,6 @@ function UWorldObject:TryDetachFromParent(bReAttaching) end
 function UWorldObject:TryDetachFromSharedParent(SharedParent, SharedAttachmentSlot) end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UWorldObject:GatherDebugData(DebugString) end
+---@return string DebugString
+function UWorldObject:GatherDebugData() end
 

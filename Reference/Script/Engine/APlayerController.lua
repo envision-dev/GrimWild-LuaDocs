@@ -377,16 +377,16 @@ function APlayerController:ClientWasKicked(KickReason) end
 function APlayerController:ConsoleKey(Key) end
 
 ---Convert current mouse 2D position to World Space 3D position and direction. Returns false if unable to determine value. *
----@param WorldLocation FVector @[out]
----@param WorldDirection FVector @[out]
+---@param WorldLocation FVector @[out, modified in place]
+---@param WorldDirection FVector @[out, modified in place]
 ---@return boolean
 function APlayerController:DeprojectMousePositionToWorld(WorldLocation, WorldDirection) end
 
 ---Convert 2D screen position to World Space 3D position and direction. Returns false if unable to determine value. *
 ---@param ScreenX number
 ---@param ScreenY number
----@param WorldLocation FVector @[out]
----@param WorldDirection FVector @[out]
+---@param WorldLocation FVector @[out, modified in place]
+---@param WorldDirection FVector @[out, modified in place]
 ---@return boolean
 function APlayerController:DeprojectScreenPositionToWorld(ScreenX, ScreenY, WorldLocation, WorldDirection) end
 
@@ -421,28 +421,28 @@ function APlayerController:GetFocalLocation() end
 
 ---@param TraceChannel integer
 ---@param bTraceComplex boolean
----@param HitResult FHitResult @[out]
+---@param HitResult FHitResult @[out, modified in place]
 ---@return boolean
 function APlayerController:GetHitResultUnderCursor(TraceChannel, bTraceComplex, HitResult) end
 
 ---Performs a collision query under the mouse cursor, looking on a trace channel
 ---@param TraceChannel integer
 ---@param bTraceComplex boolean
----@param HitResult FHitResult @[out]
+---@param HitResult FHitResult @[out, modified in place]
 ---@return boolean
 function APlayerController:GetHitResultUnderCursorByChannel(TraceChannel, bTraceComplex, HitResult) end
 
 ---Performs a collision query under the mouse cursor, looking for object types
 ---@param ObjectTypes TArray<integer>
 ---@param bTraceComplex boolean
----@param HitResult FHitResult @[out]
+---@param HitResult FHitResult @[out, modified in place]
 ---@return boolean
 function APlayerController:GetHitResultUnderCursorForObjects(ObjectTypes, bTraceComplex, HitResult) end
 
 ---@param FingerIndex integer
 ---@param TraceChannel integer
 ---@param bTraceComplex boolean
----@param HitResult FHitResult @[out]
+---@param HitResult FHitResult @[out, modified in place]
 ---@return boolean
 function APlayerController:GetHitResultUnderFinger(FingerIndex, TraceChannel, bTraceComplex, HitResult) end
 
@@ -450,7 +450,7 @@ function APlayerController:GetHitResultUnderFinger(FingerIndex, TraceChannel, bT
 ---@param FingerIndex integer
 ---@param TraceChannel integer
 ---@param bTraceComplex boolean
----@param HitResult FHitResult @[out]
+---@param HitResult FHitResult @[out, modified in place]
 ---@return boolean
 function APlayerController:GetHitResultUnderFingerByChannel(FingerIndex, TraceChannel, bTraceComplex, HitResult) end
 
@@ -458,7 +458,7 @@ function APlayerController:GetHitResultUnderFingerByChannel(FingerIndex, TraceCh
 ---@param FingerIndex integer
 ---@param ObjectTypes TArray<integer>
 ---@param bTraceComplex boolean
----@param HitResult FHitResult @[out]
+---@param HitResult FHitResult @[out, modified in place]
 ---@return boolean
 function APlayerController:GetHitResultUnderFingerForObjects(FingerIndex, ObjectTypes, bTraceComplex, HitResult) end
 
@@ -473,9 +473,9 @@ function APlayerController:GetInputAnalogKeyState(Key) end
 
 ---Retrieves the X and Y displacement of the given analog stick.
 ---@param WhichStick integer
----@param StickX number @[out]
----@param StickY number @[out]
-function APlayerController:GetInputAnalogStickState(WhichStick, StickX, StickY) end
+---@return number StickX
+---@return number StickY
+function APlayerController:GetInputAnalogStickState(WhichStick) end
 
 ---Returns how long the given key/button has been down.  Returns 0 if it's up or it just went down this frame.
 ---@param Key FKey
@@ -483,23 +483,23 @@ function APlayerController:GetInputAnalogStickState(WhichStick, StickX, StickY) 
 function APlayerController:GetInputKeyTimeDown(Key) end
 
 ---Retrieves the current motion state of the player's input device
----@param Tilt FVector @[out]
----@param RotationRate FVector @[out]
----@param Gravity FVector @[out]
----@param Acceleration FVector @[out]
+---@param Tilt FVector @[out, modified in place]
+---@param RotationRate FVector @[out, modified in place]
+---@param Gravity FVector @[out, modified in place]
+---@param Acceleration FVector @[out, modified in place]
 function APlayerController:GetInputMotionState(Tilt, RotationRate, Gravity, Acceleration) end
 
 ---Retrieves how far the mouse moved this frame.
----@param DeltaX number @[out]
----@param DeltaY number @[out]
-function APlayerController:GetInputMouseDelta(DeltaX, DeltaY) end
+---@return number DeltaX
+---@return number DeltaY
+function APlayerController:GetInputMouseDelta() end
 
 ---Retrieves the X and Y screen coordinates of the specified touch key. Returns false if the touch index is not down
 ---@param FingerIndex integer
----@param LocationX number @[out]
----@param LocationY number @[out]
----@param bIsCurrentlyPressed boolean @[out]
-function APlayerController:GetInputTouchState(FingerIndex, LocationX, LocationY, bIsCurrentlyPressed) end
+---@return number LocationX
+---@return number LocationY
+---@return boolean bIsCurrentlyPressed
+function APlayerController:GetInputTouchState(FingerIndex) end
 
 ---Returns the vector value for the given key/button.
 ---@param Key FKey
@@ -507,10 +507,10 @@ function APlayerController:GetInputTouchState(FingerIndex, LocationX, LocationY,
 function APlayerController:GetInputVectorKeyState(Key) end
 
 ---Retrieves the X and Y screen coordinates of the mouse cursor. Returns false if there is no associated mouse device
----@param LocationX number @[out]
----@param LocationY number @[out]
 ---@return boolean
-function APlayerController:GetMousePosition(LocationX, LocationY) end
+---@return number LocationX
+---@return number LocationY
+function APlayerController:GetMousePosition() end
 
 ---@return TSubclassOf<UPlayerInput>
 function APlayerController:GetOverridePlayerInputClass() end
@@ -526,8 +526,8 @@ function APlayerController:GetSpectatorPawn() end
 
 ---Gets the streaming source location and rotation.
 ---Default implementation returns APlayerController::GetPlayerViewPoint but can be overriden in child classes.
----@param OutLocation FVector @[out]
----@param OutRotation FRotator @[out]
+---@param OutLocation FVector @[out, modified in place]
+---@param OutRotation FRotator @[out, modified in place]
 function APlayerController:GetStreamingSourceLocationAndRotation(OutLocation, OutRotation) end
 
 ---Gets the streaming source priority.
@@ -537,13 +537,13 @@ function APlayerController:GetStreamingSourcePriority() end
 
 ---Gets the streaming source priority.
 ---Default implementation returns StreamingSourceShapes but can be overriden in child classes.
----@param OutShapes TArray<FStreamingSourceShape> @[out]
+---@param OutShapes TArray<FStreamingSourceShape> @[out, modified in place]
 function APlayerController:GetStreamingSourceShapes(OutShapes) end
 
 ---Helper to get the size of the HUD canvas for this player controller.  Returns 0 if there is no HUD
----@param SizeX integer @[out]
----@param SizeY integer @[out]
-function APlayerController:GetViewportSize(SizeX, SizeY) end
+---@return integer SizeX
+---@return integer SizeY
+function APlayerController:GetViewportSize() end
 
 ---Returns true if the given key/button is pressed on the input of the controller (if present)
 ---@param Key FKey
@@ -598,7 +598,7 @@ function APlayerController:PlayHapticEffect(HapticEffect, Hand, Scale, bLoop) en
 
 ---Convert a World Space 3D position into a 2D Screen Space position.
 ---@param WorldLocation FVector
----@param ScreenLocation FVector2D @[out]
+---@param ScreenLocation FVector2D @[out, modified in place]
 ---@param bPlayerViewportRelative? boolean @[default: false]
 ---@return boolean
 function APlayerController:ProjectWorldLocationToScreen(WorldLocation, ScreenLocation, bPlayerViewportRelative) end

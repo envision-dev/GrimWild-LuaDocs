@@ -2,9 +2,9 @@
 UEnvisionBitLib = {}
 
 ---@param EnumValue integer
----@param bOutSuccess boolean @[out]
 ---@return integer
-function UEnvisionBitLib.GetBitIndexFromEnumValue(EnumValue, bOutSuccess) end
+---@return boolean bOutSuccess
+function UEnvisionBitLib.GetBitIndexFromEnumValue(EnumValue) end
 
 ---@param WholeValue integer
 ---@param BitIndex integer

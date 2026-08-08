@@ -40,6 +40,6 @@ function UGAssetBase:K2_LoadComplete() end
 function UGAssetBase:K2_PreUnload() end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UGAssetBase:GatherDebugData(DebugString) end
+---@return string DebugString
+function UGAssetBase:GatherDebugData() end
 

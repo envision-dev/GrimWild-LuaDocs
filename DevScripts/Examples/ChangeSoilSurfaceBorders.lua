@@ -1,13 +1,14 @@
--- Copies the border mask texture from the Grass surface material onto the Soil
+-- Copies the border mask texture from the Grass surface material onto the Soil.
 
+local Common = require("dev.lib.common")
+
+-- PARAMETERS (edit before running)
 local GrassId = "Grass"
 local SoilId = "Soil"
 
---Hardcoded
 local SurfaceMaskParam = "SurfaceMask"
 
----@class APlaytestScene
-local Playtest = UGameplayStatics.GetActorOfClass(GetWorld(), APlaytestScene.StaticClass())
+local Playtest = Common.GetPlaytestScene()
 
 -- Surfaces don't store their MID; it lives on the plane's material slot 0.
 local GrassMID = Playtest.Surfaces:Find(GrassId).PlaneComponent:GetMaterial(0)

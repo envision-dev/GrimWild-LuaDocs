@@ -72,9 +72,9 @@ function APlaytestScene:GetCellCoordsUnderCursor() end
 ---@return integer
 function APlaytestScene:GetCellUnderCursor() end
 
----@param OutX integer @[out]
----@param OutY integer @[out]
-function APlaytestScene:GetCellUnderCursor_2D(OutX, OutY) end
+---@return integer OutX
+---@return integer OutY
+function APlaytestScene:GetCellUnderCursor_2D() end
 
 ---@return UGameLevel
 function APlaytestScene:GetGameLevel() end
@@ -95,8 +95,8 @@ function APlaytestScene:GetLiquidsBuffer() end
 ---@return number
 function APlaytestScene:GetLiquidZOffset(LiquidDefIndex) end
 
----@param Offset FVector2D @[out]
----@param Scale FVector2D @[out]
+---@param Offset FVector2D @[out, modified in place]
+---@param Scale FVector2D @[out, modified in place]
 function APlaytestScene:GetPlaneTransform(Offset, Scale) end
 
 ---@param SurfaceName string

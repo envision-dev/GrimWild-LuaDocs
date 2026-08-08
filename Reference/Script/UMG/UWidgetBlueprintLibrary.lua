@@ -4,18 +4,18 @@ UWidgetBlueprintLibrary = {}
 ---Cancels any current drag drop operation.
 function UWidgetBlueprintLibrary.CancelDragDrop() end
 
----@param Reply FEventReply @[out]
+---@param Reply FEventReply @[out, modified in place]
 ---@param CapturingWidget UWidget
 ---@param bInAllJoysticks? boolean @[default: false]
 ---@return FEventReply
 function UWidgetBlueprintLibrary.CaptureJoystick(Reply, CapturingWidget, bInAllJoysticks) end
 
----@param Reply FEventReply @[out]
+---@param Reply FEventReply @[out, modified in place]
 ---@param CapturingWidget UWidget
 ---@return FEventReply
 function UWidgetBlueprintLibrary.CaptureMouse(Reply, CapturingWidget) end
 
----@param Reply FEventReply @[out]
+---@param Reply FEventReply @[out, modified in place]
 ---@param bInAllUsers? boolean @[default: false]
 ---@return FEventReply
 function UWidgetBlueprintLibrary.ClearUserFocus(Reply, bInAllUsers) end
@@ -35,7 +35,7 @@ function UWidgetBlueprintLibrary.CreateDragDropOperation(OperationClass) end
 
 ---Ask Slate to detect if a user starts dragging in this widget later.  Slate internally tracks the movement
 ---and if it surpasses the drag threshold, Slate will send an OnDragDetected event to the widget.
----@param Reply FEventReply @[out]
+---@param Reply FEventReply @[out, modified in place]
 ---@param WidgetDetectingDrag UWidget @Detect dragging in this widget
 ---@param DragKey FKey
 ---@return FEventReply
@@ -53,7 +53,7 @@ function UWidgetBlueprintLibrary.DetectDragIfPressed(PointerEvent, WidgetDetecti
 function UWidgetBlueprintLibrary.DismissAllMenus() end
 
 ---Draws a box
----@param Context FPaintContext @[out]
+---@param Context FPaintContext @[out, modified in place]
 ---@param Position FVector2D
 ---@param Size FVector2D
 ---@param Brush USlateBrushAsset
@@ -61,7 +61,7 @@ function UWidgetBlueprintLibrary.DismissAllMenus() end
 function UWidgetBlueprintLibrary.DrawBox(Context, Position, Size, Brush, Tint) end
 
 ---Draws a line.
----@param Context FPaintContext @[out]
+---@param Context FPaintContext @[out, modified in place]
 ---@param PositionA FVector2D
 ---@param PositionB FVector2D
 ---@param Tint? FLinearColor @[default: (R=1.000000,G=1.000000,B=1.000000,A=1.000000)]
@@ -70,7 +70,7 @@ function UWidgetBlueprintLibrary.DrawBox(Context, Position, Size, Brush, Tint) e
 function UWidgetBlueprintLibrary.DrawLine(Context, PositionA, PositionB, Tint, bAntiAlias, Thickness) end
 
 ---Draws several line segments.
----@param Context FPaintContext @[out]
+---@param Context FPaintContext @[out, modified in place]
 ---@param Points TArray<FVector2D>
 ---@param Tint? FLinearColor @[default: (R=1.000000,G=1.000000,B=1.000000,A=1.000000)]
 ---@param bAntiAlias? boolean @[default: true]
@@ -78,7 +78,7 @@ function UWidgetBlueprintLibrary.DrawLine(Context, PositionA, PositionB, Tint, b
 function UWidgetBlueprintLibrary.DrawLines(Context, Points, Tint, bAntiAlias, Thickness) end
 
 ---Draws a hermite spline.
----@param Context FPaintContext @[out]
+---@param Context FPaintContext @[out, modified in place]
 ---@param Start FVector2D
 ---@param StartDir FVector2D
 ---@param End FVector2D
@@ -88,14 +88,14 @@ function UWidgetBlueprintLibrary.DrawLines(Context, Points, Tint, bAntiAlias, Th
 function UWidgetBlueprintLibrary.DrawSpline(Context, Start, StartDir, End, EndDir, Tint, Thickness) end
 
 ---Draws text.
----@param Context FPaintContext @[out]
+---@param Context FPaintContext @[out, modified in place]
 ---@param InString string
 ---@param Position FVector2D
 ---@param Tint? FLinearColor @[default: (R=1.000000,G=1.000000,B=1.000000,A=1.000000)]
 function UWidgetBlueprintLibrary.DrawText(Context, InString, Position, Tint) end
 
 ---Draws text.
----@param Context FPaintContext @[out]
+---@param Context FPaintContext @[out, modified in place]
 ---@param Text string
 ---@param Position FVector2D
 ---@param Font UFont
@@ -105,13 +105,13 @@ function UWidgetBlueprintLibrary.DrawText(Context, InString, Position, Tint) end
 function UWidgetBlueprintLibrary.DrawTextFormatted(Context, Text, Position, Font, FontSize, FontTypeFace, Tint) end
 
 ---An event should return FReply::Handled().EndDragDrop() to request that the current drag/drop operation be terminated.
----@param Reply FEventReply @[out]
+---@param Reply FEventReply @[out, modified in place]
 ---@return FEventReply
 function UWidgetBlueprintLibrary.EndDragDrop(Reply) end
 
 ---Find all widgets of a certain class.
 ---@param WorldContextObject UObject
----@param FoundWidgets TArray<UUserWidget> @[out] The widgets that were found matching the filter.
+---@param FoundWidgets TArray<UUserWidget> @[out, modified in place] The widgets that were found matching the filter.
 ---@param WidgetClass TSubclassOf<UUserWidget> @The widget class to filter by.
 ---@param TopLevelOnly? boolean @[default: true] Only the widgets that are direct children of the viewport will be returned.
 function UWidgetBlueprintLibrary.GetAllWidgetsOfClass(WorldContextObject, FoundWidgets, WidgetClass, TopLevelOnly) end
@@ -119,7 +119,7 @@ function UWidgetBlueprintLibrary.GetAllWidgetsOfClass(WorldContextObject, FoundW
 ---Find all widgets in the world with the specified interface.
 ---This is a slow operation, use with caution e.g. do not use every frame.
 ---@param WorldContextObject UObject
----@param FoundWidgets TArray<UUserWidget> @[out] Output array of widgets that implement the specified interface.
+---@param FoundWidgets TArray<UUserWidget> @[out, modified in place] Output array of widgets that implement the specified interface.
 ---@param Interface TSubclassOf<UInterface> @The interface to find. Must be specified or result array will be empty.
 ---@param TopLevelOnly boolean @Only the widgets that are direct children of the viewport will be returned.
 function UWidgetBlueprintLibrary.GetAllWidgetsWithInterface(WorldContextObject, FoundWidgets, Interface, TopLevelOnly) end
@@ -145,7 +145,7 @@ function UWidgetBlueprintLibrary.GetDragDroppingContent() end
 
 ---Gets the material that allows changes to parameters at runtime.  The brush must already have a material assigned to it,
 ---if it does it will automatically be converted to a MID.
----@param Brush FSlateBrush @[out]
+---@param Brush FSlateBrush @[out, modified in place]
 ---@return UMaterialInstanceDynamic
 function UWidgetBlueprintLibrary.GetDynamicMaterial(Brush) end
 
@@ -171,9 +171,9 @@ function UWidgetBlueprintLibrary.GetKeyEventFromAnalogInputEvent(Event) end
 
 ---Gets the amount of padding that needs to be added when accounting for the safe zone on TVs.
 ---@param WorldContextObject UObject
----@param SafePadding FVector4 @[out]
----@param SafePaddingScale FVector2D @[out]
----@param SpillOverPadding FVector4 @[out]
+---@param SafePadding FVector4 @[out, modified in place]
+---@param SafePaddingScale FVector2D @[out, modified in place]
+---@param SpillOverPadding FVector4 @[out, modified in place]
 function UWidgetBlueprintLibrary.GetSafeZonePadding(WorldContextObject, SafePadding, SafePaddingScale, SpillOverPadding) end
 
 ---The event reply to use when you choose to handle an event.  This will prevent the event
@@ -185,7 +185,7 @@ function UWidgetBlueprintLibrary.Handled() end
 ---@return boolean
 function UWidgetBlueprintLibrary.IsDragDropping() end
 
----@param Reply FEventReply @[out]
+---@param Reply FEventReply @[out, modified in place]
 ---@param CapturingWidget UWidget
 ---@return FEventReply
 function UWidgetBlueprintLibrary.LockMouse(Reply, CapturingWidget) end
@@ -216,24 +216,24 @@ function UWidgetBlueprintLibrary.NoResourceBrush() end
 
 function UWidgetBlueprintLibrary:OnGameWindowCloseButtonClickedDelegate__DelegateSignature() end
 
----@param Reply FEventReply @[out]
+---@param Reply FEventReply @[out, modified in place]
 ---@param bInAllJoysticks? boolean @[default: false]
 ---@return FEventReply
 function UWidgetBlueprintLibrary.ReleaseJoystickCapture(Reply, bInAllJoysticks) end
 
----@param Reply FEventReply @[out]
+---@param Reply FEventReply @[out, modified in place]
 ---@return FEventReply
 function UWidgetBlueprintLibrary.ReleaseMouseCapture(Reply) end
 
 function UWidgetBlueprintLibrary.RestorePreviousWindowTitleBarState() end
 
 ---Sets the resource on a brush to be a Material.
----@param Brush FSlateBrush @[out]
+---@param Brush FSlateBrush @[out, modified in place]
 ---@param Material UMaterialInterface
 function UWidgetBlueprintLibrary.SetBrushResourceToMaterial(Brush, Material) end
 
 ---Sets the resource on a brush to be a UTexture2D.
----@param Brush FSlateBrush @[out]
+---@param Brush FSlateBrush @[out, modified in place]
 ---@param Texture UTexture2D
 function UWidgetBlueprintLibrary.SetBrushResourceToTexture(Brush, Texture) end
 
@@ -277,12 +277,12 @@ function UWidgetBlueprintLibrary.SetInputMode_GameOnly(PlayerController, bFlushI
 ---@param bFlushInput? boolean @[default: false]
 function UWidgetBlueprintLibrary.SetInputMode_UIOnlyEx(PlayerController, InWidgetToFocus, InMouseLockMode, bFlushInput) end
 
----@param Reply FEventReply @[out]
+---@param Reply FEventReply @[out, modified in place]
 ---@param NewMousePosition FVector2D
 ---@return FEventReply
 function UWidgetBlueprintLibrary.SetMousePosition(Reply, NewMousePosition) end
 
----@param Reply FEventReply @[out]
+---@param Reply FEventReply @[out, modified in place]
 ---@param FocusWidget UWidget
 ---@param bInAllUsers? boolean @[default: false]
 ---@return FEventReply
@@ -305,7 +305,7 @@ function UWidgetBlueprintLibrary.SetWindowTitleBarState(TitleBarContent, Mode, b
 ---@return FEventReply
 function UWidgetBlueprintLibrary.Unhandled() end
 
----@param Reply FEventReply @[out]
+---@param Reply FEventReply @[out, modified in place]
 ---@return FEventReply
 function UWidgetBlueprintLibrary.UnlockMouse(Reply) end
 

@@ -86,7 +86,7 @@ function ULightManager:GetDynamicLightSources() end
 function ULightManager:GetLightOverlayMaterial() end
 
 ---@param LightSourceId integer
----@param OutLightSource FLightSource @[out]
+---@param OutLightSource FLightSource @[out, modified in place]
 ---@return boolean
 function ULightManager:GetLightSource(LightSourceId, OutLightSource) end
 

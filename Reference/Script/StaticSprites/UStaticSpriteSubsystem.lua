@@ -59,6 +59,6 @@ function UStaticSpriteSubsystem:IsValidSpriteProxy(InProxyId) end
 function UStaticSpriteSubsystem:SetTargetAnimationFrameDeltaTime(NewValue) end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UStaticSpriteSubsystem:GatherDebugData(DebugString) end
+---@return string DebugString
+function UStaticSpriteSubsystem:GatherDebugData() end
 

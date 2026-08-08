@@ -5,6 +5,6 @@
 ---@field public OnPostSyncProcess MulticastDelegate|fun() @Fires on every RunBuildAndSubmit call, after Phase C is enqueued and eager cleanup runs.
 UCellBufferSyncManager = {}
 
----@param DebugString string @[out]
-function UCellBufferSyncManager:GatherDebugData(DebugString) end
+---@return string DebugString
+function UCellBufferSyncManager:GatherDebugData() end
 

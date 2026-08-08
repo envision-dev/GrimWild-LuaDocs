@@ -66,16 +66,16 @@ function UTexture:Blueprint_GetMemorySize() end
 ---Uses texture source, not available in runtime games.
 ---Does not cause texture source to be loaded, queries cached values.
 ---Returns zero for error.
----@param OutDiskSize integer @[out]
----@param OutMemorySize integer @[out]
-function UTexture:Blueprint_GetTextureSourceDiskAndMemorySize(OutDiskSize, OutMemorySize) end
+---@return integer OutDiskSize
+---@return integer OutMemorySize
+function UTexture:Blueprint_GetTextureSourceDiskAndMemorySize() end
 
 ---Scan the texture source pixels to compute the min & max values of the RGBA channels.
 ---Uses texture source, not available in runtime games.
 ---Causes texture source data to be loaded, is computed by scanning pixels when called.
 ---Will set Min=Max=zero and return false on failure
----@param OutColorMin FLinearColor @[out]
----@param OutColorMax FLinearColor @[out]
+---@param OutColorMin FLinearColor @[out, modified in place]
+---@param OutColorMax FLinearColor @[out, modified in place]
 ---@return boolean
 function UTexture:ComputeTextureSourceChannelMinMax(OutColorMin, OutColorMax) end
 

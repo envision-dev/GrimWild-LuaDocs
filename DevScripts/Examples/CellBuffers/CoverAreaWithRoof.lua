@@ -1,33 +1,16 @@
--- Written by Claude, approved by teedeezet.
+-- Sets or clears the roof flag over a rectangular area of the "CellFeatures" byte buffer.
 
--- Covers a rectangular area of cells with roof flags by setting or clearing
--- the roof bit inside the "Features" byte buffer.
--- The affected region starts at (StartX, StartY) and spans (AreaSizeX x AreaSizeY) cells.
+local Common = require("dev.lib.common")
+local CellBuffers = require("dev.lib.cellbuffers")
 
--- ── Inputs ────────────────────────────────────────────────────────────────────
+-- PARAMETERS (edit before running)
 local StartX = 0 -- Left cell of the target area (X, in cells)
 local StartY = 0 -- Top cell of the target area (Y, in cells)
 local AreaSizeX = 32 -- Width of the target area (in cells)
 local AreaSizeY = 32 -- Height of the target area (in cells)
-local RoofBitIndex = 5 -- Bit index of the roof flag inside the Features byte [0..7], corresponds to ECellFeatures.HasRoof
-local PlaceRoof = true -- true = set roof bit, false = clear roof bit
--- ─────────────────────────────────────────────────────────────────────────────
+local PlaceRoof = true -- true = set the roof flag, false = clear it
 
----@class APlaytestScene
-local Playtest = UGameplayStatics.GetActorOfClass(GetWorld(), APlaytestScene.StaticClass())
+local Playtest = Common.GetPlaytestScene()
 local Buffer = Playtest:GetGameLevel():GetCellBuffer_Byte("CellFeatures")
 
--- Retrieve buffer width to convert 2D coordinates into flat cell indices
-local BufferSizeX, BufferSizeY = UCellBufferLib.GetSize(Buffer)
-
--- Bulk bit writes: request a full buffer sync on the next upload
--- instead of building a dirty chunk per cell
-UCellBufferLib.MarkAsHardUploadAwaiting(Buffer)
-for row = 0, AreaSizeY - 1 do
-    local absY = StartY + row
-    for col = 0, AreaSizeX - 1 do
-        local absX = StartX + col
-        local cellIndex = absX + absY * BufferSizeX
-        UCellBufferLib.SetBitValue(Buffer, cellIndex, RoofBitIndex, PlaceRoof)
-    end
-end
+CellBuffers.SetBitValueInArea(Buffer, StartX, StartY, AreaSizeX, AreaSizeY, ECellFeatures.HasRoof, PlaceRoof)

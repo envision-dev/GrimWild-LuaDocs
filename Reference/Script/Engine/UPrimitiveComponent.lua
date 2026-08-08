@@ -249,7 +249,7 @@ function UPrimitiveComponent:GetCenterOfMass(BoneName) end
 ---Component must have simple collision to be queried for closest point.
 ---                              If returns < 0.f, this primitive does not have collsion
 ---@param Point FVector
----@param OutPointOnBody FVector @[out]
+---@param OutPointOnBody FVector @[out, modified in place]
 ---@param BoneName? string @[default: None]
 ---@return number
 function UPrimitiveComponent:GetClosestPointOnCollision(Point, OutPointOnBody, BoneName) end
@@ -322,21 +322,21 @@ function UPrimitiveComponent:GetMaterial(ElementIndex) end
 ---     @@param  SectionIndex    Section of the mesh that the face belongs to
 ---     @@return                                 Material applied to section that the hit face belongs to
 ---@param FaceIndex integer
----@param SectionIndex integer @[out]
 ---@return UMaterialInterface
-function UPrimitiveComponent:GetMaterialFromCollisionFaceIndex(FaceIndex, SectionIndex) end
+---@return integer SectionIndex
+function UPrimitiveComponent:GetMaterialFromCollisionFaceIndex(FaceIndex) end
 
 ---Return number of material elements in this primitive
 ---@return integer
 function UPrimitiveComponent:GetNumMaterials() end
 
 ---Returns a list of actors that this component is overlapping.
----@param OverlappingActors TArray<AActor> @[out]
+---@param OverlappingActors TArray<AActor> @[out, modified in place]
 ---@param ClassFilter? TSubclassOf<AActor> @[default: None]
 function UPrimitiveComponent:GetOverlappingActors(OverlappingActors, ClassFilter) end
 
 ---Returns unique list of components this component is overlapping.
----@param OutOverlappingComponents TArray<UPrimitiveComponent> @[out]
+---@param OutOverlappingComponents TArray<UPrimitiveComponent> @[out, modified in place]
 function UPrimitiveComponent:GetOverlappingComponents(OutOverlappingComponents) end
 
 ---Get the angular velocity of a single body, in degrees per second.
@@ -413,12 +413,12 @@ function UPrimitiveComponent:IsOverlappingComponent(OtherComp) end
 ---@param bTraceComplex boolean @Whether or not to trace the complex physics representation or just the simple representation
 ---@param bShowTrace boolean @Whether or not to draw the trace in the world (for debugging)
 ---@param bPersistentShowTrace boolean @Whether or not to make the debugging draw stay in the world permanently
----@param HitLocation FVector @[out]
----@param HitNormal FVector @[out]
----@param BoneName string @[out]
----@param OutHit FHitResult @[out]
+---@param HitLocation FVector @[out, modified in place]
+---@param HitNormal FVector @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place]
 ---@return boolean
-function UPrimitiveComponent:K2_BoxOverlapComponent(InBoxCentre, InBox, bTraceComplex, bShowTrace, bPersistentShowTrace, HitLocation, HitNormal, BoneName, OutHit) end
+---@return string BoneName
+function UPrimitiveComponent:K2_BoxOverlapComponent(InBoxCentre, InBox, bTraceComplex, bShowTrace, bPersistentShowTrace, HitLocation, HitNormal, OutHit) end
 
 ---Utility to see if there is any form of collision (query or physics) enabled on this component.
 ---@return boolean
@@ -438,12 +438,12 @@ function UPrimitiveComponent:K2_IsQueryCollisionEnabled() end
 ---@param bTraceComplex boolean @Whether or not to trace the complex physics representation or just the simple representation
 ---@param bShowTrace boolean @Whether or not to draw the trace in the world (for debugging)
 ---@param bPersistentShowTrace boolean @Whether or not to make the debugging draw stay in the world permanently
----@param HitLocation FVector @[out]
----@param HitNormal FVector @[out]
----@param BoneName string @[out]
----@param OutHit FHitResult @[out]
+---@param HitLocation FVector @[out, modified in place]
+---@param HitNormal FVector @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place]
 ---@return boolean
-function UPrimitiveComponent:K2_LineTraceComponent(TraceStart, TraceEnd, bTraceComplex, bShowTrace, bPersistentShowTrace, HitLocation, HitNormal, BoneName, OutHit) end
+---@return string BoneName
+function UPrimitiveComponent:K2_LineTraceComponent(TraceStart, TraceEnd, bTraceComplex, bShowTrace, bPersistentShowTrace, HitLocation, HitNormal, OutHit) end
 
 ---Perform a sphere overlap against a single component
 ---@param InSphereCentre FVector @The centre of the sphere to overlap with the component
@@ -451,12 +451,12 @@ function UPrimitiveComponent:K2_LineTraceComponent(TraceStart, TraceEnd, bTraceC
 ---@param bTraceComplex boolean @Whether or not to trace the complex physics representation or just the simple representation
 ---@param bShowTrace boolean @Whether or not to draw the trace in the world (for debugging)
 ---@param bPersistentShowTrace boolean @Whether or not to make the debugging draw stay in the world permanently
----@param HitLocation FVector @[out]
----@param HitNormal FVector @[out]
----@param BoneName string @[out]
----@param OutHit FHitResult @[out]
+---@param HitLocation FVector @[out, modified in place]
+---@param HitNormal FVector @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place]
 ---@return boolean
-function UPrimitiveComponent:K2_SphereOverlapComponent(InSphereCentre, InSphereRadius, bTraceComplex, bShowTrace, bPersistentShowTrace, HitLocation, HitNormal, BoneName, OutHit) end
+---@return string BoneName
+function UPrimitiveComponent:K2_SphereOverlapComponent(InSphereCentre, InSphereRadius, bTraceComplex, bShowTrace, bPersistentShowTrace, HitLocation, HitNormal, OutHit) end
 
 ---Perform a sphere trace against a single component
 ---@param TraceStart FVector @The start of the trace in world-space
@@ -465,12 +465,12 @@ function UPrimitiveComponent:K2_SphereOverlapComponent(InSphereCentre, InSphereR
 ---@param bTraceComplex boolean @Whether or not to trace the complex physics representation or just the simple representation
 ---@param bShowTrace boolean @Whether or not to draw the trace in the world (for debugging)
 ---@param bPersistentShowTrace boolean @Whether or not to make the debugging draw stay in the world permanently
----@param HitLocation FVector @[out]
----@param HitNormal FVector @[out]
----@param BoneName string @[out]
----@param OutHit FHitResult @[out]
+---@param HitLocation FVector @[out, modified in place]
+---@param HitNormal FVector @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place]
 ---@return boolean
-function UPrimitiveComponent:K2_SphereTraceComponent(TraceStart, TraceEnd, SphereRadius, bTraceComplex, bShowTrace, bPersistentShowTrace, HitLocation, HitNormal, BoneName, OutHit) end
+---@return string BoneName
+function UPrimitiveComponent:K2_SphereTraceComponent(TraceStart, TraceEnd, SphereRadius, bTraceComplex, bShowTrace, bPersistentShowTrace, HitLocation, HitNormal, OutHit) end
 
 ---Force a single body back to sleep.
 ---@param BoneName? string @[default: None]

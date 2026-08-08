@@ -159,8 +159,8 @@ function UKismetMathLibrary.Atan2(Y, X) end
 
 ---Returns average of all array entries. Returns value of 0 if the supplied array is empty.
 ---@param IntArray TArray<integer>
----@param AverageValue number @[out]
-function UKismetMathLibrary.AverageOfIntArray(IntArray, AverageValue) end
+---@return number AverageValue
+function UKismetMathLibrary.AverageOfIntArray(IntArray) end
 
 ---Returns the maximum value of A and B
 ---@param A integer
@@ -206,139 +206,139 @@ function UKismetMathLibrary.BooleanXOR(A, B) end
 
 ---Breaks an FBoxSphereBounds into origin, extent, and radius
 ---@param InBoxSphereBounds FBoxSphereBounds
----@param Origin FVector @[out]
----@param BoxExtent FVector @[out]
----@param SphereRadius number @[out]
-function UKismetMathLibrary.BreakBoxSphereBounds(InBoxSphereBounds, Origin, BoxExtent, SphereRadius) end
+---@param Origin FVector @[out, modified in place]
+---@param BoxExtent FVector @[out, modified in place]
+---@return number SphereRadius
+function UKismetMathLibrary.BreakBoxSphereBounds(InBoxSphereBounds, Origin, BoxExtent) end
 
 ---Breaks apart a color into individual RGB components (as well as alpha)
 ---@param InColor FLinearColor
----@param R number @[out]
----@param G number @[out]
----@param B number @[out]
----@param A number @[out]
-function UKismetMathLibrary.BreakColor(InColor, R, G, B, A) end
+---@return number R
+---@return number G
+---@return number B
+---@return number A
+function UKismetMathLibrary.BreakColor(InColor) end
 
 ---Breaks a DateTime into its components
 ---@param InDateTime FDateTime
----@param Year integer @[out]
----@param Month integer @[out]
----@param Day integer @[out]
----@param Hour integer @[out]
----@param Minute integer @[out]
----@param Second integer @[out]
----@param Millisecond integer @[out]
-function UKismetMathLibrary.BreakDateTime(InDateTime, Year, Month, Day, Hour, Minute, Second, Millisecond) end
+---@return integer Year
+---@return integer Month
+---@return integer Day
+---@return integer Hour
+---@return integer Minute
+---@return integer Second
+---@return integer Millisecond
+function UKismetMathLibrary.BreakDateTime(InDateTime) end
 
 ---Breaks a FFrameRate into a numerator and denominator.
 ---@param InFrameRate FFrameRate
----@param Numerator integer @[out]
----@param Denominator integer @[out]
-function UKismetMathLibrary.BreakFrameRate(InFrameRate, Numerator, Denominator) end
+---@return integer Numerator
+---@return integer Denominator
+function UKismetMathLibrary.BreakFrameRate(InFrameRate) end
 
 ---Breaks a FQualifiedFrameTime into its component parts again.
 ---@param InFrameTime FQualifiedFrameTime
----@param Frame FFrameNumber @[out]
----@param FrameRate FFrameRate @[out]
----@param SubFrame number @[out]
-function UKismetMathLibrary.BreakQualifiedFrameTime(InFrameTime, Frame, FrameRate, SubFrame) end
+---@param Frame FFrameNumber @[out, modified in place]
+---@param FrameRate FFrameRate @[out, modified in place]
+---@return number SubFrame
+function UKismetMathLibrary.BreakQualifiedFrameTime(InFrameTime, Frame, FrameRate) end
 
 ---Breaks a quat apart into X, Y, Z, W
 ---@param InQuat FQuat
----@param X number @[out]
----@param Y number @[out]
----@param Z number @[out]
----@param W number @[out]
-function UKismetMathLibrary.BreakQuat(InQuat, X, Y, Z, W) end
+---@return number X
+---@return number Y
+---@return number Z
+---@return number W
+function UKismetMathLibrary.BreakQuat(InQuat) end
 
 ---Breaks apart a random number generator
 ---@param InRandomStream FRandomStream
----@param InitialSeed integer @[out]
-function UKismetMathLibrary.BreakRandomStream(InRandomStream, InitialSeed) end
+---@return integer InitialSeed
+function UKismetMathLibrary.BreakRandomStream(InRandomStream) end
 
 ---Breaks apart a rotator into {Roll, Pitch, Yaw} angles in degrees
 ---@param InRot FRotator
----@param Roll number @[out]
----@param Pitch number @[out]
----@param Yaw number @[out]
-function UKismetMathLibrary.BreakRotator(InRot, Roll, Pitch, Yaw) end
+---@return number Roll
+---@return number Pitch
+---@return number Yaw
+function UKismetMathLibrary.BreakRotator(InRot) end
 
 ---Breaks apart a rotator into its component axes
 ---@param InRot FRotator
----@param X FVector @[out]
----@param Y FVector @[out]
----@param Z FVector @[out]
+---@param X FVector @[out, modified in place]
+---@param Y FVector @[out, modified in place]
+---@param Z FVector @[out, modified in place]
 function UKismetMathLibrary.BreakRotIntoAxes(InRot, X, Y, Z) end
 
 ---Breaks a Timespan into its components
 ---@param InTimespan FTimespan
----@param Days integer @[out]
----@param Hours integer @[out]
----@param Minutes integer @[out]
----@param Seconds integer @[out]
----@param Milliseconds integer @[out]
-function UKismetMathLibrary.BreakTimespan(InTimespan, Days, Hours, Minutes, Seconds, Milliseconds) end
+---@return integer Days
+---@return integer Hours
+---@return integer Minutes
+---@return integer Seconds
+---@return integer Milliseconds
+function UKismetMathLibrary.BreakTimespan(InTimespan) end
 
 ---Breaks a Timespan into its components
 ---@param InTimespan FTimespan
----@param Days integer @[out]
----@param Hours integer @[out]
----@param Minutes integer @[out]
----@param Seconds integer @[out]
----@param FractionNano integer @[out]
-function UKismetMathLibrary.BreakTimespan2(InTimespan, Days, Hours, Minutes, Seconds, FractionNano) end
+---@return integer Days
+---@return integer Hours
+---@return integer Minutes
+---@return integer Seconds
+---@return integer FractionNano
+function UKismetMathLibrary.BreakTimespan2(InTimespan) end
 
 ---Breaks apart a transform into location, rotation and scale
 ---@param InTransform FTransform
----@param Location FVector @[out]
----@param Rotation FRotator @[out]
----@param Scale FVector @[out]
+---@param Location FVector @[out, modified in place]
+---@param Rotation FRotator @[out, modified in place]
+---@param Scale FVector @[out, modified in place]
 function UKismetMathLibrary.BreakTransform(InTransform, Location, Rotation, Scale) end
 
 ---Breaks a vector apart into X, Y, Z
 ---@param InVec FVector
----@param X number @[out]
----@param Y number @[out]
----@param Z number @[out]
-function UKismetMathLibrary.BreakVector(InVec, X, Y, Z) end
+---@return number X
+---@return number Y
+---@return number Z
+function UKismetMathLibrary.BreakVector(InVec) end
 
 ---Breaks a 2D vector apart into X, Y.
 ---@param InVec FVector2D
----@param X number @[out]
----@param Y number @[out]
-function UKismetMathLibrary.BreakVector2D(InVec, X, Y) end
+---@return number X
+---@return number Y
+function UKismetMathLibrary.BreakVector2D(InVec) end
 
 ---Breaks a 4D vector apart into X, Y, Z, W.
 ---@param InVec FVector4
----@param X number @[out]
----@param Y number @[out]
----@param Z number @[out]
----@param W number @[out]
-function UKismetMathLibrary.BreakVector4(InVec, X, Y, Z, W) end
+---@return number X
+---@return number Y
+---@return number Z
+---@return number W
+function UKismetMathLibrary.BreakVector4(InVec) end
 
 ---@param InVec FVector_NetQuantize
----@param X number @[out]
----@param Y number @[out]
----@param Z number @[out]
-function UKismetMathLibrary.BreakVector_NetQuantize(InVec, X, Y, Z) end
+---@return number X
+---@return number Y
+---@return number Z
+function UKismetMathLibrary.BreakVector_NetQuantize(InVec) end
 
 ---@param InVec FVector_NetQuantize10
----@param X number @[out]
----@param Y number @[out]
----@param Z number @[out]
-function UKismetMathLibrary.BreakVector_NetQuantize10(InVec, X, Y, Z) end
+---@return number X
+---@return number Y
+---@return number Z
+function UKismetMathLibrary.BreakVector_NetQuantize10(InVec) end
 
 ---@param InVec FVector_NetQuantize100
----@param X number @[out]
----@param Y number @[out]
----@param Z number @[out]
-function UKismetMathLibrary.BreakVector_NetQuantize100(InVec, X, Y, Z) end
+---@return number X
+---@return number Y
+---@return number Z
+function UKismetMathLibrary.BreakVector_NetQuantize100(InVec) end
 
 ---@param InVec FVector_NetQuantizeNormal
----@param X number @[out]
----@param Y number @[out]
----@param Z number @[out]
-function UKismetMathLibrary.BreakVector_NetQuantizeNormal(InVec, X, Y, Z) end
+---@return number X
+---@return number Y
+---@return number Z
+function UKismetMathLibrary.BreakVector_NetQuantizeNormal(InVec) end
 
 ---Interpolate Linear Color from Current to Target. Scaled by distance to Target, so it has a strong start speed and ease out.
 ---@param Current FLinearColor
@@ -657,13 +657,13 @@ function UKismetMathLibrary.CrossProduct2D(A, B) end
 
 ---Converts a date string in ISO-8601 format to a DateTime object
 ---@param IsoString string
----@param Result FDateTime @[out]
+---@param Result FDateTime @[out, modified in place]
 ---@return boolean
 function UKismetMathLibrary.DateTimeFromIsoString(IsoString, Result) end
 
 ---Converts a date string to a DateTime object
 ---@param DateTimeString string
----@param Result FDateTime @[out]
+---@param Result FDateTime @[out, modified in place]
 ---@return boolean
 function UKismetMathLibrary.DateTimeFromString(DateTimeString, Result) end
 
@@ -1073,8 +1073,8 @@ function UKismetMathLibrary.FindLookAtRotation(Start, Target) end
 ---@param Segment1End FVector
 ---@param Segment2Start FVector
 ---@param Segment2End FVector
----@param Segment1Point FVector @[out]
----@param Segment2Point FVector @[out]
+---@param Segment1Point FVector @[out, modified in place]
+---@param Segment2Point FVector @[out, modified in place]
 function UKismetMathLibrary.FindNearestPointsOnLineSegments(Segment1Start, Segment1End, Segment2Start, Segment2End, Segment1Point, Segment2Point) end
 
 ---Find a local rotation (range of [-180, 180]) for an object with StartTransform to point at TargetLocation.
@@ -1118,7 +1118,7 @@ function UKismetMathLibrary.FixedTurn(InCurrent, InDesired, InDeltaRate) end
 ---Uses a simple spring model to interpolate a float from Current to Target.
 ---@param Current number @Current value
 ---@param Target number @Target value
----@param SpringState FFloatSpringState @[out] Data related to spring model (velocity, error, etc..) - Create a unique variable per spring
+---@param SpringState FFloatSpringState @[out, modified in place] Data related to spring model (velocity, error, etc..) - Create a unique variable per spring
 ---@param Stiffness number @How stiff the spring model is (more stiffness means more oscillation around the target value)
 ---@param CriticalDampingFactor number @How much damping to apply to the spring (0 means no damping, 1 means critically damped which means no oscillation)
 ---@param DeltaTime number @Time difference since the last update
@@ -1146,16 +1146,16 @@ function UKismetMathLibrary.FMin(A, B) end
 ---Returns the number of times Divisor will go into Dividend (i.e., Dividend divided by Divisor), as well as the remainder
 ---@param Dividend number
 ---@param Divisor number
----@param Remainder number @[out]
 ---@return integer
-function UKismetMathLibrary.FMod(Dividend, Divisor, Remainder) end
+---@return number Remainder
+function UKismetMathLibrary.FMod(Dividend, Divisor) end
 
 ---Returns the number of times Divisor will go into Dividend (i.e., Dividend divided by Divisor), as well as the remainder
 ---@param Dividend number
 ---@param Divisor number
----@param Remainder number @[out]
 ---@return integer
-function UKismetMathLibrary.FMod64(Dividend, Divisor, Remainder) end
+---@return number Remainder
+function UKismetMathLibrary.FMod64(Dividend, Divisor) end
 
 ---Returns the fractional part of a float.
 ---@param A number
@@ -1226,18 +1226,18 @@ function UKismetMathLibrary.GetAbsMax2D(A) end
 
 ---Get the reference frame direction vectors (axes) described by this rotation
 ---@param A FRotator
----@param X FVector @[out]
----@param Y FVector @[out]
----@param Z FVector @[out]
+---@param X FVector @[out, modified in place]
+---@param Y FVector @[out, modified in place]
+---@param Z FVector @[out, modified in place]
 function UKismetMathLibrary.GetAxes(A, X, Y, Z) end
 
 ---Breaks a direction vector apart into Azimuth (Yaw) and Elevation (Pitch) rotation values given in degrees. (non-clamped)
 ---       Relative to the provided reference frame (an Actor's WorldTransform for example)
 ---@param InDirection FVector
 ---@param ReferenceFrame FTransform
----@param Azimuth number @[out]
----@param Elevation number @[out]
-function UKismetMathLibrary.GetAzimuthAndElevation(InDirection, ReferenceFrame, Azimuth, Elevation) end
+---@return number Azimuth
+---@return number Elevation
+function UKismetMathLibrary.GetAzimuthAndElevation(InDirection, ReferenceFrame) end
 
 ---Returns the date component of A
 ---@param A FDateTime
@@ -1385,9 +1385,9 @@ function UKismetMathLibrary.GetSeconds(A) end
 ---@param MyRightYAxis FVector
 ---@param FloorNormal FVector
 ---@param UpVector FVector
----@param OutSlopePitchDegreeAngle number @[out]
----@param OutSlopeRollDegreeAngle number @[out]
-function UKismetMathLibrary.GetSlopeDegreeAngles(MyRightYAxis, FloorNormal, UpVector, OutSlopePitchDegreeAngle, OutSlopeRollDegreeAngle) end
+---@return number OutSlopePitchDegreeAngle
+---@return number OutSlopeRollDegreeAngle
+function UKismetMathLibrary.GetSlopeDegreeAngles(MyRightYAxis, FloorNormal, UpVector) end
 
 ---Returns the value of TAU (= 2 * PI)
 ---@return number
@@ -1435,9 +1435,9 @@ function UKismetMathLibrary.GetVectorArrayAverage(Vectors) end
 
 ---Breaks a vector apart into Yaw, Pitch rotation values given in degrees. (non-clamped)
 ---@param InVec FVector
----@param Yaw number @[out]
----@param Pitch number @[out]
-function UKismetMathLibrary.GetYawPitchFromVector(InVec, Yaw, Pitch) end
+---@return number Yaw
+---@return number Pitch
+function UKismetMathLibrary.GetYawPitchFromVector(InVec) end
 
 ---Returns the year component of A
 ---@param A FDateTime
@@ -1541,7 +1541,7 @@ function UKismetMathLibrary.HSVToRGB(H, S, V, A) end
 
 ---Converts a HSV linear color (where H is in R (0..360), S is in G (0..1), and V is in B (0..1)) to RGB
 ---@param HSV FLinearColor
----@param RGB FLinearColor @[out]
+---@param RGB FLinearColor @[out, modified in place]
 function UKismetMathLibrary.HSVToRGB_Vector(HSV, RGB) end
 
 ---Converts a HSV linear color (where H is in R, S is in G, and V is in B) to linear RGB
@@ -1842,12 +1842,12 @@ function UKismetMathLibrary.LinearColor_QuantizeRound(InColor) end
 function UKismetMathLibrary.LinearColor_Red() end
 
 ---Assign contents of InColor
----@param InOutColor FLinearColor @[out]
+---@param InOutColor FLinearColor @[out, modified in place]
 ---@param InColor FLinearColor
 function UKismetMathLibrary.LinearColor_Set(InOutColor, InColor) end
 
 ---Assigns an HSV color to a linear space RGB color
----@param InOutColor FLinearColor @[out]
+---@param InOutColor FLinearColor @[out, modified in place]
 ---@param H number
 ---@param S number
 ---@param V number
@@ -1855,21 +1855,21 @@ function UKismetMathLibrary.LinearColor_Set(InOutColor, InColor) end
 function UKismetMathLibrary.LinearColor_SetFromHSV(InOutColor, H, S, V, A) end
 
 ---Assigns an FColor coming from an observed Pow(1/2.2) output, into a linear color.
----@param InOutColor FLinearColor @[out]
+---@param InOutColor FLinearColor @[out, modified in place]
 ---@param InColor FColor @The Pow(1/2.2) color that needs to be converted into linear space.
 function UKismetMathLibrary.LinearColor_SetFromPow22(InOutColor, InColor) end
 
 ---Assigns an FColor coming from an observed sRGB output, into a linear color.
----@param InOutColor FLinearColor @[out]
+---@param InOutColor FLinearColor @[out, modified in place]
 ---@param InSRGB FColor @The sRGB color that needs to be converted into linear space.
 function UKismetMathLibrary.LinearColor_SetFromSRGB(InOutColor, InSRGB) end
 
 ---Sets to a random color. Choses a quite nice color based on a random hue.
----@param InOutColor FLinearColor @[out]
+---@param InOutColor FLinearColor @[out, modified in place]
 function UKismetMathLibrary.LinearColor_SetRandomHue(InOutColor) end
 
 ---Assign individual linear RGBA components.
----@param InOutColor FLinearColor @[out]
+---@param InOutColor FLinearColor @[out, modified in place]
 ---@param R number
 ---@param G number
 ---@param B number
@@ -1877,7 +1877,7 @@ function UKismetMathLibrary.LinearColor_SetRandomHue(InOutColor) end
 function UKismetMathLibrary.LinearColor_SetRGBA(InOutColor, R, G, B, A) end
 
 ---Converts temperature in Kelvins of a black body radiator to RGB chromaticity.
----@param InOutColor FLinearColor @[out]
+---@param InOutColor FLinearColor @[out, modified in place]
 ---@param InTemperature number
 function UKismetMathLibrary.LinearColor_SetTemperature(InOutColor, InTemperature) end
 
@@ -1922,20 +1922,20 @@ function UKismetMathLibrary.LinearColorLerpUsingHSV(A, B, Alpha) end
 ---@param LineStart FVector
 ---@param LineEnd FVector
 ---@param APlane FPlane
----@param T number @[out] - The t of the intersection between the line and the plane
----@param Intersection FVector @[out] - The point of intersection between the line and the plane
+---@param Intersection FVector @[out, modified in place] - The point of intersection between the line and the plane
 ---@return boolean
-function UKismetMathLibrary.LinePlaneIntersection(LineStart, LineEnd, APlane, T, Intersection) end
+---@return number T @- The t of the intersection between the line and the plane
+function UKismetMathLibrary.LinePlaneIntersection(LineStart, LineEnd, APlane, Intersection) end
 
 ---Computes the intersection point between a line and a plane.
 ---@param LineStart FVector
 ---@param LineEnd FVector
 ---@param PlaneOrigin FVector
 ---@param PlaneNormal FVector
----@param T number @[out] - The t of the intersection between the line and the plane
----@param Intersection FVector @[out] - The point of intersection between the line and the plane
+---@param Intersection FVector @[out, modified in place] - The point of intersection between the line and the plane
 ---@return boolean
-function UKismetMathLibrary.LinePlaneIntersection_OriginNormal(LineStart, LineEnd, PlaneOrigin, PlaneNormal, T, Intersection) end
+---@return number T @- The t of the intersection between the line and the plane
+function UKismetMathLibrary.LinePlaneIntersection_OriginNormal(LineStart, LineEnd, PlaneOrigin, PlaneNormal, Intersection) end
 
 ---Returns log of A base B (if B^R == A, returns R)
 ---@param A number
@@ -2220,42 +2220,42 @@ function UKismetMathLibrary.Matrix_GetDeterminant(M) end
 ---Get the bottom plane of the Frustum of this matrix
 ---(Assumes Matrix represents a View Projection Matrix)
 ---@param M FMatrix
----@param OutPlane FPlane @[out] the bottom plane of the Frustum of this matrix
+---@param OutPlane FPlane @[out, modified in place] the bottom plane of the Frustum of this matrix
 ---@return boolean
 function UKismetMathLibrary.Matrix_GetFrustumBottomPlane(M, OutPlane) end
 
 ---Get the far plane of the Frustum of this matrix
 ---(Assumes Matrix represents a View Projection Matrix)
 ---@param M FMatrix
----@param OutPlane FPlane @[out] the far plane of the Frustum of this matrix
+---@param OutPlane FPlane @[out, modified in place] the far plane of the Frustum of this matrix
 ---@return boolean
 function UKismetMathLibrary.Matrix_GetFrustumFarPlane(M, OutPlane) end
 
 ---Get the left plane of the Frustum of this matrix
 ---(Assumes Matrix represents a View Projection Matrix)
 ---@param M FMatrix
----@param OutPlane FPlane @[out] the left plane of the Frustum of this matrix
+---@param OutPlane FPlane @[out, modified in place] the left plane of the Frustum of this matrix
 ---@return boolean
 function UKismetMathLibrary.Matrix_GetFrustumLeftPlane(M, OutPlane) end
 
 ---Get the near plane of the Frustum of this matrix
 ---(Assumes Matrix represents a View Projection Matrix)
 ---@param M FMatrix
----@param OutPlane FPlane @[out] the near plane of the Frustum of this matrix
+---@param OutPlane FPlane @[out, modified in place] the near plane of the Frustum of this matrix
 ---@return boolean
 function UKismetMathLibrary.Matrix_GetFrustumNearPlane(M, OutPlane) end
 
 ---Get the right plane of the Frustum of this matrix
 ---(Assumes Matrix represents a View Projection Matrix)
 ---@param M FMatrix
----@param OutPlane FPlane @[out] the right plane of the Frustum of this matrix
+---@param OutPlane FPlane @[out, modified in place] the right plane of the Frustum of this matrix
 ---@return boolean
 function UKismetMathLibrary.Matrix_GetFrustumRightPlane(M, OutPlane) end
 
 ---Get the top plane of the Frustum of this matrix
 ---(Assumes Matrix represents a View Projection Matrix)
 ---@param M FMatrix
----@param OutPlane FPlane @[out] the top plane of the Frustum of this matrix
+---@param OutPlane FPlane @[out, modified in place] the top plane of the Frustum of this matrix
 ---@return boolean
 function UKismetMathLibrary.Matrix_GetFrustumTopPlane(M, OutPlane) end
 
@@ -2298,9 +2298,9 @@ function UKismetMathLibrary.Matrix_GetRotDeterminant(M) end
 ---get axes of this matrix scaled by the scale of the matrix
 ---(Assumes Matrix represents a transform)
 ---@param M FMatrix
----@param X FVector @[out] axes returned to this param
----@param Y FVector @[out] axes returned to this param
----@param Z FVector @[out] axes returned to this param
+---@param X FVector @[out, modified in place] axes returned to this param
+---@param Y FVector @[out, modified in place] axes returned to this param
+---@param Z FVector @[out, modified in place] axes returned to this param
 function UKismetMathLibrary.Matrix_GetScaledAxes(M, X, Y, Z) end
 
 ---get axis of this matrix scaled by the scale of the matrix
@@ -2330,9 +2330,9 @@ function UKismetMathLibrary.Matrix_GetTransposed(M) end
 ---get unit length axes of this matrix
 ---(Assumes Matrix represents a transform)
 ---@param M FMatrix
----@param X FVector @[out] axes returned to this param
----@param Y FVector @[out] axes returned to this param
----@param Z FVector @[out] axes returned to this param
+---@param X FVector @[out, modified in place] axes returned to this param
+---@param Y FVector @[out, modified in place] axes returned to this param
+---@param Z FVector @[out, modified in place] axes returned to this param
 function UKismetMathLibrary.Matrix_GetUnitAxes(M, X, Y, Z) end
 
 ---get unit length axis of this matrix
@@ -2371,7 +2371,7 @@ function UKismetMathLibrary.Matrix_Mirror(M, MirrorAxis, FlipAxis) end
 
 ---Remove any scaling from this matrix (ie magnitude of each row is 1) with error Tolerance
 ---(Assumes Matrix represents a transform)
----@param M FMatrix @[out]
+---@param M FMatrix @[out, modified in place]
 ---@param Tolerance? number @[default: 0.000000]
 function UKismetMathLibrary.Matrix_RemoveScaling(M, Tolerance) end
 
@@ -2390,19 +2390,19 @@ function UKismetMathLibrary.Matrix_ScaleTranslation(M, Scale3D) end
 
 ---set an axis of this matrix
 ---(Assumes Matrix represents a transform)
----@param M FMatrix @[out]
+---@param M FMatrix @[out, modified in place]
 ---@param Axis integer @vector of the axis
 ---@param AxisVector FVector
 function UKismetMathLibrary.Matrix_SetAxis(M, Axis, AxisVector) end
 
----@param M FMatrix @[out]
+---@param M FMatrix @[out, modified in place]
 ---@param Column integer
 ---@param Value FVector
 function UKismetMathLibrary.Matrix_SetColumn(M, Column, Value) end
 
 ---Set the origin of the coordinate system to the given vector
 ---(Assumes Matrix represents a transform)
----@param M FMatrix @[out]
+---@param M FMatrix @[out, modified in place]
 ---@param NewOrigin FVector
 function UKismetMathLibrary.Matrix_SetOrigin(M, NewOrigin) end
 
@@ -2448,26 +2448,26 @@ function UKismetMathLibrary.MaxInt64(A, B) end
 
 ---Returns max of all array entries and the index at which it was found. Returns value of 0 and index of -1 if the supplied array is empty.
 ---@param ByteArray TArray<integer>
----@param IndexOfMaxValue integer @[out]
----@param MaxValue integer @[out]
-function UKismetMathLibrary.MaxOfByteArray(ByteArray, IndexOfMaxValue, MaxValue) end
+---@return integer IndexOfMaxValue
+---@return integer MaxValue
+function UKismetMathLibrary.MaxOfByteArray(ByteArray) end
 
 ---Returns max of all array entries and the index at which it was found. Returns value of 0 and index of -1 if the supplied array is empty.
 ---@param FloatArray TArray<number>
----@param IndexOfMaxValue integer @[out]
----@param MaxValue number @[out]
-function UKismetMathLibrary.MaxOfFloatArray(FloatArray, IndexOfMaxValue, MaxValue) end
+---@return integer IndexOfMaxValue
+---@return number MaxValue
+function UKismetMathLibrary.MaxOfFloatArray(FloatArray) end
 
 ---Returns max of all array entries and the index at which it was found. Returns value of 0 and index of -1 if the supplied array is empty.
 ---@param IntArray TArray<integer>
----@param IndexOfMaxValue integer @[out]
----@param MaxValue integer @[out]
-function UKismetMathLibrary.MaxOfIntArray(IntArray, IndexOfMaxValue, MaxValue) end
+---@return integer IndexOfMaxValue
+---@return integer MaxValue
+function UKismetMathLibrary.MaxOfIntArray(IntArray) end
 
 ---Returns median of all array entries. Returns value of 0 if the supplied array is empty.
 ---@param IntArray TArray<integer>
----@param MedianValue number @[out]
-function UKismetMathLibrary.MedianOfIntArray(IntArray, MedianValue) end
+---@return number MedianValue
+function UKismetMathLibrary.MedianOfIntArray(IntArray) end
 
 ---Returns the minimum value of A and B
 ---@param A integer
@@ -2480,22 +2480,22 @@ function UKismetMathLibrary.Min(A, B) end
 ---@param WorldContextObject UObject @- Pointer to world context; only used when debug draw is enabled
 ---@param InPoints TArray<FVector> @- Points to enclose in the rectangle; need to be within the same plane for correct results
 ---@param SampleSurfaceNormal FVector @- Normal indicating the surface direction for the points
----@param OutRectCenter FVector @[out] - Translation for the output rectangle from the origin
----@param OutRectRotation FRotator @[out] - Rotation for the output rectangle from the XY plane
----@param OutRectLengthX number @[out] - Length of the output rectangle along the X axis before rotation
----@param OutRectLengthY number @[out] - Length of the output rectangle along the Y axis before rotation
+---@param OutRectCenter FVector @[out, modified in place] - Translation for the output rectangle from the origin
+---@param OutRectRotation FRotator @[out, modified in place] - Rotation for the output rectangle from the XY plane
 ---@param bDebugDraw? boolean @[default: false] - Draws the output rectangle for debugging purposes provided the world context is set as well
-function UKismetMathLibrary.MinAreaRectangle(WorldContextObject, InPoints, SampleSurfaceNormal, OutRectCenter, OutRectRotation, OutRectLengthX, OutRectLengthY, bDebugDraw) end
+---@return number OutRectLengthX @- Length of the output rectangle along the X axis before rotation
+---@return number OutRectLengthY @- Length of the output rectangle along the Y axis before rotation
+function UKismetMathLibrary.MinAreaRectangle(WorldContextObject, InPoints, SampleSurfaceNormal, OutRectCenter, OutRectRotation, bDebugDraw) end
 
 ---@param WorldContextObject UObject
 ---@param InVerts TArray<FVector>
 ---@param SampleSurfaceNormal FVector
----@param OutRectCenter FVector @[out]
----@param OutRectRotation FRotator @[out]
----@param OutSideLengthX number @[out]
----@param OutSideLengthY number @[out]
+---@param OutRectCenter FVector @[out, modified in place]
+---@param OutRectRotation FRotator @[out, modified in place]
 ---@param bDebugDraw? boolean @[default: false]
-function UKismetMathLibrary.MinimumAreaRectangle(WorldContextObject, InVerts, SampleSurfaceNormal, OutRectCenter, OutRectRotation, OutSideLengthX, OutSideLengthY, bDebugDraw) end
+---@return number OutSideLengthX
+---@return number OutSideLengthY
+function UKismetMathLibrary.MinimumAreaRectangle(WorldContextObject, InVerts, SampleSurfaceNormal, OutRectCenter, OutRectRotation, bDebugDraw) end
 
 ---Returns the minimum value of A and B
 ---@param A integer
@@ -2505,21 +2505,21 @@ function UKismetMathLibrary.MinInt64(A, B) end
 
 ---Returns min of all array entries and the index at which it was found. Returns value of 0 and index of -1 if the supplied array is empty.
 ---@param ByteArray TArray<integer>
----@param IndexOfMinValue integer @[out]
----@param MinValue integer @[out]
-function UKismetMathLibrary.MinOfByteArray(ByteArray, IndexOfMinValue, MinValue) end
+---@return integer IndexOfMinValue
+---@return integer MinValue
+function UKismetMathLibrary.MinOfByteArray(ByteArray) end
 
 ---Returns min of all array entries and the index at which it was found. Returns value of 0 and index of -1 if the supplied array is empty.
 ---@param FloatArray TArray<number>
----@param IndexOfMinValue integer @[out]
----@param MinValue number @[out]
-function UKismetMathLibrary.MinOfFloatArray(FloatArray, IndexOfMinValue, MinValue) end
+---@return integer IndexOfMinValue
+---@return number MinValue
+function UKismetMathLibrary.MinOfFloatArray(FloatArray) end
 
 ---Returns min of all array entries and the index at which it was found. Returns value of 0 and index of -1 if the supplied array is empty.
 ---@param IntArray TArray<integer>
----@param IndexOfMinValue integer @[out]
----@param MinValue integer @[out]
-function UKismetMathLibrary.MinOfIntArray(IntArray, IndexOfMinValue, MinValue) end
+---@return integer IndexOfMinValue
+---@return integer MinValue
+function UKismetMathLibrary.MinOfIntArray(IntArray) end
 
 ---Given a direction vector and a surface normal, returns the vector reflected across the surface normal.
 ---Produces a result like shining a laser at a mirror!
@@ -2712,7 +2712,7 @@ function UKismetMathLibrary.Normal(A, Tolerance) end
 function UKismetMathLibrary.Normal2D(A) end
 
 ---Normalize this vector in-place if it is large enough, set it to (0,0) otherwise.
----@param A FVector2D @[out]
+---@param A FVector2D @[out, modified in place]
 ---@param Tolerance? number @[default: 0.000000] Minimum squared length of vector for normalization.
 function UKismetMathLibrary.Normalize2D(A, Tolerance) end
 
@@ -2965,7 +2965,7 @@ function UKismetMathLibrary.ProjectVectorOnToVector(V, Target) end
 function UKismetMathLibrary.Quat_AngularDistance(A, B) end
 
 ---Modify the quaternion to ensure that the delta between it and B represents the shortest possible rotation angle.
----@param A FQuat @[out]
+---@param A FQuat @[out, modified in place]
 ---@param B FQuat
 function UKismetMathLibrary.Quat_EnforceShortestArcWith(A, B) end
 
@@ -3063,7 +3063,7 @@ function UKismetMathLibrary.Quat_MakeFromEuler(Euler) end
 
 ---Normalize this quaternion if it is large enough as compared to the supplied tolerance.
 ---If it is too small then set it to the identity quaternion.
----@param Q FQuat @[out]
+---@param Q FQuat @[out, modified in place]
 ---@param Tolerance? number @[default: 0.000100] Minimum squared length of quaternion for normalization.
 function UKismetMathLibrary.Quat_Normalize(Q, Tolerance) end
 
@@ -3086,7 +3086,7 @@ function UKismetMathLibrary.Quat_RotateVector(Q, V) end
 function UKismetMathLibrary.Quat_Rotator(Q) end
 
 ---Set X, Y, Z, W components of Quaternion.
----@param Q FQuat @[out]
+---@param Q FQuat @[out, modified in place]
 ---@param X number
 ---@param Y number
 ---@param Z number
@@ -3094,7 +3094,7 @@ function UKismetMathLibrary.Quat_Rotator(Q) end
 function UKismetMathLibrary.Quat_SetComponents(Q, X, Y, Z, W) end
 
 ---Convert a vector of floating-point Euler angles (in degrees) into a Quaternion.
----@param Q FQuat @[out] Quaternion to update
+---@param Q FQuat @[out, modified in place] Quaternion to update
 ---@param Euler FVector @the Euler angles
 function UKismetMathLibrary.Quat_SetFromEuler(Q, Euler) end
 
@@ -3139,7 +3139,7 @@ function UKismetMathLibrary.Quat_VectorUp(Q) end
 ---Uses a simple spring model to interpolate a quaternion from Current to Target.
 ---@param Current FQuat @Current value
 ---@param Target FQuat @Target value
----@param SpringState FQuaternionSpringState @[out] Data related to spring model (velocity, error, etc..) - Create a unique variable per spring
+---@param SpringState FQuaternionSpringState @[out, modified in place] Data related to spring model (velocity, error, etc..) - Create a unique variable per spring
 ---@param Stiffness number @How stiff the spring model is (more stiffness means more oscillation around the target value)
 ---@param CriticalDampingFactor number @How much damping to apply to the spring (0 means no damping, 1 means critically damped which means no oscillation)
 ---@param DeltaTime number @Time difference since the last update
@@ -3349,11 +3349,11 @@ function UKismetMathLibrary.RandomUnitVectorInEllipticalConeInRadiansFromStream(
 function UKismetMathLibrary.REase(A, B, Alpha, bShortestPath, EasingFunc, BlendExp, Steps) end
 
 ---Resets the state of a float spring
----@param SpringState FFloatSpringState @[out]
+---@param SpringState FFloatSpringState @[out, modified in place]
 function UKismetMathLibrary.ResetFloatSpringState(SpringState) end
 
 ---Resets the state of a quaternion spring
----@param SpringState FQuaternionSpringState @[out]
+---@param SpringState FQuaternionSpringState @[out, modified in place]
 function UKismetMathLibrary.ResetQuaternionSpringState(SpringState) end
 
 ---Reset a random stream
@@ -3361,7 +3361,7 @@ function UKismetMathLibrary.ResetQuaternionSpringState(SpringState) end
 function UKismetMathLibrary.ResetRandomStream(Stream) end
 
 ---Resets the state of a vector spring
----@param SpringState FVectorSpringState @[out]
+---@param SpringState FVectorSpringState @[out, modified in place]
 function UKismetMathLibrary.ResetVectorSpringState(SpringState) end
 
 ---Converts a RGB linear color to HSV (where H is in R, S is in G, and V is in B)
@@ -3371,15 +3371,15 @@ function UKismetMathLibrary.RGBLinearToHSV(RGB) end
 
 ---Breaks apart a color into individual HSV components (as well as alpha) (Hue is [0..360) while Saturation and Value are 0..1)
 ---@param InColor FLinearColor
----@param H number @[out]
----@param S number @[out]
----@param V number @[out]
----@param A number @[out]
-function UKismetMathLibrary.RGBToHSV(InColor, H, S, V, A) end
+---@return number H
+---@return number S
+---@return number V
+---@return number A
+function UKismetMathLibrary.RGBToHSV(InColor) end
 
 ---Converts a RGB linear color to HSV (where H is in R (0..360), S is in G (0..1), and V is in B (0..1))
 ---@param RGB FLinearColor
----@param HSV FLinearColor @[out]
+---@param HSV FLinearColor @[out, modified in place]
 function UKismetMathLibrary.RGBToHSV_Vector(RGB, HSV) end
 
 ---Tries to reach Target rotation based on Current rotation, giving a nice smooth feeling when rotating to Target rotation.
@@ -3436,7 +3436,7 @@ function UKismetMathLibrary.Round64(A) end
 function UKismetMathLibrary.SafeDivide(A, B) end
 
 ---Create a new random seed for a random stream
----@param Stream FRandomStream @[out]
+---@param Stream FRandomStream @[out, modified in place]
 function UKismetMathLibrary.SeedRandomStream(Stream) end
 
 ---If bPickA is true, A is returned, otherwise B is
@@ -3503,28 +3503,28 @@ function UKismetMathLibrary.SelectTransform(A, B, bPickA) end
 function UKismetMathLibrary.SelectVector(A, B, bPickA) end
 
 ---Set the values of the vector directly.
----@param A FVector2D @[out]
+---@param A FVector2D @[out, modified in place]
 ---@param X number
 ---@param Y number
 function UKismetMathLibrary.Set2D(A, X, Y) end
 
 ---Sets the state velocity of a float spring
----@param SpringState FFloatSpringState @[out]
+---@param SpringState FFloatSpringState @[out, modified in place]
 ---@param Velocity number
 function UKismetMathLibrary.SetFloatSpringStateVelocity(SpringState, Velocity) end
 
 ---Sets the state angular velocity of a quaternion spring
----@param SpringState FQuaternionSpringState @[out]
+---@param SpringState FQuaternionSpringState @[out, modified in place]
 ---@param AngularVelocity FVector
 function UKismetMathLibrary.SetQuaternionSpringStateAngularVelocity(SpringState, AngularVelocity) end
 
 ---Set the seed of a random stream to a specific number
----@param Stream FRandomStream @[out]
+---@param Stream FRandomStream @[out, modified in place]
 ---@param NewSeed integer
 function UKismetMathLibrary.SetRandomStreamSeed(Stream, NewSeed) end
 
 ---Sets the state velocity of a vector spring
----@param SpringState FVectorSpringState @[out]
+---@param SpringState FVectorSpringState @[out, modified in place]
 ---@param Velocity FVector
 function UKismetMathLibrary.SetVectorSpringStateVelocity(SpringState, Velocity) end
 
@@ -3682,7 +3682,7 @@ function UKismetMathLibrary.TEase(A, B, Alpha, EasingFunc, BlendExp, Steps) end
 
 ---Converts a time span string to a Timespan object
 ---@param TimespanString string
----@param Result FTimespan @[out]
+---@param Result FTimespan @[out, modified in place]
 ---@return boolean
 function UKismetMathLibrary.TimespanFromString(TimespanString, Result) end
 
@@ -3726,9 +3726,9 @@ function UKismetMathLibrary.Today() end
 
 ---Util to convert this vector into a unit direction vector and its original length.
 ---@param A FVector2D
----@param OutDir FVector2D @[out] Reference passed in to store unit direction vector.
----@param OutLength number @[out] Reference passed in to store length of the vector.
-function UKismetMathLibrary.ToDirectionAndLength2D(A, OutDir, OutLength) end
+---@param OutDir FVector2D @[out, modified in place] Reference passed in to store unit direction vector.
+---@return number OutLength @Reference passed in to store length of the vector.
+function UKismetMathLibrary.ToDirectionAndLength2D(A, OutDir) end
 
 ---Converts this color value to a hexadecimal string. The format of the string is RRGGBBAA.
 ---@param InColor FLinearColor
@@ -3831,7 +3831,7 @@ function UKismetMathLibrary.Vector2DInterpTo(Current, Target, DeltaTime, InterpS
 function UKismetMathLibrary.Vector2DInterpTo_Constant(Current, Target, DeltaTime, InterpSpeed) end
 
 ---Assign the values of the supplied vector.
----@param A FVector4 @[out]
+---@param A FVector4 @[out, modified in place]
 ---@param InVector FVector4 @Vector to copy values from.
 function UKismetMathLibrary.Vector4_Assign(A, InVector) end
 
@@ -3901,7 +3901,7 @@ function UKismetMathLibrary.Vector4_Negated(A) end
 function UKismetMathLibrary.Vector4_Normal3(A, Tolerance) end
 
 ---Normalize this vector in-place if it is large enough or set it to (0,0,0,0) otherwise. The W element is ignored and the returned vector has W=0.
----@param A FVector4 @[out]
+---@param A FVector4 @[out, modified in place]
 ---@param Tolerance? number @[default: 0.000000] Minimum squared length of vector for normalization.
 function UKismetMathLibrary.Vector4_Normalize3(A, Tolerance) end
 
@@ -3911,7 +3911,7 @@ function UKismetMathLibrary.Vector4_Normalize3(A, Tolerance) end
 function UKismetMathLibrary.Vector4_NormalUnsafe3(A) end
 
 ---Set the values of the vector directly.
----@param A FVector4 @[out]
+---@param A FVector4 @[out, modified in place]
 ---@param X number
 ---@param Y number
 ---@param Z number
@@ -3943,13 +3943,13 @@ function UKismetMathLibrary.Vector4_SizeSquared3(A) end
 function UKismetMathLibrary.Vector4_Zero() end
 
 ---Add a vector to this and clamp the result to an axis aligned cube centered at the origin.
----@param A FVector @[out]
+---@param A FVector @[out, modified in place]
 ---@param InAddVect FVector @Vector to add.
 ---@param InRadius number @Half size of the cube.
 function UKismetMathLibrary.Vector_AddBounded(A, InAddVect, InRadius) end
 
 ---Assign the values of the supplied vector.
----@param A FVector @[out]
+---@param A FVector @[out, modified in place]
 ---@param InVector FVector @Vector to copy values from.
 function UKismetMathLibrary.Vector_Assign(A, InVector) end
 
@@ -4121,7 +4121,7 @@ function UKismetMathLibrary.Vector_MirrorByPlane(A, InPlane) end
 function UKismetMathLibrary.Vector_Normal2D(A, Tolerance) end
 
 ---Normalize this vector in-place if it is large enough or set it to (0,0,0) otherwise.
----@param A FVector @[out]
+---@param A FVector @[out, modified in place]
 ---@param Tolerance? number @[default: 0.000000] Minimum squared length of vector for normalization.
 function UKismetMathLibrary.Vector_Normalize(A, Tolerance) end
 
@@ -4151,7 +4151,7 @@ function UKismetMathLibrary.Vector_Reciprocal(A) end
 function UKismetMathLibrary.Vector_Right() end
 
 ---Set the values of the vector directly.
----@param A FVector @[out]
+---@param A FVector @[out, modified in place]
 ---@param X number
 ---@param Y number
 ---@param Z number
@@ -4193,7 +4193,7 @@ function UKismetMathLibrary.Vector_ToRadians(A) end
 function UKismetMathLibrary.Vector_UnitCartesianToSpherical(A) end
 
 ---When this vector contains Euler angles (degrees), ensure that angles are between +/-180
----@param A FVector @[out]
+---@param A FVector @[out, modified in place]
 function UKismetMathLibrary.Vector_UnwindEuler(A) end
 
 ---3D vector Unreal up direction constant (0,0,1)
@@ -4207,7 +4207,7 @@ function UKismetMathLibrary.Vector_Zero() end
 ---Uses a simple spring model to interpolate a vector from Current to Target.
 ---@param Current FVector @Current value
 ---@param Target FVector @Target value
----@param SpringState FVectorSpringState @[out] Data related to spring model (velocity, error, etc..) - Create a unique variable per spring
+---@param SpringState FVectorSpringState @[out, modified in place] Data related to spring model (velocity, error, etc..) - Create a unique variable per spring
 ---@param Stiffness number @How stiff the spring model is (more stiffness means more oscillation around the target value)
 ---@param CriticalDampingFactor number @How much damping to apply to the spring (0 means no damping, 1 means critically damped which means no oscillation)
 ---@param DeltaTime number @Time difference since the last update

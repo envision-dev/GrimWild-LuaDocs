@@ -27,7 +27,7 @@ function UBlueprintSetLibrary.Set_Contains(TargetSet, ItemToFind) end
 ---preserve should be the first (top) parameter. Also called the relative complement.
 ---@param A TSet<integer>
 ---@param B TSet<integer>
----@param Result TSet<integer> @[out]
+---@param Result TSet<integer> @[out, modified in place]
 function UBlueprintSetLibrary.Set_Difference(A, B, Result) end
 
 ---Assigns Result to the intersection of Set A and Set B. That is, Result will contain
@@ -35,7 +35,7 @@ function UBlueprintSetLibrary.Set_Difference(A, B, Result) end
 ---Clear.
 ---@param A TSet<integer>
 ---@param B TSet<integer>
----@param Result TSet<integer> @[out]
+---@param Result TSet<integer> @[out, modified in place]
 function UBlueprintSetLibrary.Set_Intersection(A, B, Result) end
 
 ---Check if the set is empty
@@ -67,7 +67,7 @@ function UBlueprintSetLibrary.Set_RemoveItems(TargetSet, Items) end
 
 ---Outputs an Array containing copies of the entries of a Set.
 ---@param A TSet<integer> @Set
----@param Result TArray<integer> @[out] Array
+---@param Result TArray<integer> @[out, modified in place] Array
 function UBlueprintSetLibrary.Set_ToArray(A, Result) end
 
 ---Assigns Result to the union of two sets, A and B. That is, Result will contain
@@ -75,7 +75,7 @@ function UBlueprintSetLibrary.Set_ToArray(A, Result) end
 ---a Set is a collection of unique elements, so duplicates will be eliminated.
 ---@param A TSet<integer>
 ---@param B TSet<integer>
----@param Result TSet<integer> @[out]
+---@param Result TSet<integer> @[out, modified in place]
 function UBlueprintSetLibrary.Set_Union(A, B, Result) end
 
 ---Not exposed to users. Supports setting a set property on an object by name.

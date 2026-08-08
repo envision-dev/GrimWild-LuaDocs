@@ -170,7 +170,7 @@ function UUserWidget:OnDragCancelled(PointerEvent, Operation) end
 ---Called when Slate detects that a widget started to be dragged.
 ---@param MyGeometry FGeometry
 ---@param PointerEvent FPointerEvent @MouseMove that triggered the drag
----@param Operation UDragDropOperation @[out] The drag operation that was detected.
+---@param Operation UDragDropOperation @[out, modified in place] The drag operation that was detected.
 function UUserWidget:OnDragDetected(MyGeometry, PointerEvent, Operation) end
 
 ---Called during drag and drop when the drag enters the widget.
@@ -280,7 +280,7 @@ function UUserWidget:OnMouseMove(MyGeometry, MouseEvent) end
 ---@return FEventReply
 function UUserWidget:OnMouseWheel(MyGeometry, MouseEvent) end
 
----@param Context FPaintContext @[out]
+---@param Context FPaintContext @[out, modified in place]
 function UUserWidget:OnPaint(Context) end
 
 ---Called after a key (keyboard, controller, ...) is pressed when this widget or a child of this widget has focus

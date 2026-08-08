@@ -43,8 +43,8 @@ function AController:GetDesiredRotation() end
 ---Returns Player's Point of View
 ---For the AI this means the Pawn's 'Eyes' ViewPoint
 ---For a Human player, this means the Camera's ViewPoint
----@param Location FVector @[out]
----@param Rotation FRotator @[out]
+---@param Location FVector @[out, modified in place]
+---@param Rotation FRotator @[out, modified in place]
 function AController:GetPlayerViewPoint(Location, Rotation) end
 
 ---Get the actor the controller is looking at

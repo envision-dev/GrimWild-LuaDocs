@@ -60,7 +60,7 @@ function UGAssetLib.GetAssetLoadStatus(AssetId) end
 function UGAssetLib.GetAssetObject(AssetId) end
 
 ---@param AssetType FPrimaryAssetType
----@param OutAssets TArray<FPrimaryAssetId> @[out]
+---@param OutAssets TArray<FPrimaryAssetId> @[out, modified in place]
 function UGAssetLib.GetAssetsOfType(AssetType, OutAssets) end
 
 ---Returns a valid object only if the Template is loaded into memory

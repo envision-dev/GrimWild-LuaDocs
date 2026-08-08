@@ -6,6 +6,6 @@
 ULanguageData = {}
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function ULanguageData:GatherDebugData(DebugString) end
+---@return string DebugString
+function ULanguageData:GatherDebugData() end
 

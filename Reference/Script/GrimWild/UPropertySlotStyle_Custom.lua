@@ -11,12 +11,12 @@ UPropertySlotStyle_Custom = {}
 function UPropertySlotStyle_Custom:PropertySlotCustom_ApplyStyle__DelegateSignature(TargetWidget) end
 
 ---@param InParent UPropertySlotWidget
----@param OutWidget UWidget @[out]
+---@param OutWidget UWidget @[out, modified in place]
 function UPropertySlotStyle_Custom:PropertySlotCustom_CreateWidget__DelegateSignature(InParent, OutWidget) end
 
 ---@param TargetWidget UWidget
----@param OutValue string @[out]
-function UPropertySlotStyle_Custom:PropertySlotCustom_GetWidgetValue__DelegateSignature(TargetWidget, OutValue) end
+---@return string OutValue
+function UPropertySlotStyle_Custom:PropertySlotCustom_GetWidgetValue__DelegateSignature(TargetWidget) end
 
 ---@param TargetWidget UWidget
 ---@param InValue string

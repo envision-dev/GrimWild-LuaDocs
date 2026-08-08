@@ -3,7 +3,7 @@
 UUserInterfaceStatics = {}
 
 ---Draws an absolute (viewport-scale) spline
----@param Context FPaintContext @[out]
+---@param Context FPaintContext @[out, modified in place]
 ---@param Start FVector2D
 ---@param StartDirection FVector2D
 ---@param End FVector2D
@@ -14,7 +14,7 @@ UUserInterfaceStatics = {}
 function UUserInterfaceStatics.DrawAbsoluteSpline(Context, Start, StartDirection, End, EndDirection, Tint, Thickness, bPixelSnapping) end
 
 ---Draws a gradient
----@param Context FPaintContext @[out]
+---@param Context FPaintContext @[out, modified in place]
 ---@param Position FVector2D
 ---@param Size FVector2D
 ---@param GradientStops TArray<FSlateGradientStopBlueprint>
@@ -24,7 +24,7 @@ function UUserInterfaceStatics.DrawAbsoluteSpline(Context, Start, StartDirection
 function UUserInterfaceStatics.DrawGradient(Context, Position, Size, GradientStops, GradientType, CornerRadius, bPixelSnapping) end
 
 ---Draws a rotated box
----@param Context FPaintContext @[out]
+---@param Context FPaintContext @[out, modified in place]
 ---@param Brush FSlateBrush
 ---@param Position FVector2f
 ---@param Size FVector2f
@@ -36,7 +36,7 @@ function UUserInterfaceStatics.DrawGradient(Context, Position, Size, GradientSto
 function UUserInterfaceStatics.DrawRotatedBox(Context, Brush, Position, Size, Angle, RotationPoint, bUseWorldRotationSpace, Tint, bPixelSnapping) end
 
 ---Draws a spline
----@param Context FPaintContext @[out]
+---@param Context FPaintContext @[out, modified in place]
 ---@param Start FVector2D
 ---@param StartDirection FVector2D
 ---@param End FVector2D
@@ -47,7 +47,7 @@ function UUserInterfaceStatics.DrawRotatedBox(Context, Brush, Position, Size, An
 function UUserInterfaceStatics.DrawSpline(Context, Start, StartDirection, End, EndDirection, Thickness, Tint, bPixelSnapping) end
 
 ---Draws a Cubic Bezier Spline
----@param Context FPaintContext @[out]
+---@param Context FPaintContext @[out, modified in place]
 ---@param Start FVector2D
 ---@param StartDirection FVector2D
 ---@param End FVector2D

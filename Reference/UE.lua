@@ -755,11 +755,11 @@ UE = {
     ---@type UAssetViewWindow
     UAssetViewWindow = nil,
 
-    ---@type UScriptOwner
-    UScriptOwner = nil,
+    ---@type UScriptEnv
+    UScriptEnv = nil,
 
-    ---@type UBaseGameScriptOwner
-    UBaseGameScriptOwner = nil,
+    ---@type UBaseGameScriptEnv
+    UBaseGameScriptEnv = nil,
 
     ---@type UCameraStick
     UCameraStick = nil,
@@ -788,20 +788,23 @@ UE = {
     ---@type UConfirmationWindow
     UConfirmationWindow = nil,
 
+    ---@type UCreateNewModWindow
+    UCreateNewModWindow = nil,
+
     ---@type UDevConsole
     UDevConsole = nil,
 
     ---@type UDevConsoleItem
     UDevConsoleItem = nil,
 
-    ---@type UDevScriptOwner
-    UDevScriptOwner = nil,
+    ---@type UDevScriptEnv
+    UDevScriptEnv = nil,
 
     ---@type UDynamicStateHolder
     UDynamicStateHolder = nil,
 
-    ---@type UDynamicStateUtils
-    UDynamicStateUtils = nil,
+    ---@type UDynamicStateLib
+    UDynamicStateLib = nil,
 
     ---@type UDynamicStateViewer
     UDynamicStateViewer = nil,
@@ -811,6 +814,9 @@ UE = {
 
     ---@type UFAQWindowContent
     UFAQWindowContent = nil,
+
+    ---@type UForkModOptionsWindow
+    UForkModOptionsWindow = nil,
 
     ---@type UCellBuffersHolder
     UCellBuffersHolder = nil,
@@ -833,11 +839,8 @@ UE = {
     ---@type UGameMenu
     UGameMenu = nil,
 
-    ---@type UGameOptionsWrapper
-    UGameOptionsWrapper = nil,
-
-    ---@type UGameTweaksWrapper
-    UGameTweaksWrapper = nil,
+    ---@type UGameOptions
+    UGameOptions = nil,
 
     ---@type UGameTimeLib
     UGameTimeLib = nil,
@@ -983,6 +986,9 @@ UE = {
     ---@type ULogWindow
     ULogWindow = nil,
 
+    ---@type ULuaDevSettings
+    ULuaDevSettings = nil,
+
     ---@type ULuaLibrary
     ULuaLibrary = nil,
 
@@ -991,9 +997,6 @@ UE = {
 
     ---@type ULuaSubsystem
     ULuaSubsystem = nil,
-
-    ---@type ULuaTickManager
-    ULuaTickManager = nil,
 
     ---@type UMenuHUD
     UMenuHUD = nil,
@@ -1007,32 +1010,62 @@ UE = {
     ---@type UMod
     UMod = nil,
 
+    ---@type UModBuilder
+    UModBuilder = nil,
+
+    ---@type UModCreator
+    UModCreator = nil,
+
+    ---@type UModDeveloperSettings
+    UModDeveloperSettings = nil,
+
+    ---@type UModDownloadWindow_SteamWorkshop
+    UModDownloadWindow_SteamWorkshop = nil,
+
     ---@type UModEditor
     UModEditor = nil,
 
     ---@type UModEditorTab
     UModEditorTab = nil,
 
+    ---@type UModForker
+    UModForker = nil,
+
     ---@type UModHubWindow
     UModHubWindow = nil,
 
-    ---@type UModItemWindow
-    UModItemWindow = nil,
+    ---@type UModInfo
+    UModInfo = nil,
+
+    ---@type UModList
+    UModList = nil,
 
     ---@type UModLuaDelegateHandler
     UModLuaDelegateHandler = nil,
 
+    ---@type UModOwnershipCheckHandler
+    UModOwnershipCheckHandler = nil,
+
     ---@type UModManager
     UModManager = nil,
 
-    ---@type UModPack
-    UModPack = nil,
+    ---@type UModProjectsWindow
+    UModProjectsWindow = nil,
 
-    ---@type UModScriptOwner
-    UModScriptOwner = nil,
+    ---@type UModScriptEnv
+    UModScriptEnv = nil,
+
+    ---@type UModSlot
+    UModSlot = nil,
 
     ---@type UModsWindow
     UModsWindow = nil,
+
+    ---@type UModUploader_SteamWorkshop
+    UModUploader_SteamWorkshop = nil,
+
+    ---@type UModUtilityLibrary
+    UModUtilityLibrary = nil,
 
     ---@type UNewGameWindow
     UNewGameWindow = nil,
@@ -1186,6 +1219,21 @@ UE = {
 
     ---@type UTemplateDataContainer
     UTemplateDataContainer = nil,
+
+    ---@type UTestSuiteBase
+    UTestSuiteBase = nil,
+
+    ---@type UTempTest_LuaContainerArgs
+    UTempTest_LuaContainerArgs = nil,
+
+    ---@type UTempTest_LuaContainerArgs_Base
+    UTempTest_LuaContainerArgs_Base = nil,
+
+    ---@type UTempTest_LuaContainerArgs_Derived
+    UTempTest_LuaContainerArgs_Derived = nil,
+
+    ---@type UTempTest_LuaContainerArgs_Fixture
+    UTempTest_LuaContainerArgs_Fixture = nil,
 
     ---@type UTextTooltip
     UTextTooltip = nil,
@@ -1646,6 +1694,18 @@ UE = {
     ---@type FCellBufferHandle
     FCellBufferHandle = nil,
 
+    ---@type FModReference
+    FModReference = nil,
+
+    ---@type FOwnedWorkshopItem
+    FOwnedWorkshopItem = nil,
+
+    ---@type FWorkshopModCandidate
+    FWorkshopModCandidate = nil,
+
+    ---@type FEVersion
+    FEVersion = nil,
+
     ---@type FNameRegistry
     FNameRegistry = nil,
 
@@ -1766,6 +1826,12 @@ UE = {
     ---@type FDynamicState
     FDynamicState = nil,
 
+    ---@type FDynamicStateHandle
+    FDynamicStateHandle = nil,
+
+    ---@type FEnabledModEntry
+    FEnabledModEntry = nil,
+
     ---@type FWorkProviderHandle
     FWorkProviderHandle = nil,
 
@@ -1795,6 +1861,12 @@ UE = {
 
     ---@type FLuaScriptFileInfo
     FLuaScriptFileInfo = nil,
+
+    ---@type FModHandle
+    FModHandle = nil,
+
+    ---@type FWorkshopPendingItem
+    FWorkshopPendingItem = nil,
 
     ---@type FModOrderIssue
     FModOrderIssue = nil,
@@ -2093,6 +2165,12 @@ UE = {
     ---@type EUIScalingRule
     EUIScalingRule = nil,
 
+    ---@type EReleaseState
+    EReleaseState = nil,
+
+    ---@type EVersionPrecision
+    EVersionPrecision = nil,
+
     ---@type ETranslationSourceType
     ETranslationSourceType = nil,
 
@@ -2138,6 +2216,15 @@ UE = {
     ---@type EObjectAttachmentFlags
     EObjectAttachmentFlags = nil,
 
+    ---@type EStatePropertyType
+    EStatePropertyType = nil,
+
+    ---@type EModSource
+    EModSource = nil,
+
+    ---@type EWorkshopUploadStatus
+    EWorkshopUploadStatus = nil,
+
     ---@type EAnimationAxis
     EAnimationAxis = nil,
 
@@ -2155,9 +2242,6 @@ UE = {
 
     ---@type ECellBufferTextureFilter
     ECellBufferTextureFilter = nil,
-
-    ---@type EStatePropertyType
-    EStatePropertyType = nil,
 
     ---@type EStatePropertyFlags
     EStatePropertyFlags = nil,
@@ -2198,14 +2282,23 @@ UE = {
     ---@type ELoadingScreenType
     ELoadingScreenType = nil,
 
-    ---@type ELuaTickType
-    ELuaTickType = nil,
+    ---@type EModType
+    EModType = nil,
 
     ---@type EModEditorWindowType
     EModEditorWindowType = nil,
 
-    ---@type EModOrderIssueType
-    EModOrderIssueType = nil,
+    ---@type EModIssueType
+    EModIssueType = nil,
+
+    ---@type EModIssueSeverity
+    EModIssueSeverity = nil,
+
+    ---@type EModSlotLocation
+    EModSlotLocation = nil,
+
+    ---@type EWorkshopVisibility
+    EWorkshopVisibility = nil,
 
     ---@type EWorldObjectRuntimeState
     EWorldObjectRuntimeState = nil,

@@ -20,9 +20,9 @@ function UMaterialInstanceDynamic:CopyParameterOverrides(MaterialInstance) end
 ---invalidated.
 ---@param ParameterName string
 ---@param Value number
----@param OutParameterIndex integer @[out]
 ---@return boolean
-function UMaterialInstanceDynamic:InitializeScalarParameterAndGetIndex(ParameterName, Value, OutParameterIndex) end
+---@return integer OutParameterIndex
+function UMaterialInstanceDynamic:InitializeScalarParameterAndGetIndex(ParameterName, Value) end
 
 ---Copies over parameters given a material interface (copy each instance following the hierarchy)
 ---Very slow implementation, avoid using at runtime. Hopefully we can replace it later with something like CopyInterpParameters()

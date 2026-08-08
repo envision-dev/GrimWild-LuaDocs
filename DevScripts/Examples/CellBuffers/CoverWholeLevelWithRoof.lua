@@ -1,22 +1,14 @@
--- Written by Claude, approved by teedeezet.
+-- Sets or clears the roof flag on every cell of the "CellFeatures" byte buffer.
 
--- Sets or clears the roof bit on every cell in the "Features" buffer,
--- effectively covering or uncovering the entire level with roofs.
+local Common = require("dev.lib.common")
+local CellBuffers = require("dev.lib.cellbuffers")
 
--- ── Inputs ────────────────────────────────────────────────────────────────────
-local RoofBitIndex = 5     -- Bit index of the roof flag inside the Features byte [0..7], corresponds to ECellFeatures.HasRoof
-local PlaceRoof    = true  -- true = set roof on all cells, false = clear roof on all cells
--- ─────────────────────────────────────────────────────────────────────────────
+-- PARAMETERS (edit before running)
+local PlaceRoof = true -- true = roof the whole level, false = uncover it
 
----@class APlaytestScene
-local Playtest = UGameplayStatics.GetActorOfClass(GetWorld(), APlaytestScene.StaticClass())
-
+local Playtest = Common.GetPlaytestScene()
 local Buffer = Playtest:GetGameLevel():GetCellBuffer_Byte("CellFeatures")
-local SizeX, SizeY = UCellBufferLib.GetSize(Buffer)
-local totalCells = SizeX * SizeY
 
-UCellBufferLib.MarkAsHardUploadAwaiting(Buffer)
+local BufferSizeX, BufferSizeY = UCellBufferLib.GetSize(Buffer)
 
-for cellIndex = 0, totalCells - 1 do
-    UCellBufferLib.SetBitValue(Buffer, cellIndex, RoofBitIndex, PlaceRoof)
-end
+CellBuffers.SetBitValueInArea(Buffer, 0, 0, BufferSizeX, BufferSizeY, ECellFeatures.HasRoof, PlaceRoof)

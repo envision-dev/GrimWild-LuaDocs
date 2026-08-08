@@ -13,7 +13,7 @@ function UKismetGuidLibrary.Conv_GuidToString(InGuid) end
 function UKismetGuidLibrary.EqualEqual_GuidGuid(A, B) end
 
 ---Invalidates the given GUID
----@param InGuid FGuid @[out]
+---@param InGuid FGuid @[out, modified in place]
 function UKismetGuidLibrary.Invalidate_Guid(InGuid) end
 
 ---Checks whether the given GUID is valid
@@ -33,7 +33,7 @@ function UKismetGuidLibrary.NotEqual_GuidGuid(A, B) end
 
 ---Converts a String of format EGuidFormats to a Guid. Returns Guid OutGuid, Returns bool Success
 ---@param GuidString string
----@param OutGuid FGuid @[out]
----@param Success boolean @[out]
-function UKismetGuidLibrary.Parse_StringToGuid(GuidString, OutGuid, Success) end
+---@param OutGuid FGuid @[out, modified in place]
+---@return boolean Success
+function UKismetGuidLibrary.Parse_StringToGuid(GuidString, OutGuid) end
 

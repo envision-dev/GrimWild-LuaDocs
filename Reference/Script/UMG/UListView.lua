@@ -44,7 +44,7 @@ function UListView:BP_GetNumItemsSelected() end
 function UListView:BP_GetSelectedItem() end
 
 ---Gets a list of all the currently selected items
----@param Items TArray<UObject> @[out]
+---@param Items TArray<UObject> @[out, modified in place]
 ---@return boolean
 function UListView:BP_GetSelectedItems(Items) end
 

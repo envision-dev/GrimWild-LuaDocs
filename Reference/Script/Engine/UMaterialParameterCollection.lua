@@ -8,9 +8,9 @@ UMaterialParameterCollection = {}
 
 ---Gets the default value of a scalar parameter from a material collection.
 ---@param ParameterName string @- The name of the value to get the value of
----@param bParameterFound boolean @[out] - if a parameter with the input name was found
 ---@return number
-function UMaterialParameterCollection:GetScalarParameterDefaultValue(ParameterName, bParameterFound) end
+---@return boolean bParameterFound @- if a parameter with the input name was found
+function UMaterialParameterCollection:GetScalarParameterDefaultValue(ParameterName) end
 
 ---Returns an array of the names of all the scalar parameters in this Material Parameter Collection *
 ---@return TArray<string>
@@ -18,9 +18,9 @@ function UMaterialParameterCollection:GetScalarParameterNames() end
 
 ---Gets the default value of a scalar parameter from a material collection.
 ---@param ParameterName string @- The name of the value to get the value of
----@param bParameterFound boolean @[out] - if a parameter with the input name was found
 ---@return FLinearColor
-function UMaterialParameterCollection:GetVectorParameterDefaultValue(ParameterName, bParameterFound) end
+---@return boolean bParameterFound @- if a parameter with the input name was found
+function UMaterialParameterCollection:GetVectorParameterDefaultValue(ParameterName) end
 
 ---Returns an array of the names of all the vector parameters in this Material Parameter Collection *
 ---@return TArray<string>

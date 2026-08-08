@@ -24,6 +24,6 @@ function UPlayerTask:K2_OnTick(DeltaTime) end
 function UPlayerTask:OnTick(DeltaTime) end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UPlayerTask:GatherDebugData(DebugString) end
+---@return string DebugString
+function UPlayerTask:GatherDebugData() end
 

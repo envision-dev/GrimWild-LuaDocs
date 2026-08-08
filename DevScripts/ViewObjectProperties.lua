@@ -10,7 +10,7 @@ local Object = GetPlayerPawn() --Object which properties we want to view and edi
 local GameHUD = GetPlayerController():GetGameHUD()
 
 --Get the Widget Blueprint of target class
-local WindowClass = UObjectUPropertyViewer.Load("/Game/UserInterface/Dev/WBP_UPropertyViewer.WBP_UPropertyViewer_C")
+local WindowClass = UClass.Load("/Game/UserInterface/Dev/WBP_UPropertyViewer.WBP_UPropertyViewer_C")
 
 local WindowPosition = FVector2D(10, 56)
 

@@ -92,19 +92,19 @@ function UStaticMesh:GetMaterialIndex(MaterialSlotName) end
 ---@return integer
 function UStaticMesh:GetMinimumLODForPlatform(PlatformName) end
 
----@param PlatformMinimumLODs TMap<string, integer> @[out]
+---@param PlatformMinimumLODs TMap<string, integer> @[out, modified in place]
 function UStaticMesh:GetMinimumLODForPlatforms(PlatformMinimumLODs) end
 
 ---@param QualityLevel string
 ---@return integer
 function UStaticMesh:GetMinimumLODForQualityLevel(QualityLevel) end
 
----@param QualityLevelMinimumLODs TMap<string, integer> @[out]
+---@param QualityLevelMinimumLODs TMap<string, integer> @[out, modified in place]
 function UStaticMesh:GetMinimumLODForQualityLevels(QualityLevelMinimumLODs) end
 
----@param QualityLevelMinimumLODs TMap<EPerQualityLevels, integer> @[out]
----@param Default integer @[out]
-function UStaticMesh:GetMinLODForQualityLevels(QualityLevelMinimumLODs, Default) end
+---@param QualityLevelMinimumLODs TMap<EPerQualityLevels, integer> @[out, modified in place]
+---@return integer Default
+function UStaticMesh:GetMinLODForQualityLevels(QualityLevelMinimumLODs) end
 
 ---Returns the number of LODs used by the mesh.
 ---@return integer

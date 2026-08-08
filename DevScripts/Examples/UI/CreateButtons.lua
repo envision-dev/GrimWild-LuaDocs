@@ -14,8 +14,8 @@ Text.InlineText = "Hello World!"
 --Color of the button 
 ---@type FWidgetColorStyle
 local Style = FWidgetColorStyle()
-Style.Emphasis = EWidgetEmphasis.Neutral
-Style.Shade = EColorShade.Dark4
+Style.Emphasis = EWidgetEmphasis.Low
+Style.Shade = EColorShade.DarkBase
 
 --Create a button with created Text and Style
 local Widget = UWidgetLib.CreateButtonWithText(HUD, Text, Style)
@@ -40,5 +40,5 @@ local GenericButton = UWidgetLib.CreateButton(HUD)
 HBox:AddChild(GenericButton)
 
 --Change the color style of a living button
-GenericButton.WidgetColorStyle.Emphasis = EWidgetEmphasis.Maximum --Red
+GenericButton.WidgetColorStyle.Emphasis = EWidgetEmphasis.Extreme --Red
 GenericButton:ApplyStyle()

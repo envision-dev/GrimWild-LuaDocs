@@ -48,11 +48,11 @@ function UInputSettings:AddAxisMapping(KeyMapping, bForceRebuildKeymaps) end
 function UInputSettings:ForceRebuildKeymaps() end
 
 ---@param InActionName string
----@param OutMappings TArray<FInputActionKeyMapping> @[out]
+---@param OutMappings TArray<FInputActionKeyMapping> @[out, modified in place]
 function UInputSettings:GetActionMappingByName(InActionName, OutMappings) end
 
 ---Populate a list of all defined action names
----@param ActionNames TArray<string> @[out]
+---@param ActionNames TArray<string> @[out, modified in place]
 function UInputSettings:GetActionNames(ActionNames) end
 
 ---Returns all known legacy action and axis names that is useful for
@@ -65,11 +65,11 @@ function UInputSettings.GetAllActionAndAxisNames() end
 
 ---Retrieve all axis mappings by a certain name.
 ---@param InAxisName string
----@param OutMappings TArray<FInputAxisKeyMapping> @[out]
+---@param OutMappings TArray<FInputAxisKeyMapping> @[out, modified in place]
 function UInputSettings:GetAxisMappingByName(InAxisName, OutMappings) end
 
 ---Populate a list of all defined axis names
----@param AxisNames TArray<string> @[out]
+---@param AxisNames TArray<string> @[out, modified in place]
 function UInputSettings:GetAxisNames(AxisNames) end
 
 ---Returns the game local input settings (action mappings, axis mappings, etc...)

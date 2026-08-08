@@ -13,8 +13,8 @@ function USlateBlueprintLibrary.AbsoluteToLocal(Geometry, AbsoluteCoordinate) en
 ---what you would use.
 ---@param WorldContextObject UObject
 ---@param AbsoluteDesktopCoordinate FVector2D
----@param PixelPosition FVector2D @[out] The position in the game's viewport, usable for line traces and
----@param ViewportPosition FVector2D @[out] The position in the space of other widgets in the viewport.  Like if you wanted
+---@param PixelPosition FVector2D @[out, modified in place] The position in the game's viewport, usable for line traces and
+---@param ViewportPosition FVector2D @[out, modified in place] The position in the space of other widgets in the viewport.  Like if you wanted
 function USlateBlueprintLibrary.AbsoluteToViewport(WorldContextObject, AbsoluteDesktopCoordinate, PixelPosition, ViewportPosition) end
 
 ---Returns whether brushes A and B are identical.
@@ -58,21 +58,21 @@ function USlateBlueprintLibrary.LocalToAbsolute(Geometry, LocalCoordinate) end
 ---@param WorldContextObject UObject
 ---@param Geometry FGeometry
 ---@param LocalCoordinate FVector2D
----@param PixelPosition FVector2D @[out] The position in the game's viewport, usable for line traces and
----@param ViewportPosition FVector2D @[out] The position in the space of other widgets in the viewport.  Like if you wanted
+---@param PixelPosition FVector2D @[out, modified in place] The position in the game's viewport, usable for line traces and
+---@param ViewportPosition FVector2D @[out, modified in place] The position in the space of other widgets in the viewport.  Like if you wanted
 function USlateBlueprintLibrary.LocalToViewport(WorldContextObject, Geometry, LocalCoordinate, PixelPosition, ViewportPosition) end
 
 ---Translates a screen position in pixels into the local space of the viewport widget.
 ---@param WorldContextObject UObject
 ---@param ScreenPosition FVector2D
----@param ViewportPosition FVector2D @[out]
+---@param ViewportPosition FVector2D @[out, modified in place]
 function USlateBlueprintLibrary.ScreenToViewport(WorldContextObject, ScreenPosition, ViewportPosition) end
 
 ---Translates a screen position in pixels into absolute application coordinates.
 ---If bIncludeWindowPosition is true, then this method will also remove the game window's position (useful when in windowed mode).
 ---@param WorldContextObject UObject
 ---@param ScreenPosition FVector2D
----@param AbsoluteCoordinate FVector2D @[out]
+---@param AbsoluteCoordinate FVector2D @[out, modified in place]
 ---@param bIncludeWindowPosition? boolean @[default: false]
 function USlateBlueprintLibrary.ScreenToWidgetAbsolute(WorldContextObject, ScreenPosition, AbsoluteCoordinate, bIncludeWindowPosition) end
 
@@ -81,7 +81,7 @@ function USlateBlueprintLibrary.ScreenToWidgetAbsolute(WorldContextObject, Scree
 ---@param WorldContextObject UObject
 ---@param Geometry FGeometry
 ---@param ScreenPosition FVector2D
----@param LocalCoordinate FVector2D @[out]
+---@param LocalCoordinate FVector2D @[out, modified in place]
 ---@param bIncludeWindowPosition? boolean @[default: false]
 function USlateBlueprintLibrary.ScreenToWidgetLocal(WorldContextObject, Geometry, ScreenPosition, LocalCoordinate, bIncludeWindowPosition) end
 

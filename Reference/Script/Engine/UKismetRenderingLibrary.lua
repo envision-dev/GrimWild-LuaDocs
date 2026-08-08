@@ -6,22 +6,22 @@ UKismetRenderingLibrary = {}
 ---Be sure to call EndDrawCanvasToRenderTarget to complete the rendering!
 ---@param WorldContextObject UObject
 ---@param TextureRenderTarget UTextureRenderTarget2D
----@param Canvas UCanvas @[out]
----@param Size FVector2D @[out]
----@param Context FDrawToRenderTargetContext @[out]
+---@param Canvas UCanvas @[out, modified in place]
+---@param Size FVector2D @[out, modified in place]
+---@param Context FDrawToRenderTargetContext @[out, modified in place]
 function UKismetRenderingLibrary.BeginDrawCanvasToRenderTarget(WorldContextObject, TextureRenderTarget, Canvas, Size, Context) end
 
 ---Break FSkelMeshSkinWeightInfo
 ---@param InWeight FSkelMeshSkinWeightInfo
----@param Bone0 integer @[out]
----@param Weight0 integer @[out]
----@param Bone1 integer @[out]
----@param Weight1 integer @[out]
----@param Bone2 integer @[out]
----@param Weight2 integer @[out]
----@param Bone3 integer @[out]
----@param Weight3 integer @[out]
-function UKismetRenderingLibrary.BreakSkinWeightInfo(InWeight, Bone0, Weight0, Bone1, Weight1, Bone2, Weight2, Bone3, Weight3) end
+---@return integer Bone0
+---@return integer Weight0
+---@return integer Bone1
+---@return integer Weight1
+---@return integer Bone2
+---@return integer Weight2
+---@return integer Bone3
+---@return integer Weight3
+function UKismetRenderingLibrary.BreakSkinWeightInfo(InWeight) end
 
 ---Calculates the projection matrix using this view info's aspect ratio (regardless of bConstrainAspectRatio)
 ---@param MinimalViewInfo FMinimalViewInfo
@@ -137,7 +137,7 @@ function UKismetRenderingLibrary.MakeSkinWeightInfo(Bone0, Weight0, Bone1, Weigh
 ---Result whether the operation succeeded.  If successful, OutSamples will an entry per pixel, where each is 8-bit per channel [0,255] BGRA in sRGB space.
 ---@param WorldContextObject UObject
 ---@param TextureRenderTarget UTextureRenderTarget2D
----@param OutSamples TArray<FColor> @[out]
+---@param OutSamples TArray<FColor> @[out, modified in place]
 ---@param bNormalize? boolean @[default: true]
 ---@return boolean
 function UKismetRenderingLibrary.ReadRenderTarget(WorldContextObject, TextureRenderTarget, OutSamples, bNormalize) end
@@ -155,7 +155,7 @@ function UKismetRenderingLibrary.ReadRenderTargetPixel(WorldContextObject, Textu
 ---Incredibly inefficient and slow operation! Read entire texture as-is from a render target.
 ---@param WorldContextObject UObject
 ---@param TextureRenderTarget UTextureRenderTarget2D
----@param OutLinearSamples TArray<FLinearColor> @[out]
+---@param OutLinearSamples TArray<FLinearColor> @[out, modified in place]
 ---@param bNormalize? boolean @[default: true]
 ---@return boolean
 function UKismetRenderingLibrary.ReadRenderTargetRaw(WorldContextObject, TextureRenderTarget, OutLinearSamples, bNormalize) end

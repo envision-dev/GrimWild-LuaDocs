@@ -51,8 +51,8 @@ function UKismetArrayLibrary.Array_Find(TargetArray, ItemToFind) end
 ---*@@return       A copy of the item stored at the index
 ---@param TargetArray TArray<integer>
 ---@param Index integer
----@param Item integer @[out]
-function UKismetArrayLibrary.Array_Get(TargetArray, Index, Item) end
+---@return integer Item
+function UKismetArrayLibrary.Array_Get(TargetArray, Index) end
 
 ---Checks if two arrays are memberwise identical
 ---@param ArrayA TArray<integer>
@@ -114,16 +114,16 @@ function UKismetArrayLibrary.Array_Length(TargetArray) end
 
 ---Gets a random item from specified array
 ---@param TargetArray TArray<integer>
----@param OutItem integer @[out]
----@param OutIndex integer @[out]
-function UKismetArrayLibrary.Array_Random(TargetArray, OutItem, OutIndex) end
+---@return integer OutItem
+---@return integer OutIndex
+function UKismetArrayLibrary.Array_Random(TargetArray) end
 
 ---Gets a random item from specified array (using random stream)
 ---@param TargetArray TArray<integer>
----@param RandomStream FRandomStream @[out]
----@param OutItem integer @[out]
----@param OutIndex integer @[out]
-function UKismetArrayLibrary.Array_RandomFromStream(TargetArray, RandomStream, OutItem, OutIndex) end
+---@param RandomStream FRandomStream @[out, modified in place]
+---@return integer OutItem
+---@return integer OutIndex
+function UKismetArrayLibrary.Array_RandomFromStream(TargetArray, RandomStream) end
 
 ---*Remove item at the given index from the array.
 ---*
@@ -173,7 +173,7 @@ function UKismetArrayLibrary.Array_Shuffle(TargetArray) end
 
 ---Shuffle (randomize) the elements of an array from a specific stream of random data, useful for achieving determinism
 ---@param TargetArray TArray<integer>
----@param RandomStream FRandomStream @[out]
+---@param RandomStream FRandomStream @[out, modified in place]
 function UKismetArrayLibrary.Array_ShuffleFromStream(TargetArray, RandomStream) end
 
 ---*Swaps the elements at the specified positions in the specified array
@@ -194,7 +194,7 @@ function UKismetArrayLibrary.Array_Swap(TargetArray, FirstIndex, SecondIndex) en
 ---*@@return       An array containing only those objects which are derived from the class specified.
 ---@param TargetArray TArray<AActor>
 ---@param FilterClass TSubclassOf<AActor>
----@param FilteredArray TArray<AActor> @[out]
+---@param FilteredArray TArray<AActor> @[out, modified in place]
 function UKismetArrayLibrary.FilterArray(TargetArray, FilterClass, FilteredArray) end
 
 ---Not exposed to users. Supports setting an array property on an object by name.

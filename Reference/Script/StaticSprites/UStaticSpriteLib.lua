@@ -33,9 +33,9 @@ function UStaticSpriteLib.AttachSpriteInstance(ProxyId, Parameters) end
 
 ---/ Debug
 ---@param ProxyId integer
----@param OutString string @[out]
 ---@return boolean
-function UStaticSpriteLib.DebugSpriteInstance(ProxyId, OutString) end
+---@return string OutString
+function UStaticSpriteLib.DebugSpriteInstance(ProxyId) end
 
 ---@param ProxyId integer
 ---@param ChildrenAction ESpriteDestroyChildrenAction
@@ -55,30 +55,30 @@ function UStaticSpriteLib.GetSpriteId(InSprite) end
 function UStaticSpriteLib.GetSpriteInstanceActiveComponent(ProxyId) end
 
 ---@param ProxyId integer
----@param OutMap TMap<integer, number> @[out]
+---@param OutMap TMap<integer, number> @[out, modified in place]
 ---@return boolean
 function UStaticSpriteLib.GetSpriteInstanceAllArbitraryCPD(ProxyId, OutMap) end
 
 ---@param ProxyId integer
 ---@param Index integer
----@param OutValue number @[out]
 ---@return boolean
-function UStaticSpriteLib.GetSpriteInstanceArbitraryCPD(ProxyId, Index, OutValue) end
+---@return number OutValue
+function UStaticSpriteLib.GetSpriteInstanceArbitraryCPD(ProxyId, Index) end
 
 ---@param ProxyId integer
----@param OutAttachChildren TArray<integer> @[out]
+---@param OutAttachChildren TArray<integer> @[out, modified in place]
 ---@return boolean
 function UStaticSpriteLib.GetSpriteInstanceAttachChildren(ProxyId, OutAttachChildren) end
 
 ---@param ProxyId integer
----@param OutAttachParent integer @[out]
 ---@return boolean
-function UStaticSpriteLib.GetSpriteInstanceAttachParent(ProxyId, OutAttachParent) end
+---@return integer OutAttachParent
+function UStaticSpriteLib.GetSpriteInstanceAttachParent(ProxyId) end
 
 ---@param ProxyId integer
----@param OutAttachRootParent integer @[out]
 ---@return boolean
-function UStaticSpriteLib.GetSpriteInstanceAttachRootParent(ProxyId, OutAttachRootParent) end
+---@return integer OutAttachRootParent
+function UStaticSpriteLib.GetSpriteInstanceAttachRootParent(ProxyId) end
 
 ---@param ProxyId integer
 ---@return ESpriteMobility
@@ -90,17 +90,17 @@ function UStaticSpriteLib.GetSpriteInstanceMaterial(ProxyId) end
 
 ---Returns a copy
 ---@param ProxyId integer
----@param OutParameters FSpriteProxyParameters @[out]
+---@param OutParameters FSpriteProxyParameters @[out, modified in place]
 ---@return boolean
 function UStaticSpriteLib.GetSpriteInstanceParameters(ProxyId, OutParameters) end
 
 ---@param ProxyId integer
----@param OutRelRP integer @[out]
 ---@return boolean
-function UStaticSpriteLib.GetSpriteInstanceRelativeRenderPriority(ProxyId, OutRelRP) end
+---@return integer OutRelRP
+function UStaticSpriteLib.GetSpriteInstanceRelativeRenderPriority(ProxyId) end
 
 ---@param ProxyId integer
----@param OutTransform FSpriteTransform @[out]
+---@param OutTransform FSpriteTransform @[out, modified in place]
 ---@return boolean
 function UStaticSpriteLib.GetSpriteInstanceRelativeTransform(ProxyId, OutTransform) end
 
@@ -111,39 +111,39 @@ function UStaticSpriteLib.GetSpriteInstanceSelfMobility(ProxyId) end
 
 ---Returns false for empty scenes
 ---@param ProxyId integer
----@param OutId FObjectSpriteId @[out]
+---@param OutId FObjectSpriteId @[out, modified in place]
 ---@return boolean
 function UStaticSpriteLib.GetSpriteInstanceSourceSprite(ProxyId, OutId) end
 
 ---Calculated at the end of the frame
 ---@param ProxyId integer
----@param OutTransform FTransform @[out]
+---@param OutTransform FTransform @[out, modified in place]
 ---@return boolean
 function UStaticSpriteLib.GetSpriteInstanceWorldTransform(ProxyId, OutTransform) end
 
 ---Gets the sprite's source texture region size in _SPX (scaled pixels = TPX * TextureQuality).
 ---@param InSprite FObjectSprite
----@param OutX integer @[out]
----@param OutY integer @[out]
-function UStaticSpriteLib.GetSpriteSize_SPX(InSprite, OutX, OutY) end
+---@return integer OutX
+---@return integer OutY
+function UStaticSpriteLib.GetSpriteSize_SPX(InSprite) end
 
 ---Gets the sprite's source texture region in Runtime Texture Atlas slots
 ---@param InSprite FObjectSprite
----@param OutX integer @[out]
----@param OutY integer @[out]
-function UStaticSpriteLib.GetSpriteSize_TextureAtlasSlots(InSprite, OutX, OutY) end
+---@return integer OutX
+---@return integer OutY
+function UStaticSpriteLib.GetSpriteSize_TextureAtlasSlots(InSprite) end
 
 ---Gets the sprite's source texture region size in _TPX (original texture pixels, TQ-agnostic).
 ---@param InSprite FObjectSprite
----@param OutX integer @[out]
----@param OutY integer @[out]
-function UStaticSpriteLib.GetSpriteSize_TPX(InSprite, OutX, OutY) end
+---@return integer OutX
+---@return integer OutY
+function UStaticSpriteLib.GetSpriteSize_TPX(InSprite) end
 
 ---@param InSprite FObjectSprite
 ---@return TMap<string, FSpriteSocket>
 function UStaticSpriteLib.GetSpriteSockets(InSprite) end
 
----@param InSprite FObjectSprite @[out]
+---@param InSprite FObjectSprite @[out, modified in place]
 ---@return TMap<string, FSpriteSocket>
 function UStaticSpriteLib.GetSpriteSocketsRef(InSprite) end
 
@@ -151,7 +151,7 @@ function UStaticSpriteLib.GetSpriteSocketsRef(InSprite) end
 ---@return integer
 function UStaticSpriteLib.GetTextureAtlasSlotSize() end
 
----@param InTransformToInit FSpriteTransform @[out]
+---@param InTransformToInit FSpriteTransform @[out, modified in place]
 ---@param InSourceString string
 function UStaticSpriteLib.InitSpriteTransformFromString(InTransformToInit, InSourceString) end
 

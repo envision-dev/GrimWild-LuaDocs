@@ -5,7 +5,7 @@ UObjectStatics = {}
 ---@return UWorldObject
 function UObjectStatics.GetObject(Attachment) end
 
----@param Attachment FObjectAttachment @[out]
+---@param Attachment FObjectAttachment @[out, modified in place]
 ---@return UWorldObject
 function UObjectStatics.GetObject_Mutable(Attachment) end
 

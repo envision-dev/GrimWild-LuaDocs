@@ -5,12 +5,12 @@ function This:OnConstruct()
     local HUD = GetPlayerController():GetGameHUD()
 
     --Create the confirmation window and call This.OnConfirmed when the player clicks "Confirm" inside it.
-    local ConfWindow = HUD:CreateConfirmationWindow("Confirm?", self.OnConfirmed)
+    local ConfWindow = HUD:CreateConfirmationWindow("Confirm?", This.OnConfirmed)
 end
 
-function This:OnConfirmed()
+function This.OnConfirmed()
     LogWarn("Nice!")
-    Unload()
+    This:Unload()
 end
 
 return This

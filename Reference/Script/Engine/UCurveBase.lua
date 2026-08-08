@@ -4,12 +4,12 @@
 UCurveBase = {}
 
 ---Get the time range across all curves
----@param MinTime number @[out]
----@param MaxTime number @[out]
-function UCurveBase:GetTimeRange(MinTime, MaxTime) end
+---@return number MinTime
+---@return number MaxTime
+function UCurveBase:GetTimeRange() end
 
 ---Get the value range across all curves
----@param MinValue number @[out]
----@param MaxValue number @[out]
-function UCurveBase:GetValueRange(MinValue, MaxValue) end
+---@return number MinValue
+---@return number MaxValue
+function UCurveBase:GetValueRange() end
 

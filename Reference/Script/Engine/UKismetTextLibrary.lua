@@ -186,10 +186,10 @@ function UKismetTextLibrary.EqualEqual_TextText(A, B) end
 ---Attempts to find existing Text using the representation found in the loc tables for the specified namespace and key.
 ---@param Namespace string @The namespace of the text to find (if any).
 ---@param Key string @The key of the text to find.
----@param OutText string @[out]
 ---@param SourceString string @If set (not empty) then the found text must also have been created from this source string.
 ---@return boolean
-function UKismetTextLibrary.FindTextInLocalizationTable(Namespace, Key, OutText, SourceString) end
+---@return string OutText
+function UKismetTextLibrary.FindTextInLocalizationTable(Namespace, Key, SourceString) end
 
 ---Used for formatting text using the FText::Format function and utilized by the UK2Node_FormatText
 ---@param InPattern string
@@ -203,9 +203,9 @@ function UKismetTextLibrary.GetEmptyText() end
 
 ---Check whether the given polyglot data is valid.
 ---@param PolyglotData FPolyglotTextData
----@param IsValid boolean @[out]
----@param ErrorMessage string @[out]
-function UKismetTextLibrary.IsPolyglotDataValid(PolyglotData, IsValid, ErrorMessage) end
+---@return boolean IsValid
+---@return string ErrorMessage
+function UKismetTextLibrary.IsPolyglotDataValid(PolyglotData) end
 
 ---Returns true if A and B are linguistically not equal (A != B), ignoring case.
 ---@param A string
@@ -226,10 +226,10 @@ function UKismetTextLibrary.PolyglotDataToText(PolyglotData) end
 
 ---Attempts to find the String Table ID and key used by the given text.
 ---@param Text string
----@param OutTableId string @[out]
----@param OutKey string @[out]
 ---@return boolean
-function UKismetTextLibrary.StringTableIdAndKeyFromText(Text, OutTableId, OutKey) end
+---@return string OutTableId
+---@return string OutKey
+function UKismetTextLibrary.StringTableIdAndKeyFromText(Text) end
 
 ---Attempts to create a text instance from a string table ID and key.
 ---@param TableId string

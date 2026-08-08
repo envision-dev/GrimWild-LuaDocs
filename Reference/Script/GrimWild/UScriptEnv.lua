@@ -1,0 +1,3 @@
+---@class UScriptEnv : UObject
+UScriptEnv = {}
+

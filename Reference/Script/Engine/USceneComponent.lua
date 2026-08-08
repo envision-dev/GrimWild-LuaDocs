@@ -62,7 +62,7 @@ function USceneComponent:GetChildComponent(ChildIndex) end
 
 ---Gets all components that are attached to this component, possibly recursively
 ---@param bIncludeAllDescendants boolean @Whether to include all descendants in the list of children (i.e. grandchildren, great grandchildren, etc.)
----@param Children TArray<USceneComponent> @[out] The list of attached child components
+---@param Children TArray<USceneComponent> @[out, modified in place] The list of attached child components
 function USceneComponent:GetChildrenComponents(bIncludeAllDescendants, Children) end
 
 ---Get velocity of the component: either ComponentVelocity, or the velocity of the physics body if simulating physics.
@@ -78,7 +78,7 @@ function USceneComponent:GetForwardVector() end
 function USceneComponent:GetNumChildrenComponents() end
 
 ---Gets all attachment parent components up to and including the root component
----@param Parents TArray<USceneComponent> @[out]
+---@param Parents TArray<USceneComponent> @[out, modified in place]
 function USceneComponent:GetParentComponents(Parents) end
 
 ---Returns the transform of the component relative to its parent
@@ -138,7 +138,7 @@ function USceneComponent:IsVisible() end
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
 ---@param DeltaLocation FVector
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_AddLocalOffset(DeltaLocation, bSweep, SweepHitResult, bTeleport) end
 
@@ -147,7 +147,7 @@ function USceneComponent:K2_AddLocalOffset(DeltaLocation, bSweep, SweepHitResult
 ---                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
 ---@param DeltaRotation FRotator
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_AddLocalRotation(DeltaRotation, bSweep, SweepHitResult, bTeleport) end
 
@@ -158,7 +158,7 @@ function USceneComponent:K2_AddLocalRotation(DeltaRotation, bSweep, SweepHitResu
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
 ---@param DeltaTransform FTransform
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_AddLocalTransform(DeltaTransform, bSweep, SweepHitResult, bTeleport) end
 
@@ -169,7 +169,7 @@ function USceneComponent:K2_AddLocalTransform(DeltaTransform, bSweep, SweepHitRe
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
 ---@param DeltaLocation FVector
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_AddRelativeLocation(DeltaLocation, bSweep, SweepHitResult, bTeleport) end
 
@@ -178,7 +178,7 @@ function USceneComponent:K2_AddRelativeLocation(DeltaLocation, bSweep, SweepHitR
 ---                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
 ---@param DeltaRotation FRotator
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_AddRelativeRotation(DeltaRotation, bSweep, SweepHitResult, bTeleport) end
 
@@ -189,7 +189,7 @@ function USceneComponent:K2_AddRelativeRotation(DeltaRotation, bSweep, SweepHitR
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
 ---@param DeltaLocation FVector
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_AddWorldOffset(DeltaLocation, bSweep, SweepHitResult, bTeleport) end
 
@@ -199,7 +199,7 @@ function USceneComponent:K2_AddWorldOffset(DeltaLocation, bSweep, SweepHitResult
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
 ---@param DeltaRotation FRotator
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_AddWorldRotation(DeltaRotation, bSweep, SweepHitResult, bTeleport) end
 
@@ -210,7 +210,7 @@ function USceneComponent:K2_AddWorldRotation(DeltaRotation, bSweep, SweepHitResu
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
 ---@param DeltaTransform FTransform
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_AddWorldTransform(DeltaTransform, bSweep, SweepHitResult, bTeleport) end
 
@@ -221,7 +221,7 @@ function USceneComponent:K2_AddWorldTransform(DeltaTransform, bSweep, SweepHitRe
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
 ---@param DeltaTransform FTransform
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_AddWorldTransformKeepScale(DeltaTransform, bSweep, SweepHitResult, bTeleport) end
 
@@ -272,7 +272,7 @@ function USceneComponent:K2_GetComponentToWorld() end
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
 ---@param NewLocation FVector
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_SetRelativeLocation(NewLocation, bSweep, SweepHitResult, bTeleport) end
 
@@ -284,7 +284,7 @@ function USceneComponent:K2_SetRelativeLocation(NewLocation, bSweep, SweepHitRes
 ---@param NewLocation FVector
 ---@param NewRotation FRotator
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_SetRelativeLocationAndRotation(NewLocation, NewRotation, bSweep, SweepHitResult, bTeleport) end
 
@@ -293,7 +293,7 @@ function USceneComponent:K2_SetRelativeLocationAndRotation(NewLocation, NewRotat
 ---                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
 ---@param NewRotation FRotator
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_SetRelativeRotation(NewRotation, bSweep, SweepHitResult, bTeleport) end
 
@@ -302,7 +302,7 @@ function USceneComponent:K2_SetRelativeRotation(NewRotation, bSweep, SweepHitRes
 ---                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
 ---@param NewTransform FTransform
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_SetRelativeTransform(NewTransform, bSweep, SweepHitResult, bTeleport) end
 
@@ -313,7 +313,7 @@ function USceneComponent:K2_SetRelativeTransform(NewTransform, bSweep, SweepHitR
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
 ---@param NewLocation FVector
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_SetWorldLocation(NewLocation, bSweep, SweepHitResult, bTeleport) end
 
@@ -325,7 +325,7 @@ function USceneComponent:K2_SetWorldLocation(NewLocation, bSweep, SweepHitResult
 ---@param NewLocation FVector
 ---@param NewRotation FRotator
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_SetWorldLocationAndRotation(NewLocation, NewRotation, bSweep, SweepHitResult, bTeleport) end
 
@@ -339,7 +339,7 @@ function USceneComponent:K2_SetWorldLocationAndRotation(NewLocation, NewRotation
 ---*                                                      If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
 ---@param NewRotation FRotator
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_SetWorldRotation(NewRotation, bSweep, SweepHitResult, bTeleport) end
 
@@ -350,7 +350,7 @@ function USceneComponent:K2_SetWorldRotation(NewRotation, bSweep, SweepHitResult
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
 ---@param NewTransform FTransform
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function USceneComponent:K2_SetWorldTransform(NewTransform, bSweep, SweepHitResult, bTeleport) end
 

@@ -23,7 +23,7 @@ UCameraComponent = {}
 ---Returns camera's Point of View.
 ---Called by Camera class. Subclass and postprocess to add any effects.
 ---@param DeltaTime number
----@param DesiredView FMinimalViewInfo @[out]
+---@param DesiredView FMinimalViewInfo @[out, modified in place]
 function UCameraComponent:GetCameraView(DeltaTime, DesiredView) end
 
 ---Returns the filmback text used for burnins on preview viewports

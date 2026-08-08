@@ -8,6 +8,6 @@ UOption_ColorPalette = {}
 function UOption_ColorPalette:GetKnownPalettes() end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UOption_ColorPalette:GatherDebugData(DebugString) end
+---@return string DebugString
+function UOption_ColorPalette:GatherDebugData() end
 

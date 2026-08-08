@@ -16,10 +16,10 @@ function UDataTableFunctionLibrary.DoesDataTableRowExist(Table, RowName) end
 ---@param CurveTable UCurveTable
 ---@param RowName string
 ---@param InXY number
----@param OutResult integer @[out]
----@param OutXY number @[out]
 ---@param ContextString string
-function UDataTableFunctionLibrary.EvaluateCurveTableRow(CurveTable, RowName, InXY, OutResult, OutXY, ContextString) end
+---@return integer OutResult
+---@return number OutXY
+function UDataTableFunctionLibrary.EvaluateCurveTableRow(CurveTable, RowName, InXY, ContextString) end
 
 ---Empty and fill a Data Table from CSV file.
 ---@param DataTable UDataTable
@@ -55,12 +55,12 @@ function UDataTableFunctionLibrary.GetDataTableColumnAsString(DataTable, Propert
 ---Get a Row from a DataTable given a RowName
 ---@param Table UDataTable
 ---@param RowName string
----@param OutRow FTableRowBase @[out]
+---@param OutRow FTableRowBase @[out, modified in place]
 ---@return boolean
 function UDataTableFunctionLibrary.GetDataTableRowFromName(Table, RowName, OutRow) end
 
 ---@param Table UDataTable
----@param OutRowNames TArray<string> @[out]
+---@param OutRowNames TArray<string> @[out, modified in place]
 function UDataTableFunctionLibrary.GetDataTableRowNames(Table, OutRowNames) end
 
 

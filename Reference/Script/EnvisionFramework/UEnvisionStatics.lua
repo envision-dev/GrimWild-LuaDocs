@@ -41,13 +41,13 @@ function UEnvisionStatics.CreateRenderTarget2D(WorldContextObject, Width, Height
 function UEnvisionStatics.DateTimeToString(InDateTime) end
 
 ---Utilities
----@param OutString string @[out]
-function UEnvisionStatics.DebugGPUInfo(OutString) end
+---@return string OutString
+function UEnvisionStatics.DebugGPUInfo() end
 
 ---@param InString string
----@param OutValue number @[out]
 ---@return boolean
-function UEnvisionStatics.EvaluateString(InString, OutValue) end
+---@return number OutValue
+function UEnvisionStatics.EvaluateString(InString) end
 
 ---Constructs an absolute path for the given filename in target local directory
 ---@param LocalDirectory string @should start with name and end with slash (e.g. "Saved/Logs/")
@@ -90,13 +90,20 @@ function UEnvisionStatics.GetRuntimeCurveFloatValue(Curve, Time) end
 
 ---Returns a nice-looking formatted string from the given time. Format: 01:02:03 (24-hour)
 ---@param InDateTime FDateTime
----@param Result string @[out]
-function UEnvisionStatics.GetTime24String(InDateTime, Result) end
+---@return string Result
+function UEnvisionStatics.GetTime24String(InDateTime) end
 
 ---//For Lua
 ---@param Value FIntVector2
 ---@return string
 function UEnvisionStatics.IntVector2ToString(Value) end
+
+---True when the string is safe to use as a single directory name: no path separators,
+---no parent-directory references, no characters the file system rejects, not empty.
+---A guard for building paths from user-provided names, not full sanitization.
+---@param Name string
+---@return boolean
+function UEnvisionStatics.IsSafeDirectoryName(Name) end
 
 ---Works even in Shipping
 ---@param StatName string
@@ -118,17 +125,17 @@ function UEnvisionStatics.LiteralCurveFloat(Curve) end
 ---
 ---@param LocalDirectory string @should start with name and end with slash (e.g. "Saved/Logs/")
 ---@param FileName string
----@param OutString string @[out]
 ---@return boolean
-function UEnvisionStatics.LoadStringFromFile(LocalDirectory, FileName, OutString) end
+---@return string OutString
+function UEnvisionStatics.LoadStringFromFile(LocalDirectory, FileName) end
 
 ---1 << Element index
 ---@param InBits TArray<boolean>
 ---@return integer
 function UEnvisionStatics.MakeBitmask(InBits) end
 
----@param OutString string @[out]
-function UEnvisionStatics.PasteFromClipboard(OutString) end
+---@return string OutString
+function UEnvisionStatics.PasteFromClipboard() end
 
 ---Saves string to .txt file in local game or project directory.
 ---@param StringToSave string

@@ -4,11 +4,12 @@
 ---@field protected NewGameWindowWidget UNewGameWindow
 ---@field protected LoadGameWindowClass TSoftClassPtr<ULoadGameWindow>
 ---@field protected LoadGameWindowWidget ULoadGameWindow
----@field protected ModsWindowClass TSoftClassPtr<UModsWindow>
 ---@field protected ModsWindowWidget UModsWindow
+---@field protected ModProjectsWindowWidget UModProjectsWindow
 ---@field public B_NewGame UGButton
 ---@field public B_LoadGame UGButton
 ---@field public B_Mods UGButton
+---@field public B_MyMods UGButton
 ---@field public B_Options UGButton
 ---@field public B_Quit UGButton
 ---@field public B_OpenLog UGButton
@@ -21,6 +22,8 @@ function UMenuHUD.GetMenuWindowsZOrder() end
 function UMenuHUD:OnLoadGamePressed() end
 
 function UMenuHUD:OnModsPressed() end
+
+function UMenuHUD:OnMyModsPressed() end
 
 function UMenuHUD:OnNewGamePressed() end
 

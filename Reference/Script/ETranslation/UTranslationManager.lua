@@ -11,7 +11,7 @@ function UTranslationManager:AddTextFromSource(Source) end
 
 ---Appends the given map with values from json
 ---@param InJSON string
----@param TextMap TMap<string, string> @[out]
+---@param TextMap TMap<string, string> @[out, modified in place]
 function UTranslationManager.AppendTextMapFromJSON(InJSON, TextMap) end
 
 ---@return UTranslationManager
@@ -53,11 +53,11 @@ function UTranslationManager:RegenerateTextMap() end
 function UTranslationManager:SetCulture(NewCultureCode, bRegenerateTextMap) end
 
 ---@param InMap TMap<string, string>
----@param OutJSON string @[out]
 ---@param bSort boolean
-function UTranslationManager.TextMapToJSON(InMap, OutJSON, bSort) end
+---@return string OutJSON
+function UTranslationManager.TextMapToJSON(InMap, bSort) end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UTranslationManager:GatherDebugData(DebugString) end
+---@return string DebugString
+function UTranslationManager:GatherDebugData() end
 

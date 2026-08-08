@@ -7,7 +7,7 @@ UGameTimeLib = {}
 function UGameTimeLib.GetTimeTicksValue(InTime) end
 
 ---@param InTicks integer
----@param OutTime FStructuredWorldTime @[out]
+---@param OutTime FStructuredWorldTime @[out, modified in place]
 function UGameTimeLib.WorldTimeFromTicks(InTicks, OutTime) end
 
 ---@param InTime FStructuredWorldTime

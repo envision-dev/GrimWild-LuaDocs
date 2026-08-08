@@ -34,6 +34,6 @@ function USpriteData:IsValidSpriteIndex(SpriteIndex) end
 function USpriteData:SetType(NewType) end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function USpriteData:GatherDebugData(DebugString) end
+---@return string DebugString
+function USpriteData:GatherDebugData() end
 

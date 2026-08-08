@@ -5,6 +5,6 @@
 UDevConsoleItem = {}
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UDevConsoleItem:GatherDebugData(DebugString) end
+---@return string DebugString
+function UDevConsoleItem:GatherDebugData() end
 

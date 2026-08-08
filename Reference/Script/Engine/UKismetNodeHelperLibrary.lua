@@ -8,13 +8,13 @@ UKismetNodeHelperLibrary = {}
 function UKismetNodeHelperLibrary.BitIsMarked(Data, Index) end
 
 ---Clears all of the bit in the data
----@param Data integer @[out] - The integer containing the bits that are being cleared
-function UKismetNodeHelperLibrary.ClearAllBits(Data) end
+---@return integer Data @- The integer containing the bits that are being cleared
+function UKismetNodeHelperLibrary.ClearAllBits() end
 
 ---Clears the bit at index "Index" in the data
----@param Data integer @[out] - The integer containing the bits that are being cleared
 ---@param Index integer @- The bit index into the Data that we are clearing
-function UKismetNodeHelperLibrary.ClearBit(Data, Index) end
+---@return integer Data @- The integer containing the bits that are being cleared
+function UKismetNodeHelperLibrary.ClearBit(Index) end
 
 ---Gets enumerator name.
 ---@param Enum UEnum @- Enumeration
@@ -75,7 +75,7 @@ function UKismetNodeHelperLibrary.HasMarkedBit(Data, NumBits) end
 function UKismetNodeHelperLibrary.HasUnmarkedBit(Data, NumBits) end
 
 ---Sets the bit at index "Index" in the data
----@param Data integer @[out] - The integer containing the bits that are being set
 ---@param Index integer @- The bit index into the Data that we are setting
-function UKismetNodeHelperLibrary.MarkBit(Data, Index) end
+---@return integer Data @- The integer containing the bits that are being set
+function UKismetNodeHelperLibrary.MarkBit(Index) end
 

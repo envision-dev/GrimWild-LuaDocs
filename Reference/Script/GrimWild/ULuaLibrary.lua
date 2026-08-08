@@ -2,7 +2,8 @@
 ---@class ULuaLibrary : UBlueprintFunctionLibrary
 ULuaLibrary = {}
 
----Call a function exposed by a loaded script's module table. No arguments, no return.
+---Call a function exposed by a loaded script's module table. The module table is passed as self
+---(single argument); no return value is read.
 ---@param RequirePath string
 ---@param FunctionName string
 ---@return boolean
@@ -13,15 +14,15 @@ function ULuaLibrary.CallScriptFunction(RequirePath, FunctionName) end
 ---@return boolean
 function ULuaLibrary.IsScriptLoaded(RequirePath) end
 
----Reload a previously-loaded persistent script.
+---Atomic reload of a previously-loaded persistent script.
 ---@param RequirePath string
 ---@return boolean
-function ULuaLibrary.RestartScript(RequirePath) end
+function ULuaLibrary.ReloadScript(RequirePath) end
 
----Load and run a script.
+---Universal entry: loads a persistent module or executes a one-shot script.
 ---@param RequirePath string
 ---@return boolean
-function ULuaLibrary.RunScript(RequirePath) end
+function ULuaLibrary.RequireScript(RequirePath) end
 
 ---Toggle OnTick for a loaded persistent script.
 ---@param RequirePath string

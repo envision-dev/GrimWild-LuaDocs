@@ -1,5 +1,4 @@
----Used to pass listeners to the multicast delegate as function arguments
 ---@class FStatePropertyBase
 ---@field private Flags integer
----@field public OnDynamicPropertyValueChanged MulticastDelegate|fun()
+---@field public OnValueChanged MulticastDelegate|fun() @Fires when the value of this property changes (does not affect Flags)
 FStatePropertyBase = {}

@@ -20,7 +20,7 @@ function UKismetSystemLibrary.BeginTransaction(Context, Description, PrimaryObje
 ---@param ObjectTypes TArray<integer>
 ---@param ActorClassFilter TSubclassOf<UObject>
 ---@param ActorsToIgnore TArray<AActor>
----@param OutActors TArray<AActor> @[out]
+---@param OutActors TArray<AActor> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.BoxOverlapActors(WorldContextObject, BoxPos, BoxExtent, ObjectTypes, ActorClassFilter, ActorsToIgnore, OutActors) end
 
@@ -31,7 +31,7 @@ function UKismetSystemLibrary.BoxOverlapActors(WorldContextObject, BoxPos, BoxEx
 ---@param ObjectTypes TArray<integer>
 ---@param ComponentClassFilter TSubclassOf<UObject>
 ---@param ActorsToIgnore TArray<AActor>
----@param OutComponents TArray<UPrimitiveComponent> @[out]
+---@param OutComponents TArray<UPrimitiveComponent> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.BoxOverlapComponents(WorldContextObject, BoxPos, Extent, ObjectTypes, ComponentClassFilter, ActorsToIgnore, OutComponents) end
 
@@ -46,7 +46,7 @@ function UKismetSystemLibrary.BoxOverlapComponents(WorldContextObject, BoxPos, E
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out]
+---@param OutHits TArray<FHitResult> @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -66,7 +66,7 @@ function UKismetSystemLibrary.BoxTraceMulti(WorldContextObject, Start, End, Half
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out]
+---@param OutHits TArray<FHitResult> @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -85,7 +85,7 @@ function UKismetSystemLibrary.BoxTraceMultiByProfile(WorldContextObject, Start, 
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out]
+---@param OutHits TArray<FHitResult> @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -104,7 +104,7 @@ function UKismetSystemLibrary.BoxTraceMultiForObjects(WorldContextObject, Start,
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out]
+---@param OutHit FHitResult @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -122,7 +122,7 @@ function UKismetSystemLibrary.BoxTraceSingle(WorldContextObject, Start, End, Hal
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out]
+---@param OutHit FHitResult @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -141,7 +141,7 @@ function UKismetSystemLibrary.BoxTraceSingleByProfile(WorldContextObject, Start,
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out]
+---@param OutHit FHitResult @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -151,32 +151,32 @@ function UKismetSystemLibrary.BoxTraceSingleForObjects(WorldContextObject, Start
 
 ---Breaks an ARFilter struct into its component pieces. You should be using ClassPaths and RecursiveClassPathsExclusionSet from this node, ClassNames and RecursiveClassesExclusionSet are deprecated.
 ---@param InARFilter FARFilter
----@param PackageNames TArray<string> @[out]
----@param PackagePaths TArray<string> @[out]
----@param SoftObjectPaths TArray<FSoftObjectPath> @[out]
----@param ClassPaths TArray<FTopLevelAssetPath> @[out]
----@param RecursiveClassPathsExclusionSet TSet<FTopLevelAssetPath> @[out]
----@param ClassNames TArray<string> @[out] [DEPRECATED] - Class names are now represented by path names. Please use the ClassPaths output instead.
----@param RecursiveClassesExclusionSet TSet<string> @[out] [DEPRECATED] - Class names are now represented by path names. Please use the RecursiveClassPathsExclusionSet output instead.
----@param bRecursivePaths boolean @[out]
----@param bRecursiveClasses boolean @[out]
----@param bIncludeOnlyOnDiskAssets boolean @[out]
-function UKismetSystemLibrary.BreakARFilter(InARFilter, PackageNames, PackagePaths, SoftObjectPaths, ClassPaths, RecursiveClassPathsExclusionSet, ClassNames, RecursiveClassesExclusionSet, bRecursivePaths, bRecursiveClasses, bIncludeOnlyOnDiskAssets) end
+---@param PackageNames TArray<string> @[out, modified in place]
+---@param PackagePaths TArray<string> @[out, modified in place]
+---@param SoftObjectPaths TArray<FSoftObjectPath> @[out, modified in place]
+---@param ClassPaths TArray<FTopLevelAssetPath> @[out, modified in place]
+---@param RecursiveClassPathsExclusionSet TSet<FTopLevelAssetPath> @[out, modified in place]
+---@param ClassNames TArray<string> @[out, modified in place] [DEPRECATED] - Class names are now represented by path names. Please use the ClassPaths output instead.
+---@param RecursiveClassesExclusionSet TSet<string> @[out, modified in place] [DEPRECATED] - Class names are now represented by path names. Please use the RecursiveClassPathsExclusionSet output instead.
+---@return boolean bRecursivePaths
+---@return boolean bRecursiveClasses
+---@return boolean bIncludeOnlyOnDiskAssets
+function UKismetSystemLibrary.BreakARFilter(InARFilter, PackageNames, PackagePaths, SoftObjectPaths, ClassPaths, RecursiveClassPathsExclusionSet, ClassNames, RecursiveClassesExclusionSet) end
 
 ---Gets the path string out of a Soft Class Path
 ---@param InSoftClassPath FSoftClassPath
----@param PathString string @[out]
-function UKismetSystemLibrary.BreakSoftClassPath(InSoftClassPath, PathString) end
+---@return string PathString
+function UKismetSystemLibrary.BreakSoftClassPath(InSoftClassPath) end
 
 ---Gets the path string out of a Soft Object Path
 ---@param InSoftObjectPath FSoftObjectPath
----@param PathString string @[out]
-function UKismetSystemLibrary.BreakSoftObjectPath(InSoftObjectPath, PathString) end
+---@return string PathString
+function UKismetSystemLibrary.BreakSoftObjectPath(InSoftObjectPath) end
 
 ---Gets the path string out of a TopLevelAssetPath
 ---@param TopLevelAssetPath FTopLevelAssetPath
----@param PathString string @[out]
-function UKismetSystemLibrary.BreakTopLevelAssetPath(TopLevelAssetPath, PathString) end
+---@return string PathString
+function UKismetSystemLibrary.BreakTopLevelAssetPath(TopLevelAssetPath) end
 
 ---Cancel the current transaction, and no longer capture actions to be placed in the undo buffer.
 ---@param Index integer
@@ -194,7 +194,7 @@ function UKismetSystemLibrary.CanLaunchURL(URL) end
 ---@param ObjectTypes TArray<integer>
 ---@param ActorClassFilter TSubclassOf<UObject>
 ---@param ActorsToIgnore TArray<AActor>
----@param OutActors TArray<AActor> @[out]
+---@param OutActors TArray<AActor> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.CapsuleOverlapActors(WorldContextObject, CapsulePos, Radius, HalfHeight, ObjectTypes, ActorClassFilter, ActorsToIgnore, OutActors) end
 
@@ -206,7 +206,7 @@ function UKismetSystemLibrary.CapsuleOverlapActors(WorldContextObject, CapsulePo
 ---@param ObjectTypes TArray<integer>
 ---@param ComponentClassFilter TSubclassOf<UObject>
 ---@param ActorsToIgnore TArray<AActor>
----@param OutComponents TArray<UPrimitiveComponent> @[out]
+---@param OutComponents TArray<UPrimitiveComponent> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.CapsuleOverlapComponents(WorldContextObject, CapsulePos, Radius, HalfHeight, ObjectTypes, ComponentClassFilter, ActorsToIgnore, OutComponents) end
 
@@ -221,7 +221,7 @@ function UKismetSystemLibrary.CapsuleOverlapComponents(WorldContextObject, Capsu
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out]
+---@param OutHits TArray<FHitResult> @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -241,7 +241,7 @@ function UKismetSystemLibrary.CapsuleTraceMulti(WorldContextObject, Start, End, 
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out]
+---@param OutHits TArray<FHitResult> @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -260,7 +260,7 @@ function UKismetSystemLibrary.CapsuleTraceMultiByProfile(WorldContextObject, Sta
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out]
+---@param OutHits TArray<FHitResult> @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -279,7 +279,7 @@ function UKismetSystemLibrary.CapsuleTraceMultiForObjects(WorldContextObject, St
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out]
+---@param OutHit FHitResult @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -297,7 +297,7 @@ function UKismetSystemLibrary.CapsuleTraceSingle(WorldContextObject, Start, End,
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out]
+---@param OutHit FHitResult @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -316,7 +316,7 @@ function UKismetSystemLibrary.CapsuleTraceSingleByProfile(WorldContextObject, St
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out]
+---@param OutHit FHitResult @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -334,7 +334,7 @@ function UKismetSystemLibrary.CollectGarbage() end
 ---@param ObjectTypes TArray<integer>
 ---@param ActorClassFilter TSubclassOf<UObject>
 ---@param ActorsToIgnore TArray<AActor>
----@param OutActors TArray<AActor> @[out]
+---@param OutActors TArray<AActor> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.ComponentOverlapActors(Component, ComponentTransform, ObjectTypes, ActorClassFilter, ActorsToIgnore, OutActors) end
 
@@ -344,7 +344,7 @@ function UKismetSystemLibrary.ComponentOverlapActors(Component, ComponentTransfo
 ---@param ObjectTypes TArray<integer>
 ---@param ComponentClassFilter TSubclassOf<UObject>
 ---@param ActorsToIgnore TArray<AActor>
----@param OutComponents TArray<UPrimitiveComponent> @[out]
+---@param OutComponents TArray<UPrimitiveComponent> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.ComponentOverlapComponents(Component, ComponentTransform, ObjectTypes, ComponentClassFilter, ActorsToIgnore, OutComponents) end
 
@@ -668,14 +668,14 @@ function UKismetSystemLibrary.FlushPersistentDebugLines(WorldContextObject) end
 function UKismetSystemLibrary.ForceCloseAdBanner() end
 
 ---@param Actor AActor
----@param Origin FVector @[out]
----@param BoxExtent FVector @[out]
+---@param Origin FVector @[out, modified in place]
+---@param BoxExtent FVector @[out, modified in place]
 function UKismetSystemLibrary.GetActorBounds(Actor, Origin, BoxExtent) end
 
 ---Returns an array of unique actors represented by the given list of components.
 ---@param ComponentList TArray<UPrimitiveComponent>
 ---@param ActorClassFilter TSubclassOf<UObject>
----@param OutActorList TArray<AActor> @[out]
+---@param OutActorList TArray<AActor> @[out, modified in place]
 function UKismetSystemLibrary.GetActorListFromComponentList(ComponentList, ActorClassFilter, OutActorList) end
 
 ---Retrieves the total number of Ad IDs that can be selected between
@@ -711,10 +711,10 @@ function UKismetSystemLibrary.GetCommandLine() end
 
 ---Get bounds
 ---@param Component USceneComponent
----@param Origin FVector @[out]
----@param BoxExtent FVector @[out]
----@param SphereRadius number @[out]
-function UKismetSystemLibrary.GetComponentBounds(Component, Origin, BoxExtent, SphereRadius) end
+---@param Origin FVector @[out, modified in place]
+---@param BoxExtent FVector @[out, modified in place]
+---@return number SphereRadius
+function UKismetSystemLibrary.GetComponentBounds(Component, Origin, BoxExtent) end
 
 ---Evaluates, if it exists, whether the specified integer console variable has a non-zero value (true) or not (false).
 ---@param VariableName string
@@ -737,7 +737,7 @@ function UKismetSystemLibrary.GetConsoleVariableIntValue(VariableName) end
 function UKismetSystemLibrary.GetConsoleVariableStringValue(VariableName) end
 
 ---Gets the list of windowed resolutions which are convenient for the current primary display size.
----@param Resolutions TArray<FIntPoint> @[out]
+---@param Resolutions TArray<FIntPoint> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.GetConvenientWindowedResolutions(Resolutions) end
 
@@ -745,7 +745,7 @@ function UKismetSystemLibrary.GetConvenientWindowedResolutions(Resolutions) end
 ---If ForceCurrentState is true it will return the current state even if a load is in process
 ---@param PrimaryAssetId FPrimaryAssetId
 ---@param bForceCurrentState boolean
----@param OutBundles TArray<string> @[out]
+---@param OutBundles TArray<string> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.GetCurrentBundleState(PrimaryAssetId, bForceCurrentState, OutBundles) end
 
@@ -777,9 +777,9 @@ function UKismetSystemLibrary.GetDisplayName(Object) end
 ---Attempts to retrieve the value of a named property from the given object.
 ---@param Object UObject @The object you want to retrieve a property value from.
 ---@param PropertyName string @The name of the object property to retrieve the value from.
----@param PropertyValue integer @[out] The retrieved property value, if found.
 ---@return boolean
-function UKismetSystemLibrary.GetEditorProperty(Object, PropertyName, PropertyValue) end
+---@return integer PropertyValue @The retrieved property value, if found.
+function UKismetSystemLibrary.GetEditorProperty(Object, PropertyName) end
 
 ---Engine build number, for displaying to end users.
 ---@return string
@@ -895,7 +895,7 @@ function UKismetSystemLibrary.GetPrimaryAssetIdFromSoftObjectReference(SoftObjec
 
 ---Returns list of PrimaryAssetIds for a PrimaryAssetType
 ---@param PrimaryAssetType FPrimaryAssetType
----@param OutPrimaryAssetIdList TArray<FPrimaryAssetId> @[out]
+---@param OutPrimaryAssetIdList TArray<FPrimaryAssetId> @[out, modified in place]
 function UKismetSystemLibrary.GetPrimaryAssetIdList(PrimaryAssetType, OutPrimaryAssetIdList) end
 
 ---Returns the list of assets that are in a given bundle state. Required Bundles must be specified
@@ -906,7 +906,7 @@ function UKismetSystemLibrary.GetPrimaryAssetIdList(PrimaryAssetType, OutPrimary
 ---@param ExcludedBundles TArray<string>
 ---@param ValidTypes TArray<FPrimaryAssetType>
 ---@param bForceCurrentState boolean
----@param OutPrimaryAssetIdList TArray<FPrimaryAssetId> @[out]
+---@param OutPrimaryAssetIdList TArray<FPrimaryAssetId> @[out, modified in place]
 function UKismetSystemLibrary.GetPrimaryAssetsWithBundleState(RequiredBundles, ExcludedBundles, ValidTypes, bForceCurrentState, OutPrimaryAssetIdList) end
 
 ---Get the content directory of the current project
@@ -966,7 +966,7 @@ function UKismetSystemLibrary.GetSoftObjectReferenceFromPrimaryAssetId(PrimaryAs
 function UKismetSystemLibrary.GetStructTopLevelAssetPath(Struct) end
 
 ---Gets the list of support fullscreen resolutions.
----@param Resolutions TArray<FIntPoint> @[out]
+---@param Resolutions TArray<FIntPoint> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.GetSupportedFullscreenResolutions(Resolutions) end
 
@@ -1076,7 +1076,7 @@ function UKismetSystemLibrary.IsValidSoftObjectReference(SoftObjectReference) en
 
 ---Clears a set timer.
 ---@param WorldContextObject UObject
----@param Handle FTimerHandle @[out]
+---@param Handle FTimerHandle @[out, modified in place]
 function UKismetSystemLibrary.K2_ClearAndInvalidateTimerHandle(WorldContextObject, Handle) end
 
 ---Clears a set timer.
@@ -1128,7 +1128,7 @@ function UKismetSystemLibrary.K2_GetTimerRemainingTimeDelegate(Delegate) end
 function UKismetSystemLibrary.K2_GetTimerRemainingTimeHandle(WorldContextObject, Handle) end
 
 ---Invalidate the supplied TimerHandle and return it.
----@param Handle FTimerHandle @[out]
+---@param Handle FTimerHandle @[out, modified in place]
 ---@return FTimerHandle
 function UKismetSystemLibrary.K2_InvalidateTimerHandle(Handle) end
 
@@ -1259,7 +1259,7 @@ function UKismetSystemLibrary.LaunchURL(URL) end
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out]
+---@param OutHits TArray<FHitResult> @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1277,7 +1277,7 @@ function UKismetSystemLibrary.LineTraceMulti(WorldContextObject, Start, End, Tra
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out]
+---@param OutHits TArray<FHitResult> @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1294,7 +1294,7 @@ function UKismetSystemLibrary.LineTraceMultiByProfile(WorldContextObject, Start,
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out]
+---@param OutHits TArray<FHitResult> @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1311,7 +1311,7 @@ function UKismetSystemLibrary.LineTraceMultiForObjects(WorldContextObject, Start
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out]
+---@param OutHit FHitResult @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1327,7 +1327,7 @@ function UKismetSystemLibrary.LineTraceSingle(WorldContextObject, Start, End, Tr
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out]
+---@param OutHit FHitResult @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1344,7 +1344,7 @@ function UKismetSystemLibrary.LineTraceSingleByProfile(WorldContextObject, Start
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out]
+---@param OutHit FHitResult @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1516,9 +1516,9 @@ function UKismetSystemLibrary:OnAssetLoaded__DelegateSignature(Loaded) end
 ---* @@param        OutSwitches[out]        Filled with all switches found in the string (ie -foo)
 ---* @@param        OutParams[out]          Filled with all switches found in the string with the format key = value (ie: -bar, /game/baz)
 ---@param InCmdLine string
----@param OutTokens TArray<string> @[out]
----@param OutSwitches TArray<string> @[out]
----@param OutParams TMap<string, string> @[out]
+---@param OutTokens TArray<string> @[out, modified in place]
+---@param OutSwitches TArray<string> @[out, modified in place]
+---@param OutParams TMap<string, string> @[out, modified in place]
 function UKismetSystemLibrary.ParseCommandLine(InCmdLine, OutTokens, OutSwitches, OutParams) end
 
 ---Returns true if the string has -param in it (do not specify the leading -)
@@ -1530,9 +1530,9 @@ function UKismetSystemLibrary.ParseParam(InString, InParam) end
 ---Returns 'value' if -option=value is in the string
 ---@param InString string
 ---@param InParam string
----@param OutValue string @[out]
 ---@return boolean
-function UKismetSystemLibrary.ParseParamValue(InString, InParam, OutValue) end
+---@return string OutValue
+function UKismetSystemLibrary.ParseParamValue(InString, InParam) end
 
 ---Prints a string to the log, and optionally, to the screen
 ---If Print To Log is true, it will be visible in the Output Log window.  Otherwise it will be logged only as 'Verbose', so it generally won't show up.
@@ -1777,7 +1777,7 @@ function UKismetSystemLibrary.SnapshotObject(Object) end
 ---@param ObjectTypes TArray<integer>
 ---@param ActorClassFilter TSubclassOf<UObject>
 ---@param ActorsToIgnore TArray<AActor>
----@param OutActors TArray<AActor> @[out]
+---@param OutActors TArray<AActor> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.SphereOverlapActors(WorldContextObject, SpherePos, SphereRadius, ObjectTypes, ActorClassFilter, ActorsToIgnore, OutActors) end
 
@@ -1788,7 +1788,7 @@ function UKismetSystemLibrary.SphereOverlapActors(WorldContextObject, SpherePos,
 ---@param ObjectTypes TArray<integer>
 ---@param ComponentClassFilter TSubclassOf<UObject>
 ---@param ActorsToIgnore TArray<AActor>
----@param OutComponents TArray<UPrimitiveComponent> @[out]
+---@param OutComponents TArray<UPrimitiveComponent> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.SphereOverlapComponents(WorldContextObject, SpherePos, SphereRadius, ObjectTypes, ComponentClassFilter, ActorsToIgnore, OutComponents) end
 
@@ -1802,7 +1802,7 @@ function UKismetSystemLibrary.SphereOverlapComponents(WorldContextObject, Sphere
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out]
+---@param OutHits TArray<FHitResult> @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1821,7 +1821,7 @@ function UKismetSystemLibrary.SphereTraceMulti(WorldContextObject, Start, End, R
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out]
+---@param OutHits TArray<FHitResult> @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1839,7 +1839,7 @@ function UKismetSystemLibrary.SphereTraceMultiByProfile(WorldContextObject, Star
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out]
+---@param OutHits TArray<FHitResult> @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1857,7 +1857,7 @@ function UKismetSystemLibrary.SphereTraceMultiForObjects(WorldContextObject, Sta
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out]
+---@param OutHit FHitResult @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1874,7 +1874,7 @@ function UKismetSystemLibrary.SphereTraceSingle(WorldContextObject, Start, End, 
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out]
+---@param OutHit FHitResult @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1892,7 +1892,7 @@ function UKismetSystemLibrary.SphereTraceSingleByProfile(WorldContextObject, Sta
 ---@param bTraceComplex boolean
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out]
+---@param OutHit FHitResult @[out, modified in place]
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]

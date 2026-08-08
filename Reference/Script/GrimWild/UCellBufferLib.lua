@@ -302,9 +302,9 @@ function UCellBufferLib.GetRawData_Float(Buffer) end
 
 ---Returns buffer's size
 ---@param Buffer FCellBufferHandle
----@param OutX integer @[out]
----@param OutY integer @[out]
-function UCellBufferLib.GetSize(Buffer, OutX, OutY) end
+---@return integer OutX
+---@return integer OutY
+function UCellBufferLib.GetSize(Buffer) end
 
 ---Returns the render target from two frames ago. Valid only if bHasVisualLerp was set during initialization.
 ---@param Buffer FCellBufferHandle

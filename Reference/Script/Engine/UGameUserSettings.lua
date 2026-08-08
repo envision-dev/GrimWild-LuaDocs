@@ -137,11 +137,11 @@ function UGameUserSettings:GetRecommendedResolutionScale() end
 function UGameUserSettings:GetReflectionQuality() end
 
 ---Returns the current resolution scale and the range
----@param CurrentScaleNormalized number @[out]
----@param CurrentScaleValue number @[out]
----@param MinScaleValue number @[out]
----@param MaxScaleValue number @[out]
-function UGameUserSettings:GetResolutionScaleInformationEx(CurrentScaleNormalized, CurrentScaleValue, MinScaleValue, MaxScaleValue) end
+---@return number CurrentScaleNormalized
+---@return number CurrentScaleValue
+---@return number MinScaleValue
+---@return number MaxScaleValue
+function UGameUserSettings:GetResolutionScaleInformationEx() end
 
 ---Gets the current resolution scale as a normalized 0..1 value between MinScaleValue and MaxScaleValue
 ---@return number

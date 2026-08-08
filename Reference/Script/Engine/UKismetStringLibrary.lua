@@ -167,9 +167,9 @@ function UKismetStringLibrary.Conv_RotatorToString(InRot) end
 
 ---Convert String Back To Color. IsValid indicates whether or not the string could be successfully converted.
 ---@param InString string
----@param OutConvertedColor FLinearColor @[out]
----@param OutIsValid boolean @[out]
-function UKismetStringLibrary.Conv_StringToColor(InString, OutConvertedColor, OutIsValid) end
+---@param OutConvertedColor FLinearColor @[out, modified in place]
+---@return boolean OutIsValid
+function UKismetStringLibrary.Conv_StringToColor(InString, OutConvertedColor) end
 
 ---Converts a string to a double value
 ---@param InString string
@@ -193,27 +193,27 @@ function UKismetStringLibrary.Conv_StringToName(InString) end
 
 ---Convert String Back To Rotator. IsValid indicates whether or not the string could be successfully converted.
 ---@param InString string
----@param OutConvertedRotator FRotator @[out]
----@param OutIsValid boolean @[out]
-function UKismetStringLibrary.Conv_StringToRotator(InString, OutConvertedRotator, OutIsValid) end
+---@param OutConvertedRotator FRotator @[out, modified in place]
+---@return boolean OutIsValid
+function UKismetStringLibrary.Conv_StringToRotator(InString, OutConvertedRotator) end
 
 ---Convert String Back To Vector. IsValid indicates whether or not the string could be successfully converted.
 ---@param InString string
----@param OutConvertedVector FVector @[out]
----@param OutIsValid boolean @[out]
-function UKismetStringLibrary.Conv_StringToVector(InString, OutConvertedVector, OutIsValid) end
+---@param OutConvertedVector FVector @[out, modified in place]
+---@return boolean OutIsValid
+function UKismetStringLibrary.Conv_StringToVector(InString, OutConvertedVector) end
 
 ---Convert String Back To Vector2D. IsValid indicates whether or not the string could be successfully converted.
 ---@param InString string
----@param OutConvertedVector2D FVector2D @[out]
----@param OutIsValid boolean @[out]
-function UKismetStringLibrary.Conv_StringToVector2D(InString, OutConvertedVector2D, OutIsValid) end
+---@param OutConvertedVector2D FVector2D @[out, modified in place]
+---@return boolean OutIsValid
+function UKismetStringLibrary.Conv_StringToVector2D(InString, OutConvertedVector2D) end
 
 ---Convert String Back To Float Vector. IsValid indicates whether or not the string could be successfully converted.
 ---@param InString string
----@param OutConvertedVector FVector3f @[out]
----@param OutIsValid boolean @[out]
-function UKismetStringLibrary.Conv_StringToVector3f(InString, OutConvertedVector, OutIsValid) end
+---@param OutConvertedVector FVector3f @[out, modified in place]
+---@return boolean OutIsValid
+function UKismetStringLibrary.Conv_StringToVector3f(InString, OutConvertedVector) end
 
 ---Converts a transform value to a string, in the form 'Translation: X= Y= Z= Rotation: P= Y= R= Scale: X= Y= Z='
 ---@param InTrans FTransform
@@ -237,7 +237,7 @@ function UKismetStringLibrary.Conv_VectorToString(InVec) end
 
 ---Takes an array of strings and removes any zero length entries.
 ---@param SourceString string
----@param InArray TArray<string> @[out]
+---@param InArray TArray<string> @[out, modified in place]
 ---@return integer
 function UKismetStringLibrary.CullArray(SourceString, InArray) end
 
@@ -373,12 +373,12 @@ function UKismetStringLibrary.ParseIntoArray(SourceString, Delimiter, CullEmptyS
 function UKismetStringLibrary.Replace(SourceString, From, To, SearchCase) end
 
 ---Replace all occurrences of SearchText with ReplacementText in this string.
----@param SourceString string @[out]
 ---@param SearchText string
 ---@param ReplacementText string
 ---@param SearchCase? integer @[default: IgnoreCase]
 ---@return integer
-function UKismetStringLibrary.ReplaceInline(SourceString, SearchText, ReplacementText, SearchCase) end
+---@return string SourceString
+function UKismetStringLibrary.ReplaceInline(SearchText, ReplacementText, SearchCase) end
 
 ---Returns a copy of this string, with the characters in reverse order
 ---@param SourceString string
@@ -409,12 +409,12 @@ function UKismetStringLibrary.RightPad(SourceString, ChCount) end
 ---Splits this string at given string position case sensitive.
 ---@param SourceString string
 ---@param InStr string @The string to search and split at
----@param LeftS string @[out] out the string to the left of InStr, not updated if return is false
----@param RightS string @[out] out the string to the right of InStr, not updated if return is false
 ---@param SearchCase? integer @[default: IgnoreCase]
 ---@param SearchDir? integer @[default: FromStart]
 ---@return boolean
-function UKismetStringLibrary.Split(SourceString, InStr, LeftS, RightS, SearchCase, SearchDir) end
+---@return string LeftS @out the string to the left of InStr, not updated if return is false
+---@return string RightS @out the string to the right of InStr, not updated if return is false
+function UKismetStringLibrary.Split(SourceString, InStr, SearchCase, SearchDir) end
 
 ---Test whether this string starts with given string.
 ---@param SourceString string

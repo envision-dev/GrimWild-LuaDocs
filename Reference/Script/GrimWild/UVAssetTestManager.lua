@@ -9,7 +9,7 @@ UVAssetTestManager = {}
 function UVAssetTestManager.Export(Asset, InDefaultAsset, Path, FileName) end
 
 ---EDITOR-ONLY!
----@param OutTextures TArray<TSoftObjectPtr<UTexture2D>> @[out]
+---@param OutTextures TArray<TSoftObjectPtr<UTexture2D>> @[out, modified in place]
 function UVAssetTestManager.GetAllTexturesInTheGame(OutTextures) end
 
 ---@param Filename string

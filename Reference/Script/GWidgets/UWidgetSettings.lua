@@ -18,6 +18,7 @@
 ---@field public InputKeySelectorButtonStyle FGInputKeySelectorStyle
 ---@field public ExpandableAreaStyle FGExpandableAreaStyle
 ---@field public SearchBoxStyle FGSearchBoxStyle
+---@field public BlockerBrush FSlateBrush @Brush used by every action-blocker overlay icon in the game (e.g. I_CreateBlocker, I_ForkBlocker, I_ApplyBlocker): a click-eating image shown while an action is disabled.
 ---@field public LogMessageColor_Note FLinearColor
 ---@field public LogMessageColor_Warning FLinearColor
 ---@field public LogMessageColor_Error FLinearColor

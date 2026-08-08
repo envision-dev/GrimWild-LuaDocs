@@ -220,8 +220,8 @@ function AActor:ForceNetUpdate() end
 
 ---Returns the bounding box of all components that make up this Actor (excluding ChildActorComponents).
 ---@param bOnlyCollidingComponents boolean
----@param Origin FVector @[out]
----@param BoxExtent FVector @[out]
+---@param Origin FVector @[out, modified in place]
+---@param BoxExtent FVector @[out, modified in place]
 ---@param bIncludeFromChildActors? boolean @[default: false]
 function AActor:GetActorBounds(bOnlyCollidingComponents, Origin, BoxExtent, bIncludeFromChildActors) end
 
@@ -234,8 +234,8 @@ function AActor:GetActorEnableCollision() end
 ---For example, for a Pawn, this would define the eye height location,
 ---and view rotation (which is different from the pawn rotation which has a zeroed pitch component).
 ---A camera first person view will typically use this view point. Most traces (weapon, AI) will be done from this view point.
----@param OutLocation FVector @[out] - location of view point
----@param OutRotation FRotator @[out] - view rotation of actor.
+---@param OutLocation FVector @[out, modified in place] - location of view point
+---@param OutRotation FRotator @[out, modified in place] - view rotation of actor.
 function AActor:GetActorEyesViewPoint(OutLocation, OutRotation) end
 
 ---Get the forward (X) vector (length 1.0) from this Actor, in world space.
@@ -274,12 +274,12 @@ function AActor:GetActorUpVector() end
 
 ---Returns a list of all actors spawned by our Child Actor Components, including children of children.
 ---This does not return the contents of the Children array
----@param ChildActors TArray<AActor> @[out]
+---@param ChildActors TArray<AActor> @[out, modified in place]
 ---@param bIncludeDescendants? boolean @[default: true]
 function AActor:GetAllChildActors(ChildActors, bIncludeDescendants) end
 
 ---Find all Actors which are attached directly to a component in this actor
----@param OutActors TArray<AActor> @[out]
+---@param OutActors TArray<AActor> @[out, modified in place]
 ---@param bResetArray? boolean @[default: true]
 ---@param bRecursivelyIncludeAttachedActors? boolean @[default: false]
 function AActor:GetAttachedActors(OutActors, bResetArray, bRecursivelyIncludeAttachedActors) end
@@ -380,12 +380,12 @@ function AActor:GetLifeSpan() end
 function AActor:GetLocalRole() end
 
 ---Returns list of actors this actor is overlapping (any component overlapping any component). Does not return itself.
----@param OverlappingActors TArray<AActor> @[out]
+---@param OverlappingActors TArray<AActor> @[out, modified in place]
 ---@param ClassFilter? TSubclassOf<AActor> @[default: None]
 function AActor:GetOverlappingActors(OverlappingActors, ClassFilter) end
 
 ---Returns list of components this actor is overlapping.
----@param OverlappingComponents TArray<UPrimitiveComponent> @[out]
+---@param OverlappingComponents TArray<UPrimitiveComponent> @[out, modified in place]
 function AActor:GetOverlappingComponents(OverlappingComponents) end
 
 ---Get the owner of this Actor, used primarily for network replication.
@@ -492,7 +492,7 @@ function AActor:IsTemporarilyHiddenInEditor(bIncludeParent) end
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 ---@param DeltaLocation FVector
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function AActor:K2_AddActorLocalOffset(DeltaLocation, bSweep, SweepHitResult, bTeleport) end
 
@@ -503,7 +503,7 @@ function AActor:K2_AddActorLocalOffset(DeltaLocation, bSweep, SweepHitResult, bT
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 ---@param DeltaRotation FRotator
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function AActor:K2_AddActorLocalRotation(DeltaRotation, bSweep, SweepHitResult, bTeleport) end
 
@@ -514,7 +514,7 @@ function AActor:K2_AddActorLocalRotation(DeltaRotation, bSweep, SweepHitResult, 
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 ---@param NewTransform FTransform
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function AActor:K2_AddActorLocalTransform(NewTransform, bSweep, SweepHitResult, bTeleport) end
 
@@ -525,7 +525,7 @@ function AActor:K2_AddActorLocalTransform(NewTransform, bSweep, SweepHitResult, 
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 ---@param DeltaLocation FVector
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function AActor:K2_AddActorWorldOffset(DeltaLocation, bSweep, SweepHitResult, bTeleport) end
 
@@ -535,21 +535,21 @@ function AActor:K2_AddActorWorldOffset(DeltaLocation, bSweep, SweepHitResult, bT
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 ---@param DeltaRotation FRotator
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function AActor:K2_AddActorWorldRotation(DeltaRotation, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the transform of this actor in world space. Ignores scale and sets it to (1,1,1).
 ---@param DeltaTransform FTransform
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function AActor:K2_AddActorWorldTransform(DeltaTransform, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the transform of this actor in world space. Scale is unchanged.
 ---@param DeltaTransform FTransform
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function AActor:K2_AddActorWorldTransformKeepScale(DeltaTransform, bSweep, SweepHitResult, bTeleport) end
 
@@ -631,7 +631,7 @@ function AActor:K2_OnReset() end
 ---                                             If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 ---@param NewLocation FVector
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 ---@return boolean
 function AActor:K2_SetActorLocation(NewLocation, bSweep, SweepHitResult, bTeleport) end
@@ -644,7 +644,7 @@ function AActor:K2_SetActorLocation(NewLocation, bSweep, SweepHitResult, bTelepo
 ---@param NewLocation FVector
 ---@param NewRotation FRotator
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 ---@return boolean
 function AActor:K2_SetActorLocationAndRotation(NewLocation, NewRotation, bSweep, SweepHitResult, bTeleport) end
@@ -656,7 +656,7 @@ function AActor:K2_SetActorLocationAndRotation(NewLocation, NewRotation, bSweep,
 ---                                                             If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 ---@param NewRelativeLocation FVector
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function AActor:K2_SetActorRelativeLocation(NewRelativeLocation, bSweep, SweepHitResult, bTeleport) end
 
@@ -667,7 +667,7 @@ function AActor:K2_SetActorRelativeLocation(NewRelativeLocation, bSweep, SweepHi
 ---                                                             If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 ---@param NewRelativeRotation FRotator
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function AActor:K2_SetActorRelativeRotation(NewRelativeRotation, bSweep, SweepHitResult, bTeleport) end
 
@@ -678,7 +678,7 @@ function AActor:K2_SetActorRelativeRotation(NewRelativeRotation, bSweep, SweepHi
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 ---@param NewRelativeTransform FTransform
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 function AActor:K2_SetActorRelativeTransform(NewRelativeTransform, bSweep, SweepHitResult, bTeleport) end
 
@@ -697,7 +697,7 @@ function AActor:K2_SetActorRotation(NewRotation, bTeleportPhysics) end
 ---                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 ---@param NewTransform FTransform
 ---@param bSweep boolean
----@param SweepHitResult FHitResult @[out]
+---@param SweepHitResult FHitResult @[out, modified in place]
 ---@param bTeleport boolean
 ---@return boolean
 function AActor:K2_SetActorTransform(NewTransform, bSweep, SweepHitResult, bTeleport) end

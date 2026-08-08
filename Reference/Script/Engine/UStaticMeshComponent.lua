@@ -51,8 +51,8 @@ UStaticMeshComponent = {}
 function UStaticMeshComponent:GetInitialEvaluateWorldPositionOffset() end
 
 ---Get Local bounds
----@param Min FVector @[out]
----@param Max FVector @[out]
+---@param Min FVector @[out, modified in place]
+---@param Max FVector @[out, modified in place]
 function UStaticMeshComponent:GetLocalBounds(Min, Max) end
 
 ---@param OldStaticMesh UStaticMesh

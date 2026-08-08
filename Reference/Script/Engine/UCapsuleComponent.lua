@@ -18,14 +18,14 @@ function UCapsuleComponent:GetScaledCapsuleHalfHeight_WithoutHemisphere() end
 function UCapsuleComponent:GetScaledCapsuleRadius() end
 
 ---Returns the capsule radius and half-height scaled by the component scale. Half-height includes the hemisphere end cap.
----@param OutRadius number @[out] Radius of the capsule, scaled by the component scale.
----@param OutHalfHeight number @[out] Half-height of the capsule, scaled by the component scale. Includes the hemisphere end cap.
-function UCapsuleComponent:GetScaledCapsuleSize(OutRadius, OutHalfHeight) end
+---@return number OutRadius @Radius of the capsule, scaled by the component scale.
+---@return number OutHalfHeight @Half-height of the capsule, scaled by the component scale. Includes the hemisphere end cap.
+function UCapsuleComponent:GetScaledCapsuleSize() end
 
 ---Returns the capsule radius and half-height scaled by the component scale. Half-height excludes the hemisphere end cap.
----@param OutRadius number @[out] Radius of the capsule, ignoring component scaling.
----@param OutHalfHeightWithoutHemisphere number @[out] Half-height of the capsule, scaled by the component scale. Excludes the hemisphere end cap.
-function UCapsuleComponent:GetScaledCapsuleSize_WithoutHemisphere(OutRadius, OutHalfHeightWithoutHemisphere) end
+---@return number OutRadius @Radius of the capsule, ignoring component scaling.
+---@return number OutHalfHeightWithoutHemisphere @Half-height of the capsule, scaled by the component scale. Excludes the hemisphere end cap.
+function UCapsuleComponent:GetScaledCapsuleSize_WithoutHemisphere() end
 
 ---Get the scale used by this shape. This is a uniform scale that is the minimum of any non-uniform scaling.
 ---@return number
@@ -45,14 +45,14 @@ function UCapsuleComponent:GetUnscaledCapsuleHalfHeight_WithoutHemisphere() end
 function UCapsuleComponent:GetUnscaledCapsuleRadius() end
 
 ---Returns the capsule radius and half-height scaled by the component scale. Half-height includes the hemisphere end cap.
----@param OutRadius number @[out] Radius of the capsule, scaled by the component scale.
----@param OutHalfHeight number @[out] Half-height of the capsule, scaled by the component scale. Includes the hemisphere end cap.
-function UCapsuleComponent:GetUnscaledCapsuleSize(OutRadius, OutHalfHeight) end
+---@return number OutRadius @Radius of the capsule, scaled by the component scale.
+---@return number OutHalfHeight @Half-height of the capsule, scaled by the component scale. Includes the hemisphere end cap.
+function UCapsuleComponent:GetUnscaledCapsuleSize() end
 
 ---Returns the capsule radius and half-height, ignoring component scaling. Half-height excludes the hemisphere end cap.
----@param OutRadius number @[out] Radius of the capsule, ignoring component scaling.
----@param OutHalfHeightWithoutHemisphere number @[out] Half-height of the capsule, scaled by the component scale. Excludes the hemisphere end cap.
-function UCapsuleComponent:GetUnscaledCapsuleSize_WithoutHemisphere(OutRadius, OutHalfHeightWithoutHemisphere) end
+---@return number OutRadius @Radius of the capsule, ignoring component scaling.
+---@return number OutHalfHeightWithoutHemisphere @Half-height of the capsule, scaled by the component scale. Excludes the hemisphere end cap.
+function UCapsuleComponent:GetUnscaledCapsuleSize_WithoutHemisphere() end
 
 ---Set the capsule half-height. This is the unscaled half-height, before component scale is applied.
 ---If this capsule collides, updates touching array for owner actor.

@@ -1,0 +1,14 @@
+---Version and matcher in one type: major.minor.patch[-state[number]][+build].
+---A value can be fully concrete (a running game build) or partial (a mod's target,
+---e.g. "0.15" meaning any 0.15.x). Precision records how deep the definition goes;
+---the comparison operators are precision-aware, which is what makes matching work
+---without a separate spec type.
+---@class FEVersion
+---@field public Major integer
+---@field public Minor integer
+---@field public Patch integer
+---@field public ReleaseState EReleaseState @Explicit default: default construction must be a final version, not the enum-zero value (Alpha).
+---@field public ReleaseNumber integer @Release has no number concept, so it always keeps 0.
+---@field public Build string @Free-form string after '+'. Empty means unset. Only compared when both sides reach Build precision.
+---@field public Precision EVersionPrecision @Explicit default: anything but Major, otherwise a default value would match every version.
+FEVersion = {}

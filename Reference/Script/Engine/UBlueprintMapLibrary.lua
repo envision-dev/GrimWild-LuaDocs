@@ -21,9 +21,9 @@ function UBlueprintMapLibrary.Map_Contains(TargetMap, Key) end
 ---Finds the value associated with the provided Key
 ---@param TargetMap TMap<integer, integer>
 ---@param Key integer
----@param Value integer @[out]
 ---@return boolean
-function UBlueprintMapLibrary.Map_Find(TargetMap, Key, Value) end
+---@return integer Value
+function UBlueprintMapLibrary.Map_Find(TargetMap, Key) end
 
 ---Check if the map does not have any entires
 ---@param TargetMap TMap<integer, integer>
@@ -37,7 +37,7 @@ function UBlueprintMapLibrary.Map_IsNotEmpty(TargetMap) end
 
 ---Outputs an array of all keys present in the map
 ---@param TargetMap TMap<integer, integer>
----@param Keys TArray<integer> @[out]
+---@param Keys TArray<integer> @[out, modified in place]
 function UBlueprintMapLibrary.Map_Keys(TargetMap, Keys) end
 
 ---Determines the number of entries in a provided Map
@@ -53,7 +53,7 @@ function UBlueprintMapLibrary.Map_Remove(TargetMap, Key) end
 
 ---Outputs an array of all values present in the map
 ---@param TargetMap TMap<integer, integer>
----@param Values TArray<integer> @[out]
+---@param Values TArray<integer> @[out, modified in place]
 function UBlueprintMapLibrary.Map_Values(TargetMap, Values) end
 
 ---Not exposed to users. Supports setting a map property on an object by name.

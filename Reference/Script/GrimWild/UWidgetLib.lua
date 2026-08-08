@@ -285,7 +285,7 @@ function UWidgetLib.CreateWrapBox(ParentUserWidget, OptionalName) end
 
 ---Returns all children of the given UserWidget/UPanelWidget
 ---@param ParentWidget UWidget
----@param OutChildren TArray<UWidget> @[out]
+---@param OutChildren TArray<UWidget> @[out, modified in place]
 function UWidgetLib.GetAllChildren(ParentWidget, OutChildren) end
 
 ---Returns a top-level child (not recursive) with the given name. Child names can be obtained from the Widget Inspector window. Works for both UWidgets and UUserWidgets.

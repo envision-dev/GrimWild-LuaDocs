@@ -96,6 +96,6 @@ function UGameWorld:SetGameSpeed(InNewSpeed) end
 function UGameWorld:SetVisualGameTime(InValue) end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function UGameWorld:GatherDebugData(DebugString) end
+---@return string DebugString
+function UGameWorld:GatherDebugData() end
 

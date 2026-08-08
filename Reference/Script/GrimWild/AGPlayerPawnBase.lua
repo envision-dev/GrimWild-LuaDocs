@@ -30,6 +30,6 @@ function AGPlayerPawnBase:IsRightMousePressed() end
 function AGPlayerPawnBase:IsShiftPressed() end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function AGPlayerPawnBase:GatherDebugData(DebugString) end
+---@return string DebugString
+function AGPlayerPawnBase:GatherDebugData() end
 

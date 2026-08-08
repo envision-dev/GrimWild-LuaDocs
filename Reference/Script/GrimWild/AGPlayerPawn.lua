@@ -20,7 +20,7 @@ AGPlayerPawn = {}
 function AGPlayerPawn:AddCameraLocation(LocationToAdd) end
 
 ---Updates all necessary fields related to player controls from the user settings cfg file
-function AGPlayerPawn:ApplyGameOptions() end
+function AGPlayerPawn:ApplyVarsFromGameOptions() end
 
 ---Returns the cached mouse screen position value.
 ---NOTE: It may refer to the previous frame mouse position. For the real-time value, use PlayerController->GetMousePosition().
@@ -67,6 +67,6 @@ function AGPlayerPawn:Test_BindAction(ActionName) end
 function AGPlayerPawn:Test_ExecuteAction(Event) end
 
 ---Gathers all useful object instance debug data into string
----@param DebugString string @[out]
-function AGPlayerPawn:GatherDebugData(DebugString) end
+---@return string DebugString
+function AGPlayerPawn:GatherDebugData() end
 

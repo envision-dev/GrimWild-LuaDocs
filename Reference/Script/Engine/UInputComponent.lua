@@ -13,9 +13,9 @@ function UInputComponent:GetControllerAnalogKeyState(Key) end
 
 ---Retrieves the X and Y displacement of the given analog stick.  For WhickStick, 0 = left, 1 = right.
 ---@param WhichStick integer
----@param StickX number @[out]
----@param StickY number @[out]
-function UInputComponent:GetControllerAnalogStickState(WhichStick, StickX, StickY) end
+---@return number StickX
+---@return number StickY
+function UInputComponent:GetControllerAnalogStickState(WhichStick) end
 
 ---Returns how long the given key/button has been down.  Returns 0 if it's up or it just went down this frame.
 ---@param Key FKey
@@ -23,9 +23,9 @@ function UInputComponent:GetControllerAnalogStickState(WhichStick, StickX, Stick
 function UInputComponent:GetControllerKeyTimeDown(Key) end
 
 ---Retrieves how far the mouse moved this frame.
----@param DeltaX number @[out]
----@param DeltaY number @[out]
-function UInputComponent:GetControllerMouseDelta(DeltaX, DeltaY) end
+---@return number DeltaX
+---@return number DeltaY
+function UInputComponent:GetControllerMouseDelta() end
 
 ---Returns the vector value for the given key/button.
 ---@param Key FKey
@@ -34,10 +34,10 @@ function UInputComponent:GetControllerVectorKeyState(Key) end
 
 ---Returns the location of a touch, and if it's held down
 ---@param FingerIndex integer
----@param LocationX number @[out]
----@param LocationY number @[out]
----@param bIsCurrentlyPressed boolean @[out]
-function UInputComponent:GetTouchState(FingerIndex, LocationX, LocationY, bIsCurrentlyPressed) end
+---@return number LocationX
+---@return number LocationY
+---@return boolean bIsCurrentlyPressed
+function UInputComponent:GetTouchState(FingerIndex) end
 
 ---Returns true if the given key/button is pressed on the input of the controller (if present)
 ---@param Key FKey
