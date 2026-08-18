@@ -1,8 +1,8 @@
 ---Hand-written reference for the parts of the scripting API that the generators cannot describe.
 ---Manually exported C++ functions carry no parameter names and no comments, so their generated
 ---stubs are unusable on their own and this file fills the gap.
----@class UnLua
-local UnLua = {}
+
+--UObject
 
 ---Add or find a manual reference to a UObject, preventing Unreal from garbage collecting it.
 ---Keep the returned proxy. Discarding it makes the call close to useless: the proxy becomes
@@ -10,20 +10,16 @@ local UnLua = {}
 ---silent.
 ---Storing the proxy on the script's table ties its lifetime to the script's, but release still
 ---waits for a collection rather than happening at unload. A proxy that reaches _G, or is handed to
----another script, outlives its creator entirely and is only released by UnLua.Unref.
+---another script, outlives its creator entirely and is only released by UnrefObject.
 ---Delegate listeners do not work this way: they are removed deterministically when a script
 ---unloads, with no collection involved.
 ---@param Object UObject
 ---@return userdata @Proxy holding the reference. The reference is released when Lua collects the proxy.
-function UnLua.Ref(Object) end
+function RefObject(Object) end
 
 ---Force remove every manual reference to a UObject, whatever proxies still exist.
 ---@param Object UObject
-function UnLua.Unref(Object) end
-
-_G.UnLua = UnLua
-
---UObject
+function UnrefObject(Object) end
 
 ---Get the UClass a type name stands for. Kept for compatibility with older scripts: the type name
 ---itself already resolves to its UClass, so APawn and APawn.StaticClass() are interchangeable
@@ -174,8 +170,6 @@ function TArray:Append(OtherArray) end
 ---@return table
 function TArray:ToTable() end
 
----@type fun(ElementType:any):TArray
-UE.TArray = TArray
 
 ---@class TMap<TKey,TValue>
 local TMap = {}
@@ -220,8 +214,6 @@ function TMap:Values() end
 ---@return table
 function TMap:ToTable() end
 
----@type fun(KeyType:any,ValueType:any):TMap
-UE.TMap = TMap
 
 ---@class TSet<TElement>
 local TSet = {}
@@ -255,8 +247,6 @@ function TSet:ToArray() end
 ---@return table
 function TSet:ToTable() end
 
----@type fun(ElementType:any):TSet
-UE.TSet = TSet
 
 ---@class UClass
 local UClass = {}
@@ -280,7 +270,6 @@ function UClass:IsChildOf(TargetClass) end
 ---@return UObject @class default object
 function UClass:GetDefaultObject() end
 
-UE.UClass = UClass
 
 ---Single-cast delegate. Holds at most one listener.
 ---Reached through a field of a live object: a delegate obtained from a function that returns a
@@ -293,6 +282,7 @@ local Delegate = {}
 ---Bind a callback to the delegate, replacing any previous listener. Nothing reports that a previous
 ---listener was displaced, so two scripts binding to the same delegate is not a case either of them
 ---can detect.
+---Returns no handle: Unbind is the only way to take the listener back.
 ---@param Function function @callback
 function Delegate:Bind(Function) end
 
@@ -311,6 +301,16 @@ function Delegate:RemoveLuaListeners() end
 ---Variable argument list (look for target delegate signature).
 function Delegate:Execute(...) end
 
+---The value MulticastDelegate:Add returns. Its only job is to remove the one listener that the Add
+---call created. Removing twice, or removing after the listener was taken back some other way, does
+---nothing and reports nothing.
+---Single-cast delegates do not produce one.
+---@class MulticastDelegateHandle
+local MulticastDelegateHandle = {}
+
+---Remove the listener this handle came from.
+function MulticastDelegateHandle:Remove() end
+
 ---Multicast delegate. Holds any number of listeners.
 ---Reached through a field of a live object: a delegate obtained from a function that returns a
 ---struct is part of a copy, and a listener attached to it never fires.
@@ -323,7 +323,7 @@ local MulticastDelegate = {}
 ---Add a listener. Takes the callback alone; the upstream (Object, Function) form is rejected.
 ---Adding the same function twice from the same script produces one listener, not two.
 ---@param Function function @callback
----@return table @handle with a :Remove() method
+---@return MulticastDelegateHandle
 function MulticastDelegate:Add(Function) end
 
 ---Remove a specific listener. The function reference must match the one passed to Add.
@@ -331,9 +331,9 @@ function MulticastDelegate:Add(Function) end
 ---@return integer @number of removed listeners
 function MulticastDelegate:Remove(Function) end
 
----Remove every listener on this delegate, including those created by C++ and by Blueprints, and
----return nothing. The same delegate carries listeners belonging to the game and to other mods, so
----emptying it disables logic that has nothing to do with the calling script. Prefer the handle
+---Clear the delegate: every listener goes, whichever script, C++ or Blueprint created it, and
+---nothing is returned. The same delegate carries listeners belonging to the game and to other mods,
+---so clearing it disables logic that has nothing to do with the calling script. Prefer the handle
 ---returned by Add, Remove, or the module-scoped methods on the script table.
 function MulticastDelegate:RemoveAll() end
 

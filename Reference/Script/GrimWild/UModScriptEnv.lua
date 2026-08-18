@@ -1,4 +1,4 @@
----Script env for a single mod. Loads scripts from the mod's DiskPath/Scripts/ directory.
+---Script env for a single mod.
 ---@class UModScriptEnv : UScriptEnv
 ---@field private OwnerMod UMod
 UModScriptEnv = {}

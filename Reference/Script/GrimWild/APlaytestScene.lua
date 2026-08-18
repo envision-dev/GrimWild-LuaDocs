@@ -144,6 +144,10 @@ function APlaytestScene:SetLevelChangeType(NewType) end
 ---@param bMarkAsEagerUpdate? boolean @[default: false]
 function APlaytestScene:SetLiquidAtCell(LiquidName, Cell, bMarkAsEagerUpdate) end
 
+---todo remvoe; testing lua stuff
+---@param InValue integer
+function APlaytestScene:SetOverlayZOrder(InValue) end
+
 function APlaytestScene:SpawnObjects() end
 
 function APlaytestScene:SwitchLevelChange() end

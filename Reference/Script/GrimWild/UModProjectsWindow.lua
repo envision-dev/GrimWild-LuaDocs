@@ -13,9 +13,14 @@
 ---@field protected ForkModOptionsWindowWidget UForkModOptionsWindow
 ---@field protected ModDownloadWindowWidget UModDownloadWindow_SteamWorkshop
 ---@field protected ModEditorWidget UModEditor
+---@field protected CodeWorkspaceGenerator UModCodeWorkspaceGenerator @The only strong reference keeping a generation alive; non-null doubles as the busy guard.
 UModProjectsWindow = {}
 
 function UModProjectsWindow:OnClosePressed() end
+
+---@param bSuccess boolean
+---@param ResultPath string
+function UModProjectsWindow:OnCodeWorkspaceGeneratorCompleted(bSuccess, ResultPath) end
 
 function UModProjectsWindow:OnCreateNewModPackPressed() end
 
@@ -44,6 +49,9 @@ function UModProjectsWindow:OnSlotEditClicked(InSlot) end
 
 ---@param InSlot UModSlot
 function UModProjectsWindow:OnSlotForkClicked(InSlot) end
+
+---@param InSlot UModSlot
+function UModProjectsWindow:OnSlotGenerateCodeWorkspaceClicked(InSlot) end
 
 ---@param InSlot UModSlot
 function UModProjectsWindow:OnSlotGetFromWorkshopClicked(InSlot) end

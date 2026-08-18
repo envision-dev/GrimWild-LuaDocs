@@ -1,6 +1,7 @@
 ---Developer-facing settings for mod project creation.
 ---@class UModDeveloperSettings : UDeveloperSettings
----@field public MainLuaTemplate string @Written into a new project's Scripts/main.lua by UModCreator.
+---@field public MainLuaTemplate string @Written into a new project's main.lua by UModCreator.
+---@field public ModProjectGitignoreContent string @Written into a new mod project's .gitignore by UModCreator and UModForker.
 ---@field public ModsWindowClass TSoftClassPtr<UModsWindow>
 ---@field public ModSlotClass TSoftClassPtr<UModSlot>
 ---@field public ModProjectsWindowClass TSoftClassPtr<UModProjectsWindow>
@@ -8,6 +9,7 @@
 ---@field public ForkModOptionsWindowClass TSoftClassPtr<UForkModOptionsWindow>
 ---@field public ModEditorClass TSoftClassPtr<UModEditor>
 ---@field public ModDownloadWindowClass TSoftClassPtr<UModDownloadWindow_SteamWorkshop>
+---@field public CodeWorkspaceResolveDepsWindowClass TSoftClassPtr<UModCodeWorkspaceGenerator_ResolveDepsWindow>
 ---@field public MissingModPreview TSoftObjectPtr<UTexture2D> @The "?" texture shown by a missing UModSlot in place of the mod's preview.
 ---@field public ForkedNameSuffix FEText @Appended VERBATIM (no separator) to a fork's default visible name.
 ---@field public CreatorIdCollisionConfirmText FEText @{0} = mod id

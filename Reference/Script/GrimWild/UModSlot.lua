@@ -9,6 +9,7 @@
 ---@field protected B_Disable UGButton
 ---@field protected B_Edit UGButton
 ---@field protected B_Fork UGButton
+---@field protected B_GenerateCodeWorkspace UGButton
 ---@field protected B_MoveUp UGButton
 ---@field protected B_MoveDown UGButton
 ---@field protected B_GetFromWorkshop UGButton @Visible only when bMissing; lets the player search the Workshop for a replacement. Nothing binds OnGetFromWorkshopClicked in this prompt; the creator-side windows prompt wires it up.
@@ -20,6 +21,7 @@
 ---@field public OnDisableClicked MulticastDelegate|fun(Slot: UModSlot)
 ---@field public OnEditClicked MulticastDelegate|fun(Slot: UModSlot)
 ---@field public OnForkClicked MulticastDelegate|fun(Slot: UModSlot)
+---@field public OnGenerateCodeWorkspaceClicked MulticastDelegate|fun(Slot: UModSlot)
 ---@field public OnMoveUpClicked MulticastDelegate|fun(Slot: UModSlot)
 ---@field public OnMoveDownClicked MulticastDelegate|fun(Slot: UModSlot)
 ---@field public OnGetFromWorkshopClicked MulticastDelegate|fun(Slot: UModSlot)
@@ -59,6 +61,8 @@ function UModSlot:OnEditReleased() end
 function UModSlot:OnEnableReleased() end
 
 function UModSlot:OnForkReleased() end
+
+function UModSlot:OnGenerateCodeWorkspaceReleased() end
 
 function UModSlot:OnGetFromWorkshopReleased() end
 

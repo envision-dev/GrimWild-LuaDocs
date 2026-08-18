@@ -6,7 +6,13 @@
 ---@field protected TB_Id UTextBlock
 ULogEntryWidget = {}
 
+---@return boolean
+function ULogEntryWidget:IsItemSelected() end
+
 function ULogEntryWidget:OnBackgroundPressed() end
+
+---@param bIsSelected boolean
+function ULogEntryWidget:OnItemSelectionChanged(bIsSelected) end
 
 ---Called when this entry is assigned a new item object to represent by the owning list view
 ---@param ListItemObject UObject

@@ -13,11 +13,18 @@
 ---@field protected B_CloseSelected UGButton
 ---@field protected B_CopySelected UGButton
 ---@field protected EntryClass TSubclassOf<ULogEntryWidget> @Data
----@field protected SelectedEntry ULogEntry @Selected slot
+---@field protected SelectedEntries TSet<TWeakObjectPtr<ULogEntry>> @Our own selection system, independent from UListView's built-in one (LV_Messages' SelectionMode should be set to None in the widget blueprint). Holds the backend UObjects behind the slots rather than the recycled slot widgets themselves, since those get destroyed/reused on scroll.
+---@field protected AnchorEntry TWeakObjectPtr<ULogEntry> @Anchor for Shift+Click range selection. Reset explicitly on delete/clear rather than relying on TWeakObjectPtr invalidation, since the pointer can stay valid (pending GC) after its entry is removed.
 ---@field protected UnfilteredEntries TArray<ULogEntry> @Original message list, unaffected by filtering.
 ULogWindow = {}
 
 function ULogWindow:ClearAll() end
+
+function ULogWindow:DeleteSelectedEntries() end
+
+---@param InEntry ULogEntry
+---@return boolean
+function ULogWindow:IsEntrySelected(InEntry) end
 
 ---@param bIsChecked boolean
 function ULogWindow:OnAutoOpenStateChanged(bIsChecked) end

@@ -5,7 +5,7 @@ UDynamicStateLib = {}
 ---@param Handle FDynamicStateHandle
 ---@param PropertyName string
 ---@param PropertyType EStatePropertyType
----@param Event Delegate|fun()
+---@param Event fun()
 ---@return boolean
 function UDynamicStateLib.BindOnValueChanged(Handle, PropertyName, PropertyType, Event) end
 
@@ -104,7 +104,7 @@ function UDynamicStateLib.SetValueFromString(Handle, PropertyName, Type, NewValu
 ---@param Handle FDynamicStateHandle
 ---@param PropertyName string
 ---@param PropertyType EStatePropertyType
----@param Event Delegate|fun()
+---@param Event fun()
 ---@return boolean
 function UDynamicStateLib.UnbindOnValueChanged(Handle, PropertyName, PropertyType, Event) end
 

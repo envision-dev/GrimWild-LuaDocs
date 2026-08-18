@@ -1,4 +1,4 @@
----Script env for developer scripts. Loads scripts from Content/Lua/DevScripts/.
+---Script env for developer scripts.
 ---@class UDevScriptEnv : UScriptEnv
 UDevScriptEnv = {}
 

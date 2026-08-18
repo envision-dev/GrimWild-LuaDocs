@@ -17,7 +17,7 @@ function UModManager:BuildAutoFixedModList(Proposed) end
 
 ---Thin wrapper over QueryOwnPublishedItems: bOwned is true iff FileId is among the current user's published items.
 ---@param FileId string
----@param OnComplete Delegate|fun(bOwned: boolean, FileId: string)
+---@param OnComplete fun(bOwned: boolean, FileId: string)
 function UModManager:CheckWorkshopItemOwnership(FileId, OnComplete) end
 
 ---Resolves a reference to a discovered mod. A pinned reference (Source != Unknown) must match Id + Source
@@ -54,7 +54,7 @@ function UModManager:OnCultureSet(NewCulture) end
 
 ---Live query of the current user's published items (fileId + title + modid KV tag), for the uploader UI
 ---to pick an update target from.
----@param OnComplete Delegate|fun(bSuccess: boolean, Items: TArray<FOwnedWorkshopItem>)
+---@param OnComplete fun(bSuccess: boolean, Items: TArray<FOwnedWorkshopItem>)
 function UModManager:QueryOwnPublishedItems(OnComplete) end
 
 ---Re-runs mod discovery across all sources. Safe to call while mods are enabled; an enabled mod whose
@@ -73,7 +73,7 @@ function UModManager:SaveAsPack(PackId, DisplayName, Entries) end
 ---Live server query for items tagged with modid == Id, ranked by unique subscriptions. Always returns a
 ---candidate list for the player to choose from; never auto-picks or auto-subscribes.
 ---@param Id string
----@param OnComplete Delegate|fun(bSuccess: boolean, Candidates: TArray<FWorkshopModCandidate>)
+---@param OnComplete fun(bSuccess: boolean, Candidates: TArray<FWorkshopModCandidate>)
 function UModManager:SearchWorkshopForModId(Id, OnComplete) end
 
 ---Applies the diff (unload/load as needed) and persists to Saved/EnabledMods.json.
@@ -81,11 +81,11 @@ function UModManager:SearchWorkshopForModId(Id, OnComplete) end
 function UModManager:SetEnabledMods(NewList) end
 
 ---@param FileId string
----@param OnComplete Delegate|fun(bSuccess: boolean, FileId: string)
+---@param OnComplete fun(bSuccess: boolean, FileId: string)
 function UModManager:SubscribeToWorkshopItem(FileId, OnComplete) end
 
 ---@param FileId string
----@param OnComplete Delegate|fun(bSuccess: boolean, FileId: string)
+---@param OnComplete fun(bSuccess: boolean, FileId: string)
 function UModManager:UnsubscribeFromWorkshopItem(FileId, OnComplete) end
 
 ---Pure. Returns issues found in Proposed (missing/circular/duplicate deps, version and game-version mismatches).

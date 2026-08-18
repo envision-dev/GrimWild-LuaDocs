@@ -52,7 +52,7 @@ function UGComboBoxKey:OnSelectionChangedEvent__DelegateSignature(SelectedItem, 
 ---@return boolean
 function UGComboBoxKey:RemoveOption(Option) end
 
----@param NewListener Delegate|fun(OptionId: string): string
+---@param NewListener fun(OptionId: string): string
 function UGComboBoxKey:SetOnGenerateItemText(NewListener) end
 
 ---Set the selected option by index. Widget -> Data

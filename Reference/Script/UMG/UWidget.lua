@@ -215,14 +215,14 @@ function UWidget:IsRendered() end
 function UWidget:IsVisible() end
 
 ---@param FieldId FFieldNotificationId
----@param Delegate Delegate|fun(Object: UObject, Field: FFieldNotificationId)
+---@param Delegate fun(Object: UObject, Field: FFieldNotificationId)
 function UWidget:K2_AddFieldValueChangedDelegate(FieldId, Delegate) end
 
 ---@param FieldId FFieldNotificationId
 function UWidget:K2_BroadcastFieldValueChanged(FieldId) end
 
 ---@param FieldId FFieldNotificationId
----@param Delegate Delegate|fun(Object: UObject, Field: FFieldNotificationId)
+---@param Delegate fun(Object: UObject, Field: FFieldNotificationId)
 function UWidget:K2_RemoveFieldValueChangedDelegate(FieldId, Delegate) end
 
 ---@param MyGeometry FGeometry
@@ -276,12 +276,12 @@ function UWidget:SetNavigationRuleBase(Direction, Rule) end
 
 ---Sets the widget navigation rules for a specific direction. This can only be called on widgets that are in a widget tree. This works only for Custom Rule.
 ---@param Direction EUINavigation
----@param InCustomDelegate Delegate|fun(Navigation: EUINavigation): UWidget @Custom Delegate that will be called
+---@param InCustomDelegate fun(Navigation: EUINavigation): UWidget @Custom Delegate that will be called
 function UWidget:SetNavigationRuleCustom(Direction, InCustomDelegate) end
 
 ---Sets the widget navigation rules for a specific direction. This can only be called on widgets that are in a widget tree. This works only for CustomBoundary Rule.
 ---@param Direction EUINavigation
----@param InCustomDelegate Delegate|fun(Navigation: EUINavigation): UWidget @Custom Delegate that will be called
+---@param InCustomDelegate fun(Navigation: EUINavigation): UWidget @Custom Delegate that will be called
 function UWidget:SetNavigationRuleCustomBoundary(Direction, InCustomDelegate) end
 
 ---Sets the widget navigation rules for a specific direction. This can only be called on widgets that are in a widget tree. This works only for Explicit Rule.

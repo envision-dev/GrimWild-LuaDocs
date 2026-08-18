@@ -291,7 +291,7 @@ function UWidgetBlueprintLibrary.SetUserFocus(Reply, FocusWidget, bInAllUsers) e
 ---@param bActive boolean
 function UWidgetBlueprintLibrary.SetWindowTitleBarCloseButtonActive(bActive) end
 
----@param Delegate Delegate|fun()
+---@param Delegate fun()
 function UWidgetBlueprintLibrary.SetWindowTitleBarOnCloseClickedDelegate(Delegate) end
 
 ---@param TitleBarContent UWidget

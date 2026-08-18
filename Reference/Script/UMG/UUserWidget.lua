@@ -45,19 +45,19 @@ function UUserWidget:AddToViewport(ZOrder) end
 
 ---Allows binding to a specific animation's event.
 ---@param Animation UWidgetAnimation @the animation to listen for starting or finishing.
----@param Delegate Delegate|fun() @the delegate to call when the animation's state changes
+---@param Delegate fun() @the delegate to call when the animation's state changes
 ---@param AnimationEvent EWidgetAnimationEvent @the event to watch for.
 ---@param UserTag? string @[default: None] Scopes the delegate to only be called when the animation completes with a specific tag set on it when it was played.
 function UUserWidget:BindToAnimationEvent(Animation, Delegate, AnimationEvent, UserTag) end
 
 ---Bind an animation finished delegate.
 ---@param Animation UWidgetAnimation @the animation to listen for starting or finishing.
----@param Delegate Delegate|fun() @the delegate to call when the animation's state changes
+---@param Delegate fun() @the delegate to call when the animation's state changes
 function UUserWidget:BindToAnimationFinished(Animation, Delegate) end
 
 ---Bind an animation started delegate.
 ---@param Animation UWidgetAnimation @the animation to listen for starting or finishing.
----@param Delegate Delegate|fun() @the delegate to call when the animation's state changes
+---@param Delegate fun() @the delegate to call when the animation's state changes
 function UUserWidget:BindToAnimationStarted(Animation, Delegate) end
 
 ---Cancels any pending Delays or timer callbacks for this widget.
@@ -139,7 +139,7 @@ function UUserWidget:IsPlayingAnimation() end
 ---@param ActionName string
 ---@param EventType integer
 ---@param bConsume boolean
----@param Callback Delegate|fun()
+---@param Callback fun()
 function UUserWidget:ListenForInputAction(ActionName, EventType, bConsume, Callback) end
 
 ---If focus is gained on on this widget or on a child widget and this widget is added
@@ -499,12 +499,12 @@ function UUserWidget:UnbindAllFromAnimationStarted(Animation) end
 
 ---Unbind an animation finished delegate.
 ---@param Animation UWidgetAnimation @the animation to listen for starting or finishing.
----@param Delegate Delegate|fun() @the delegate to call when the animation's state changes
+---@param Delegate fun() @the delegate to call when the animation's state changes
 function UUserWidget:UnbindFromAnimationFinished(Animation, Delegate) end
 
 ---Unbind an animation started delegate.
 ---@param Animation UWidgetAnimation @the animation to listen for starting or finishing.
----@param Delegate Delegate|fun() @the delegate to call when the animation's state changes
+---@param Delegate fun() @the delegate to call when the animation's state changes
 function UUserWidget:UnbindFromAnimationStarted(Animation, Delegate) end
 
 ---StopListeningForAllInputActions will automatically Register an Input Component with the player input system.

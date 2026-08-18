@@ -24,7 +24,7 @@ function AGPlayerController:Test_AddTranslation(Key, Value) end
 ---@param NewArchetype UWorldObject
 function AGPlayerController:Test_ChangeObjectArchetype(InObject, NewArchetype) end
 
----@param OnComplete Delegate|fun(bSuccess: boolean, PublishedFileId: integer)
+---@param OnComplete fun(bSuccess: boolean, PublishedFileId: integer)
 function AGPlayerController.Test_CreateWorkshopItem(OnComplete) end
 
 function AGPlayerController:Test_DestroyAllSprites() end
@@ -52,6 +52,8 @@ function AGPlayerController:Test_ImportColorPalette(Filename) end
 ---@param PreviewImagePath string
 ---@param Title string
 ---@param ChangeNote string
----@param OnComplete Delegate|fun(bSuccess: boolean)
+---@param OnComplete fun(bSuccess: boolean)
 function AGPlayerController.Test_UploadWorkshopItem(PublishedFileId, ContentFolderPath, PreviewImagePath, Title, ChangeNote, OnComplete) end
+
+function AGPlayerController:TryExecuteLuaSingleCastDelegateTest() end
 

@@ -1,6 +1,6 @@
 # Basics
 
-Grim Wild runs Lua 5.4 inside Unreal Engine 5.3.2. A script reads and changes the running game through the same C++ API the game itself uses.
+Grim Wild runs Lua 5.4.3 inside Unreal Engine 5.3.2. A script reads and changes the running game through the same C++ API the game itself uses.
 
 This page covers what a script file looks like, how the engine loads and unloads it, where scripts live and what they can see of one another, how to reach the C++ side, and how to react to events. The other pages go deeper on one subject each and are listed at the end.
 
@@ -35,6 +35,16 @@ end
 There is no `return` at the end. A One-Shot Script returns nothing, and that is what tells the engine which kind it is.
 
 Running the file again runs it from the start, and nothing from the earlier run is reused.
+
+#### Typing One Straight Into the Console
+
+The console command `lua.do <code>` runs what you type as a One-Shot Script owned by `Dev`. It is that and nothing else: the only difference from the files above is that there is no file on disk.
+
+```
+lua.do LogInfo(GetPlayerPawn():GetClass():GetName())
+```
+
+Everything this page says about a One-Shot Script holds for it. It sees the same globals a Dev script sees and nothing more. A listener it attaches stays attached after the command has finished, with nothing left to take it back. An error in it is reported the way an error in a Dev script file is. It is a whole script and not an expression, so `lua.do 2+2` is a syntax error, exactly as a file containing `2+2` would be. A value it returns is discarded with a warning, because there is no require path for it to become a Module under.
 
 ### Persistent Scripts
 
@@ -602,9 +612,10 @@ Part of it is not present.
 | --- | --- |
 | `io` | nothing |
 | `load`, `loadstring`, `loadfile`, `dofile` | nothing |
-| `package` | `loadlib` and `cpath` are removed, `path` is empty |
+| `package` | `loadlib` is removed, `path` and `cpath` are empty |
 | `os` | `time`, `clock`, `date`, `difftime` |
 | `debug` | `traceback` |
+| `coroutine` | nothing; reading or writing any field raises an error naming `Routine` |
 
 ### Time and Depth
 

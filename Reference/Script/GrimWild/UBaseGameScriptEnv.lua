@@ -1,4 +1,4 @@
----Script env for the base game. Loads scripts from Content/Lua/Scripts/.
+---Script env for the base game.
 ---@class UBaseGameScriptEnv : UScriptEnv
 UBaseGameScriptEnv = {}
 

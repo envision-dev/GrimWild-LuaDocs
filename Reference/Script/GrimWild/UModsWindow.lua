@@ -17,11 +17,16 @@
 ---@field protected ModInfo UModInfo
 ---@field protected ForkModOptionsWindowWidget UForkModOptionsWindow @Owned dialogs, created on demand and destroyed on close (see OnCloseRequested handlers below).
 ---@field protected ModDownloadWindowWidget UModDownloadWindow_SteamWorkshop
+---@field protected CodeWorkspaceGenerator UModCodeWorkspaceGenerator @The only strong reference keeping a generation alive; non-null doubles as the busy guard.
 UModsWindow = {}
 
 function UModsWindow:OnApplyPressed() end
 
 function UModsWindow:OnClosePressed() end
+
+---@param bSuccess boolean
+---@param ResultPath string
+function UModsWindow:OnCodeWorkspaceGeneratorCompleted(bSuccess, ResultPath) end
 
 function UModsWindow:OnFixPressed() end
 
@@ -55,6 +60,9 @@ function UModsWindow:OnSlotEnableClicked(InSlot) end
 
 ---@param InSlot UModSlot
 function UModsWindow:OnSlotForkClicked(InSlot) end
+
+---@param InSlot UModSlot
+function UModsWindow:OnSlotGenerateCodeWorkspaceClicked(InSlot) end
 
 ---@param InSlot UModSlot
 function UModsWindow:OnSlotGetFromWorkshopClicked(InSlot) end
