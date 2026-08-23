@@ -1,3 +1,4 @@
+---@meta
 ---Game-thread wrapper for FSpreadDynamicLightCS.
 ---Dispatched every frame as long as there are dynamic light sources.
 ---CapturePass() calls Owner->BuildDynamicGPUArray() to obtain the current

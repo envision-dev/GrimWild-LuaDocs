@@ -1,3 +1,4 @@
+---@meta
 ---The different directions that text can flow within a paragraph of text.
 ---@class ETextFlowDirection
 ---@field public Auto ETextFlowDirection [0] Automatically detect the flow direction for each paragraph from its text

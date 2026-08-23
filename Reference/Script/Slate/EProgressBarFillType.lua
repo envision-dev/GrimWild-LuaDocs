@@ -1,3 +1,4 @@
+---@meta
 ---SProgressBar Fill Type
 ---@class EProgressBarFillType
 ---@field public LeftToRight EProgressBarFillType [0] will fill up from the left side to the right

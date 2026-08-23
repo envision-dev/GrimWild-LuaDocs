@@ -1,3 +1,4 @@
+---@meta
 ---A parallel enum to the temperature change severity enum in CoreDelegates
 ---Note if you change this, then you must change the one in CoreDelegates
 ---@class ETemperatureSeverityType

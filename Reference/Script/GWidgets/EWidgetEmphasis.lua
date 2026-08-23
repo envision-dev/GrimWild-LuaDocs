@@ -1,3 +1,4 @@
+---@meta
 ---/ Colors
 ---@class EWidgetEmphasis
 ---@field public Low EWidgetEmphasis [0]

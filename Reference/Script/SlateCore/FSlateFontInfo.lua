@@ -1,5 +1,6 @@
+---@meta
 ---A representation of a font in Slate.
----@class FSlateFontInfo
+---@class FSlateFontInfo : Struct
 ---@field public FontObject UObject @The font object (valid when used from UMG or a Slate widget style asset)
 ---@field public FontMaterial UObject @The material to use when rendering this font
 ---@field public OutlineSettings FFontOutlineSettings @Settings for applying an outline to a font

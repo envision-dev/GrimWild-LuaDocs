@@ -1,3 +1,4 @@
+---@meta
 ---Enumerates different methods that a button can be triggered with keyboard/controller. Normally, DownAndUp is appropriate.
 ---@class EButtonPressMethod
 ---@field public DownAndUp EButtonPressMethod [0] User must press the button, then release while the button has focus to trigger the click. This is the most common type of button.

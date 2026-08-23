@@ -1,3 +1,4 @@
+---@meta
 ---The Side to use when scaling the UI.
 ---@class EUIScalingRule
 ---@field public ShortestSide EUIScalingRule [0] Evaluates the scale curve based on the shortest side of the viewport.

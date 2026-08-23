@@ -1,3 +1,4 @@
+---@meta
 ---@class UObjectUPropertyViewer : UDraggableWindow
 ---@field public VB_Content UVerticalBox
 ---@field public ObjectPtr TWeakObjectPtr<UObject>

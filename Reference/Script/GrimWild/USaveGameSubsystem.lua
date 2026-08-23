@@ -1,3 +1,4 @@
+---@meta
 ---Handles session and player data saving and loading.
 ---@class USaveGameSubsystem : UGameInstanceSubsystem
 ---@field protected PlayerData UPlayerData
@@ -11,9 +12,9 @@ function USaveGameSubsystem:GetPlayerData() end
 
 ---Loads a previously saved game world into GameWorld.
 ---Runs the three-phase load sequence:
----  Phase 0 — ScanSAssets: register save-session VAssets.
----  Phase 1 — Object creation + Initialize from saved data.
----  Phase 2 — BeginPlay on all created objects.
+---Phase 0 — ScanSAssets: register save-session VAssets.
+---Phase 1 — Object creation + Initialize from saved data.
+---Phase 2 — BeginPlay on all created objects.
 ---@param GameWorld UGameWorld
 ---@param SaveName string
 function USaveGameSubsystem:LoadGameWorld(GameWorld, SaveName) end

@@ -1,3 +1,4 @@
+---@meta
 ---For each pixel, reads the R channel of LiquidsTexture and outputs 1.0 (white / 255)
 ---if the stored value matches TargetId/255.0 within a half-step tolerance, or 0.0 otherwise.
 ---Input:  LiquidsTexture — R8 uint8 render target holding per-cell liquid ids.

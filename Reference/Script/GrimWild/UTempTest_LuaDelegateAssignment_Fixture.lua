@@ -1,3 +1,4 @@
+---@meta
 ---Delegates, native entry points and the Lua-to-C++ result channel used by
 ---UTempTest_LuaDelegateAssignment. Deliberately a plain UObject: the suite must create no actors,
 ---components or tick sources.

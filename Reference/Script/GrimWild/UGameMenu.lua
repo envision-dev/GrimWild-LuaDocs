@@ -1,3 +1,4 @@
+---@meta
 ---In-game pause menu widget.
 ---@class UGameMenu : UUserWidget
 ---@field protected B_Continue UGButton

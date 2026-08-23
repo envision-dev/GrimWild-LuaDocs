@@ -1,6 +1,7 @@
+---@meta
 ---A simple static text widget.
----* No Children
----* Text
+---No Children
+---Text
 ---@class UTextBlock : UTextLayoutWidget
 ---@field public Text string @The text to display
 ---@field public TextDelegate Delegate|fun(): string @A bindable delegate to allow logic to drive the text of the widget
@@ -33,7 +34,7 @@ function UTextBlock:GetText() end
 function UTextBlock:SetAutoWrapText(InAutoTextWrap) end
 
 ---Sets the color and opacity of the text in this text block
----@param InColorAndOpacity FSlateColor
+---@param InColorAndOpacity FSlateColor @The new text color and opacity
 function UTextBlock:SetColorAndOpacity(InColorAndOpacity) end
 
 ---Dynamically set the font info for this text block
@@ -51,16 +52,16 @@ function UTextBlock:SetFontOutlineMaterial(InMaterial) end
 function UTextBlock:SetMinDesiredWidth(InMinDesiredWidth) end
 
 ---Sets the opacity of the text in this text block
----@param InOpacity number
+---@param InOpacity number @The new text opacity
 function UTextBlock:SetOpacity(InOpacity) end
 
 ---Sets the color and opacity of the text drop shadow
 ---Note: if opacity is zero no shadow will be drawn
----@param InShadowColorAndOpacity FLinearColor
+---@param InShadowColorAndOpacity FLinearColor @The new drop shadow color and opacity
 function UTextBlock:SetShadowColorAndOpacity(InShadowColorAndOpacity) end
 
 ---Sets the offset that the text drop shadow should be drawn at
----@param InShadowOffset FVector2D
+---@param InShadowOffset FVector2D @The new offset
 function UTextBlock:SetShadowOffset(InShadowOffset) end
 
 ---Dynamically set the strike brush for this text block

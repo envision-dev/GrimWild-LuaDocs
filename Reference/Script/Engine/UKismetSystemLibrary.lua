@@ -1,3 +1,4 @@
+---@meta
 ---@class UKismetSystemLibrary : UBlueprintFunctionLibrary
 UKismetSystemLibrary = {}
 
@@ -7,30 +8,30 @@ UKismetSystemLibrary = {}
 function UKismetSystemLibrary.AddFloatHistorySample(Value, FloatHistory) end
 
 ---Begin a new undo transaction. An undo transaction is defined as all actions which take place when the user selects "undo" a single time.
----@param Context string
----@param Description string
----@param PrimaryObject UObject
+---@param Context string @The context for the undo session. Typically the tool/editor that caused the undo operation.
+---@param Description string @The description for the undo session. This is the text that will appear in the "Edit" menu next to the Undo item.
+---@param PrimaryObject UObject @The primary object that the undo session operators on (can be null, and mostly is).
 ---@return integer
 function UKismetSystemLibrary.BeginTransaction(Context, Description, PrimaryObject) end
 
 ---Returns an array of actors that overlap the given axis-aligned box.
 ---@param WorldContextObject UObject
----@param BoxPos FVector
----@param BoxExtent FVector
+---@param BoxPos FVector @Center of box.
+---@param BoxExtent FVector @Extents of box.
 ---@param ObjectTypes TArray<integer>
 ---@param ActorClassFilter TSubclassOf<UObject>
----@param ActorsToIgnore TArray<AActor>
----@param OutActors TArray<AActor> @[out, modified in place]
+---@param ActorsToIgnore TArray<AActor> @Ignore these actors in the list
+---@param OutActors TArray<AActor> @[out, modified in place] Returned array of actors. Unsorted.
 ---@return boolean
 function UKismetSystemLibrary.BoxOverlapActors(WorldContextObject, BoxPos, BoxExtent, ObjectTypes, ActorClassFilter, ActorsToIgnore, OutActors) end
 
 ---Returns an array of components that overlap the given axis-aligned box.
 ---@param WorldContextObject UObject
----@param BoxPos FVector
+---@param BoxPos FVector @Center of box.
 ---@param Extent FVector
 ---@param ObjectTypes TArray<integer>
 ---@param ComponentClassFilter TSubclassOf<UObject>
----@param ActorsToIgnore TArray<AActor>
+---@param ActorsToIgnore TArray<AActor> @Ignore these actors in the list
 ---@param OutComponents TArray<UPrimitiveComponent> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.BoxOverlapComponents(WorldContextObject, BoxPos, Extent, ObjectTypes, ComponentClassFilter, ActorsToIgnore, OutComponents) end
@@ -38,15 +39,15 @@ function UKismetSystemLibrary.BoxOverlapComponents(WorldContextObject, BoxPos, E
 ---Sweeps a box along the given line and returns all hits encountered.
 ---This trace finds the objects that RESPONDS to the given TraceChannel
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param HalfSize FVector
----@param Orientation FRotator
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param HalfSize FVector @Distance from the center of box along each axis
+---@param Orientation FRotator @Orientation of the box
 ---@param TraceChannel integer
----@param bTraceComplex boolean
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out, modified in place]
+---@param OutHits TArray<FHitResult> @[out, modified in place] A list of hits, sorted along the trace from start to finish. The blocking hit will be the last hit, if there was one.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -58,15 +59,15 @@ function UKismetSystemLibrary.BoxTraceMulti(WorldContextObject, Start, End, Half
 ---Results are sorted, so a blocking hit (if found) will be the last element of the array
 ---Only the single closest blocking result will be generated, no tests will be done after that
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param HalfSize FVector
----@param Orientation FRotator
----@param ProfileName string
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param HalfSize FVector @Distance from the center of box along each axis
+---@param Orientation FRotator @Orientation of the box
+---@param ProfileName string @The 'profile' used to determine which components to hit
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out, modified in place]
+---@param OutHits TArray<FHitResult> @[out, modified in place] A list of hits, sorted along the trace from start to finish. The blocking hit will be the last hit, if there was one.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -77,15 +78,15 @@ function UKismetSystemLibrary.BoxTraceMultiByProfile(WorldContextObject, Start, 
 ---Sweeps a box along the given line and returns all hits encountered.
 ---This only finds objects that are of a type specified by ObjectTypes.
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param HalfSize FVector
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param HalfSize FVector @Radius of the sphere to sweep
 ---@param Orientation FRotator
----@param ObjectTypes TArray<integer>
----@param bTraceComplex boolean
+---@param ObjectTypes TArray<integer> @Array of Object Types to trace
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out, modified in place]
+---@param OutHits TArray<FHitResult> @[out, modified in place] A list of hits, sorted along the trace from start to finish.  The blocking hit will be the last hit, if there was one.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -96,15 +97,15 @@ function UKismetSystemLibrary.BoxTraceMultiForObjects(WorldContextObject, Start,
 ---Sweeps a box along the given line and returns the first blocking hit encountered.
 ---This trace finds the objects that RESPONDS to the given TraceChannel
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param HalfSize FVector
----@param Orientation FRotator
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param HalfSize FVector @Distance from the center of box along each axis
+---@param Orientation FRotator @Orientation of the box
 ---@param TraceChannel integer
----@param bTraceComplex boolean
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place] Properties of the trace hit.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -114,15 +115,15 @@ function UKismetSystemLibrary.BoxTraceSingle(WorldContextObject, Start, End, Hal
 
 ---Sweep a box against the world and return the first blocking hit using a specific profile
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param HalfSize FVector
----@param Orientation FRotator
----@param ProfileName string
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param HalfSize FVector @Distance from the center of box along each axis
+---@param Orientation FRotator @Orientation of the box
+---@param ProfileName string @The 'profile' used to determine which components to hit
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place] Properties of the trace hit.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -133,15 +134,15 @@ function UKismetSystemLibrary.BoxTraceSingleByProfile(WorldContextObject, Start,
 ---Sweeps a box along the given line and returns the first hit encountered.
 ---This only finds objects that are of a type specified by ObjectTypes.
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param HalfSize FVector
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param HalfSize FVector @Radius of the sphere to sweep
 ---@param Orientation FRotator
----@param ObjectTypes TArray<integer>
----@param bTraceComplex boolean
+---@param ObjectTypes TArray<integer> @Array of Object Types to trace
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place] Properties of the trace hit.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -179,7 +180,7 @@ function UKismetSystemLibrary.BreakSoftObjectPath(InSoftObjectPath) end
 function UKismetSystemLibrary.BreakTopLevelAssetPath(TopLevelAssetPath) end
 
 ---Cancel the current transaction, and no longer capture actions to be placed in the undo buffer.
----@param Index integer
+---@param Index integer @The action counter to cancel transactions from (as returned by a call to BeginTransaction).
 function UKismetSystemLibrary.CancelTransaction(Index) end
 
 ---@param URL string
@@ -188,24 +189,24 @@ function UKismetSystemLibrary.CanLaunchURL(URL) end
 
 ---Returns an array of actors that overlap the given capsule.
 ---@param WorldContextObject UObject
----@param CapsulePos FVector
----@param Radius number
----@param HalfHeight number
+---@param CapsulePos FVector @Center of the capsule.
+---@param Radius number @Radius of capsule hemispheres and radius of center cylinder portion.
+---@param HalfHeight number @Half-height of the capsule (from center of capsule to tip of hemisphere.
 ---@param ObjectTypes TArray<integer>
 ---@param ActorClassFilter TSubclassOf<UObject>
----@param ActorsToIgnore TArray<AActor>
----@param OutActors TArray<AActor> @[out, modified in place]
+---@param ActorsToIgnore TArray<AActor> @Ignore these actors in the list
+---@param OutActors TArray<AActor> @[out, modified in place] Returned array of actors. Unsorted.
 ---@return boolean
 function UKismetSystemLibrary.CapsuleOverlapActors(WorldContextObject, CapsulePos, Radius, HalfHeight, ObjectTypes, ActorClassFilter, ActorsToIgnore, OutActors) end
 
 ---Returns an array of components that overlap the given capsule.
 ---@param WorldContextObject UObject
----@param CapsulePos FVector
----@param Radius number
----@param HalfHeight number
+---@param CapsulePos FVector @Center of the capsule.
+---@param Radius number @Radius of capsule hemispheres and radius of center cylinder portion.
+---@param HalfHeight number @Half-height of the capsule (from center of capsule to tip of hemisphere.
 ---@param ObjectTypes TArray<integer>
 ---@param ComponentClassFilter TSubclassOf<UObject>
----@param ActorsToIgnore TArray<AActor>
+---@param ActorsToIgnore TArray<AActor> @Ignore these actors in the list
 ---@param OutComponents TArray<UPrimitiveComponent> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.CapsuleOverlapComponents(WorldContextObject, CapsulePos, Radius, HalfHeight, ObjectTypes, ComponentClassFilter, ActorsToIgnore, OutComponents) end
@@ -213,15 +214,15 @@ function UKismetSystemLibrary.CapsuleOverlapComponents(WorldContextObject, Capsu
 ---Sweeps a capsule along the given line and returns all hits encountered up to and including the first blocking hit.
 ---This trace finds the objects that RESPOND to the given TraceChannel
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param Radius number
----@param HalfHeight number
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param Radius number @Radius of the capsule to sweep
+---@param HalfHeight number @Distance from center of capsule to tip of hemisphere endcap.
 ---@param TraceChannel integer
----@param bTraceComplex boolean
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out, modified in place]
+---@param OutHits TArray<FHitResult> @[out, modified in place] A list of hits, sorted along the trace from start to finish.  The blocking hit will be the last hit, if there was one.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -233,15 +234,15 @@ function UKismetSystemLibrary.CapsuleTraceMulti(WorldContextObject, Start, End, 
 ---Results are sorted, so a blocking hit (if found) will be the last element of the array
 ---Only the single closest blocking result will be generated, no tests will be done after that
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param Radius number
----@param HalfHeight number
----@param ProfileName string
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param Radius number @Radius of the capsule to sweep
+---@param HalfHeight number @Distance from center of capsule to tip of hemisphere endcap.
+---@param ProfileName string @The 'profile' used to determine which components to hit
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out, modified in place]
+---@param OutHits TArray<FHitResult> @[out, modified in place] A list of hits, sorted along the trace from start to finish.  The blocking hit will be the last hit, if there was one.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -252,15 +253,15 @@ function UKismetSystemLibrary.CapsuleTraceMultiByProfile(WorldContextObject, Sta
 ---Sweeps a capsule along the given line and returns all hits encountered.
 ---This only finds objects that are of a type specified by ObjectTypes.
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param Radius number
----@param HalfHeight number
----@param ObjectTypes TArray<integer>
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param Radius number @Radius of the capsule to sweep
+---@param HalfHeight number @Distance from center of capsule to tip of hemisphere endcap.
+---@param ObjectTypes TArray<integer> @Array of Object Types to trace
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out, modified in place]
+---@param OutHits TArray<FHitResult> @[out, modified in place] A list of hits, sorted along the trace from start to finish.  The blocking hit will be the last hit, if there was one.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -271,15 +272,15 @@ function UKismetSystemLibrary.CapsuleTraceMultiForObjects(WorldContextObject, St
 ---Sweeps a capsule along the given line and returns the first blocking hit encountered.
 ---This trace finds the objects that RESPOND to the given TraceChannel
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param Radius number
----@param HalfHeight number
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param Radius number @Radius of the capsule to sweep
+---@param HalfHeight number @Distance from center of capsule to tip of hemisphere endcap.
 ---@param TraceChannel integer
----@param bTraceComplex boolean
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place] Properties of the trace hit.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -289,15 +290,15 @@ function UKismetSystemLibrary.CapsuleTraceSingle(WorldContextObject, Start, End,
 
 ---Sweep a capsule against the world and return the first blocking hit using a specific profile
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param Radius number
----@param HalfHeight number
----@param ProfileName string
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param Radius number @Radius of the capsule to sweep
+---@param HalfHeight number @Distance from center of capsule to tip of hemisphere endcap.
+---@param ProfileName string @The 'profile' used to determine which components to hit
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place] Properties of the trace hit.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -308,15 +309,15 @@ function UKismetSystemLibrary.CapsuleTraceSingleByProfile(WorldContextObject, St
 ---Sweeps a capsule along the given line and returns the first hit encountered.
 ---This only finds objects that are of a type specified by ObjectTypes.
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param Radius number
----@param HalfHeight number
----@param ObjectTypes TArray<integer>
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param Radius number @Radius of the capsule to sweep
+---@param HalfHeight number @Distance from center of capsule to tip of hemisphere endcap.
+---@param ObjectTypes TArray<integer> @Array of Object Types to trace
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place] Properties of the trace hit.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -329,27 +330,27 @@ function UKismetSystemLibrary.CapsuleTraceSingleForObjects(WorldContextObject, S
 function UKismetSystemLibrary.CollectGarbage() end
 
 ---Returns an array of actors that overlap the given component.
----@param Component UPrimitiveComponent
----@param ComponentTransform FTransform
+---@param Component UPrimitiveComponent @Component to test with.
+---@param ComponentTransform FTransform @Defines where to place the component for overlap testing.
 ---@param ObjectTypes TArray<integer>
 ---@param ActorClassFilter TSubclassOf<UObject>
----@param ActorsToIgnore TArray<AActor>
----@param OutActors TArray<AActor> @[out, modified in place]
+---@param ActorsToIgnore TArray<AActor> @Ignore these actors in the list
+---@param OutActors TArray<AActor> @[out, modified in place] Returned array of actors. Unsorted.
 ---@return boolean
 function UKismetSystemLibrary.ComponentOverlapActors(Component, ComponentTransform, ObjectTypes, ActorClassFilter, ActorsToIgnore, OutActors) end
 
 ---Returns an array of components that overlap the given component.
----@param Component UPrimitiveComponent
----@param ComponentTransform FTransform
+---@param Component UPrimitiveComponent @Component to test with.
+---@param ComponentTransform FTransform @Defines where to place the component for overlap testing.
 ---@param ObjectTypes TArray<integer>
 ---@param ComponentClassFilter TSubclassOf<UObject>
----@param ActorsToIgnore TArray<AActor>
+---@param ActorsToIgnore TArray<AActor> @Ignore these actors in the list
 ---@param OutComponents TArray<UPrimitiveComponent> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.ComponentOverlapComponents(Component, ComponentTransform, ObjectTypes, ComponentClassFilter, ActorsToIgnore, OutComponents) end
 
 ---Allows or inhibits screensaver
----@param bAllowScreenSaver boolean
+---@param bAllowScreenSaver boolean @If false, don't allow screensaver if possible, otherwise allow default behavior
 function UKismetSystemLibrary.ControlScreensaver(bAllowScreenSaver) end
 
 ---@param Class TSubclassOf<UObject>
@@ -468,7 +469,7 @@ function UKismetSystemLibrary.DrawDebugArrow(WorldContextObject, LineStart, Line
 ---@param Center FVector
 ---@param Extent FVector
 ---@param LineColor FLinearColor
----@param Rotation FRotator
+---@param Rotation? FRotator @[default: ""]
 ---@param Duration? number @[default: 0.000000]
 ---@param Thickness? number @[default: 0.000000]
 function UKismetSystemLibrary.DrawDebugBox(WorldContextObject, Center, Extent, LineColor, Rotation, Duration, Thickness) end
@@ -651,8 +652,8 @@ function UKismetSystemLibrary.EqualEqual_SoftObjectReference(A, B) end
 
 ---Executes a console command, optionally on a specific controller
 ---@param WorldContextObject UObject
----@param Command string
----@param SpecificPlayer? APlayerController @[default: None]
+---@param Command string @Command to send to the console
+---@param SpecificPlayer? APlayerController @[default: None] If specified, the console command will be routed through the specified player
 function UKismetSystemLibrary.ExecuteConsoleCommand(WorldContextObject, Command, SpecificPlayer) end
 
 ---Removes all debug strings.
@@ -673,9 +674,9 @@ function UKismetSystemLibrary.ForceCloseAdBanner() end
 function UKismetSystemLibrary.GetActorBounds(Actor, Origin, BoxExtent) end
 
 ---Returns an array of unique actors represented by the given list of components.
----@param ComponentList TArray<UPrimitiveComponent>
+---@param ComponentList TArray<UPrimitiveComponent> @List of components.
 ---@param ActorClassFilter TSubclassOf<UObject>
----@param OutActorList TArray<AActor> @[out, modified in place]
+---@param OutActorList TArray<AActor> @[out, modified in place] Start of line segment.
 function UKismetSystemLibrary.GetActorListFromComponentList(ComponentList, ActorClassFilter, OutActorList) end
 
 ---Retrieves the total number of Ad IDs that can be selected between
@@ -717,22 +718,22 @@ function UKismetSystemLibrary.GetCommandLine() end
 function UKismetSystemLibrary.GetComponentBounds(Component, Origin, BoxExtent) end
 
 ---Evaluates, if it exists, whether the specified integer console variable has a non-zero value (true) or not (false).
----@param VariableName string
+---@param VariableName string @Name of the console variable to find.
 ---@return boolean
 function UKismetSystemLibrary.GetConsoleVariableBoolValue(VariableName) end
 
 ---Attempts to retrieve the value of the specified float console variable, if it exists.
----@param VariableName string
+---@param VariableName string @Name of the console variable to find.
 ---@return number
 function UKismetSystemLibrary.GetConsoleVariableFloatValue(VariableName) end
 
 ---Attempts to retrieve the value of the specified integer console variable, if it exists.
----@param VariableName string
+---@param VariableName string @Name of the console variable to find.
 ---@return integer
 function UKismetSystemLibrary.GetConsoleVariableIntValue(VariableName) end
 
 ---Attempts to retrieve the value of the specified string console variable, if it exists.
----@param VariableName string
+---@param VariableName string @Name of the console variable to find.
 ---@return string
 function UKismetSystemLibrary.GetConsoleVariableStringValue(VariableName) end
 
@@ -750,16 +751,16 @@ function UKismetSystemLibrary.GetConvenientWindowedResolutions(Resolutions) end
 function UKismetSystemLibrary.GetCurrentBundleState(PrimaryAssetId, bForceCurrentState, OutBundles) end
 
 ---Get the default language (for localization) used by this platform
---- - A two-letter ISO 639-1 language code (eg, "zh")
---- - An optional four-letter ISO 15924 script code (eg, "Hans")
---- - An optional two-letter ISO 3166-1 country code (eg, "CN")
+---- A two-letter ISO 639-1 language code (eg, "zh")
+---- An optional four-letter ISO 15924 script code (eg, "Hans")
+---- An optional two-letter ISO 3166-1 country code (eg, "CN")
 ---@return string
 function UKismetSystemLibrary.GetDefaultLanguage() end
 
 ---Get the default locale (for internationalization) used by this platform
---- - A two-letter ISO 639-1 language code (eg, "zh")
---- - An optional four-letter ISO 15924 script code (eg, "Hans")
---- - An optional two-letter ISO 3166-1 country code (eg, "CN")
+---- A two-letter ISO 639-1 language code (eg, "zh")
+---- An optional four-letter ISO 15924 script code (eg, "Hans")
+---- An optional two-letter ISO 3166-1 country code (eg, "CN")
 ---@return string
 function UKismetSystemLibrary.GetDefaultLocale() end
 
@@ -773,13 +774,6 @@ function UKismetSystemLibrary.GetDeviceId() end
 ---@param Object UObject
 ---@return string
 function UKismetSystemLibrary.GetDisplayName(Object) end
-
----Attempts to retrieve the value of a named property from the given object.
----@param Object UObject @The object you want to retrieve a property value from.
----@param PropertyName string @The name of the object property to retrieve the value from.
----@return boolean
----@return integer PropertyValue @The retrieved property value, if found.
-function UKismetSystemLibrary.GetEditorProperty(Object, PropertyName) end
 
 ---Engine build number, for displaying to end users.
 ---@return string
@@ -814,7 +808,7 @@ function UKismetSystemLibrary.GetGamepadButtonGlyph(ButtonKey, ControllerIndex) 
 function UKismetSystemLibrary.GetGamepadControllerName(ControllerId) end
 
 ---Get the current game time, in seconds. This stops when the game is paused and is affected by slomo.
----@param WorldContextObject UObject
+---@param WorldContextObject UObject @World context
 ---@return number
 function UKismetSystemLibrary.GetGameTimeInSeconds(WorldContextObject) end
 
@@ -853,13 +847,6 @@ function UKismetSystemLibrary.GetOuterObject(Object) end
 ---@param Object UObject
 ---@return string
 function UKismetSystemLibrary.GetPathName(Object) end
-
----Returns the current platform time in seconds. Not coupled to any gameplay or other containerization logic - this
----function is useful for timing execution time or timestamping data. Marked as callable rather than pure because
----implicit evaluation may be confusing, both for blueprint authors and blueprint readers. For implicit execution
----simply wrap it in a blueprint pure function.
----@return number
-function UKismetSystemLibrary.GetPlatformTime_Seconds() end
 
 ---Get the current user dir from the OS
 ---@return string
@@ -1076,12 +1063,12 @@ function UKismetSystemLibrary.IsValidSoftObjectReference(SoftObjectReference) en
 
 ---Clears a set timer.
 ---@param WorldContextObject UObject
----@param Handle FTimerHandle @[out, modified in place]
+---@param Handle FTimerHandle @[out, modified in place] The handle of the timer to clear.
 function UKismetSystemLibrary.K2_ClearAndInvalidateTimerHandle(WorldContextObject, Handle) end
 
 ---Clears a set timer.
----@param Object UObject
----@param FunctionName string
+---@param Object UObject @Object that implements the delegate function. Defaults to self (this blueprint)
+---@param FunctionName string @Delegate function name. Can be a K2 function or a Custom Event.
 function UKismetSystemLibrary.K2_ClearTimer(Object, FunctionName) end
 
 ---Clears a set timer.
@@ -1090,12 +1077,12 @@ function UKismetSystemLibrary.K2_ClearTimerDelegate(Delegate) end
 
 ---Clears a set timer.
 ---@param WorldContextObject UObject
----@param Handle FTimerHandle
+---@param Handle FTimerHandle @The handle of the timer to clear.
 function UKismetSystemLibrary.K2_ClearTimerHandle(WorldContextObject, Handle) end
 
 ---Returns elapsed time for the given delegate (time since current countdown iteration began).
----@param Object UObject
----@param FunctionName string
+---@param Object UObject @Object that implements the delegate function. Defaults to self (this blueprint)
+---@param FunctionName string @Delegate function name. Can be a K2 function or a Custom Event.
 ---@return number
 function UKismetSystemLibrary.K2_GetTimerElapsedTime(Object, FunctionName) end
 
@@ -1106,13 +1093,13 @@ function UKismetSystemLibrary.K2_GetTimerElapsedTimeDelegate(Delegate) end
 
 ---Returns elapsed time for the given handle (time since current countdown iteration began).
 ---@param WorldContextObject UObject
----@param Handle FTimerHandle
+---@param Handle FTimerHandle @The handle of the timer to get the elapsed time of.
 ---@return number
 function UKismetSystemLibrary.K2_GetTimerElapsedTimeHandle(WorldContextObject, Handle) end
 
 ---Returns time until the timer will next execute its delegate.
----@param Object UObject
----@param FunctionName string
+---@param Object UObject @Object that implements the delegate function. Defaults to self (this blueprint)
+---@param FunctionName string @Delegate function name. Can be a K2 function or a Custom Event.
 ---@return number
 function UKismetSystemLibrary.K2_GetTimerRemainingTime(Object, FunctionName) end
 
@@ -1123,18 +1110,18 @@ function UKismetSystemLibrary.K2_GetTimerRemainingTimeDelegate(Delegate) end
 
 ---Returns time until the timer will next execute its handle.
 ---@param WorldContextObject UObject
----@param Handle FTimerHandle
+---@param Handle FTimerHandle @The handle of the timer to time remaining of.
 ---@return number
 function UKismetSystemLibrary.K2_GetTimerRemainingTimeHandle(WorldContextObject, Handle) end
 
 ---Invalidate the supplied TimerHandle and return it.
----@param Handle FTimerHandle @[out, modified in place]
+---@param Handle FTimerHandle @[out, modified in place] The handle of the timer to invalidate.
 ---@return FTimerHandle
 function UKismetSystemLibrary.K2_InvalidateTimerHandle(Handle) end
 
 ---Returns true if a timer exists and is active for the given delegate, false otherwise.
----@param Object UObject
----@param FunctionName string
+---@param Object UObject @Object that implements the delegate function. Defaults to self (this blueprint)
+---@param FunctionName string @Delegate function name. Can be a K2 function or a Custom Event.
 ---@return boolean
 function UKismetSystemLibrary.K2_IsTimerActive(Object, FunctionName) end
 
@@ -1145,13 +1132,13 @@ function UKismetSystemLibrary.K2_IsTimerActiveDelegate(Delegate) end
 
 ---Returns true if a timer exists and is active for the given handle, false otherwise.
 ---@param WorldContextObject UObject
----@param Handle FTimerHandle
+---@param Handle FTimerHandle @The handle of the timer to check whether it is active.
 ---@return boolean
 function UKismetSystemLibrary.K2_IsTimerActiveHandle(WorldContextObject, Handle) end
 
 ---Returns true if a timer exists and is paused for the given delegate, false otherwise.
----@param Object UObject
----@param FunctionName string
+---@param Object UObject @Object that implements the delegate function. Defaults to self (this blueprint)
+---@param FunctionName string @Delegate function name. Can be a K2 function or a Custom Event.
 ---@return boolean
 function UKismetSystemLibrary.K2_IsTimerPaused(Object, FunctionName) end
 
@@ -1162,18 +1149,18 @@ function UKismetSystemLibrary.K2_IsTimerPausedDelegate(Delegate) end
 
 ---Returns true if a timer exists and is paused for the given handle, false otherwise.
 ---@param WorldContextObject UObject
----@param Handle FTimerHandle
+---@param Handle FTimerHandle @The handle of the timer to check whether it is paused.
 ---@return boolean
 function UKismetSystemLibrary.K2_IsTimerPausedHandle(WorldContextObject, Handle) end
 
 ---Returns whether the timer handle is valid. This does not indicate that there is an active timer that this handle references, but rather that it once referenced a valid timer.
----@param Handle FTimerHandle
+---@param Handle FTimerHandle @The handle of the timer to check validity of.
 ---@return boolean
 function UKismetSystemLibrary.K2_IsValidTimerHandle(Handle) end
 
 ---Pauses a set timer at its current elapsed time.
----@param Object UObject
----@param FunctionName string
+---@param Object UObject @Object that implements the delegate function. Defaults to self (this blueprint)
+---@param FunctionName string @Delegate function name. Can be a K2 function or a Custom Event.
 function UKismetSystemLibrary.K2_PauseTimer(Object, FunctionName) end
 
 ---Pauses a set timer at its current elapsed time.
@@ -1182,31 +1169,31 @@ function UKismetSystemLibrary.K2_PauseTimerDelegate(Delegate) end
 
 ---Pauses a set timer at its current elapsed time.
 ---@param WorldContextObject UObject
----@param Handle FTimerHandle
+---@param Handle FTimerHandle @The handle of the timer to pause.
 function UKismetSystemLibrary.K2_PauseTimerHandle(WorldContextObject, Handle) end
 
 ---Set a timer to execute delegate. Setting an existing timer will reset that timer with updated parameters.
----@param Object UObject
----@param FunctionName string
----@param Time number
----@param bLooping boolean
----@param InitialStartDelay? number @[default: 0.000000]
----@param InitialStartDelayVariance? number @[default: 0.000000]
+---@param Object UObject @Object that implements the delegate function. Defaults to self (this blueprint)
+---@param FunctionName string @Delegate function name. Can be a K2 function or a Custom Event.
+---@param Time number @How long to wait before executing the delegate, in seconds. Setting a timer to <= 0 seconds will clear it if it is set.
+---@param bLooping boolean @true to keep executing the delegate every Time seconds, false to execute delegate only once.
+---@param InitialStartDelay? number @[default: 0.000000] Initial delay passed to the timer manager to allow some variance in when the timer starts, in seconds.
+---@param InitialStartDelayVariance? number @[default: 0.000000] Use this to add some variance to when the timer starts in lieu of doing a random range on the InitialStartDelay input, in seconds.
 ---@return FTimerHandle
 function UKismetSystemLibrary.K2_SetTimer(Object, FunctionName, Time, bLooping, InitialStartDelay, InitialStartDelayVariance) end
 
 ---Set a timer to execute delegate. Setting an existing timer will reset that timer with updated parameters.
 ---@param Delegate fun()
----@param Time number
----@param bLooping boolean
----@param InitialStartDelay? number @[default: 0.000000]
----@param InitialStartDelayVariance? number @[default: 0.000000]
+---@param Time number @How long to wait before executing the delegate, in seconds. Setting a timer to <= 0 seconds will clear it if it is set.
+---@param bLooping boolean @True to keep executing the delegate every Time seconds, false to execute delegate only once.
+---@param InitialStartDelay? number @[default: 0.000000] Initial delay passed to the timer manager, in seconds.
+---@param InitialStartDelayVariance? number @[default: 0.000000] Use this to add some variance to when the timer starts in lieu of doing a random range on the InitialStartDelay input, in seconds.
 ---@return FTimerHandle
 function UKismetSystemLibrary.K2_SetTimerDelegate(Delegate, Time, bLooping, InitialStartDelay, InitialStartDelayVariance) end
 
 ---Set a timer to execute a delegate on the next tick.
----@param Object UObject
----@param FunctionName string
+---@param Object UObject @Object that implements the delegate function. Defaults to self (this blueprint)
+---@param FunctionName string @Delegate function name. Can be a K2 function or a Custom Event.
 ---@return FTimerHandle
 function UKismetSystemLibrary.K2_SetTimerForNextTick(Object, FunctionName) end
 
@@ -1216,8 +1203,8 @@ function UKismetSystemLibrary.K2_SetTimerForNextTick(Object, FunctionName) end
 function UKismetSystemLibrary.K2_SetTimerForNextTickDelegate(Delegate) end
 
 ---Returns true is a timer for the given delegate exists, false otherwise.
----@param Object UObject
----@param FunctionName string
+---@param Object UObject @Object that implements the delegate function. Defaults to self (this blueprint)
+---@param FunctionName string @Delegate function name. Can be a K2 function or a Custom Event.
 ---@return boolean
 function UKismetSystemLibrary.K2_TimerExists(Object, FunctionName) end
 
@@ -1228,13 +1215,13 @@ function UKismetSystemLibrary.K2_TimerExistsDelegate(Delegate) end
 
 ---Returns true is a timer for the given handle exists, false otherwise.
 ---@param WorldContextObject UObject
----@param Handle FTimerHandle
+---@param Handle FTimerHandle @The handle to check whether it exists.
 ---@return boolean
 function UKismetSystemLibrary.K2_TimerExistsHandle(WorldContextObject, Handle) end
 
 ---Resumes a paused timer from its current elapsed time.
----@param Object UObject
----@param FunctionName string
+---@param Object UObject @Object that implements the delegate function. Defaults to self (this blueprint)
+---@param FunctionName string @Delegate function name. Can be a K2 function or a Custom Event.
 function UKismetSystemLibrary.K2_UnPauseTimer(Object, FunctionName) end
 
 ---Resumes a paused timer from its current elapsed time.
@@ -1243,7 +1230,7 @@ function UKismetSystemLibrary.K2_UnPauseTimerDelegate(Delegate) end
 
 ---Resumes a paused timer from its current elapsed time.
 ---@param WorldContextObject UObject
----@param Handle FTimerHandle
+---@param Handle FTimerHandle @The handle of the timer to unpause.
 function UKismetSystemLibrary.K2_UnPauseTimerHandle(WorldContextObject, Handle) end
 
 ---Opens the specified URL in the platform's web browser of choice
@@ -1253,10 +1240,10 @@ function UKismetSystemLibrary.LaunchURL(URL) end
 ---Does a collision trace along the given line and returns all hits encountered up to and including the first blocking hit.
 ---This trace finds the objects that RESPOND to the given TraceChannel
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param TraceChannel integer
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param TraceChannel integer @The channel to trace
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
 ---@param OutHits TArray<FHitResult> @[out, modified in place]
@@ -1271,10 +1258,10 @@ function UKismetSystemLibrary.LineTraceMulti(WorldContextObject, Start, End, Tra
 ---Results are sorted, so a blocking hit (if found) will be the last element of the array
 ---Only the single closest blocking result will be generated, no tests will be done after that
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param ProfileName string
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param ProfileName string @The 'profile' used to determine which components to hit
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
 ---@param OutHits TArray<FHitResult> @[out, modified in place]
@@ -1288,10 +1275,10 @@ function UKismetSystemLibrary.LineTraceMultiByProfile(WorldContextObject, Start,
 ---Does a collision trace along the given line and returns all hits encountered.
 ---This only finds objects that are of a type specified by ObjectTypes.
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param ObjectTypes TArray<integer>
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param ObjectTypes TArray<integer> @Array of Object Types to trace
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
 ---@param OutHits TArray<FHitResult> @[out, modified in place]
@@ -1305,13 +1292,13 @@ function UKismetSystemLibrary.LineTraceMultiForObjects(WorldContextObject, Start
 ---Does a collision trace along the given line and returns the first blocking hit encountered.
 ---This trace finds the objects that RESPONDS to the given TraceChannel
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
 ---@param TraceChannel integer
----@param bTraceComplex boolean
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place] Properties of the trace hit.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1321,13 +1308,13 @@ function UKismetSystemLibrary.LineTraceSingle(WorldContextObject, Start, End, Tr
 
 ---Trace a ray against the world using a specific profile and return the first blocking hit
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param ProfileName string
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param ProfileName string @The 'profile' used to determine which components to hit
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place] Properties of the trace hit.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1338,13 +1325,13 @@ function UKismetSystemLibrary.LineTraceSingleByProfile(WorldContextObject, Start
 ---Does a collision trace along the given line and returns the first hit encountered.
 ---This only finds objects that are of a type specified by ObjectTypes.
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param ObjectTypes TArray<integer>
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param ObjectTypes TArray<integer> @Array of Object Types to trace
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place] Properties of the trace hit.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1379,8 +1366,8 @@ function UKismetSystemLibrary.LoadInterstitialAd(AdIdIndex) end
 
 ---Prints a string to the log
 ---If Print To Log is true, it will be visible in the Output Log window.  Otherwise it will be logged only as 'Verbose', so it generally won't show up.
----@param InString? string @[default: Hello]
----@param bPrintToLog? boolean @[default: true]
+---@param InString? string @[default: Hello] The string to log out
+---@param bPrintToLog? boolean @[default: true] Whether or not to print the output to the log
 function UKismetSystemLibrary.LogString(InString, bPrintToLog) end
 
 ---Builds an ARFilter struct. You should be using ClassPaths and RecursiveClassPathsExclusionSet, ClassNames and RecursiveClassesExclusionSet are deprecated.
@@ -1398,42 +1385,42 @@ function UKismetSystemLibrary.LogString(InString, bPrintToLog) end
 function UKismetSystemLibrary.MakeARFilter(PackageNames, PackagePaths, SoftObjectPaths, ClassPaths, RecursiveClassPathsExclusionSet, ClassNames, RecursiveClassesExclusionSet, bRecursivePaths, bRecursiveClasses, bIncludeOnlyOnDiskAssets) end
 
 ---Creates a literal bool
----@param Value boolean
+---@param Value boolean @value to set the bool to
 ---@return boolean
 function UKismetSystemLibrary.MakeLiteralBool(Value) end
 
 ---Creates a literal byte
----@param Value integer
+---@param Value integer @value to set the byte to
 ---@return integer
 function UKismetSystemLibrary.MakeLiteralByte(Value) end
 
 ---Creates a literal float (double-precision)
----@param Value number
+---@param Value number @value to set the float (double-precision) to
 ---@return number
 function UKismetSystemLibrary.MakeLiteralDouble(Value) end
 
 ---Creates a literal integer
----@param Value integer
+---@param Value integer @value to set the integer to
 ---@return integer
 function UKismetSystemLibrary.MakeLiteralInt(Value) end
 
 ---Creates a literal 64-bit integer
----@param Value integer
+---@param Value integer @value to set the 64-bit integer to
 ---@return integer
 function UKismetSystemLibrary.MakeLiteralInt64(Value) end
 
 ---Creates a literal name
----@param Value string
+---@param Value string @value to set the name to
 ---@return string
 function UKismetSystemLibrary.MakeLiteralName(Value) end
 
 ---Creates a literal string
----@param Value string
+---@param Value string @value to set the string to
 ---@return string
 function UKismetSystemLibrary.MakeLiteralString(Value) end
 
 ---Creates a literal FText
----@param Value string
+---@param Value string @value to set the FText to
 ---@return string
 function UKismetSystemLibrary.MakeLiteralText(Value) end
 
@@ -1454,24 +1441,15 @@ function UKismetSystemLibrary.MakeSoftObjectPath(PathString) end
 ---@return FTopLevelAssetPath
 function UKismetSystemLibrary.MakeTopLevelAssetPath(PackageName, AssetName) end
 
----* Interpolate a component to the specified relative location and rotation over the course of OverTime seconds.
----* @@param Component                                             Component to interpolate
----* @@param TargetRelativeLocation                Relative target location
----* @@param TargetRelativeRotation                Relative target rotation
----* @@param bEaseOut                                              if true we will ease out (ie end slowly) during interpolation
----* @@param bEaseIn                                               if true we will ease in (ie start slowly) during interpolation
----* @@param OverTime                                              duration of interpolation
----* @@param bForceShortestRotationPath    if true we will always use the shortest path for rotation
----* @@param MoveAction                                    required movement behavior @@see EMoveComponentAction
----* @@param LatentInfo                                    The latent action
----@param Component USceneComponent
----@param TargetRelativeLocation FVector
----@param TargetRelativeRotation FRotator
----@param bEaseOut boolean
----@param bEaseIn boolean
----@param OverTime number
----@param bForceShortestRotationPath boolean
----@param MoveAction integer
+---Interpolate a component to the specified relative location and rotation over the course of OverTime seconds.
+---@param Component USceneComponent @Component to interpolate
+---@param TargetRelativeLocation FVector @Relative target location
+---@param TargetRelativeRotation FRotator @Relative target rotation
+---@param bEaseOut boolean @if true we will ease out (ie end slowly) during interpolation
+---@param bEaseIn boolean @if true we will ease in (ie start slowly) during interpolation
+---@param OverTime number @duration of interpolation
+---@param bForceShortestRotationPath boolean @if true we will always use the shortest path for rotation
+---@param MoveAction integer @required movement behavior @see EMoveComponentAction
 function UKismetSystemLibrary.MoveComponentTo(Component, TargetRelativeLocation, TargetRelativeRotation, bEaseOut, bEaseIn, OverTime, bForceShortestRotationPath, MoveAction) end
 
 ---Convert all / and \ to TEXT("/")
@@ -1509,13 +1487,8 @@ function UKismetSystemLibrary:OnAssetClassLoaded__DelegateSignature(Loaded) end
 ---@param Loaded UObject
 function UKismetSystemLibrary:OnAssetLoaded__DelegateSignature(Loaded) end
 
----* Parses the given string into loose tokens, switches (arguments that begin with - or /) and parameters (-mySwitch=myVar)
----*
----* @@param        InCmdLine                       The the string to parse (ie '-foo -bar=/game/baz testtoken' )
----* @@param        OutTokens[out]          Filled with all loose tokens found in the string (ie: testToken in above example)
----* @@param        OutSwitches[out]        Filled with all switches found in the string (ie -foo)
----* @@param        OutParams[out]          Filled with all switches found in the string with the format key = value (ie: -bar, /game/baz)
----@param InCmdLine string
+---Parses the given string into loose tokens, switches (arguments that begin with - or /) and parameters (-mySwitch=myVar)
+---@param InCmdLine string @The the string to parse (ie '-foo -bar=/game/baz testtoken' )
 ---@param OutTokens TArray<string> @[out, modified in place]
 ---@param OutSwitches TArray<string> @[out, modified in place]
 ---@param OutParams TMap<string, string> @[out, modified in place]
@@ -1537,38 +1510,35 @@ function UKismetSystemLibrary.ParseParamValue(InString, InParam) end
 ---Prints a string to the log, and optionally, to the screen
 ---If Print To Log is true, it will be visible in the Output Log window.  Otherwise it will be logged only as 'Verbose', so it generally won't show up.
 ---@param WorldContextObject UObject
----@param InString? string @[default: Hello]
----@param bPrintToScreen? boolean @[default: true]
----@param bPrintToLog? boolean @[default: true]
----@param TextColor? FLinearColor @[default: (R=0.000000,G=0.660000,B=1.000000,A=1.000000)]
----@param Duration? number @[default: 2.000000]
----@param Key? string @[default: None]
+---@param InString? string @[default: Hello] The string to log out
+---@param bPrintToScreen? boolean @[default: true] Whether or not to print the output to the screen
+---@param bPrintToLog? boolean @[default: true] Whether or not to print the output to the log
+---@param TextColor? FLinearColor @[default: (R=0.000000,G=0.660000,B=1.000000,A=1.000000)] The color of the text to display
+---@param Duration? number @[default: 2.000000] The display duration (if Print to Screen is True). Using negative number will result in loading the duration time from the config.
+---@param Key? string @[default: None] If a non-empty key is provided, the message will replace any existing on-screen messages with the same key.
 function UKismetSystemLibrary.PrintString(WorldContextObject, InString, bPrintToScreen, bPrintToLog, TextColor, Duration, Key) end
 
 ---Prints text to the log, and optionally, to the screen
 ---If Print To Log is true, it will be visible in the Output Log window.  Otherwise it will be logged only as 'Verbose', so it generally won't show up.
 ---@param WorldContextObject UObject
----@param InText? string @[default: INVTEXT("Hello")]
----@param bPrintToScreen? boolean @[default: true]
----@param bPrintToLog? boolean @[default: true]
----@param TextColor? FLinearColor @[default: (R=0.000000,G=0.660000,B=1.000000,A=1.000000)]
----@param Duration? number @[default: 2.000000]
----@param Key? string @[default: None]
+---@param InText? string @[default: INVTEXT("Hello")] The text to log out
+---@param bPrintToScreen? boolean @[default: true] Whether or not to print the output to the screen
+---@param bPrintToLog? boolean @[default: true] Whether or not to print the output to the log
+---@param TextColor? FLinearColor @[default: (R=0.000000,G=0.660000,B=1.000000,A=1.000000)] The color of the text to display
+---@param Duration? number @[default: 2.000000] The display duration (if Print to Screen is True). Using negative number will result in loading the duration time from the config.
+---@param Key? string @[default: None] If a non-empty key is provided, the message will replace any existing on-screen messages with the same key.
 function UKismetSystemLibrary.PrintText(WorldContextObject, InText, bPrintToScreen, bPrintToLog, TextColor, Duration, Key) end
 
 ---Prints a warning string to the log and the screen. Meant to be used as a way to inform the user that they misused the node.
 ---WARNING!! Don't change the signature of this function without fixing up all nodes using it in the compiler
----@param InString string
+---@param InString string @The string to log out
 function UKismetSystemLibrary.PrintWarning(InString) end
-
----Exit the editor
-function UKismetSystemLibrary.QuitEditor() end
 
 ---Exit the current game
 ---@param WorldContextObject UObject
----@param SpecificPlayer APlayerController
----@param QuitPreference integer
----@param bIgnorePlatformRestrictions boolean
+---@param SpecificPlayer APlayerController @The specific player to quit the game. If not specified, player 0 will quit.
+---@param QuitPreference integer @Form of quitting.
+---@param bIgnorePlatformRestrictions boolean @Ignores and best-practices based on platform (e.g on some consoles, games should never quit). Non-shipping only
 function UKismetSystemLibrary.QuitGame(WorldContextObject, SpecificPlayer, QuitPreference, bIgnorePlatformRestrictions) end
 
 ---Requests permission to send remote notifications to the user's device.
@@ -1578,7 +1548,7 @@ function UKismetSystemLibrary.RegisterForRemoteNotifications() end
 ---Resets the gamepad to player controller id assignments (Android and iOS only)
 function UKismetSystemLibrary.ResetGamepadAssignments() end
 
----* Resets the gamepad assignment to player controller id (Android and iOS only)
+---Resets the gamepad assignment to player controller id (Android and iOS only)
 ---@param ControllerId integer
 function UKismetSystemLibrary.ResetGamepadAssignmentToController(ControllerId) end
 
@@ -1623,18 +1593,10 @@ function UKismetSystemLibrary.SetColorPropertyByName(Object, PropertyName, Value
 ---@param Value number
 function UKismetSystemLibrary.SetDoublePropertyByName(Object, PropertyName, Value) end
 
----Attempts to set the value of a named property on the given object.
----@param Object UObject @The object you want to set a property value on.
----@param PropertyName string @The name of the object property to set the value of.
----@param PropertyValue integer @The property value to set.
----@param ChangeNotifyMode EPropertyAccessChangeNotifyMode @When to emit property change notifications.
----@return boolean
-function UKismetSystemLibrary.SetEditorProperty(Object, PropertyName, PropertyValue, ChangeNotifyMode) end
-
 ---Set a SOFTOBJECT property by name
 ---@param Object UObject
 ---@param PropertyName string
----@param Value Unknown
+---@param Value any
 function UKismetSystemLibrary.SetFieldPathPropertyByName(Object, PropertyName, Value) end
 
 ---Sets whether attached gamepads will block feedback from the device itself (Mobile only).
@@ -1708,7 +1670,7 @@ function UKismetSystemLibrary.SetStringPropertyByName(Object, PropertyName, Valu
 function UKismetSystemLibrary.SetStructurePropertyByName(Object, PropertyName, Value) end
 
 ---Sets the state of the transition message rendered by the viewport. (The blue text displayed when the game is paused and so forth.)
----@param WorldContextObject UObject
+---@param WorldContextObject UObject @World context
 ---@param bState boolean
 function UKismetSystemLibrary.SetSuppressViewportTransitionMessage(WorldContextObject, bState) end
 
@@ -1741,7 +1703,7 @@ function UKismetSystemLibrary.SetVector3fPropertyByName(Object, PropertyName, Va
 function UKismetSystemLibrary.SetVectorPropertyByName(Object, PropertyName, Value) end
 
 ---Allows or inhibits system default handling of volume up and volume down buttons (Android only)
----@param bEnabled boolean
+---@param bEnabled boolean @If true, allow Android to handle volume up and down events
 function UKismetSystemLibrary.SetVolumeButtonsHandledBySystem(bEnabled) end
 
 ---Sets the game window title
@@ -1767,27 +1729,27 @@ function UKismetSystemLibrary.ShowPlatformSpecificAchievementsScreen(SpecificPla
 function UKismetSystemLibrary.ShowPlatformSpecificLeaderboardScreen(CategoryName) end
 
 ---Notify the current transaction (if any) that this object is about to be modified and should be snapshot for intermediate update.
----@param Object UObject
+---@param Object UObject @The object that is about to be modified.
 function UKismetSystemLibrary.SnapshotObject(Object) end
 
 ---Returns an array of actors that overlap the given sphere.
 ---@param WorldContextObject UObject
----@param SpherePos FVector
----@param SphereRadius number
+---@param SpherePos FVector @Center of sphere.
+---@param SphereRadius number @Size of sphere.
 ---@param ObjectTypes TArray<integer>
 ---@param ActorClassFilter TSubclassOf<UObject>
----@param ActorsToIgnore TArray<AActor>
----@param OutActors TArray<AActor> @[out, modified in place]
+---@param ActorsToIgnore TArray<AActor> @Ignore these actors in the list
+---@param OutActors TArray<AActor> @[out, modified in place] Returned array of actors. Unsorted.
 ---@return boolean
 function UKismetSystemLibrary.SphereOverlapActors(WorldContextObject, SpherePos, SphereRadius, ObjectTypes, ActorClassFilter, ActorsToIgnore, OutActors) end
 
 ---Returns an array of components that overlap the given sphere.
 ---@param WorldContextObject UObject
----@param SpherePos FVector
----@param SphereRadius number
+---@param SpherePos FVector @Center of sphere.
+---@param SphereRadius number @Size of sphere.
 ---@param ObjectTypes TArray<integer>
 ---@param ComponentClassFilter TSubclassOf<UObject>
----@param ActorsToIgnore TArray<AActor>
+---@param ActorsToIgnore TArray<AActor> @Ignore these actors in the list
 ---@param OutComponents TArray<UPrimitiveComponent> @[out, modified in place]
 ---@return boolean
 function UKismetSystemLibrary.SphereOverlapComponents(WorldContextObject, SpherePos, SphereRadius, ObjectTypes, ComponentClassFilter, ActorsToIgnore, OutComponents) end
@@ -1795,14 +1757,14 @@ function UKismetSystemLibrary.SphereOverlapComponents(WorldContextObject, Sphere
 ---Sweeps a sphere along the given line and returns all hits encountered up to and including the first blocking hit.
 ---This trace finds the objects that RESPOND to the given TraceChannel
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param Radius number
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param Radius number @Radius of the sphere to sweep
 ---@param TraceChannel integer
----@param bTraceComplex boolean
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out, modified in place]
+---@param OutHits TArray<FHitResult> @[out, modified in place] A list of hits, sorted along the trace from start to finish.  The blocking hit will be the last hit, if there was one.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1814,14 +1776,14 @@ function UKismetSystemLibrary.SphereTraceMulti(WorldContextObject, Start, End, R
 ---Results are sorted, so a blocking hit (if found) will be the last element of the array
 ---Only the single closest blocking result will be generated, no tests will be done after that
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param Radius number
----@param ProfileName string
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param Radius number @Radius of the sphere to sweep
+---@param ProfileName string @The 'profile' used to determine which components to hit
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out, modified in place]
+---@param OutHits TArray<FHitResult> @[out, modified in place] A list of hits, sorted along the trace from start to finish.  The blocking hit will be the last hit, if there was one.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1832,14 +1794,14 @@ function UKismetSystemLibrary.SphereTraceMultiByProfile(WorldContextObject, Star
 ---Sweeps a sphere along the given line and returns all hits encountered.
 ---This only finds objects that are of a type specified by ObjectTypes.
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param Radius number
----@param ObjectTypes TArray<integer>
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param Radius number @Radius of the sphere to sweep
+---@param ObjectTypes TArray<integer> @Array of Object Types to trace
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHits TArray<FHitResult> @[out, modified in place]
+---@param OutHits TArray<FHitResult> @[out, modified in place] A list of hits, sorted along the trace from start to finish.  The blocking hit will be the last hit, if there was one.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1850,14 +1812,14 @@ function UKismetSystemLibrary.SphereTraceMultiForObjects(WorldContextObject, Sta
 ---Sweeps a sphere along the given line and returns the first blocking hit encountered.
 ---This trace finds the objects that RESPONDS to the given TraceChannel
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param Radius number
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param Radius number @Radius of the sphere to sweep
 ---@param TraceChannel integer
----@param bTraceComplex boolean
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place] Properties of the trace hit.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1867,14 +1829,14 @@ function UKismetSystemLibrary.SphereTraceSingle(WorldContextObject, Start, End, 
 
 ---Sweep a sphere against the world and return the first blocking hit using a specific profile
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param Radius number
----@param ProfileName string
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param Radius number @Radius of the sphere to sweep
+---@param ProfileName string @The 'profile' used to determine which components to hit
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place] Properties of the trace hit.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1885,14 +1847,14 @@ function UKismetSystemLibrary.SphereTraceSingleByProfile(WorldContextObject, Sta
 ---Sweeps a sphere along the given line and returns the first hit encountered.
 ---This only finds objects that are of a type specified by ObjectTypes.
 ---@param WorldContextObject UObject
----@param Start FVector
----@param End FVector
----@param Radius number
----@param ObjectTypes TArray<integer>
----@param bTraceComplex boolean
+---@param Start FVector @Start of line segment.
+---@param End FVector @End of line segment.
+---@param Radius number @Radius of the sphere to sweep
+---@param ObjectTypes TArray<integer> @Array of Object Types to trace
+---@param bTraceComplex boolean @True to test against complex collision, false to test against simplified collision.
 ---@param ActorsToIgnore TArray<AActor>
 ---@param DrawDebugType integer
----@param OutHit FHitResult @[out, modified in place]
+---@param OutHit FHitResult @[out, modified in place] Properties of the trace hit.
 ---@param bIgnoreSelf boolean
 ---@param TraceColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]
 ---@param TraceHitColor? FLinearColor @[default: (R=0.000000,G=1.000000,B=0.000000,A=1.000000)]
@@ -1904,7 +1866,7 @@ function UKismetSystemLibrary.SphereTraceSingleForObjects(WorldContextObject, St
 function UKismetSystemLibrary.StackTrace() end
 
 ---Notify the current transaction (if any) that this object is about to be modified and should be placed into the undo buffer.
----@param Object UObject
+---@param Object UObject @The object that is about to be modified.
 function UKismetSystemLibrary.TransactObject(Object) end
 
 ---Unloads a primary asset, which allows it to be garbage collected if nothing else is referencing it

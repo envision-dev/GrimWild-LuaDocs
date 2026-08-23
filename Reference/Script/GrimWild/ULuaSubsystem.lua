@@ -1,3 +1,4 @@
+---@meta
 ---@class ULuaSubsystem : UGameInstanceSubsystem
 ---@field public ScriptBudgetLoadSeconds number @Wall-clock budget for chunk execution and OnConstruct.
 ---@field public ScriptBudgetTickSeconds number @Wall-clock budget for OnTick.
@@ -34,6 +35,6 @@ function ULuaSubsystem:UnregisterEnv(Owner) end
 function ULuaSubsystem:UnregisterEnvIfStale(Owner) end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function ULuaSubsystem:GatherDebugData() end
 

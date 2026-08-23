@@ -1,9 +1,9 @@
----
----    update BaseEngine.ini [SystemSettings]
----    you might have to update the update Game's DefaultEngine.ini [SystemSettings]
----    order and actual name can never change (order is important!)
+---@meta
+---update BaseEngine.ini [SystemSettings]
+---you might have to update the update Game's DefaultEngine.ini [SystemSettings]
+---order and actual name can never change (order is important!)
 ---TEXTUREGROUP_Cinematic: should be used for Cinematics which will be baked out
----                        and want to have the highest settings
+---and want to have the highest settings
 ---@class TextureGroup
 ---@field public TEXTUREGROUP_World TextureGroup [0]
 ---@field public TEXTUREGROUP_WorldNormalMap TextureGroup [1]

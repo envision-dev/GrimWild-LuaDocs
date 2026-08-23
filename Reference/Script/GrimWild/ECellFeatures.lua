@@ -1,3 +1,4 @@
+---@meta
 ---@class ECellFeatures
 ---@field public None ECellFeatures [0]
 ---@field public HasWall ECellFeatures [1]

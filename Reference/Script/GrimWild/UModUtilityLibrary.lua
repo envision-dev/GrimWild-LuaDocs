@@ -1,3 +1,4 @@
+---@meta
 ---Blueprint-facing helpers for building/resolving mod references and handles.
 ---@class UModUtilityLibrary : UBlueprintFunctionLibrary
 UModUtilityLibrary = {}

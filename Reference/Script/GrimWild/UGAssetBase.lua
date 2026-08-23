@@ -1,3 +1,4 @@
+---@meta
 ---Base class for creating game asset subclasses. GAssetManager operates on UGAssetBase.
 ---@class UGAssetBase : UPrimaryDataAsset
 ---@field public VisibleName FEText
@@ -40,6 +41,6 @@ function UGAssetBase:K2_LoadComplete() end
 function UGAssetBase:K2_PreUnload() end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function UGAssetBase:GatherDebugData() end
 

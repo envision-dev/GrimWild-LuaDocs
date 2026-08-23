@@ -1,3 +1,4 @@
+---@meta
 ---One row of UModCodeWorkspaceGenerator_ResolveDepsWindow: a dependency id and the installed copies that
 ---satisfy it. The absolute path alone identifies a copy.
 ---@class UModCodeWorkspaceGenerator_ResolveDepsWindow_DepSlot : UUserWidget

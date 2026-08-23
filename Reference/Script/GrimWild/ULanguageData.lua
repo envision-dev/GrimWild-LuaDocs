@@ -1,3 +1,4 @@
+---@meta
 ---ULanguageData, Translation Visible Names, Selection from Options window = Game Module;
 ---Translation module = pure Culture Names, nothing more.
 ---Not to be confused with UOption_Language
@@ -6,6 +7,6 @@
 ULanguageData = {}
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function ULanguageData:GatherDebugData() end
 

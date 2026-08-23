@@ -1,3 +1,4 @@
+---@meta
 ---Game-thread wrapper for FComputeLuminanceCS.
 ---Reads RT_LocalLight (intensity in .a channel) and SunlightReach,
 ---then writes the final Luminance value to RenderTarget (the Luminance

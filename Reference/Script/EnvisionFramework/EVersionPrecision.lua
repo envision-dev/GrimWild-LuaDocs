@@ -1,3 +1,4 @@
+---@meta
 ---@class EVersionPrecision
 ---@field public Major EVersionPrecision [0] How many components are actually defined. Comparisons only look at components up to the shallower of the two operands, so a target "0.15" matches any 0.15.x.
 ---@field public Minor EVersionPrecision [1]

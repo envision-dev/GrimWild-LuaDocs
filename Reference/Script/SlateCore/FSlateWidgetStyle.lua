@@ -1,3 +1,4 @@
+---@meta
 ---Base structure for widget styles.
----@class FSlateWidgetStyle
+---@class FSlateWidgetStyle : Struct
 FSlateWidgetStyle = {}

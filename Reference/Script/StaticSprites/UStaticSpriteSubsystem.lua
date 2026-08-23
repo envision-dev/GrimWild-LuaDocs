@@ -1,3 +1,4 @@
+---@meta
 ---Used to hold all data needed to render static sprites in World.
 ---Manages runtime texture atlases and sprite pools.
 ---Note: the whole system is transient, and no visuals are saved to the disk.
@@ -22,7 +23,7 @@ function UStaticSpriteSubsystem.GetDefaultMaterial() end
 function UStaticSpriteSubsystem:GetProxyRootParent(InProxyId) end
 
 ---
----@param InIndex integer
+---@param InIndex integer @index for the Atlas inside the array of atlases (see GetRuntimeTextureAtlases())
 ---@return URuntimeTextureAtlas
 function UStaticSpriteSubsystem:GetRuntimeTextureAtlas(InIndex) end
 
@@ -59,6 +60,6 @@ function UStaticSpriteSubsystem:IsValidSpriteProxy(InProxyId) end
 function UStaticSpriteSubsystem:SetTargetAnimationFrameDeltaTime(NewValue) end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function UStaticSpriteSubsystem:GatherDebugData() end
 

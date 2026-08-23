@@ -1,3 +1,4 @@
+---@meta
 ---@class UGGameUserSettings : UGameUserSettings
 ---@field protected bDevModeEnabled boolean
 ---@field protected CameraMoveSensitivity number

@@ -1,4 +1,5 @@
----@class FObjectAttachment
+---@meta
+---@class FObjectAttachment : Struct
 ---@field protected Id string
 ---@field protected Object UWorldObject @STRONG Attachment only: The object we're referring to. It may be our own copy or something not own by us like Static or Singleton. COW: refers to the Archetype (any template, not WorldInstance) initially; refers to the individual copy after GetObject_Mutable() call BPs: Don't use it directly! Use GetObject() or GetObject_Mutable() versions.
 ---@field protected SharedObjectInstanceId integer @SHARED Attachment only: The object we're referring to. Can be only a World Instance. Dereferenced by looking up the game world object container.

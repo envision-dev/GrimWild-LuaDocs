@@ -1,3 +1,4 @@
+---@meta
 ---Stylized UProgressBar wrapper with Envision color style and alternate look support.
 ---@class UGProgressBar : UProgressBar
 ---@field public WidgetColorStyle FWidgetColorStyle

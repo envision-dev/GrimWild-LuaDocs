@@ -1,3 +1,4 @@
+---@meta
 ---@class UKismetStringLibrary : UBlueprintFunctionLibrary
 UKismetStringLibrary = {}
 
@@ -60,7 +61,7 @@ function UKismetStringLibrary.BuildString_Object(AppendTo, Prefix, InObj, Suffix
 ---Converts a rotator->string, creating a new string in the form AppendTo+Prefix+InRot+Suffix
 ---@param AppendTo string @- An existing string to use as the start of the conversion string
 ---@param Prefix string @- A string to use as a prefix, after the AppendTo string
----@param InRot FRotator
+---@param InRot FRotator @- The rotator value to convert. Uses the standard ToString conversion
 ---@param Suffix string @- A suffix to append to the end of the conversion string
 ---@return string
 function UKismetStringLibrary.BuildString_Rotator(AppendTo, Prefix, InRot, Suffix) end
@@ -237,14 +238,14 @@ function UKismetStringLibrary.Conv_VectorToString(InVec) end
 
 ---Takes an array of strings and removes any zero length entries.
 ---@param SourceString string
----@param InArray TArray<string> @[out, modified in place]
+---@param InArray TArray<string> @[out, modified in place] The array to cull
 ---@return integer
 function UKismetStringLibrary.CullArray(SourceString, InArray) end
 
 ---Test whether this string ends with given string.
 ---@param SourceString string
 ---@param InSuffix string
----@param SearchCase? integer @[default: IgnoreCase]
+---@param SearchCase? integer @[default: IgnoreCase] Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )
 ---@return boolean
 function UKismetStringLibrary.EndsWith(SourceString, InSuffix, SearchCase) end
 
@@ -270,7 +271,7 @@ function UKismetStringLibrary.EqualEqual_StrStr(A, B) end
 function UKismetStringLibrary.FindSubstring(SearchIn, Substring, bUseCase, bSearchFromEnd, StartPosition) end
 
 ---Returns an array that contains one entry for each character in SourceString
----@param SourceString string
+---@param SourceString string @The string to break apart into characters
 ---@return TArray<string>
 function UKismetStringLibrary.GetCharacterArrayFromString(SourceString) end
 
@@ -292,10 +293,8 @@ function UKismetStringLibrary.GetSubstring(SourceString, StartIndex, Length) end
 ---@return boolean
 function UKismetStringLibrary.IsEmpty(InString) end
 
----* Checks if a string contains only numeric characters
----* @@param       SourceString    The string to check
----* @@return true if the string only contains numeric characters
----@param SourceString string
+---Checks if a string contains only numeric characters
+---@param SourceString string @The string to check
 ---@return boolean
 function UKismetStringLibrary.IsNumeric(SourceString) end
 
@@ -317,12 +316,9 @@ function UKismetStringLibrary.Left(SourceString, Count) end
 ---@return string
 function UKismetStringLibrary.LeftChop(SourceString, Count) end
 
----* Pad the left of this string for a specified number of characters
----* @@param       SourceString    The string to pad
----* @@param       ChCount                 Amount of padding required
----* @@return      The padded string
----@param SourceString string
----@param ChCount integer
+---Pad the left of this string for a specified number of characters
+---@param SourceString string @The string to pad
+---@param ChCount integer @Amount of padding required
 ---@return string
 function UKismetStringLibrary.LeftPad(SourceString, ChCount) end
 
@@ -333,8 +329,8 @@ function UKismetStringLibrary.Len(S) end
 
 ---Searches this string for a given wild card
 ---@param SourceString string
----@param Wildcard string
----@param SearchCase? integer @[default: IgnoreCase]
+---@param Wildcard string @*?-type wildcard
+---@param SearchCase? integer @[default: IgnoreCase] Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )
 ---@return boolean
 function UKismetStringLibrary.MatchesWildcard(SourceString, Wildcard, SearchCase) end
 
@@ -368,14 +364,14 @@ function UKismetStringLibrary.ParseIntoArray(SourceString, Delimiter, CullEmptyS
 ---@param SourceString string
 ---@param From string @substring to replace
 ---@param To string @substring to replace From with
----@param SearchCase? integer @[default: IgnoreCase]
+---@param SearchCase? integer @[default: IgnoreCase] Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )
 ---@return string
 function UKismetStringLibrary.Replace(SourceString, From, To, SearchCase) end
 
 ---Replace all occurrences of SearchText with ReplacementText in this string.
----@param SearchText string
----@param ReplacementText string
----@param SearchCase? integer @[default: IgnoreCase]
+---@param SearchText string @the text that should be removed from this string
+---@param ReplacementText string @the text to insert in its place
+---@param SearchCase? integer @[default: IgnoreCase] Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )
 ---@return integer
 ---@return string SourceString
 function UKismetStringLibrary.ReplaceInline(SearchText, ReplacementText, SearchCase) end
@@ -397,20 +393,17 @@ function UKismetStringLibrary.Right(SourceString, Count) end
 ---@return string
 function UKismetStringLibrary.RightChop(SourceString, Count) end
 
----* Pad the right of this string for a specified number of characters
----* @@param       SourceString    The string to pad
----* @@param       ChCount                 Amount of padding required
----* @@return      The padded string
----@param SourceString string
----@param ChCount integer
+---Pad the right of this string for a specified number of characters
+---@param SourceString string @The string to pad
+---@param ChCount integer @Amount of padding required
 ---@return string
 function UKismetStringLibrary.RightPad(SourceString, ChCount) end
 
 ---Splits this string at given string position case sensitive.
 ---@param SourceString string
 ---@param InStr string @The string to search and split at
----@param SearchCase? integer @[default: IgnoreCase]
----@param SearchDir? integer @[default: FromStart]
+---@param SearchCase? integer @[default: IgnoreCase] Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )
+---@param SearchDir? integer @[default: FromStart] Indicates whether the search starts at the begining or at the end ( defaults to ESearchDir::FromStart )
 ---@return boolean
 ---@return string LeftS @out the string to the left of InStr, not updated if return is false
 ---@return string RightS @out the string to the right of InStr, not updated if return is false
@@ -419,7 +412,7 @@ function UKismetStringLibrary.Split(SourceString, InStr, SearchCase, SearchDir) 
 ---Test whether this string starts with given string.
 ---@param SourceString string
 ---@param InPrefix string
----@param SearchCase? integer @[default: IgnoreCase]
+---@param SearchCase? integer @[default: IgnoreCase] Indicates whether the search is case sensitive or not ( defaults to ESearchCase::IgnoreCase )
 ---@return boolean
 function UKismetStringLibrary.StartsWith(SourceString, InPrefix, SearchCase) end
 
@@ -429,12 +422,12 @@ function UKismetStringLibrary.StartsWith(SourceString, InPrefix, SearchCase) end
 function UKismetStringLibrary.TimeSecondsToString(InSeconds) end
 
 ---Returns a string converted to Lower case
----@param SourceString string
+---@param SourceString string @The string to convert
 ---@return string
 function UKismetStringLibrary.ToLower(SourceString) end
 
 ---Returns a string converted to Upper case
----@param SourceString string
+---@param SourceString string @The string to convert
 ---@return string
 function UKismetStringLibrary.ToUpper(SourceString) end
 

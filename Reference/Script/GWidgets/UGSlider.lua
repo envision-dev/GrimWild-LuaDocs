@@ -1,3 +1,4 @@
+---@meta
 ---Stylized USlider wrapper with Envision color style support.
 ---@class UGSlider : USlider
 ---@field public BarColorStyle FWidgetColorStyle

@@ -1,3 +1,4 @@
+---@meta
 ---Specifies how scene captures are composited into render buffers
 ---@class ESceneCaptureCompositeMode
 ---@field public SCCM_Overwrite ESceneCaptureCompositeMode [0]

@@ -1,3 +1,4 @@
+---@meta
 ---@class UKismetInternationalizationLibrary : UBlueprintFunctionLibrary
 UKismetInternationalizationLibrary = {}
 
@@ -18,23 +19,23 @@ function UKismetInternationalizationLibrary.GetCultureDisplayName(Culture, Local
 function UKismetInternationalizationLibrary.GetCurrentAssetGroupCulture(AssetGroup) end
 
 ---Get the current culture as an IETF language tag:
---- - A two-letter ISO 639-1 language code (eg, "zh").
---- - An optional four-letter ISO 15924 script code (eg, "Hans").
---- - An optional two-letter ISO 3166-1 country code (eg, "CN").
+---- A two-letter ISO 639-1 language code (eg, "zh").
+---- An optional four-letter ISO 15924 script code (eg, "Hans").
+---- An optional two-letter ISO 3166-1 country code (eg, "CN").
 ---@return string
 function UKismetInternationalizationLibrary.GetCurrentCulture() end
 
 ---Get the current language (for localization) as an IETF language tag:
---- - A two-letter ISO 639-1 language code (eg, "zh").
---- - An optional four-letter ISO 15924 script code (eg, "Hans").
---- - An optional two-letter ISO 3166-1 country code (eg, "CN").
+---- A two-letter ISO 639-1 language code (eg, "zh").
+---- An optional four-letter ISO 15924 script code (eg, "Hans").
+---- An optional two-letter ISO 3166-1 country code (eg, "CN").
 ---@return string
 function UKismetInternationalizationLibrary.GetCurrentLanguage() end
 
 ---Get the current locale (for internationalization) as an IETF language tag:
---- - A two-letter ISO 639-1 language code (eg, "zh").
---- - An optional four-letter ISO 15924 script code (eg, "Hans").
---- - An optional two-letter ISO 3166-1 country code (eg, "CN").
+---- A two-letter ISO 639-1 language code (eg, "zh").
+---- An optional four-letter ISO 15924 script code (eg, "Hans").
+---- An optional two-letter ISO 3166-1 country code (eg, "CN").
 ---@return string
 function UKismetInternationalizationLibrary.GetCurrentLocale() end
 
@@ -52,8 +53,8 @@ function UKismetInternationalizationLibrary.GetLocalizedCultures(IncludeGame, In
 function UKismetInternationalizationLibrary.GetNativeCulture(TextCategory) end
 
 ---Given a list of available cultures, try and find the most suitable culture from the list based on culture prioritization.
----  eg) If your list was [en, fr, de] and the given culture was "en-US", this function would return "en".
----  eg) If your list was [zh, ar, pl] and the given culture was "en-US", this function would return the fallback culture.
+---eg) If your list was [en, fr, de] and the given culture was "en-US", this function would return "en".
+---eg) If your list was [zh, ar, pl] and the given culture was "en-US", this function would return the fallback culture.
 ---@param AvailableCultures TArray<string> @List of available cultures to filter against (see GetLocalizedCultures).
 ---@param CultureToMatch string @Culture to try and match (see GetCurrentLanguage).
 ---@param FallbackCulture? string @[default: en] The culture to return if there is no suitable match in the list (typically your native culture, see GetNativeCulture).

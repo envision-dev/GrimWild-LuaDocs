@@ -1,3 +1,4 @@
+---@meta
 ---Determines which ticking group a tick function belongs to.
 ---@class ETickingGroup
 ---@field public TG_PrePhysics ETickingGroup [0] Any item that needs to be executed before physics simulation starts.

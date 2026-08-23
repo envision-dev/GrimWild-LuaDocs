@@ -1,3 +1,4 @@
+---@meta
 ---EInputEvent
 ---@class EInputEvent
 ---@field public IE_Pressed EInputEvent [0]

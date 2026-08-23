@@ -1,3 +1,4 @@
+---@meta
 ---@class UJsonBlueprintFunctionLibrary : UBlueprintFunctionLibrary
 UJsonBlueprintFunctionLibrary = {}
 

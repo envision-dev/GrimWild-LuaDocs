@@ -1,3 +1,4 @@
+---@meta
 ---@class UToggleBoxVertical : UVerticalBox
 ---@field protected SelectedIndex integer @Current selected index (-1 = none)
 ---@field public SecondPressDeselectsIndex boolean @false = pressing the same button again doesn't do anything true = pressing the same button again switches the selection off to -1

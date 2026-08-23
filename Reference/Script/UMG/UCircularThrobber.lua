@@ -1,6 +1,7 @@
+---@meta
 ---A throbber widget that orients images in a spinning circle.
----* No Children
----* Spinner Progress
+---No Children
+---Spinner Progress
 ---@class UCircularThrobber : UWidget
 ---@field public NumberOfPieces integer @How many pieces there are
 ---@field public Period number @The amount of time for a full circle (in seconds)

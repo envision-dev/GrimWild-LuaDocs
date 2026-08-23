@@ -1,3 +1,4 @@
+---@meta
 ---Enumerates different methods that a button click can be triggered. Normally, DownAndUp is appropriate.
 ---@class EButtonClickMethod
 ---@field public DownAndUp EButtonClickMethod [0] User must press the button, then release while over the button to trigger the click. This is the most common type of button.

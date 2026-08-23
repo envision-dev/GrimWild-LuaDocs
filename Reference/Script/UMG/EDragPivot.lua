@@ -1,3 +1,4 @@
+---@meta
 ---Controls where the drag widget visual will appear when dragged relative to the pointer performing
 ---the drag operation.
 ---@class EDragPivot

@@ -1,3 +1,4 @@
+---@meta
 ---Wrapper for interaction with FETranslationStorage.
 ---We can read values from FETranslationStorage directly.
 ---@class UTranslationManager : UGameInstanceSubsystem
@@ -58,6 +59,6 @@ function UTranslationManager:SetCulture(NewCultureCode, bRegenerateTextMap) end
 function UTranslationManager.TextMapToJSON(InMap, bSort) end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function UTranslationManager:GatherDebugData() end
 

@@ -1,10 +1,11 @@
+---@meta
 ---A brush which contains information about how to draw a Slate element
---- //, meta = (HasNativeMake = ""))
----@class FSlateBrush
+---//, meta = (HasNativeMake = ""))
+---@class FSlateBrush : Struct
 ---@field protected bIsDynamicallyLoaded boolean @Whether or not the brush path is a path to a UObject
 ---@field public DrawAs integer @How to draw the image
 ---@field public Tiling integer @How to tile the image in Image mode
----@field public Mirroring integer @How to mirror the image in Image mode.  This is normally only used for dynamic image brushes where the source texture           comes from a hardware device such as a web camera.
+---@field public Mirroring integer @How to mirror the image in Image mode.  This is normally only used for dynamic image brushes where the source texture comes from a hardware device such as a web camera.
 ---@field public ImageType integer @The type of image
 ---@field public ImageSize FDeprecateSlateVector2D @Size of the resource in Slate Units
 ---@field public Margin FMargin @The margin to use in Box and Border modes

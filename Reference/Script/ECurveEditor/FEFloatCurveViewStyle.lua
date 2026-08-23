@@ -1,4 +1,5 @@
----@class FEFloatCurveViewStyle
+---@meta
+---@class FEFloatCurveViewStyle : Struct
 ---@field public CurveColor FLinearColor
 ---@field public CurveThickness number
 ---@field public TangentArmColor FLinearColor

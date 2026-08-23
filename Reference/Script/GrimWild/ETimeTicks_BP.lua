@@ -1,3 +1,4 @@
+---@meta
 ---Blueprint-exposed enumeration. There is no support for int32-based enums in BP.
 ---@class ETimeTicks_BP
 ---@field public Minute ETimeTicks_BP [0]

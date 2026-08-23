@@ -1,5 +1,6 @@
+---@meta
 ---Data to animate one particular axis of the element
----@class FAnimationCurve
+---@class FAnimationCurve : Struct
 ---@field public Curve UCurveFloat
 ---@field public Amplitude number @Value (not time) multiplier
 ---@field public TimeMultiplier number @Defines the curve evaluation speed. E.g. CurrentTime = 1, TimeMultiplier = 1 -> sampling at time 1.0; CurrentTime = 1, TimeMultiplier = 2 -> sampling at time 2.0.

@@ -1,3 +1,4 @@
+---@meta
 ---Lua side (bind custom lua code to it)
 ---@class AGPlayerPawnBase : APawn
 ---@field public OnLeftMouseAction MulticastDelegate|fun(Event: integer) @Note: handles Game input, not UI interaction (e.g. pressing a UI button won't fire it)
@@ -30,6 +31,6 @@ function AGPlayerPawnBase:IsRightMousePressed() end
 function AGPlayerPawnBase:IsShiftPressed() end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function AGPlayerPawnBase:GatherDebugData() end
 

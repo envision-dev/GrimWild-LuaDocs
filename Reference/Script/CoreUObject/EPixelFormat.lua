@@ -1,3 +1,4 @@
+---@meta
 ---Describes the format of a each pixel in a graphics buffer.
 ---@class EPixelFormat
 ---@field public PF_Unknown EPixelFormat [0]

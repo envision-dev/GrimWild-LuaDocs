@@ -1,3 +1,4 @@
+---@meta
 ---Hardcoded scene made for early playtest versions.
 ---It's just a wrapper around Game Level, use GetGameLevel() to access any gameplay data (cell buffers, size...).
 ---@class APlaytestScene : AActor
@@ -143,10 +144,6 @@ function APlaytestScene:SetLevelChangeType(NewType) end
 ---@param Cell integer
 ---@param bMarkAsEagerUpdate? boolean @[default: false]
 function APlaytestScene:SetLiquidAtCell(LiquidName, Cell, bMarkAsEagerUpdate) end
-
----todo remvoe; testing lua stuff
----@param InValue integer
-function APlaytestScene:SetOverlayZOrder(InValue) end
 
 function APlaytestScene:SpawnObjects() end
 

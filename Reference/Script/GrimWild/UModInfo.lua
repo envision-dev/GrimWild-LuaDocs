@@ -1,3 +1,4 @@
+---@meta
 ---Read-only manifest display for a single mod reference, embedded via BindWidget in UModsWindow and
 ---UModProjectsWindow. WS_State child 0 is the content page, child 1 is the empty ("select a mod") page.
 ---@class UModInfo : UUserWidget
@@ -5,7 +6,6 @@
 ---@field protected TB_Name UGTextBlock
 ---@field protected TB_Id UGTextBlock
 ---@field protected TB_Version UGTextBlock
----@field protected TB_Type UGTextBlock
 ---@field protected TB_Description UGTextBlock
 ---@field protected TB_Authors UGTextBlock
 ---@field protected TB_Dependencies UGTextBlock

@@ -1,3 +1,4 @@
+---@meta
 ---Widget that displays a single asset entry in the Asset View window.
 ---@class UAssetViewSlot : UUserWidget
 ---@field protected AssetId FPrimaryAssetId
@@ -9,7 +10,7 @@ UAssetViewSlot = {}
 ---@param InAssetId FPrimaryAssetId
 ---@param InFormat EGAssetFormat
 ---@param InLoadStatus EGLoadStatus
----@param InVAssetMainFilePath string
+---@param InVAssetMainFilePath? string @[default: ""]
 function UAssetViewSlot:Init(InAssetId, InFormat, InLoadStatus, InVAssetMainFilePath) end
 
 function UAssetViewSlot:PostInit() end

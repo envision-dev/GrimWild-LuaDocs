@@ -1,3 +1,4 @@
+---@meta
 ---@class UMIDParamEditorWindow : UDraggableWindow
 ---@field public VB_Content UVerticalBox
 ---@field public MIDPtr TWeakObjectPtr<UMaterialInstanceDynamic>

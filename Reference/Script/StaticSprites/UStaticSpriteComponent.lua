@@ -1,3 +1,4 @@
+---@meta
 ---Mesh Component, represented by runtime Sprite Render Data.
 ---We use Static Relevance here. It means that all Mesh Draw Commands are created and cached when we add this component to the scene.
 ---We also support Dynamic Instancing for Draw Call merging. This is done by creating or referencing an element in runtime Sprite Render Data.
@@ -38,6 +39,6 @@ function UStaticSpriteComponent:GetSpriteTexture() end
 function UStaticSpriteComponent:IsComponentActive() end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function UStaticSpriteComponent:GatherDebugData() end
 

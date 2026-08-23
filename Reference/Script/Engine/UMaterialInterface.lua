@@ -1,20 +1,11 @@
+---@meta
 ---@class UMaterialInterface : UObject
----@field protected EditorOnlyData UMaterialInterfaceEditorOnlyData
 ---@field public SubsurfaceProfile USubsurfaceProfile @SubsurfaceProfile, for Screen Space Subsurface Scattering..
 ---@field public SpecularProfiles TArray<USpecularProfile> @Specular Profile. For internal usage, not editable/visible
 ---@field public bIncludedInBaseGame boolean @Whether this material interface is included in the base game (and not in a DLC)
 ---@field protected LightmassSettings FLightmassMaterialInterfaceSettings @The Lightmass settings for this object.
----@field protected bTextureStreamingDataSorted boolean @Because of redirector, the texture names need to be resorted at each load in case they changed.
----@field protected TextureStreamingDataVersion integer
 ---@field protected TextureStreamingData TArray<FMaterialTextureInfo> @Data used by the texture streaming to know how each texture is sampled by the material. Sorted by names for quick access.
 ---@field protected AssetUserData TArray<UAssetUserData> @Array of user data stored with the asset
----@field public TextureStreamingDataMissingEntries TArray<FMaterialTextureInfo> @List of all used but missing texture indices in TextureStreamingData. Used for visualization / debugging only.
----@field public PreviewMesh FSoftObjectPath @The mesh used by the material editor to preview the material.
----@field public ThumbnailInfo UThumbnailInfo @Information for thumbnail rendering
----@field public LayerParameterExpansion TMap<string, boolean>
----@field public ParameterOverviewExpansion TMap<string, boolean>
----@field public AssetImportData UAssetImportData @Importing data and options used for this material
----@field private LightingGuid FGuid @Unique ID for this material, used for caching during distributed lighting
 UMaterialInterface = {}
 
 ---Walks up parent chain and finds the base Material that this is an instance of. Just calls the virtual GetMaterial()
@@ -49,10 +40,10 @@ function UMaterialInterface:GetPhysicalMaterialMask() end
 
 ---Force the streaming system to disregard the normal logic for the specified duration and
 ---instead always load all mip-levels for all textures used by this material.
----@param OverrideForceMiplevelsToBeResident boolean
----@param bForceMiplevelsToBeResidentValue boolean
----@param ForceDuration number
----@param CinematicTextureGroups? integer @[default: 0]
----@param bFastResponse? boolean @[default: false]
+---@param OverrideForceMiplevelsToBeResident boolean @- Whether to use (true) or ignore (false) the bForceMiplevelsToBeResidentValue parameter.
+---@param bForceMiplevelsToBeResidentValue boolean @- true forces all mips to stream in. false lets other factors decide what to do with the mips.
+---@param ForceDuration number @- Number of seconds to keep all mip-levels in memory, disregarding the normal priority logic. Negative value turns it off.
+---@param CinematicTextureGroups? integer @[default: 0] - Bitfield indicating texture groups that should use extra high-resolution mips
+---@param bFastResponse? boolean @[default: false] - USE WITH EXTREME CAUTION! Fast response textures incur sizable GT overhead and disturb streaming metric calculation. Avoid whenever possible.
 function UMaterialInterface:SetForceMipLevelsToBeResident(OverrideForceMiplevelsToBeResident, bForceMiplevelsToBeResidentValue, ForceDuration, CinematicTextureGroups, bFastResponse) end
 

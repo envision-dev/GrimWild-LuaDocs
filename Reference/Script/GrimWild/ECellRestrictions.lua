@@ -1,3 +1,4 @@
+---@meta
 ---@class ECellRestrictions
 ---@field public None ECellRestrictions [0]
 ---@field public LightBlocked ECellRestrictions [1]

@@ -1,5 +1,6 @@
+---@meta
 ---Describes the space around a Widget.
----@class FMargin
+---@class FMargin : Struct
 ---@field public Left number @Holds the margin to the left.
 ---@field public Top number @Holds the margin to the top.
 ---@field public Right number @Holds the margin to the right.

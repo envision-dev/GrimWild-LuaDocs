@@ -1,8 +1,9 @@
+---@meta
 ---Allows you to place content with a desired size and have it scale to meet the constraints placed on this box's alloted area.  If
 ---you needed to have a background image scale to fill an area but not become distorted with different aspect ratios, or if you need
 ---to auto fit some text to an area, this is the control for you.
----* Single Child
----* Aspect Ratio
+---Single Child
+---Aspect Ratio
 ---@class UScaleBox : UContentWidget
 ---@field public Stretch integer @The stretching rule to apply when content is stretched
 ---@field public StretchDirection integer @Controls in what direction content can be scaled

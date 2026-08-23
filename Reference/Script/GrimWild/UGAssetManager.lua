@@ -1,3 +1,4 @@
+---@meta
 ---Notes:
 ---Works on every UGAssetBase subclass
 ---VAssets cannot add new Asset Types. So in order for VAssets to work properly, we should have at least one UAsset of the same type
@@ -10,6 +11,6 @@ UGAssetManager = {}
 function UGAssetManager.Test_AddVAsset(InId, InFilename, InParentId) end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function UGAssetManager:GatherDebugData() end
 

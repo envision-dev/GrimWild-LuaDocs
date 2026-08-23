@@ -1,3 +1,4 @@
+---@meta
 ---@class ETranslationSourceType
 ---@field public None ETranslationSourceType [0]
 ---@field public Binary ETranslationSourceType [1]

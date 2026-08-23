@@ -1,3 +1,4 @@
+---@meta
 ---Delegate handler created by mod/dev scripts. Inherits ULuaDelegateHandler so UE routes
 ---ProcessEvent to us when the delegate fires. Implements ILuaOwnedHandle so the owning module's
 ---teardown can clean it up.

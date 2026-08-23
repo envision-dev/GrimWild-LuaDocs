@@ -1,3 +1,4 @@
+---@meta
 ---UGPUPass_DrawTexture — game-thread UObject.
 ---Draws TextureToDraw onto RenderTarget at a given Position/Size
 ---using the specified blend and filter modes.

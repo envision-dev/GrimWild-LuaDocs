@@ -1,3 +1,4 @@
+---@meta
 ---Channel between the generated Lua modules and the suite.
 ---One counter per subscribed callback rather than one shared counter, because every question this
 ---suite asks is "which of these listeners survived", and a shared counter could not answer it.

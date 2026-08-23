@@ -1,5 +1,6 @@
+---@meta
 ---Defines a mapping between an action and key
----@class FInputActionKeyMapping
+---@class FInputActionKeyMapping : Struct
 ---@field public ActionName string @Friendly name of action, e.g "jump"
 ---@field public bShift boolean @true if one of the Shift keys must be down when the KeyEvent is received to be acknowledged
 ---@field public bCtrl boolean @true if one of the Ctrl keys must be down when the KeyEvent is received to be acknowledged

@@ -1,3 +1,4 @@
+---@meta
 ---Base for automated test suites. Absorbs the bootstrap/lifecycle every concrete suite would otherwise
 ---copy (owning an FTestSequenceRunner, rooting itself for the lifetime of the run, wiring
 ---ResetToCleanState/TeardownSuite) and proxies the runner's assertion API so subclasses never need to name

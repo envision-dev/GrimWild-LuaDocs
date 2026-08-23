@@ -1,3 +1,4 @@
+---@meta
 ---In-game sprite editor. Also used as the content widget for Editor-only UObjectSpriteEditor.
 ---@class USpriteEditorWindow : UModEditorWindowBase
 ---@field protected CurrentSpriteData USpriteData
@@ -18,7 +19,7 @@ function USpriteEditorWindow:AddSocket() end
 ---Input: an array of regular texture files on the disk.
 ---Output: a new file on the disk.
 ---Array index = the "channel" of the composite texture (e.g. 0 = Color+A, 1 = Tint...)
----@param InRawTextures TArray<string>
+---@param InRawTextures TArray<string> @absolute paths of the raw textures.
 ---@param OutputFilename string
 ---@return boolean
 function USpriteEditorWindow:BuildAndSaveCompositeTexture(InRawTextures, OutputFilename) end

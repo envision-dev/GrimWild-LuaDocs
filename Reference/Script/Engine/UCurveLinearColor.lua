@@ -1,3 +1,4 @@
+---@meta
 ---@class UCurveLinearColor : UCurveBase
 ---@field public FloatCurves FRichCurve @Keyframe data, one curve for red, green, blue, and alpha
 ---@field public AdjustHue number @Properties for adjusting the color of the gradient

@@ -1,4 +1,5 @@
----@class FPlaytestLiquidDef
+---@meta
+---@class FPlaytestLiquidDef : Struct
 ---@field public Name string
 ---@field public Material UMaterialInterface
 ---@field public GlowRadius integer @Glow spread radius in cells. 0 means no glow.

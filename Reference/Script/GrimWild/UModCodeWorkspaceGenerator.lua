@@ -1,3 +1,4 @@
+---@meta
 ---Writes a mod project's mod_<id>.code-workspace: the mod's own script folder, the base game's Lua folder
 ---and every dependency it can resolve, so require paths resolve in the mod author's IDE. Created via
 ---CreateAndInit, then TryGenerate() is called once.

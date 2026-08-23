@@ -1,3 +1,4 @@
+---@meta
 ---@class USliderSpin : UWidget
 ---@field public BarColorStyle FWidgetColorStyle
 ---@field public OnValueChanged MulticastDelegate|fun(Value: number)

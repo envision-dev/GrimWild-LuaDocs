@@ -1,3 +1,4 @@
+---@meta
 ---GameMode is a subclass of GameModeBase that behaves like a multiplayer match-based game.
 ---It has default behavior for picking spawn points and match state.
 ---If you want a simpler base, inherit from GameModeBase instead.

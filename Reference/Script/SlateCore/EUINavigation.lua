@@ -1,3 +1,4 @@
+---@meta
 ---Navigation context for event
 ---@class EUINavigation
 ---@field public Left EUINavigation [0] Four cardinal directions

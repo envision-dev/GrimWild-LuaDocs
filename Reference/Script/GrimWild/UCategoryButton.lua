@@ -1,3 +1,4 @@
+---@meta
 ---Button widget for UI category selection.
 ---@class UCategoryButton : UUserWidget
 ---@field public B_Content UGButton

@@ -1,3 +1,4 @@
+---@meta
 ---@class EPropertySlotType
 ---@field public None EPropertySlotType [0]
 ---@field public CheckBox EPropertySlotType [1]

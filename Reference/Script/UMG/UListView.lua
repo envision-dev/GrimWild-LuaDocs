@@ -1,3 +1,4 @@
+---@meta
 ---A virtualized list that allows up to thousands of items to be displayed.
 ---An important distinction to keep in mind here is "Item" vs. "Entry"
 ---The list itself is based on a list of n items, but only creates as many entry widgets as can fit on screen.
@@ -13,7 +14,6 @@
 ---@field protected bIsFocusable boolean
 ---@field protected bReturnFocusToSelection boolean
 ---@field protected ListItems TArray<UObject>
----@field protected EntrySpacing number @This deprecated property was originally BlueprintReadOnly. To satisfy the compiler requirment to have a BlueprintGetter for this property, it relies on the newly added UFunction GetHorizontalEntrySpacing() to act as its BlueprintGetter.
 ---@field private HorizontalEntrySpacing number
 ---@field private VerticalEntrySpacing number
 ---@field private BP_OnEntryInitialized MulticastDelegate|fun(Item: UObject, Widget: UUserWidget) @Called when a row widget is generated for a list item

@@ -1,3 +1,4 @@
+---@meta
 ---Where to scroll the descendant to
 ---@class EDescendantScrollDestination
 ---@field public IntoView EDescendantScrollDestination [0] Scroll the widget into view using the least amount of energy possible.  So if the new item is above the visible set, it will stop as soon as it's in view at the top.  If it's below the visible set, it stop it comes into view at the bottom.

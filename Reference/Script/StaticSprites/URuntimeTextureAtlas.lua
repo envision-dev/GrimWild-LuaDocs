@@ -1,3 +1,4 @@
+---@meta
 ---Texture atlas we use for static sprites at runtime.
 ---There are two types of Runtime Texture Atlases.
 ---The first one is "classic" type that was initially the only way to handle sprites.
@@ -22,6 +23,6 @@ function URuntimeTextureAtlas:GetAtlasTexture() end
 function URuntimeTextureAtlas:GetNumReleasedComponents() end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function URuntimeTextureAtlas:GatherDebugData() end
 

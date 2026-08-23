@@ -1,9 +1,10 @@
+---@meta
 ---Computes a per-cell sky-light influence value that fades inward from roof boundaries.
 ---For each cell under a roof, a Bresenham ray march searches within BlurRadius cells
 ---for the nearest unoccluded open-sky neighbour. The found distance is converted to a
 ---[0, 1] influence value through the selected falloff curve:
----  1.0 = open sky or at the roof edge  (full sunlight)
----  0.0 = enclosed / deep under roof    (no sunlight)
+---1.0 = open sky or at the roof edge  (full sunlight)
+---0.0 = enclosed / deep under roof    (no sunlight)
 ---Input:  RoofMap and RestrictionMap textures with byte-packed bitmask data.
 ---Output: single-channel r8 render target.
 ---@class UGPUPass_SunlightReach : UGPUPass

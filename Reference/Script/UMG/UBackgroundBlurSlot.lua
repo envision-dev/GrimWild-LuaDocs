@@ -1,3 +1,4 @@
+---@meta
 ---The Slot for the UBackgroundBlurSlot, contains the widget displayed in a BackgroundBlur's single slot
 ---@class UBackgroundBlurSlot : UPanelSlot
 ---@field protected Padding FMargin @The padding area between the slot and the content it contains.

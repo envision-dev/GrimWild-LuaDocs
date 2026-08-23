@@ -1,3 +1,4 @@
+---@meta
 ---A time span value, which is the difference between two dates and times.
----@class FTimespan
+---@class FTimespan : Struct
 FTimespan = {}

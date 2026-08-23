@@ -1,3 +1,4 @@
+---@meta
 ---Stylized UExpandableArea wrapper with Envision color style support.
 ---@class UGExpandableArea : UWidget
 ---@field public WidgetColorStyle FWidgetColorStyle

@@ -1,3 +1,4 @@
+---@meta
 ---@class UKismetRenderingLibrary : UBlueprintFunctionLibrary
 UKismetRenderingLibrary = {}
 
@@ -233,7 +234,7 @@ function UKismetRenderingLibrary.RenderTargetCreateStaticTexture2DEditorOnly(Ren
 function UKismetRenderingLibrary.ResizeRenderTarget2D(TextureRenderTarget, Width, Height) end
 
 ---Set the inset shadow casting state of the given component and all its child attachments.
----    Also choose if all attachments should be grouped for the inset shadow rendering. If enabled, one depth target will be shared for all attachments.
+---Also choose if all attachments should be grouped for the inset shadow rendering. If enabled, one depth target will be shared for all attachments.
 ---@param PrimitiveComponent UPrimitiveComponent
 ---@param bCastInsetShadow boolean
 ---@param bLightAttachmentsAsGroup boolean

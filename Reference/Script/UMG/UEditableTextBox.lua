@@ -1,6 +1,7 @@
+---@meta
 ---Allows the user to type in custom text.  Only permits a single line of text to be entered.
----* No Children
----* Text Entry
+---No Children
+---Text Entry
 ---@class UEditableTextBox : UWidget
 ---@field public Text string @The text content for this editable text box widget
 ---@field public TextDelegate Delegate|fun(): string @A bindable delegate to allow logic to drive the text of the widget
@@ -25,7 +26,6 @@
 ---@field public ShapedTextOptions FShapedTextOptions @Controls how the text within this widget should be shaped.
 ---@field public OnTextChanged MulticastDelegate|fun(Text: string) @Called whenever the text is changed programmatically or interactively by the user
 ---@field public OnTextCommitted MulticastDelegate|fun(Text: string, CommitMethod: integer) @Called whenever the text is committed.  This happens when the user presses enter or the text box loses focus.
----@field private bIsFontDeprecationDone boolean
 UEditableTextBox = {}
 
 function UEditableTextBox:ClearError() end

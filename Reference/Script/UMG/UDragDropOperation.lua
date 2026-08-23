@@ -1,3 +1,4 @@
+---@meta
 ---This class is the base drag drop operation for UMG, extend it to add additional data and add new functionality.
 ---@class UDragDropOperation : UObject
 ---@field public Tag string @A simple string tag you can optionally use to provide extra metadata about the operation.

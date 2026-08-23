@@ -1,3 +1,4 @@
+---@meta
 ---TODO;
 ---@class ECellBufferTextureChannel
 ---@field public None ECellBufferTextureChannel [0]

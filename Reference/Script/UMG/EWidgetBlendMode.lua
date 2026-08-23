@@ -1,3 +1,4 @@
+---@meta
 ---@class EWidgetBlendMode
 ---@field public Opaque EWidgetBlendMode [0]
 ---@field public Masked EWidgetBlendMode [1]

@@ -1,2 +1,0 @@
----@class UObject
-UObject = {}

@@ -1,3 +1,4 @@
+---@meta
 ---Must match enum ESamplerFilter in RHIDefinitions.h
 ---@class ETextureSamplerFilter
 ---@field public Point ETextureSamplerFilter [0]

@@ -1,3 +1,4 @@
+---@meta
 ---The Slot for the UWrapBox, contains the widget that is flowed vertically
 ---@class UWrapBoxSlot : UPanelSlot
 ---@field public Padding FMargin @The padding area between the slot and the content it contains.

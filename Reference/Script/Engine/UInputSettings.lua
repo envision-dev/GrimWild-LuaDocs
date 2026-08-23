@@ -1,3 +1,4 @@
+---@meta
 ---Project wide settings for input handling
 ---@class UInputSettings : UObject
 ---@field public AxisConfig TArray<FInputAxisConfigEntry> @List of Axis Properties
@@ -54,14 +55,6 @@ function UInputSettings:GetActionMappingByName(InActionName, OutMappings) end
 ---Populate a list of all defined action names
 ---@param ActionNames TArray<string> @[out, modified in place]
 function UInputSettings:GetActionNames(ActionNames) end
-
----Returns all known legacy action and axis names that is useful for
----properties that you want a drop down selection of the available names
----on a UPROPERTY
----i.e.
----meta=(GetOptions="Engine.InputSettings.GetAllActionAndAxisNames")
----@return TArray<string>
-function UInputSettings.GetAllActionAndAxisNames() end
 
 ---Retrieve all axis mappings by a certain name.
 ---@param InAxisName string

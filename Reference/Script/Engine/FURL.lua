@@ -1,5 +1,6 @@
+---@meta
 ---URL structure.
----@class FURL
+---@class FURL : Struct
 ---@field public Protocol string @Protocol, i.e. "unreal" or "http".
 ---@field public Host string @Optional hostname, i.e. "204.157.115.40" or "unreal.epicgames.com", blank if local.
 ---@field public Port integer @Optional host port.

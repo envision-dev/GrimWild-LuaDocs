@@ -1,3 +1,4 @@
+---@meta
 ---A capsule generally used for simple collision. Bounds are rendered as lines in the editor.
 ---@class UCapsuleComponent : UShapeComponent
 ---@field protected CapsuleHalfHeight number @Half-height, from center of capsule to the end of top or bottom hemisphere. This cannot be less than CapsuleRadius.
@@ -57,18 +58,18 @@ function UCapsuleComponent:GetUnscaledCapsuleSize_WithoutHemisphere() end
 ---Set the capsule half-height. This is the unscaled half-height, before component scale is applied.
 ---If this capsule collides, updates touching array for owner actor.
 ---@param HalfHeight number @: half-height, from capsule center to end of top or bottom hemisphere.
----@param bUpdateOverlaps? boolean @[default: true]
+---@param bUpdateOverlaps? boolean @[default: true] if true and this shape is registered and collides, updates touching array for owner actor.
 function UCapsuleComponent:SetCapsuleHalfHeight(HalfHeight, bUpdateOverlaps) end
 
 ---Set the capsule radius. This is the unscaled radius, before component scale is applied.
 ---If this capsule collides, updates touching array for owner actor.
 ---@param Radius number @: radius of end-cap hemispheres and center cylinder.
----@param bUpdateOverlaps? boolean @[default: true]
+---@param bUpdateOverlaps? boolean @[default: true] if true and this shape is registered and collides, updates touching array for owner actor.
 function UCapsuleComponent:SetCapsuleRadius(Radius, bUpdateOverlaps) end
 
 ---Change the capsule size. This is the unscaled size, before component scale is applied.
 ---@param InRadius number @: radius of end-cap hemispheres and center cylinder.
 ---@param InHalfHeight number @: half-height, from capsule center to end of top or bottom hemisphere.
----@param bUpdateOverlaps? boolean @[default: true]
+---@param bUpdateOverlaps? boolean @[default: true] if true and this shape is registered and collides, updates touching array for owner actor.
 function UCapsuleComponent:SetCapsuleSize(InRadius, InHalfHeight, bUpdateOverlaps) end
 

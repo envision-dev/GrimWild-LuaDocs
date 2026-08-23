@@ -1,3 +1,4 @@
+---@meta
 ---@class UMathInputBPLib : UBlueprintFunctionLibrary
 UMathInputBPLib = {}
 

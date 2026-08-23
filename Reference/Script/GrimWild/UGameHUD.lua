@@ -1,3 +1,4 @@
+---@meta
 ---HUD used in GameMap
 ---@class UGameHUD : UHUDBase
 ---@field protected GameMenu UGameMenu

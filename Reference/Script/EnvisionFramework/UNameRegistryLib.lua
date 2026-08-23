@@ -1,3 +1,4 @@
+---@meta
 ---@class UNameRegistryLib : UBlueprintFunctionLibrary
 UNameRegistryLib = {}
 

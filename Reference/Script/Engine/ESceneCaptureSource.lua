@@ -1,3 +1,4 @@
+---@meta
 ---Specifies which component of the scene rendering should be output to the final render target.
 ---@class ESceneCaptureSource
 ---@field public SCS_SceneColorHDR ESceneCaptureSource [0]

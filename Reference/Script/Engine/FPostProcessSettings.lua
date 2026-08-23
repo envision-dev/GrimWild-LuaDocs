@@ -1,7 +1,8 @@
+---@meta
 ---To be able to use struct PostProcessSettings. // Each property consists of a bool to enable it (by default off),
 ---// the variable declaration and further down the default value for it.
 ---// The comment should include the meaning and usable range.
----@class FPostProcessSettings
+---@class FPostProcessSettings : Struct
 ---@field public bOverride_TemperatureType boolean @first all bOverride_... as they get grouped together into bitfields
 ---@field public bOverride_WhiteTemp boolean
 ---@field public bOverride_WhiteTint boolean
@@ -366,7 +367,7 @@
 ---@field public DepthOfFieldFocalRegion number @Artificial region where all content is in focus, starting after DepthOfFieldFocalDistance, in unreal units  (cm)
 ---@field public DepthOfFieldNearTransitionRegion number @To define the width of the transition region next to the focal region on the near side (cm)
 ---@field public DepthOfFieldFarTransitionRegion number @To define the width of the transition region next to the focal region on the near side (cm)
----@field public DepthOfFieldScale number @SM5: BokehDOF only: To amplify the depth of field effect (like aperture)  0=off           ES3_1: Used to blend DoF. 0=off
+---@field public DepthOfFieldScale number @SM5: BokehDOF only: To amplify the depth of field effect (like aperture)  0=off ES3_1: Used to blend DoF. 0=off
 ---@field public DepthOfFieldNearBlurSize number @Gaussian only: Maximum size of the Depth of Field blur (in percent of the view width) (note: performance cost scales with size)
 ---@field public DepthOfFieldFarBlurSize number @Gaussian only: Maximum size of the Depth of Field blur (in percent of the view width) (note: performance cost scales with size)
 ---@field public DepthOfFieldOcclusion number @Occlusion tweak factor 1 (0.18 to get natural occlusion, 0.4 to solve layer color leaking issues)

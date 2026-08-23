@@ -1,3 +1,4 @@
+---@meta
 ---Modal confirmation dialog.
 ---Delegate contract: exactly one of OnConfirmedAction / OnCancelledAction fires, exactly once,
 ---no matter how the window disappears. Player input fires the matching delegate; every other

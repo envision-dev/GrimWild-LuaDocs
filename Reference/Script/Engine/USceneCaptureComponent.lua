@@ -1,3 +1,4 @@
+---@meta
 ----> will be exported to EngineDecalClasses.h
 ---@class USceneCaptureComponent : USceneComponent
 ---@field public PrimitiveRenderMode ESceneCapturePrimitiveRenderMode @Controls what primitives get rendered into the scene capture.
@@ -15,7 +16,6 @@
 ---@field public bUseRayTracingIfEnabled boolean @Whether to use ray tracing for this capture. Ray Tracing must be enabled in the project.
 ---@field public ShowFlagSettings TArray<FEngineShowFlagsSetting> @ShowFlags for the SceneCapture's ViewFamily, to control rendering settings for this view. Hidden but accessible through details customization
 ---@field public ProfilingEventName string @Name of the profiling event.
----@field protected CaptureMesh UStaticMesh @The mesh used by ProxyMeshComponent
 USceneCaptureComponent = {}
 
 ---Clears the hidden list.

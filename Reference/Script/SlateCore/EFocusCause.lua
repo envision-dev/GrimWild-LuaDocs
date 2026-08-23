@@ -1,3 +1,4 @@
+---@meta
 ---Context for focus change
 ---@class EFocusCause
 ---@field public Mouse EFocusCause [0] Focus was changed because of a mouse action.

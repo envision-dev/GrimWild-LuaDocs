@@ -1,3 +1,4 @@
+---@meta
 ---User Interface settings that control Slate and UMG.
 ---@class UUserInterfaceSettings : UDeveloperSettings
 ---@field public RenderFocusRule ERenderFocusRule @Rule to determine if we should render the Focus Brush for widgets that have user focus.
@@ -11,9 +12,6 @@
 ---@field public DesignScreenSize FIntPoint @Used only with ScaleToFit scaling rule. Defines native resolution for which were source UI textures created. DPI scaling will be 1.0 at this screen resolution.
 ---@field public bLoadWidgetsOnDedicatedServer boolean @If false, widget references will be stripped during cook for server builds and not loaded at runtime.
 ---@field public bAuthorizeAutomaticWidgetVariableCreation boolean @Setting to authorize or not automatic variable creation. If true, variables will be created automatically, if the type created allows it. Drawback: it's easier to have a bad data architecture because various blueprint graph will have access to many variables. If false, variables are never created automatically, and you have to create them manually on a case by case basis.
----@field private CustomFontDPI integer @Controls the relationship between UMG font size and pixel height.
----@field private FontDPIPreset EFontDPI @Controls the relationship between UMG font size and pixel height.
----@field private bUseCustomFontDPI boolean @To set your own custom value, check this box, then enter the value in the text box.
 ---@field private CursorClasses TArray<UObject>
 ---@field private CustomScalingRuleClassInstance TSubclassOf<UObject>
 ---@field private CustomScalingRule UDPICustomScalingRule

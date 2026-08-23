@@ -1,3 +1,4 @@
+---@meta
 ---@class EStatePropertyFlags
 ---@field public None EStatePropertyFlags [0]
 ---@field public DELETED EStatePropertyFlags [1]

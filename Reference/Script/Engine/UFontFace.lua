@@ -1,3 +1,4 @@
+---@meta
 ---A font face asset contains the raw payload data for a source TTF/OTF file as used by FreeType.
 ---During cook this asset type generates a ".ufont" file containing the raw payload data (unless loaded "Inline").
 ---@class UFontFace : UObject
@@ -9,6 +10,5 @@
 ---@field public bIsAscendOverridden boolean @Activate this option to use the specified ascend value instead of the value from the font.
 ---@field public DescendOverriddenValue integer @The typographic ascender of the face, expressed in font units.
 ---@field public bIsDescendOverridden boolean @Activate this option to use the specified descend value instead of the value from the font.
----@field public SubFaces TArray<string> @Transient cache of the sub-faces available within this face
 UFontFace = {}
 

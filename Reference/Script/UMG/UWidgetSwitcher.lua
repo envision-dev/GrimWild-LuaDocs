@@ -1,3 +1,4 @@
+---@meta
 ---A widget switcher is like a tab control, but without tabs. At most one widget is visible at time.
 ---@class UWidgetSwitcher : UPanelWidget
 ---@field public ActiveWidgetIndex integer @The slot index to display

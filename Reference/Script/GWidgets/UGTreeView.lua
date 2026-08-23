@@ -1,3 +1,4 @@
+---@meta
 ---Stylized UTreeView wrapper with Envision color style support.
 ---@class UGTreeView : UTreeView
 UGTreeView = {}

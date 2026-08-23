@@ -1,3 +1,4 @@
+---@meta
 ---The Slot for the UScaleBoxSlot, contains the widget displayed in a button's single slot
 ---@class UScaleBoxSlot : UPanelSlot
 ---@field public HorizontalAlignment integer @The alignment of the object horizontally.

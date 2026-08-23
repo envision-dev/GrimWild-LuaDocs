@@ -1,5 +1,6 @@
+---@meta
 ---A timecode that stores time in HH:MM:SS format with the remainder of time represented by an integer frame count.
----@class FTimecode
+---@class FTimecode : Struct
 ---@field public Hours integer
 ---@field public Minutes integer
 ---@field public Seconds integer

@@ -1,3 +1,4 @@
+---@meta
 ---FDynamicState API for Blueprint and Lua.
 ---@class UDynamicStateLib : UBlueprintFunctionLibrary
 UDynamicStateLib = {}

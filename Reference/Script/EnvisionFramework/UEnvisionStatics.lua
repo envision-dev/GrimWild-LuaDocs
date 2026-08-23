@@ -1,3 +1,4 @@
+---@meta
 ---Some useful methods exposed to blueprints
 ---@class UEnvisionStatics : UBlueprintFunctionLibrary
 UEnvisionStatics = {}
@@ -5,7 +6,7 @@ UEnvisionStatics = {}
 ---
 ---@param StringToAppend string
 ---@param LocalDirectory string @should start with name and end with slash (e.g. "Saved/Logs/")
----@param FileName string
+---@param FileName string @file name (with extension, e.g. "Log.txt")
 ---@return boolean
 function UEnvisionStatics.AppendStringToFile(StringToAppend, LocalDirectory, FileName) end
 
@@ -51,7 +52,7 @@ function UEnvisionStatics.EvaluateString(InString) end
 
 ---Constructs an absolute path for the given filename in target local directory
 ---@param LocalDirectory string @should start with name and end with slash (e.g. "Saved/Logs/")
----@param FileName string
+---@param FileName string @file name (with extension, e.g. "Log.txt")
 ---@return string
 function UEnvisionStatics.GetAbsoluteFilenamePath(LocalDirectory, FileName) end
 
@@ -124,7 +125,7 @@ function UEnvisionStatics.LiteralCurveFloat(Curve) end
 
 ---
 ---@param LocalDirectory string @should start with name and end with slash (e.g. "Saved/Logs/")
----@param FileName string
+---@param FileName string @file name (with extension, e.g. "Log.txt")
 ---@return boolean
 ---@return string OutString
 function UEnvisionStatics.LoadStringFromFile(LocalDirectory, FileName) end
@@ -140,7 +141,7 @@ function UEnvisionStatics.PasteFromClipboard() end
 ---Saves string to .txt file in local game or project directory.
 ---@param StringToSave string
 ---@param LocalDirectory string @should start with name and end with slash (e.g. "Saved/Logs/")
----@param FileName string
+---@param FileName string @file name (with extension, e.g. "Log.txt")
 ---@param bAllowOverwriting? boolean @[default: false]
 ---@return boolean
 function UEnvisionStatics.SaveStringToFile(StringToSave, LocalDirectory, FileName, bAllowOverwriting) end

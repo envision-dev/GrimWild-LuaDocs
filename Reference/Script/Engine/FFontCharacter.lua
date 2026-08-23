@@ -1,5 +1,6 @@
+---@meta
 ---This struct is serialized using native serialization so any changes to it require a package version bump.
----@class FFontCharacter
+---@class FFontCharacter : Struct
 ---@field public StartU integer
 ---@field public StartV integer
 ---@field public USize integer

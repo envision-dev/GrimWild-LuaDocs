@@ -1,3 +1,4 @@
+---@meta
 ---Light Source IDs are always positive. '-1' can safely be used as invalid ID.
 ---@class ULightManager : UObject
 ---@field protected Owner UGameLevel
@@ -189,9 +190,9 @@ function ULightManager:SetLightSourceColor(LightSourceId, NewColor) end
 ---ConeWidthDeg >= 360 converts the light to omni (no directional restriction).
 ---Any value below 360 converts or keeps the light as a spotlight.
 ---ConeWidthDeg: full cone angle in degrees (not half-angle).
----  360 = omni light
----  90  = narrow spotlight
----  180 = wide spotlight
+---360 = omni light
+---90  = narrow spotlight
+---180 = wide spotlight
 ---Note: changing cone width on an omni light will also require setting a facing
 ---angle via SetLightSourceFacingAngle, otherwise Direction keeps its default value of (1, 0).
 ---Note: static lights only. CosHalfAngle is ignored for dynamic lights.
@@ -210,10 +211,10 @@ function ULightManager:SetLightSourceEnabled(LightSourceId, bEnabled) end
 ---SetLightSourceConeWidth later picks it up without an extra SetLightSourceFacingAngle call.
 ---To convert a spotlight back to omni, use SetLightSourceConeWidth with ConeWidthDeg >= 360.
 ---FacingAngleDeg: angle in degrees, measured from the +X axis counter-clockwise.
----  0   = faces right
----  90  = faces up
----  180 = faces left
----  270 = faces down
+---0   = faces right
+---90  = faces up
+---180 = faces left
+---270 = faces down
 ---Note: static lights only. Direction is ignored for dynamic lights.
 ---@param LightSourceId integer
 ---@param FacingAngleDeg number

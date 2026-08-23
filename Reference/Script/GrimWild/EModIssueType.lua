@@ -1,3 +1,4 @@
+---@meta
 ---@class EModIssueType
 ---@field public MissingDependency EModIssueType [0]
 ---@field public CircularDependency EModIssueType [1] Error
@@ -5,6 +6,9 @@
 ---@field public VersionUnsatisfied EModIssueType [3] Error
 ---@field public GameVersionUnsatisfied EModIssueType [4] Error: a dependency is enabled but outside the declared min/max range
 ---@field public DependencyOrderViolation EModIssueType [5] Error: mod's min/maxGameVersion excludes the current game version
----@field public MissingIncludedMod EModIssueType [6] Error: dependency is enabled but listed after its dependent
----@field public UnknownVersion EModIssueType [7] Warning: a modpack member is not installed or not enabled
+---@field public OptionalDependencyOrderViolation EModIssueType [6] Error: dependency is enabled but listed after its dependent
+---@field public UnresolvedDependency EModIssueType [7] Error: an optional dependency is enabled but listed after its dependent
+---@field public UnknownVersion EModIssueType [8] Error: a dependency points at an entry whose reference resolves to nothing installed
+---@field public OptionalVersionUnsatisfied EModIssueType [9] Warning: a version predicate exists but the target's version is unparseable/absent
+---@field public UnresolvedEntry EModIssueType [10] Warning: an optional dependency is enabled but outside the declared min/max range
 EModIssueType = {}

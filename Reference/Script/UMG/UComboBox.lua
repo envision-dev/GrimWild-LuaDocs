@@ -1,3 +1,4 @@
+---@meta
 ---The combobox allows you to display a list of options to the user in a dropdown menu for them to select one.
 ---@class UComboBox : UWidget
 ---@field public ScrollBarStyle FScrollBarStyle

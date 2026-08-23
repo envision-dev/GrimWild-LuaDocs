@@ -1,3 +1,4 @@
+---@meta
 ---Computes per-pixel neighbor differences for a single channel of an input texture.
 ---Input: texture (float channels) and a single channel to sample.
 ---Output R = north neighbor diff, G = east, B = south, A = west.

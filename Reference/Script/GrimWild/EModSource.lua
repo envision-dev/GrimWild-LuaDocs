@@ -1,3 +1,4 @@
+---@meta
 ---Where an installed mod's files came from. Deliberately extensible for future stores.
 ---@class EModSource
 ---@field public Unknown EModSource [0]

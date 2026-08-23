@@ -1,3 +1,4 @@
+---@meta
 ---Used to capture a 'snapshot' of the scene from a single plane and feed it to a render target.
 ---@class USceneCaptureComponent2D : USceneCaptureComponent
 ---@field public ProjectionType integer

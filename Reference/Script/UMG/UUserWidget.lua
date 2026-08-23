@@ -1,3 +1,4 @@
+---@meta
 ---A widget that enables UI extensibility through WidgetBlueprint.
 ---@class UUserWidget : UWidget
 ---@field public ColorAndOpacity FLinearColor @The color and opacity of this widget.  Tints all child widgets.
@@ -15,10 +16,6 @@
 ---@field private NamedSlotBindings TArray<FNamedSlotBinding> @Stores the widgets being assigned to named slots
 ---@field private Extensions TArray<UUserWidgetExtension> @The UserWidget extensions
 ---@field public WidgetTree UWidgetTree @The widget tree contained inside this user widget initialized by the blueprint
----@field public DesignTimeSize FVector2D @Stores the design time desired size of the user widget
----@field public DesignSizeMode EDesignPreviewSizeMode
----@field public PaletteCategory string @The category this widget appears in the palette.
----@field public PreviewBackground UTexture2D @A preview background that you can use when designing the UI to get a sense of scale on the screen.  Use a texture with a screenshot of your game in it, for example if you were designing a HUD.
 ---@field public bHasScriptImplementedTick boolean @If a widget has an implemented tick blueprint function
 ---@field public bHasScriptImplementedPaint boolean @If a widget has an implemented paint blueprint function
 ---@field private TickFrequency EWidgetTickFrequency @This widget is allowed to tick. If this is unchecked tick will never be called, animations will not play correctly, and latent actions will not execute. Uncheck this for performance reasons only
@@ -308,13 +305,13 @@ function UUserWidget:OnRemovedFromFocusPath(InFocusEvent) end
 
 ---Called when a touchpad touch is ended (finger lifted)
 ---@param MyGeometry FGeometry @The geometry of the widget receiving the event.
----@param InTouchEvent FPointerEvent
+---@param InTouchEvent FPointerEvent @The touch event generated
 ---@return FEventReply
 function UUserWidget:OnTouchEnded(MyGeometry, InTouchEvent) end
 
 ---Called when a touchpad force has changed (user pressed down harder or let up)
 ---@param MyGeometry FGeometry @The geometry of the widget receiving the event.
----@param InTouchEvent FPointerEvent
+---@param InTouchEvent FPointerEvent @The touch event generated
 ---@return FEventReply
 function UUserWidget:OnTouchForceChanged(MyGeometry, InTouchEvent) end
 
@@ -326,13 +323,13 @@ function UUserWidget:OnTouchGesture(MyGeometry, GestureEvent) end
 
 ---Called when a touchpad touch is moved  (finger moved)
 ---@param MyGeometry FGeometry @The geometry of the widget receiving the event.
----@param InTouchEvent FPointerEvent
+---@param InTouchEvent FPointerEvent @The touch event generated
 ---@return FEventReply
 function UUserWidget:OnTouchMoved(MyGeometry, InTouchEvent) end
 
 ---Called when a touchpad touch is started (finger down)
 ---@param MyGeometry FGeometry @The geometry of the widget receiving the event.
----@param InTouchEvent FPointerEvent
+---@param InTouchEvent FPointerEvent @The touch event generated
 ---@return FEventReply
 function UUserWidget:OnTouchStarted(MyGeometry, InTouchEvent) end
 
@@ -387,7 +384,7 @@ function UUserWidget:PlaySound(SoundToPlay) end
 ---Called by both the game and the editor.  Allows users to run initial setup for their widgets to better preview
 ---the setup in the designer and since generally that same setup code is required at runtime, it's called there
 ---as well.
----**WARNING**
+---WARNING**
 ---This is intended purely for cosmetic updates using locally owned data, you can not safely access any game related
 ---state, if you call something that doesn't expect to be run at editor time, you may crash the editor.
 ---In the event you save the asset with blueprint code that causes a crash on evaluation.  You can turn off
@@ -426,7 +423,7 @@ function UUserWidget:SetAnchorsInViewport(Anchors) end
 function UUserWidget:SetAnimationCurrentTime(InAnimation, InTime) end
 
 ---Sets the tint of the widget, this affects all child widgets.
----@param InColorAndOpacity FLinearColor
+---@param InColorAndOpacity FLinearColor @The tint to apply to all child widgets.
 function UUserWidget:SetColorAndOpacity(InColorAndOpacity) end
 
 ---@param Size FVector2D
@@ -434,7 +431,7 @@ function UUserWidget:SetDesiredSizeInViewport(Size) end
 
 ---Sets the foreground color of the widget, this is inherited by sub widgets.  Any color property
 ---that is marked as inherit will use this color.
----@param InForegroundColor FSlateColor
+---@param InForegroundColor FSlateColor @The foreground color.
 function UUserWidget:SetForegroundColor(InForegroundColor) end
 
 ---@param bShouldBlock boolean

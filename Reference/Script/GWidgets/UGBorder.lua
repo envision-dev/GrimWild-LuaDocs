@@ -1,3 +1,4 @@
+---@meta
 ---Stylized UBorder wrapper with Envision color style support.
 ---@class UGBorder : UBorder
 ---@field public WidgetColorStyle FWidgetColorStyle

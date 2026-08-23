@@ -1,3 +1,4 @@
+---@meta
 ---One member of the FSpriteTransform struct
 ---@class EAnimationAxis
 ---@field public LocationX EAnimationAxis [0]

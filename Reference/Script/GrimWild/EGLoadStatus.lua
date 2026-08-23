@@ -1,3 +1,4 @@
+---@meta
 ---@class EGLoadStatus
 ---@field public Unloaded EGLoadStatus [0]
 ---@field public Loading EGLoadStatus [1]

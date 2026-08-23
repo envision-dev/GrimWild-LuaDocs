@@ -1,3 +1,4 @@
+---@meta
 ---Conductivity-weighted heat diffusion pass.
 ---Each dispatch runs Steps iterations of explicit-Euler diffusion, reading from
 ---InputMap (or RenderTarget when InputMap is null) and writing the result to RenderTarget.

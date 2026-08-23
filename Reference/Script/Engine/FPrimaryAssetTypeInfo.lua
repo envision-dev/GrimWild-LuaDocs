@@ -1,5 +1,6 @@
+---@meta
 ---Structure with publicly exposed information about an asset type. These can be loaded out of a config file.
----@class FPrimaryAssetTypeInfo
+---@class FPrimaryAssetTypeInfo : Struct
 ---@field public PrimaryAssetType string @The logical name for this type of Primary Asset
 ---@field private AssetBaseClass TSoftClassPtr<UObject> @Base Class of all assets of this type
 ---@field public AssetBaseClassLoaded TSubclassOf<UObject> @Base Class of all assets of this type

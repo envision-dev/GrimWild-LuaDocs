@@ -1,3 +1,4 @@
+---@meta
 ---BP/Lua export for TGameCellBuffer<>.
 ---All methods take an FCellBufferHandle and route through FCellBufferBase virtual dispatch.
 ---@class UCellBufferLib : UBlueprintFunctionLibrary

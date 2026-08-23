@@ -1,3 +1,4 @@
+---@meta
 ---@class UMaterialInstance : UMaterialInterface
 ---@field public PhysMaterial UPhysicalMaterial @Physical material to use for this graphics material. Used for sounds, effects etc.
 ---@field public PhysicalMaterialMap UPhysicalMaterial @Physical material map used with physical material mask, when it exists.
@@ -14,6 +15,5 @@
 ---@field public FontParameterValues TArray<FFontParameterValue> @Font parameters.
 ---@field public BasePropertyOverrides FMaterialInstanceBasePropertyOverrides
 ---@field private StaticParametersRuntime FStaticParameterSetRuntimeData @Static parameter values that are overridden in this instance.
----@field private ReferencedTextureGuids TArray<FGuid>
 UMaterialInstance = {}
 

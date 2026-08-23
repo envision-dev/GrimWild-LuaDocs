@@ -1,3 +1,4 @@
+---@meta
 ---Settings for the Asset Management framework, which can be used to discover, load, and audit game-specific asset types
 ---@class UAssetManagerSettings : UDeveloperSettings
 ---@field public PrimaryAssetTypesToScan TArray<FPrimaryAssetTypeInfo> @List of asset types to scan at startup

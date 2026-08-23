@@ -1,3 +1,4 @@
+---@meta
 ---Allows a user to enter multiple lines of text
 ---@class UMultiLineEditableTextBox : UTextLayoutWidget
 ---@field public Text string @The text content for this editable text box widget
@@ -10,7 +11,6 @@
 ---@field public VirtualKeyboardDismissAction EVirtualKeyboardDismissAction @What action should be taken when the virtual keyboard is dismissed?
 ---@field public OnTextChanged MulticastDelegate|fun(Text: string) @Called whenever the text is changed programmatically or interactively by the user
 ---@field public OnTextCommitted MulticastDelegate|fun(Text: string, CommitMethod: integer) @Called whenever the text is committed.  This happens when the user presses enter or the text box loses focus.
----@field private bIsFontDeprecationDone boolean
 UMultiLineEditableTextBox = {}
 
 ---Returns the Hint text that appears when there is no text in the text box

@@ -1,3 +1,4 @@
+---@meta
 ---For each pixel, extracts a single bit from the packed bitmask input texture,
 ---samples all 8 neighbors, and outputs their bit-states packed into a single byte
 ---encoded as float / 255 (bit0=N, bit1=NE, bit2=E, bit3=SE, bit4=S, bit5=SW, bit6=W, bit7=NW).

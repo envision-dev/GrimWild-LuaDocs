@@ -1,3 +1,4 @@
+---@meta
 ---Settings for Grim Wild game module
 ---@class UGDevSettings : UDeveloperSettings
 ---@field public MainMenuMap TSoftObjectPtr<UWorld>

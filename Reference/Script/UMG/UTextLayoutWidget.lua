@@ -1,3 +1,4 @@
+---@meta
 ---Base class for all widgets that use a text layout.
 ---Contains the common options that should be exposed for the underlying Slate widget.
 ---@class UTextLayoutWidget : UWidget

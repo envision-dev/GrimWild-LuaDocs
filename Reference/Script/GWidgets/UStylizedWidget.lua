@@ -1,3 +1,4 @@
+---@meta
 ---@class UStylizedWidget : UInterface
 UStylizedWidget = {}
 

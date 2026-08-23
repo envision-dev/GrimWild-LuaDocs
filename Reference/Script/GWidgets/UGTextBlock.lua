@@ -1,3 +1,4 @@
+---@meta
 ---Visible Text value can be set using several ways:
 ---1) (prioritized) changing FText Text field by SetText() - used for formatted texts
 ---2) changing FEText EText field - handles automatic text getting and translation updating

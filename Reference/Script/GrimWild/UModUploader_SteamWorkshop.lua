@@ -1,3 +1,4 @@
+---@meta
 ---Self-contained bridge between the game UI and ISteamUGC for publishing/updating a single Workshop item.
 ---Knows nothing about UModManager beyond what is passed in via its fields. Created by UMG (NewObject),
 ---configured via its UPROPERTY fields, then TryUpload() is called once.
@@ -5,11 +6,10 @@
 ---@field public TargetFileId string @Decimal PublishedFileId string. Empty or "0" means create a new item.
 ---@field public ContentFolder string @Required: absolute path of the mod folder to upload.
 ---@field public ModId string @Required: validated with UModManager::IsValidModId.
----@field public ModType EModType
 ---@field public Title string @Optional. Left unset (empty), the Workshop-side title survives the update untouched.
 ---@field public Description string
 ---@field public Visibility EWorkshopVisibility
----@field public Tags TArray<string> @Additional visible Workshop tags, beyond the type tag ("Mod"/"ModPack") which is always set.
+---@field public Tags TArray<string> @Visible Workshop tags.
 ---@field public ChangeNote string
 ---@field public PreviewImagePath string @Optional. Must be under 1 MB; checked locally before starting the update.
 ---@field public OnCompleted MulticastDelegate|fun(bSuccess: boolean, ResultCode: integer, FileId: string)

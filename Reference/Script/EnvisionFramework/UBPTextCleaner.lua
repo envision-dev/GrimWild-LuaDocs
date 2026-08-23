@@ -1,3 +1,4 @@
+---@meta
 ---@class UBPTextCleaner : UBlueprintFunctionLibrary
 UBPTextCleaner = {}
 

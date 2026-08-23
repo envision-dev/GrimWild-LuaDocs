@@ -1,3 +1,4 @@
+---@meta
 ---@class UBPPseudoCodeGen : UBlueprintFunctionLibrary
 UBPPseudoCodeGen = {}
 

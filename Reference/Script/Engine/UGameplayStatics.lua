@@ -1,3 +1,4 @@
+---@meta
 ---Static class with useful gameplay utility functions that can be called from both Blueprint and C++
 ---@class UGameplayStatics : UBlueprintFunctionLibrary
 UGameplayStatics = {}
@@ -71,8 +72,8 @@ function UGameplayStatics.ApplyRadialDamageWithFalloff(WorldContextObject, BaseD
 
 ---Determines if any audio listeners are within range of the specified location
 ---@param WorldContextObject UObject
----@param Location FVector
----@param MaximumRange number
+---@param Location FVector @The location from which test if a listener is in range
+---@param MaximumRange number @The distance away from Location to test if any listener is within
 ---@return boolean
 function UGameplayStatics.AreAnyListenersWithinRange(WorldContextObject, Location, MaximumRange) end
 
@@ -101,87 +102,87 @@ function UGameplayStatics.BeginSpawningActorFromBlueprint(WorldContextObject, Bl
 ---Predict the arc of a virtual projectile affected by gravity with collision checks along the arc.
 ---Returns true if it hit something.
 ---@param WorldContextObject UObject
----@param PredictParams FPredictProjectilePathParams
----@param PredictResult FPredictProjectilePathResult @[out, modified in place]
+---@param PredictParams FPredictProjectilePathParams @Input params to the trace (start location, velocity, time to simulate, etc).
+---@param PredictResult FPredictProjectilePathResult @[out, modified in place] Output result of the trace (Hit result, array of location/velocity/times for each trace step, etc).
 ---@return boolean
 function UGameplayStatics.Blueprint_PredictProjectilePath_Advanced(WorldContextObject, PredictParams, PredictResult) end
 
 ---Predict the arc of a virtual projectile affected by gravity with collision checks along the arc. Returns a list of positions of the simulated arc and the destination reached by the simulation.
 ---Returns true if it hit something.
 ---@param WorldContextObject UObject
----@param OutHit FHitResult @[out, modified in place]
----@param OutPathPositions TArray<FVector> @[out, modified in place]
----@param OutLastTraceDestination FVector @[out, modified in place]
----@param StartPos FVector
----@param LaunchVelocity FVector
----@param bTracePath boolean
----@param ProjectileRadius number
----@param ObjectTypes TArray<integer>
----@param bTraceComplex boolean
----@param ActorsToIgnore TArray<AActor>
----@param DrawDebugType integer
----@param DrawDebugTime number
----@param SimFrequency? number @[default: 15.000000]
----@param MaxSimTime? number @[default: 2.000000]
----@param OverrideGravityZ? number @[default: 0.000000]
+---@param OutHit FHitResult @[out, modified in place] Predicted hit result, if the projectile will hit something
+---@param OutPathPositions TArray<FVector> @[out, modified in place] Predicted projectile path. Ordered series of positions from StartPos to the end. Includes location at point of impact if it hit something.
+---@param OutLastTraceDestination FVector @[out, modified in place] Goal position of the final trace it did. Will not be in the path if there is a hit.
+---@param StartPos FVector @First start trace location
+---@param LaunchVelocity FVector @Velocity the "virtual projectile" is launched at
+---@param bTracePath boolean @Trace along the entire path to look for blocking hits
+---@param ProjectileRadius number @Radius of the virtual projectile to sweep against the environment
+---@param ObjectTypes TArray<integer> @ObjectTypes to trace against, if bTracePath is true.
+---@param bTraceComplex boolean @Use TraceComplex (trace against triangles not primitives)
+---@param ActorsToIgnore TArray<AActor> @Actors to exclude from the traces
+---@param DrawDebugType integer @Debug type (one-frame, duration, persistent)
+---@param DrawDebugTime number @Duration of debug lines (only relevant for DrawDebugType::Duration)
+---@param SimFrequency? number @[default: 15.000000] Determines size of each sub-step in the simulation (chopping up MaxSimTime)
+---@param MaxSimTime? number @[default: 2.000000] Maximum simulation time for the virtual projectile.
+---@param OverrideGravityZ? number @[default: 0.000000] Optional override of Gravity (if 0, uses WorldGravityZ)
 ---@return boolean
 function UGameplayStatics.Blueprint_PredictProjectilePath_ByObjectType(WorldContextObject, OutHit, OutPathPositions, OutLastTraceDestination, StartPos, LaunchVelocity, bTracePath, ProjectileRadius, ObjectTypes, bTraceComplex, ActorsToIgnore, DrawDebugType, DrawDebugTime, SimFrequency, MaxSimTime, OverrideGravityZ) end
 
 ---Predict the arc of a virtual projectile affected by gravity with collision checks along the arc. Returns a list of positions of the simulated arc and the destination reached by the simulation.
 ---Returns true if it hit something (if tracing with collision).
 ---@param WorldContextObject UObject
----@param OutHit FHitResult @[out, modified in place]
----@param OutPathPositions TArray<FVector> @[out, modified in place]
----@param OutLastTraceDestination FVector @[out, modified in place]
----@param StartPos FVector
----@param LaunchVelocity FVector
----@param bTracePath boolean
----@param ProjectileRadius number
----@param TraceChannel integer
----@param bTraceComplex boolean
----@param ActorsToIgnore TArray<AActor>
----@param DrawDebugType integer
----@param DrawDebugTime number
----@param SimFrequency? number @[default: 15.000000]
----@param MaxSimTime? number @[default: 2.000000]
----@param OverrideGravityZ? number @[default: 0.000000]
+---@param OutHit FHitResult @[out, modified in place] Predicted hit result, if the projectile will hit something
+---@param OutPathPositions TArray<FVector> @[out, modified in place] Predicted projectile path. Ordered series of positions from StartPos to the end. Includes location at point of impact if it hit something.
+---@param OutLastTraceDestination FVector @[out, modified in place] Goal position of the final trace it did. Will not be in the path if there is a hit.
+---@param StartPos FVector @First start trace location
+---@param LaunchVelocity FVector @Velocity the "virtual projectile" is launched at
+---@param bTracePath boolean @Trace along the entire path to look for blocking hits
+---@param ProjectileRadius number @Radius of the virtual projectile to sweep against the environment
+---@param TraceChannel integer @TraceChannel to trace against, if bTracePath is true.
+---@param bTraceComplex boolean @Use TraceComplex (trace against triangles not primitives)
+---@param ActorsToIgnore TArray<AActor> @Actors to exclude from the traces
+---@param DrawDebugType integer @Debug type (one-frame, duration, persistent)
+---@param DrawDebugTime number @Duration of debug lines (only relevant for DrawDebugType::Duration)
+---@param SimFrequency? number @[default: 15.000000] Determines size of each sub-step in the simulation (chopping up MaxSimTime)
+---@param MaxSimTime? number @[default: 2.000000] Maximum simulation time for the virtual projectile.
+---@param OverrideGravityZ? number @[default: 0.000000] Optional override of Gravity (if 0, uses WorldGravityZ)
 ---@return boolean
 function UGameplayStatics.Blueprint_PredictProjectilePath_ByTraceChannel(WorldContextObject, OutHit, OutPathPositions, OutLastTraceDestination, StartPos, LaunchVelocity, bTracePath, ProjectileRadius, TraceChannel, bTraceComplex, ActorsToIgnore, DrawDebugType, DrawDebugTime, SimFrequency, MaxSimTime, OverrideGravityZ) end
 
 ---Calculates an launch velocity for a projectile to hit a specified point.
 ---@param WorldContextObject UObject
----@param TossVelocity FVector @[out, modified in place]
----@param StartLocation FVector
----@param EndLocation FVector
----@param LaunchSpeed number
----@param OverrideGravityZ number
----@param TraceOption integer
----@param CollisionRadius number
----@param bFavorHighArc boolean
----@param bDrawDebug boolean
+---@param TossVelocity FVector @[out, modified in place] (output) Result launch velocity.
+---@param StartLocation FVector @Intended launch location
+---@param EndLocation FVector @Desired landing location
+---@param LaunchSpeed number @Desired launch speed
+---@param OverrideGravityZ number @Optional gravity override.  0 means "do not override".
+---@param TraceOption integer @Controls whether or not to validate a clear path by tracing along the calculated arc
+---@param CollisionRadius number @Radius of the projectile (assumed spherical), used when tracing
+---@param bFavorHighArc boolean @If true and there are 2 valid solutions, will return the higher arc.  If false, will favor the lower arc.
+---@param bDrawDebug boolean @When true, a debug arc is drawn (red for an invalid arc, green for a valid arc)
 ---@return boolean
 function UGameplayStatics.BlueprintSuggestProjectileVelocity(WorldContextObject, TossVelocity, StartLocation, EndLocation, LaunchSpeed, OverrideGravityZ, TraceOption, CollisionRadius, bFavorHighArc, bDrawDebug) end
 
 ---Extracts data from a HitResult.
----@param Hit FHitResult
----@param Location FVector @[out, modified in place]
----@param ImpactPoint FVector @[out, modified in place]
----@param Normal FVector @[out, modified in place]
----@param ImpactNormal FVector @[out, modified in place]
----@param PhysMat UPhysicalMaterial @[out, modified in place]
----@param HitActor AActor @[out, modified in place]
----@param HitComponent UPrimitiveComponent @[out, modified in place]
+---@param Hit FHitResult @The source HitResult.
+---@param Location FVector @[out, modified in place] Location of the hit in world space. If this was a swept shape test, this is the location where we can place the shape in the world where it will not penetrate.
+---@param ImpactPoint FVector @[out, modified in place] Location of the actual contact point of the trace shape with the surface of the hit object. Equal to Location in the case of an initial overlap.
+---@param Normal FVector @[out, modified in place] Normal of the hit in world space, for the object that was swept (e.g. for a sphere trace this points towards the sphere's center). Equal to ImpactNormal for line tests.
+---@param ImpactNormal FVector @[out, modified in place] Normal of the hit in world space, for the object that was hit by the sweep.
+---@param PhysMat UPhysicalMaterial @[out, modified in place] Physical material that was hit. Must set bReturnPhysicalMaterial to true in the query params for this to be returned.
+---@param HitActor AActor @[out, modified in place] Actor hit by the trace.
+---@param HitComponent UPrimitiveComponent @[out, modified in place] PrimitiveComponent hit by the trace.
 ---@param TraceStart FVector @[out, modified in place]
 ---@param TraceEnd FVector @[out, modified in place]
----@return boolean bBlockingHit
+---@return boolean bBlockingHit @True if there was a blocking hit, false otherwise.
 ---@return boolean bInitialOverlap @True if the hit started in an initial overlap. In this case some other values should be interpreted differently. Time will be 0, ImpactPoint will equal Location, and normals will be equal and indicate a depenetration vector.
----@return number Time
----@return number Distance
----@return string HitBoneName
----@return string BoneName
----@return integer HitItem
----@return integer ElementIndex
----@return integer FaceIndex
+---@return number Time @'Time' of impact along trace direction ranging from [0.0 to 1.0) if there is a hit, indicating time between start and end. Equals 1.0 if there is no hit.
+---@return number Distance @The distance from the TraceStart to the Location in world space. This value is 0 if there was an initial overlap (trace started inside another colliding object).
+---@return string HitBoneName @Name of the bone hit (valid only if we hit a skeletal mesh).
+---@return string BoneName @Name of the trace bone hit (valid only if we hit a skeletal mesh).
+---@return integer HitItem @Primitive-specific data recording which item in the primitive was hit
+---@return integer ElementIndex @If colliding with a primitive with multiple parts, index of the part that was hit.
+---@return integer FaceIndex @If colliding with trimesh or landscape, index of face that was hit.
 function UGameplayStatics.BreakHitResult(Hit, Location, ImpactPoint, Normal, ImpactNormal, PhysMat, HitActor, HitComponent, TraceStart, TraceEnd) end
 
 ---Cancels all currently queued streaming packages
@@ -213,13 +214,13 @@ function UGameplayStatics.CreatePlayer(WorldContextObject, ControllerId, bSpawnP
 function UGameplayStatics.CreatePlayerFromPlatformUser(WorldContextObject, UserId, bSpawnPlayerController) end
 
 ---Create a new, empty SaveGame object to set data on and then pass to SaveGameToSlot.
----@param SaveGameClass TSubclassOf<USaveGame>
+---@param SaveGameClass TSubclassOf<USaveGame> @Class of SaveGame to create
 ---@return USaveGame
 function UGameplayStatics.CreateSaveGameObject(SaveGameClass) end
 
 ---This function allows users to create Audio Components in advance of playback with settings specifically for non-spatialized,
 ---non-distance-attenuated sounds. Audio Components created using this function by default will not have Spatialization applied.
----                                              (by completing or stopping), or whether it can be reactivated
+---(by completing or stopping), or whether it can be reactivated
 ---@param WorldContextObject UObject
 ---@param Sound USoundBase @- Sound to create.
 ---@param VolumeMultiplier? number @[default: 1.000000] - A linear scalar multiplied with the volume, in order to make the sound louder or softer.
@@ -237,35 +238,35 @@ function UGameplayStatics.CreateSound2D(WorldContextObject, Sound, VolumeMultipl
 function UGameplayStatics.DeactivateReverbEffect(WorldContextObject, TagName) end
 
 ---Delete a save game in a particular slot.
----@param SlotName string
----@param UserIndex integer
+---@param SlotName string @Name of save game slot to delete.
+---@param UserIndex integer @The platform user index that identifies the user doing the saving, ignored on some platforms.
 ---@return boolean
 function UGameplayStatics.DeleteGameInSlot(SlotName, UserIndex) end
 
 ---Transforms the given 2D UV coordinate into a 3D world-space point and direction.
----@param SceneCapture2D ASceneCapture2D
+---@param SceneCapture2D ASceneCapture2D @Deproject using this scene capture's view.
 ---@param TargetUV FVector2D
----@param WorldPosition FVector @[out, modified in place]
----@param WorldDirection FVector @[out, modified in place]
+---@param WorldPosition FVector @[out, modified in place] (out) Corresponding 3D position on camera near plane, in world space.
+---@param WorldDirection FVector @[out, modified in place] (out) World space direction vector away from the camera at the given 2d point.
 ---@return boolean
 function UGameplayStatics.DeprojectSceneCaptureToWorld(SceneCapture2D, TargetUV, WorldPosition, WorldDirection) end
 
 ---Transforms the given 2D screen space coordinate into a 3D world-space point and direction.
----@param Player APlayerController
----@param ScreenPosition FVector2D
----@param WorldPosition FVector @[out, modified in place]
----@param WorldDirection FVector @[out, modified in place]
+---@param Player APlayerController @Deproject using this player's view.
+---@param ScreenPosition FVector2D @2D screen space to deproject.
+---@param WorldPosition FVector @[out, modified in place] (out) Corresponding 3D position in world space.
+---@param WorldDirection FVector @[out, modified in place] (out) World space direction vector away from the camera at the given 2d point.
 ---@return boolean
 function UGameplayStatics.DeprojectScreenToWorld(Player, ScreenPosition, WorldPosition, WorldDirection) end
 
 ---See if a save game exists with the specified name.
----@param SlotName string
----@param UserIndex integer
+---@param SlotName string @Name of save game slot.
+---@param UserIndex integer @The platform user index that identifies the user doing the saving, ignored on some platforms.
 ---@return boolean
 function UGameplayStatics.DoesSaveGameExist(SlotName, UserIndex) end
 
 ---Toggle live DVR streaming.
----@param Enable boolean
+---@param Enable boolean @If true enable streaming, otherwise disable.
 function UGameplayStatics.EnableLiveStreaming(Enable) end
 
 ---Try and find the UV for a collision impact. Note this ONLY works if 'Support UV From Hit Results' is enabled in Physics Settings.
@@ -276,10 +277,10 @@ function UGameplayStatics.EnableLiveStreaming(Enable) end
 function UGameplayStatics.FindCollisionUV(Hit, UVChannel, UV) end
 
 ---Returns an Actor nearest to Origin from ActorsToCheck array.
----@param Origin FVector
----@param ActorsToCheck TArray<AActor>
+---@param Origin FVector @World Location from which the distance is measured.
+---@param ActorsToCheck TArray<AActor> @Array of Actors to examine and return Actor nearest to Origin.
 ---@return AActor
----@return number Distance
+---@return number Distance @Distance from Origin to the returned Actor.
 function UGameplayStatics.FindNearestActor(Origin, ActorsToCheck) end
 
 ---'Finish' spawning an actor.  This will run the construction script.
@@ -318,37 +319,37 @@ function UGameplayStatics.GetActorArrayBounds(Actors, bOnlyCollidingComponents, 
 ---Find the first Actor in the world of the specified class.
 ---This is a slow operation, use with caution e.g. do not use every frame.
 ---@param WorldContextObject UObject
----@param ActorClass TSubclassOf<AActor>
+---@param ActorClass TSubclassOf<AActor> @Class of Actor to find. Must be specified or result will be empty.
 ---@return AActor
 function UGameplayStatics.GetActorOfClass(WorldContextObject, ActorClass) end
 
 ---Find all Actors in the world of the specified class.
 ---This is a slow operation, use with caution e.g. do not use every frame.
 ---@param WorldContextObject UObject
----@param ActorClass TSubclassOf<AActor>
----@param OutActors TArray<AActor> @[out, modified in place]
+---@param ActorClass TSubclassOf<AActor> @Class of Actor to find. Must be specified or result array will be empty.
+---@param OutActors TArray<AActor> @[out, modified in place] Output array of Actors of the specified class.
 function UGameplayStatics.GetAllActorsOfClass(WorldContextObject, ActorClass, OutActors) end
 
 ---Find all Actors in the world of the specified class with the specified tag.
 ---This is a slow operation, use with caution e.g. do not use every frame.
 ---@param WorldContextObject UObject
----@param ActorClass TSubclassOf<AActor>
----@param Tag string
----@param OutActors TArray<AActor> @[out, modified in place]
+---@param ActorClass TSubclassOf<AActor> @Class of Actor to find. Must be specified or result array will be empty.
+---@param Tag string @Tag to find. Must be specified or result array will be empty.
+---@param OutActors TArray<AActor> @[out, modified in place] Output array of Actors of the specified tag.
 function UGameplayStatics.GetAllActorsOfClassWithTag(WorldContextObject, ActorClass, Tag, OutActors) end
 
 ---Find all Actors in the world with the specified interface.
 ---This is a slow operation, use with caution e.g. do not use every frame.
 ---@param WorldContextObject UObject
----@param Interface TSubclassOf<UInterface>
----@param OutActors TArray<AActor> @[out, modified in place]
+---@param Interface TSubclassOf<UInterface> @Interface to find. Must be specified or result array will be empty.
+---@param OutActors TArray<AActor> @[out, modified in place] Output array of Actors of the specified interface.
 function UGameplayStatics.GetAllActorsWithInterface(WorldContextObject, Interface, OutActors) end
 
 ---Find all Actors in the world with the specified tag.
 ---This is a slow operation, use with caution e.g. do not use every frame.
 ---@param WorldContextObject UObject
----@param Tag string
----@param OutActors TArray<AActor> @[out, modified in place]
+---@param Tag string @Tag to find. Must be specified or result array will be empty.
+---@param OutActors TArray<AActor> @[out, modified in place] Output array of Actors of the specified tag.
 function UGameplayStatics.GetAllActorsWithTag(WorldContextObject, Tag, OutActors) end
 
 ---Returns time in seconds since world was brought up for play, IS stopped when game pauses, NOT dilated/clamped.
@@ -363,16 +364,16 @@ function UGameplayStatics.GetAvailableSpatialPluginNames(WorldContextObject) end
 
 ---Finds and returns the position of the closest listener to the specified location
 ---@param WorldContextObject UObject
----@param Location FVector
----@param MaximumRange number
----@param bAllowAttenuationOverride boolean
----@param ListenerPosition FVector @[out, modified in place]
+---@param Location FVector @The location from which we'd like to find the closest listener, in world space.
+---@param MaximumRange number @The maximum distance away from Location that a listener can be.
+---@param bAllowAttenuationOverride boolean @True for the adjusted listener position (if attenuation override is set), false for the raw listener position (for panning)
+---@param ListenerPosition FVector @[out, modified in place] [Out] The position of the closest listener in world space, if found.
 ---@return boolean
 function UGameplayStatics.GetClosestListenerLocation(WorldContextObject, Location, MaximumRange, bAllowAttenuationOverride, ListenerPosition) end
 
 ---Get the name of the currently-open level.
 ---@param WorldContextObject UObject
----@param bRemovePrefixString? boolean @[default: true]
+---@param bRemovePrefixString? boolean @[default: true] remove any streaming- or editor- added prefixes from the level name.
 ---@return string
 function UGameplayStatics.GetCurrentLevelName(WorldContextObject, bRemovePrefixString) end
 
@@ -407,16 +408,16 @@ function UGameplayStatics.GetGameState(WorldContextObject) end
 function UGameplayStatics.GetGlobalTimeDilation(WorldContextObject) end
 
 ---Find an option in the options string and return it as an integer.
----@param Options string
----@param Key string
+---@param Options string @The string containing the options.
+---@param Key string @The key to find the value of in Options.
 ---@param DefaultValue integer
 ---@return integer
 function UGameplayStatics.GetIntOption(Options, Key, DefaultValue) end
 
 ---Break up a key=value pair into its key and value.
----@param Pair string
----@return string Key
----@return string Value
+---@param Pair string @The string containing a pair to split apart.
+---@return string Key @(out) Key portion of Pair. If no = in string will be the same as Pair.
+---@return string Value @(out) Value portion of Pair. If no = in string will be empty.
 function UGameplayStatics.GetKeyValue(Pair) end
 
 ---Retrieves the max voice count currently used by the audio engine.
@@ -455,14 +456,14 @@ function UGameplayStatics.GetPlatformName() end
 ---Returns the camera manager for the Player Controller at the specified player index.
 ---This will not include remote clients with no player controller.
 ---@param WorldContextObject UObject
----@param PlayerIndex integer
+---@param PlayerIndex integer @Index in the player controller list, starting first with local players and then available remote ones
 ---@return APlayerCameraManager
 function UGameplayStatics.GetPlayerCameraManager(WorldContextObject, PlayerIndex) end
 
 ---Returns the pawn for the player controller at the specified player index, will return null if the pawn is not a character.
 ---This will not include characters of remote clients with no available player controller, you can iterate the PlayerStates list for that.
 ---@param WorldContextObject UObject
----@param PlayerIndex integer
+---@param PlayerIndex integer @Index in the player controller list, starting first with local players and then available remote ones
 ---@return ACharacter
 function UGameplayStatics.GetPlayerCharacter(WorldContextObject, PlayerIndex) end
 
@@ -470,13 +471,13 @@ function UGameplayStatics.GetPlayerCharacter(WorldContextObject, PlayerIndex) en
 ---On a network client, this will only include local players as remote player controllers are not available.
 ---The index will be consistent as long as no new players join or leave, but it will not be the same across different clients and servers.
 ---@param WorldContextObject UObject
----@param PlayerIndex integer
+---@param PlayerIndex integer @Index in the player controller list, starting first with local players and then available remote ones
 ---@return APlayerController
 function UGameplayStatics.GetPlayerController(WorldContextObject, PlayerIndex) end
 
 ---Returns the player controller with the specified physical controller ID. This only works for local players.
 ---@param WorldContextObject UObject
----@param ControllerID integer
+---@param ControllerID integer @Physical controller ID, the same value returned from Get Player Controller ID
 ---@return APlayerController
 function UGameplayStatics.GetPlayerControllerFromID(WorldContextObject, ControllerID) end
 
@@ -487,14 +488,14 @@ function UGameplayStatics.GetPlayerControllerFromID(WorldContextObject, Controll
 function UGameplayStatics.GetPlayerControllerFromPlatformUser(WorldContextObject, UserId) end
 
 ---Gets what physical controller ID a player is using. This only works for local player controllers.
----@param Player APlayerController
+---@param Player APlayerController @The player controller of the player to get the ID of
 ---@return integer
 function UGameplayStatics.GetPlayerControllerID(Player) end
 
 ---Returns the pawn for the player controller at the specified player index.
 ---This will not include pawns of remote clients with no available player controller, you can use the player states list for that.
 ---@param WorldContextObject UObject
----@param PlayerIndex integer
+---@param PlayerIndex integer @Index in the player controller list, starting first with local players and then available remote ones
 ---@return APawn
 function UGameplayStatics.GetPlayerPawn(WorldContextObject, PlayerIndex) end
 
@@ -502,14 +503,14 @@ function UGameplayStatics.GetPlayerPawn(WorldContextObject, PlayerIndex) end
 ---This will work on both the client and server and the index will be consistent.
 ---After initial replication, all clients and the server will have access to PlayerStates for all connected players.
 ---@param WorldContextObject UObject
----@param PlayerStateIndex integer
+---@param PlayerStateIndex integer @Index into the game state's PlayerArray
 ---@return APlayerState
 function UGameplayStatics.GetPlayerState(WorldContextObject, PlayerStateIndex) end
 
 ---Returns the player state that matches the passed in online id, or null for an invalid one.
 ---This will work on both the client and server for local and remote players.
 ---@param WorldContextObject UObject
----@param UniqueId FUniqueNetIdRepl
+---@param UniqueId FUniqueNetIdRepl @The player's unique net/online id
 ---@return APlayerState
 function UGameplayStatics.GetPlayerStateFromUniqueNetId(WorldContextObject, UniqueId) end
 
@@ -546,10 +547,10 @@ function UGameplayStatics.GetUnpausedTimeSeconds(WorldContextObject) end
 function UGameplayStatics.GetViewportMouseCaptureMode(WorldContextObject) end
 
 ---Returns the View Matrix, Projection Matrix and the View x Projection Matrix for a given view
----@param DesiredView FMinimalViewInfo
----@param ViewMatrix FMatrix @[out, modified in place]
----@param ProjectionMatrix FMatrix @[out, modified in place]
----@param ViewProjectionMatrix FMatrix @[out, modified in place]
+---@param DesiredView FMinimalViewInfo @FMinimalViewInfo struct for a camera.
+---@param ViewMatrix FMatrix @[out, modified in place] (out) Corresponding View Matrix
+---@param ProjectionMatrix FMatrix @[out, modified in place] (out) Corresponding Projection Matrix
+---@param ViewProjectionMatrix FMatrix @[out, modified in place] (out) Corresponding View x Projection Matrix
 function UGameplayStatics.GetViewProjectionMatrix(DesiredView, ViewMatrix, ProjectionMatrix, ViewProjectionMatrix) end
 
 ---Returns the frame delta time in seconds, adjusted by time dilation.
@@ -565,8 +566,8 @@ function UGameplayStatics.GetWorldOriginLocation(WorldContextObject) end
 ---Counts how many grass foliage instances overlap a given sphere.
 ---@param WorldContextObject UObject
 ---@param StaticMesh UStaticMesh
----@param CenterPosition FVector
----@param Radius number
+---@param CenterPosition FVector @The center position of the sphere.
+---@param Radius number @The radius of the sphere.
 ---@return integer
 function UGameplayStatics.GrassOverlappingSphereCount(WorldContextObject, StaticMesh, CenterPosition, Radius) end
 
@@ -576,15 +577,15 @@ function UGameplayStatics.GrassOverlappingSphereCount(WorldContextObject, Static
 function UGameplayStatics.HasLaunchOption(OptionToCheck) end
 
 ---Returns whether a key exists in an options string.
----@param Options string
+---@param Options string @The string containing the options.
 ---@param InKey string
 ---@return boolean
 function UGameplayStatics.HasOption(Options, InKey) end
 
 ---Determines if any local player controller's camera is within range of the specified location.
 ---@param WorldContextObject UObject
----@param Location FVector
----@param MaximumRange number
+---@param Location FVector @The location from which test range
+---@param MaximumRange number @The distance away from Location to test range
 ---@return boolean
 function UGameplayStatics.IsAnyLocalPlayerCameraWithinRange(WorldContextObject, Location, MaximumRange) end
 
@@ -599,8 +600,8 @@ function UGameplayStatics.IsGamePaused(WorldContextObject) end
 function UGameplayStatics.IsSplitscreenForceDisabled(WorldContextObject) end
 
 ---Load the contents from a given slot.
----@param SlotName string
----@param UserIndex integer
+---@param SlotName string @Name of the save game slot to load from.
+---@param UserIndex integer @The platform user index that identifies the user doing the saving, ignored on some platforms.
 ---@return USaveGame
 function UGameplayStatics.LoadGameFromSlot(SlotName, UserIndex) end
 
@@ -619,22 +620,22 @@ function UGameplayStatics.LoadStreamLevel(WorldContextObject, LevelName, bMakeVi
 function UGameplayStatics.LoadStreamLevelBySoftObjectPtr(WorldContextObject, Level, bMakeVisibleAfterLoad, bShouldBlockOnLoad) end
 
 ---Create a HitResult struct
----@param bBlockingHit boolean
+---@param bBlockingHit boolean @True if there was a blocking hit, false otherwise.
 ---@param bInitialOverlap boolean @True if the hit started in an initial overlap. In this case some other values should be interpreted differently. Time will be 0, ImpactPoint will equal Location, and normals will be equal and indicate a depenetration vector.
----@param Time number
----@param Distance number
----@param Location FVector
----@param ImpactPoint FVector
----@param Normal FVector
----@param ImpactNormal FVector
----@param PhysMat UPhysicalMaterial
----@param HitActor AActor
----@param HitComponent UPrimitiveComponent
----@param HitBoneName string
----@param BoneName string
----@param HitItem integer
----@param ElementIndex integer
----@param FaceIndex integer
+---@param Time number @'Time' of impact along trace direction ranging from [0.0 to 1.0) if there is a hit, indicating time between start and end. Equals 1.0 if there is no hit.
+---@param Distance number @The distance from the TraceStart to the Location in world space. This value is 0 if there was an initial overlap (trace started inside another colliding object).
+---@param Location FVector @Location of the hit in world space. If this was a swept shape test, this is the location where we can place the shape in the world where it will not penetrate.
+---@param ImpactPoint FVector @Location of the actual contact point of the trace shape with the surface of the hit object. Equal to Location in the case of an initial overlap.
+---@param Normal FVector @Normal of the hit in world space, for the object that was swept (e.g. for a sphere trace this points towards the sphere's center). Equal to ImpactNormal for line tests.
+---@param ImpactNormal FVector @Normal of the hit in world space, for the object that was hit by the sweep.
+---@param PhysMat UPhysicalMaterial @Physical material that was hit. Must set bReturnPhysicalMaterial to true in the query params for this to be returned.
+---@param HitActor AActor @Actor hit by the trace.
+---@param HitComponent UPrimitiveComponent @PrimitiveComponent hit by the trace.
+---@param HitBoneName string @Name of the bone hit (valid only if we hit a skeletal mesh).
+---@param BoneName string @Name of the trace bone hit (valid only if we hit a skeletal mesh).
+---@param HitItem integer @Primitive-specific data recording which item in the primitive was hit
+---@param ElementIndex integer @If colliding with a primitive with multiple parts, index of the part that was hit.
+---@param FaceIndex integer @If colliding with trimesh or landscape, index of face that was hit.
 ---@param TraceStart FVector
 ---@param TraceEnd FVector
 ---@return FHitResult
@@ -648,27 +649,27 @@ function UGameplayStatics.ObjectIsA(Object, ObjectClass) end
 
 ---Travel to another level
 ---@param WorldContextObject UObject
----@param LevelName string
----@param bAbsolute? boolean @[default: true]
----@param Options string
+---@param LevelName string @the level to open
+---@param bAbsolute? boolean @[default: true] if true options are reset, if false options are carried over from current level
+---@param Options? string @[default: ""] a string of options to use for the travel URL
 function UGameplayStatics.OpenLevel(WorldContextObject, LevelName, bAbsolute, Options) end
 
 ---Travel to another level
 ---@param WorldContextObject UObject
----@param Level TSoftObjectPtr<UWorld>
----@param bAbsolute? boolean @[default: true]
----@param Options string
+---@param Level TSoftObjectPtr<UWorld> @the level to open
+---@param bAbsolute? boolean @[default: true] if true options are reset, if false options are carried over from current level
+---@param Options? string @[default: ""] a string of options to use for the travel URL
 function UGameplayStatics.OpenLevelBySoftObjectPtr(WorldContextObject, Level, bAbsolute, Options) end
 
 ---Find an option in the options string and return it.
----@param Options string
----@param Key string
+---@param Options string @The string containing the options.
+---@param Key string @The key to find the value of in Options.
 ---@return string
 function UGameplayStatics.ParseOption(Options, Key) end
 
 ---Plays a dialogue directly with no attenuation, perfect for UI.
----* Fire and Forget.
----* Not Replicated.
+---Fire and Forget.
+---Not Replicated.
 ---@param WorldContextObject UObject
 ---@param Dialogue UDialogueWave @- dialogue to play
 ---@param Context FDialogueContext @- context the dialogue is to play in
@@ -678,7 +679,7 @@ function UGameplayStatics.ParseOption(Options, Key) end
 function UGameplayStatics.PlayDialogue2D(WorldContextObject, Dialogue, Context, VolumeMultiplier, PitchMultiplier, StartTime) end
 
 ---Plays a dialogue at the given location. This is a fire and forget sound and does not travel with any actor.
----    Replication is also not handled at this point.
+---Replication is also not handled at this point.
 ---@param WorldContextObject UObject
 ---@param Dialogue UDialogueWave @- dialogue to play
 ---@param Context FDialogueContext @- context the dialogue is to play in
@@ -691,9 +692,9 @@ function UGameplayStatics.PlayDialogue2D(WorldContextObject, Dialogue, Context, 
 function UGameplayStatics.PlayDialogueAtLocation(WorldContextObject, Dialogue, Context, Location, Rotation, VolumeMultiplier, PitchMultiplier, StartTime, AttenuationSettings) end
 
 ---Plays a sound directly with no attenuation, perfect for UI sounds.
----* Fire and Forget.
----* Not Replicated.
----                                             Allows PlaySound calls to do a concurrency limit per owner.
+---Fire and Forget.
+---Not Replicated.
+---Allows PlaySound calls to do a concurrency limit per owner.
 ---@param WorldContextObject UObject
 ---@param Sound USoundBase @- Sound to play.
 ---@param VolumeMultiplier? number @[default: 1.000000] - A linear scalar multiplied with the volume, in order to make the sound louder or softer.
@@ -706,7 +707,7 @@ function UGameplayStatics.PlaySound2D(WorldContextObject, Sound, VolumeMultiplie
 
 ---Plays a sound at the given location. This is a fire and forget sound and does not travel with any actor.
 ---Replication is also not handled at this point.
----                                             to do a concurrency limit per owner.
+---to do a concurrency limit per owner.
 ---@param WorldContextObject UObject
 ---@param Sound USoundBase @- sound to play
 ---@param Location FVector @- World position to play sound at
@@ -731,7 +732,6 @@ function UGameplayStatics.PlaySoundAtLocation(WorldContextObject, Sound, Locatio
 function UGameplayStatics.PlayWorldCameraShake(WorldContextObject, Shake, Epicenter, InnerRadius, OuterRadius, Falloff, bOrientShakeTowardsEpicenter) end
 
 ---Pop a sound mix modifier from the audio system
----    @@param InSoundMixModifier The Sound Mix Modifier to remove from the system
 ---@param WorldContextObject UObject
 ---@param InSoundMixModifier USoundMix @The Sound Mix Modifier to remove from the system
 function UGameplayStatics.PopSoundMixModifier(WorldContextObject, InSoundMixModifier) end
@@ -745,10 +745,10 @@ function UGameplayStatics.PrimeAllSoundsInSoundClass(InSoundClass) end
 function UGameplayStatics.PrimeSound(InSound) end
 
 ---Transforms the given 3D world-space point into a its 2D screen space coordinate.
----@param Player APlayerController
----@param WorldPosition FVector
----@param ScreenPosition FVector2D @[out, modified in place]
----@param bPlayerViewportRelative? boolean @[default: false]
+---@param Player APlayerController @Project using this player's view.
+---@param WorldPosition FVector @World position to project.
+---@param ScreenPosition FVector2D @[out, modified in place] (out) Corresponding 2D position in screen space
+---@param bPlayerViewportRelative? boolean @[default: false] Should this be relative to the player viewport subregion (useful when using player attached widgets in split screen)
 ---@return boolean
 function UGameplayStatics.ProjectWorldToScreen(Player, WorldPosition, ScreenPosition, bPlayerViewportRelative) end
 
@@ -770,14 +770,14 @@ function UGameplayStatics.RebaseLocalOriginOntoZero(WorldContextObject, WorldLoc
 function UGameplayStatics.RebaseZeroOriginOntoLocal(WorldContextObject, WorldLocation) end
 
 ---Removes a local player from this game.
----@param Player APlayerController
----@param bDestroyPawn boolean
+---@param Player APlayerController @The player controller of the player to be removed
+---@param bDestroyPawn boolean @Whether the controlled pawn should be deleted as well
 function UGameplayStatics.RemovePlayer(Player, bDestroyPawn) end
 
 ---Save the contents of the SaveGameObject to a platform-specific save slot/file.
----@param SaveGameObject USaveGame
----@param SlotName string
----@param UserIndex integer
+---@param SaveGameObject USaveGame @Object that contains data about the save game that we want to write out
+---@param SlotName string @Name of save game slot to save to.
+---@param UserIndex integer @The platform user index that identifies the user doing the saving, ignored on some platforms.
 ---@return boolean
 function UGameplayStatics.SaveGameToSlot(SaveGameObject, SlotName, UserIndex) end
 
@@ -794,43 +794,43 @@ function UGameplayStatics.SetBaseSoundMix(WorldContextObject, InSoundMix) end
 
 ---Enabled rendering of the world
 ---@param WorldContextObject UObject
----@param bEnable boolean
+---@param bEnable boolean @Whether the world should be rendered or not
 function UGameplayStatics.SetEnableWorldRendering(WorldContextObject, bEnable) end
 
 ---Enables split screen
 ---@param WorldContextObject UObject
----@param bDisable boolean
+---@param bDisable boolean @Whether the viewport should split screen between local players or not
 function UGameplayStatics.SetForceDisableSplitscreen(WorldContextObject, bDisable) end
 
 ---Sets the game's paused state
 ---@param WorldContextObject UObject
----@param bPaused boolean
+---@param bPaused boolean @Whether the game should be paused or not
 ---@return boolean
 function UGameplayStatics.SetGamePaused(WorldContextObject, bPaused) end
 
 ---Sets the global listener focus parameters, which will scale focus behavior of sounds based on their focus azimuth
 ---settings in their attenuation settings.
----* Fire and Forget.
----* Not Replicated.
----                                                        distance to sounds, values > 1.0 will increase perceived distance to in-focus sounds.
----                                                               perceived distance to sounds, values > 1.0 will increase perceived distance to in-focus sounds.
----                                                        the priority of in-focus sounds, values > 1.0 will increase the priority of in-focus sounds.
----                                                               reduce the priority of sounds out-of-focus sounds, values > 1.0 will increase the priority of
----                                                               out-of-focus sounds.
+---Fire and Forget.
+---Not Replicated.
+---distance to sounds, values > 1.0 will increase perceived distance to in-focus sounds.
+---perceived distance to sounds, values > 1.0 will increase perceived distance to in-focus sounds.
+---the priority of in-focus sounds, values > 1.0 will increase the priority of in-focus sounds.
+---reduce the priority of sounds out-of-focus sounds, values > 1.0 will increase the priority of
+---out-of-focus sounds.
 ---@param WorldContextObject UObject
 ---@param FocusAzimuthScale? number @[default: 1.000000] - An angle scale value used to scale the azimuth angle that defines where sounds are in-focus.
----@param NonFocusAzimuthScale? number @[default: 1.000000]
+---@param NonFocusAzimuthScale? number @[default: 1.000000] An angle scale value used to scale the azimuth angle that defines where sounds are out-of-focus.
 ---@param FocusDistanceScale? number @[default: 1.000000] - A distance scale value to use for sounds which are in-focus. Values < 1.0 will reduce perceived
 ---@param NonFocusDistanceScale? number @[default: 1.000000] - A distance scale value to use for sounds which are out-of-focus. Values < 1.0 will reduce
----@param FocusVolumeScale? number @[default: 1.000000]
----@param NonFocusVolumeScale? number @[default: 1.000000]
+---@param FocusVolumeScale? number @[default: 1.000000] A volume attenuation value to use for sounds which are in-focus.
+---@param NonFocusVolumeScale? number @[default: 1.000000] A volume attenuation value to use for sounds which are out-of-focus.
 ---@param FocusPriorityScale? number @[default: 1.000000] - A priority scale value (> 0.0) to use for sounds which are in-focus. Values < 1.0 will reduce
 ---@param NonFocusPriorityScale? number @[default: 1.000000] - A priority scale value (> 0.0) to use for sounds which are out-of-focus. Values < 1.0 will
 function UGameplayStatics.SetGlobalListenerFocusParameters(WorldContextObject, FocusAzimuthScale, NonFocusAzimuthScale, FocusDistanceScale, NonFocusDistanceScale, FocusVolumeScale, NonFocusVolumeScale, FocusPriorityScale, NonFocusPriorityScale) end
 
 ---Sets a global pitch modulation scalar that will apply to all non-UI sounds
----* Fire and Forget.
----* Not Replicated.
+---Fire and Forget.
+---Not Replicated.
 ---@param WorldContextObject UObject
 ---@param PitchModulation number @- A pitch modulation value to globally set.
 ---@param TimeSec number @- A time value to linearly interpolate the global modulation pitch over from it's current value.
@@ -838,7 +838,7 @@ function UGameplayStatics.SetGlobalPitchModulation(WorldContextObject, PitchModu
 
 ---Sets the global time dilation.
 ---@param WorldContextObject UObject
----@param TimeDilation number
+---@param TimeDilation number @value to set the global time dilation to
 function UGameplayStatics.SetGlobalTimeDilation(WorldContextObject, TimeDilation) end
 
 ---Sets the max number of voices (also known as "channels") dynamically by percentage. E.g. if you want to temporarily
@@ -848,8 +848,8 @@ function UGameplayStatics.SetGlobalTimeDilation(WorldContextObject, TimeDilation
 function UGameplayStatics.SetMaxAudioChannelsScaled(WorldContextObject, MaxChannelCountScale) end
 
 ---Sets what physical controller ID a player should be using. This only works for local player controllers.
----@param Player APlayerController
----@param ControllerId integer
+---@param Player APlayerController @The player controller of the player to change the controller ID of
+---@param ControllerId integer @The controller ID to assign to this player
 function UGameplayStatics.SetPlayerControllerID(Player, ControllerId) end
 
 ---Sets what platform user id a player should be using. This only works for local player controllers.
@@ -859,8 +859,8 @@ function UGameplayStatics.SetPlayerPlatformUserId(PlayerController, UserId) end
 
 ---Linearly interpolates the attenuation distance scale value from it's current attenuation distance override value
 ---(1.0f it not overridden) to its new attenuation distance override, over the given amount of time
----* Fire and Forget.
----* Not Replicated.
+---Fire and Forget.
+---Not Replicated.
 ---@param WorldContextObject UObject
 ---@param SoundClass USoundClass @- Sound class to to use to set the attenuation distance scale on.
 ---@param DistanceAttenuationScale number @- A scalar for the attenuation distance used for computing distance attenuation.
@@ -868,7 +868,7 @@ function UGameplayStatics.SetPlayerPlatformUserId(PlayerController, UserId) end
 function UGameplayStatics.SetSoundClassDistanceScale(WorldContextObject, SoundClass, DistanceAttenuationScale, TimeSec) end
 
 ---Overrides the sound class adjuster in the given sound mix. If the sound class does not exist in the input sound mix,
----    the sound class adjuster will be added to the list of active sound mix modifiers.
+---the sound class adjuster will be added to the list of active sound mix modifiers.
 ---@param WorldContextObject UObject
 ---@param InSoundMixModifier USoundMix @The sound mix to modify.
 ---@param InSoundClass USoundClass @The sound class to override (or add) in the sound mix.
@@ -907,8 +907,8 @@ function UGameplayStatics.SpawnDecalAtLocation(WorldContextObject, DecalMaterial
 ---@param DecalSize FVector @- size of decal
 ---@param AttachToComponent USceneComponent
 ---@param AttachPointName? string @[default: None] - Optional named point within the AttachComponent to spawn the emitter at
----@param Location FVector @- Depending on the value of Location Type this is either a relative offset from the attach component/point or an absolute world position that will be translated to a relative offset
----@param Rotation FRotator @- Depending on the value of LocationType this is either a relative offset from the attach component/point or an absolute world rotation that will be translated to a realative offset
+---@param Location? FVector @[default: ""] - Depending on the value of Location Type this is either a relative offset from the attach component/point or an absolute world position that will be translated to a relative offset
+---@param Rotation? FRotator @[default: ""] - Depending on the value of LocationType this is either a relative offset from the attach component/point or an absolute world rotation that will be translated to a realative offset
 ---@param LocationType? integer @[default: KeepRelativeOffset] - Specifies whether Location is a relative offset or an absolute world position
 ---@param LifeSpan? number @[default: 0.000000] - destroy decal component after time runs out (0 = infinite)
 ---@return UDecalComponent
@@ -917,8 +917,8 @@ function UGameplayStatics.SpawnDecalAttached(DecalMaterial, DecalSize, AttachToC
 ---Spawns a DialogueWave, a special type of Asset that requires Context data in order to resolve a specific SoundBase,
 ---which is then passed on to the new Audio Component. Audio Components created using this function by default will not
 ---have Spatialization applied. Sound instances will begin playing upon spawning this Audio Component.
----* Not Replicated.
----                                              finishes (by completing or stopping) or whether it can be reactivated
+---Not Replicated.
+---finishes (by completing or stopping) or whether it can be reactivated
 ---@param WorldContextObject UObject
 ---@param Dialogue UDialogueWave @- dialogue to play
 ---@param Context FDialogueContext @- context the dialogue is to play in
@@ -932,12 +932,12 @@ function UGameplayStatics.SpawnDialogue2D(WorldContextObject, Dialogue, Context,
 ---Spawns a DialogueWave, a special type of Asset that requires Context data in order to resolve a specific SoundBase,
 ---which is then passed on to the new Audio Component. This function allows users to create and play Audio Components at a
 ---specific World Location and Rotation. Useful for spatialized and/or distance-attenuated dialogue.
----                                             (by completing or stopping) or whether it can be reactivated
+---(by completing or stopping) or whether it can be reactivated
 ---@param WorldContextObject UObject
 ---@param Dialogue UDialogueWave @- Dialogue to play
 ---@param Context FDialogueContext @- Context the dialogue is to play in
 ---@param Location FVector @- World position to play dialogue at
----@param Rotation FRotator @- World rotation to play dialogue at
+---@param Rotation? FRotator @[default: ""] - World rotation to play dialogue at
 ---@param VolumeMultiplier? number @[default: 1.000000] - A linear scalar multiplied with the volume, in order to make the sound louder or softer.
 ---@param PitchMultiplier? number @[default: 1.000000] - A linear scalar multiplied with the pitch.
 ---@param StartTime? number @[default: 0.000000] - How far into the dialogue to begin playback at
@@ -947,19 +947,19 @@ function UGameplayStatics.SpawnDialogue2D(WorldContextObject, Dialogue, Context,
 function UGameplayStatics.SpawnDialogueAtLocation(WorldContextObject, Dialogue, Context, Location, Rotation, VolumeMultiplier, PitchMultiplier, StartTime, AttenuationSettings, bAutoDestroy) end
 
 ---Spawns a DialogueWave, a special type of Asset that requires Context data in order to resolve a specific SoundBase,
----    which is then passed on to the new Audio Component. This function allows users to create and play Audio Components
----    attached to a specific Scene Component. Useful for spatialized and/or distance-attenuated dialogue that needs to
----    follow another object in space.
----                                     attach component/point or an absolute world position that will be translated to a relative offset
----                                     attach component/point or an absolute world rotation that will be translated to a relative offset
----                                                                             to is destroyed.
----                                             (by completing or stopping) or whether it can be reactivated
+---which is then passed on to the new Audio Component. This function allows users to create and play Audio Components
+---attached to a specific Scene Component. Useful for spatialized and/or distance-attenuated dialogue that needs to
+---follow another object in space.
+---attach component/point or an absolute world position that will be translated to a relative offset
+---attach component/point or an absolute world rotation that will be translated to a relative offset
+---to is destroyed.
+---(by completing or stopping) or whether it can be reactivated
 ---@param Dialogue UDialogueWave @- dialogue to play
 ---@param Context FDialogueContext @- context the dialogue is to play in
 ---@param AttachToComponent USceneComponent
 ---@param AttachPointName? string @[default: None] - Optional named point within the AttachComponent to play the sound at
----@param Location FVector @- Depending on the value of Location Type this is either a relative offset from the
----@param Rotation FRotator @- Depending on the value of Location Type this is either a relative offset from the
+---@param Location? FVector @[default: ""] - Depending on the value of Location Type this is either a relative offset from the
+---@param Rotation? FRotator @[default: ""] - Depending on the value of Location Type this is either a relative offset from the
 ---@param LocationType? integer @[default: KeepRelativeOffset] - Specifies whether Location is a relative offset or an absolute world position
 ---@param bStopWhenAttachedToDestroyed? boolean @[default: false] - Specifies whether the sound should stop playing when the owner its attached
 ---@param VolumeMultiplier? number @[default: 1.000000] - A linear scalar multiplied with the volume, in order to make the sound louder or softer.
@@ -974,7 +974,7 @@ function UGameplayStatics.SpawnDialogueAttached(Dialogue, Context, AttachToCompo
 ---@param WorldContextObject UObject @- Object that we can obtain a world context from
 ---@param EmitterTemplate UParticleSystem @- particle system to create
 ---@param Location FVector @- location to place the effect in world space
----@param Rotation FRotator @- rotation to place the effect in world space
+---@param Rotation? FRotator @[default: ""] - rotation to place the effect in world space
 ---@param Scale? FVector @[default: 1.000000,1.000000,1.000000] - scale to create the effect at
 ---@param bAutoDestroy? boolean @[default: true] - Whether the component will automatically be destroyed when the particle system completes playing or whether it can be reactivated
 ---@param PoolingMethod? EPSCPoolMethod @[default: None] - Method used for pooling this component. Defaults to none.
@@ -986,8 +986,8 @@ function UGameplayStatics.SpawnEmitterAtLocation(WorldContextObject, EmitterTemp
 ---@param EmitterTemplate UParticleSystem @- particle system to create
 ---@param AttachToComponent USceneComponent
 ---@param AttachPointName? string @[default: None] - Optional named point within the AttachComponent to spawn the emitter at
----@param Location FVector @- Depending on the value of LocationType this is either a relative offset from the attach component/point or an absolute world location that will be translated to a relative offset (if LocationType is KeepWorldPosition).
----@param Rotation FRotator @- Depending on the value of LocationType this is either a relative offset from the attach component/point or an absolute world rotation that will be translated to a relative offset (if LocationType is KeepWorldPosition).
+---@param Location? FVector @[default: ""] - Depending on the value of LocationType this is either a relative offset from the attach component/point or an absolute world location that will be translated to a relative offset (if LocationType is KeepWorldPosition).
+---@param Rotation? FRotator @[default: ""] - Depending on the value of LocationType this is either a relative offset from the attach component/point or an absolute world rotation that will be translated to a relative offset (if LocationType is KeepWorldPosition).
 ---@param Scale? FVector @[default: 1.000000,1.000000,1.000000] - Depending on the value of LocationType this is either a relative scale from the attach component or an absolute world scale that will be translated to a relative scale (if LocationType is KeepWorldPosition).
 ---@param LocationType? integer @[default: KeepRelativeOffset] - Specifies whether Location is a relative offset or an absolute world position
 ---@param bAutoDestroy? boolean @[default: true] - Whether the component will automatically be destroyed when the particle system completes playing or whether it can be reactivated
@@ -1000,7 +1000,7 @@ function UGameplayStatics.SpawnEmitterAttached(EmitterTemplate, AttachToComponen
 ---@param WorldContextObject UObject
 ---@param ForceFeedbackEffect UForceFeedbackEffect @- effect to play
 ---@param Location FVector @- World position to center the effect at
----@param Rotation FRotator @- World rotation to center the effect at
+---@param Rotation? FRotator @[default: ""] - World rotation to center the effect at
 ---@param bLooping? boolean @[default: false]
 ---@param IntensityMultiplier? number @[default: 1.000000] - Intensity multiplier
 ---@param StartTime? number @[default: 0.000000] - How far in to the feedback effect to begin playback at
@@ -1013,8 +1013,8 @@ function UGameplayStatics.SpawnForceFeedbackAtLocation(WorldContextObject, Force
 ---@param ForceFeedbackEffect UForceFeedbackEffect @- effect to play
 ---@param AttachToComponent USceneComponent
 ---@param AttachPointName? string @[default: None] - Optional named point within the AttachComponent to attach to
----@param Location FVector @- Depending on the value of Location Type this is either a relative offset from the attach component/point or an absolute world position that will be translated to a relative offset
----@param Rotation FRotator @- Depending on the value of Location Type this is either a relative offset from the attach component/point or an absolute world rotation that will be translated to a relative offset
+---@param Location? FVector @[default: ""] - Depending on the value of Location Type this is either a relative offset from the attach component/point or an absolute world position that will be translated to a relative offset
+---@param Rotation? FRotator @[default: ""] - Depending on the value of Location Type this is either a relative offset from the attach component/point or an absolute world rotation that will be translated to a relative offset
 ---@param LocationType? integer @[default: KeepRelativeOffset] - Specifies whether Location is a relative offset or an absolute world position
 ---@param bStopWhenAttachedToDestroyed? boolean @[default: false] - Specifies whether the feedback effect should stop playing when the owner of the attach to component is destroyed.
 ---@param bLooping? boolean @[default: false]
@@ -1034,8 +1034,8 @@ function UGameplayStatics.SpawnObject(ObjectClass, Outer) end
 ---This function allows users to create Audio Components with settings specifically for non-spatialized,
 ---non-distance-attenuated sounds. Audio Components created using this function by default will not have
 ---Spatialization applied. Sound instances will begin playing upon spawning this Audio Component.
----* Not Replicated.
----                                              (by completing or stopping) or whether it can be reactivated
+---Not Replicated.
+---(by completing or stopping) or whether it can be reactivated
 ---@param WorldContextObject UObject
 ---@param Sound USoundBase @- Sound to play.
 ---@param VolumeMultiplier? number @[default: 1.000000] - A linear scalar multiplied with the volume, in order to make the sound louder or softer.
@@ -1048,11 +1048,11 @@ function UGameplayStatics.SpawnObject(ObjectClass, Outer) end
 function UGameplayStatics.SpawnSound2D(WorldContextObject, Sound, VolumeMultiplier, PitchMultiplier, StartTime, ConcurrencySettings, bPersistAcrossLevelTransition, bAutoDestroy) end
 
 ---Spawns a sound at the given location. This does not travel with any actor. Replication is also not handled at this point.
----                                              (by completing or stopping) or whether it can be reactivated
+---(by completing or stopping) or whether it can be reactivated
 ---@param WorldContextObject UObject
 ---@param Sound USoundBase @- sound to play
 ---@param Location FVector @- World position to play sound at
----@param Rotation FRotator @- World rotation to play sound at
+---@param Rotation? FRotator @[default: ""] - World rotation to play sound at
 ---@param VolumeMultiplier? number @[default: 1.000000] - A linear scalar multiplied with the volume, in order to make the sound louder or softer.
 ---@param PitchMultiplier? number @[default: 1.000000] - A linear scalar multiplied with the pitch.
 ---@param StartTime? number @[default: 0.000000] - How far in to the sound to begin playback at
@@ -1064,15 +1064,15 @@ function UGameplayStatics.SpawnSoundAtLocation(WorldContextObject, Sound, Locati
 
 ---This function allows users to create and play Audio Components attached to a specific Scene Component.
 ---Useful for spatialized and/or distance-attenuated sounds that need to follow another object in space.
----                                     the attach component/point or an absolute world position that will be translated to a relative offset
----                                     the attach component/point or an absolute world rotation that will be translated to a relative offset
----                                                                             owner of the attach to component is destroyed.
----                                             (by completing or stopping) or whether it can be reactivated
+---the attach component/point or an absolute world position that will be translated to a relative offset
+---the attach component/point or an absolute world rotation that will be translated to a relative offset
+---owner of the attach to component is destroyed.
+---(by completing or stopping) or whether it can be reactivated
 ---@param Sound USoundBase @- sound to play
 ---@param AttachToComponent USceneComponent
 ---@param AttachPointName? string @[default: None] - Optional named point within the AttachComponent to play the sound at
----@param Location FVector @- Depending on the value of Location Type this is either a relative offset from
----@param Rotation FRotator @- Depending on the value of Location Type this is either a relative offset from
+---@param Location? FVector @[default: ""] - Depending on the value of Location Type this is either a relative offset from
+---@param Rotation? FRotator @[default: ""] - Depending on the value of Location Type this is either a relative offset from
 ---@param LocationType? integer @[default: KeepRelativeOffset] - Specifies whether Location is a relative offset or an absolute world position
 ---@param bStopWhenAttachedToDestroyed? boolean @[default: false] - Specifies whether the sound should stop playing when the
 ---@param VolumeMultiplier? number @[default: 1.000000] - A linear scalar multiplied with the volume, in order to make the sound louder or softer.
@@ -1088,23 +1088,23 @@ function UGameplayStatics.SpawnSoundAttached(Sound, AttachToComponent, AttachPoi
 ---Assumes a medium arc (e.g. 45 deg on level ground). Projectile velocity is variable and unconstrained.
 ---Does no tracing.
 ---@param WorldContextObject UObject
----@param OutLaunchVelocity FVector @[out, modified in place]
----@param StartPos FVector
----@param EndPos FVector
----@param OverrideGravityZ? number @[default: 0.000000]
----@param ArcParam? number @[default: 0.500000]
+---@param OutLaunchVelocity FVector @[out, modified in place] Returns the launch velocity required to reach the EndPos
+---@param StartPos FVector @Start position of the simulation
+---@param EndPos FVector @Desired end location for the simulation
+---@param OverrideGravityZ? number @[default: 0.000000] Optional override of WorldGravityZ
+---@param ArcParam? number @[default: 0.500000] Change height of arc between 0.0-1.0 where 0.5 is the default medium arc, 0 is up, and 1 is directly toward EndPos.
 ---@return boolean
 function UGameplayStatics.SuggestProjectileVelocity_CustomArc(WorldContextObject, OutLaunchVelocity, StartPos, EndPos, OverrideGravityZ, ArcParam) end
 
 ---Returns a launch velocity need for a projectile to hit the TargetActor in TimeToTarget seconds based on the TargetActor's current velocity.
 ---This assumes the projectile is only accelerated by gravity (i.e. no outside forces), and that the TargetActor is moving at a constant velocity.
 ---@param WorldContextObject UObject
----@param OutLaunchVelocity FVector @[out, modified in place]
----@param ProjectileStartLocation FVector
----@param TargetActor AActor
----@param TargetLocationOffset FVector
----@param GravityZOverride? number @[default: 0.000000]
----@param TimeToTarget? number @[default: 1.000000]
+---@param OutLaunchVelocity FVector @[out, modified in place] The launch velocity returned from this calculation
+---@param ProjectileStartLocation FVector @Location the projectile is launched from
+---@param TargetActor AActor @Actor that the projectile should hit in TimeToTarget seconds
+---@param TargetLocationOffset? FVector @[default: ""] Offset to apply to the location the projectile is aiming for
+---@param GravityZOverride? number @[default: 0.000000] Optional override of WorldGravityZ
+---@param TimeToTarget? number @[default: 1.000000] Time (in seconds) between the projectile being launched and the projectile hitting the TargetActor - clamped to be at least 0.1
 ---@param DrawDebugType? integer @[default: Type::None]
 ---@param DrawDebugTime? number @[default: 3.000000]
 ---@param DrawDebugColor? FLinearColor @[default: (R=1.000000,G=0.000000,B=0.000000,A=1.000000)]

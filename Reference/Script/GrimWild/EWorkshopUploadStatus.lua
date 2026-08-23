@@ -1,3 +1,4 @@
+---@meta
 ---Mirrors EItemUpdateStatus.
 ---@class EWorkshopUploadStatus
 ---@field public Invalid EWorkshopUploadStatus [0]

@@ -1,3 +1,4 @@
+---@meta
 ---Usage:
 ---C++: GetDefault<UWidgetSettings>
 ---Blueprints: Get Class Defaults (UWidgetSettings)

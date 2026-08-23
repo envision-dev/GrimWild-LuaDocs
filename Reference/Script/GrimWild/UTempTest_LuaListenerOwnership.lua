@@ -1,3 +1,4 @@
+---@meta
 ---Fixes which module a delegate listener belongs to when the callback and the Add() call come from
 ---different modules.
 ---The decision this suite encodes: the listener belongs to the module whose code called Add, not to

@@ -1,3 +1,4 @@
+---@meta
 ---@class UMaterialInstanceDynamic : UMaterialInstance
 UMaterialInstanceDynamic = {}
 

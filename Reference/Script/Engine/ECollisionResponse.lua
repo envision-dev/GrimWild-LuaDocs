@@ -1,3 +1,4 @@
+---@meta
 ---Enum indicating how each type should respond
 ---@class ECollisionResponse
 ---@field public ECR_Ignore ECollisionResponse [0]

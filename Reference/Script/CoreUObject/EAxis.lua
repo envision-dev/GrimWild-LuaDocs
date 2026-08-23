@@ -1,3 +1,4 @@
+---@meta
 ---Generic axis enum (mirrored for native use in Axis.h).
 ---@class EAxis
 ---@field public None EAxis [0]

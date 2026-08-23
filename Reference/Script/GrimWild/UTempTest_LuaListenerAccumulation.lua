@@ -1,3 +1,4 @@
+---@meta
 ---Asks one question about the engine as it stands today: does a module that resubscribes on every
 ---reload accumulate listeners when its callback was written somewhere else.
 ---Nothing here encodes a decision about what ownership ought to be. Every expectation below is a

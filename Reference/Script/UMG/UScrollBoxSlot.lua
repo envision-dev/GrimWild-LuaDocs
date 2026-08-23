@@ -1,3 +1,4 @@
+---@meta
 ---The Slot for the UScrollBox, contains the widget that are scrollable
 ---@class UScrollBoxSlot : UPanelSlot
 ---@field private Size FSlateChildSize @How much space this slot should occupy in the direction of the panel.

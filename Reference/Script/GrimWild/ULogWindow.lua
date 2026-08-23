@@ -1,3 +1,4 @@
+---@meta
 ---@class ULogWindow : UDraggableWindow
 ---@field protected LV_Messages UGListView @Widgets
 ---@field protected B_Close UGButton

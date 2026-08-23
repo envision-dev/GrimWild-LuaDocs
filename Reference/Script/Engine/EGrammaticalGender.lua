@@ -1,3 +1,4 @@
+---@meta
 ---@class EGrammaticalGender
 ---@field public Neuter EGrammaticalGender [0]
 ---@field public Masculine EGrammaticalGender [1]

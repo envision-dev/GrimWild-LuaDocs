@@ -1,5 +1,6 @@
+---@meta
 ---Represents the appearance of an SEditableText
----@class FEditableTextStyle : FSlateWidgetStyle
+---@class FEditableTextStyle : FSlateWidgetStyle, Struct
 ---@field public Font FSlateFontInfo @Font family and size to be used when displaying this text.
 ---@field public ColorAndOpacity FSlateColor @The color and opacity of this text
 ---@field public BackgroundImageSelected FSlateBrush @Background image for the selected text

@@ -1,3 +1,4 @@
+---@meta
 ---Lists can exist as regular lists or as backing widgets for a tree.
 ---@class ETableViewMode
 ---@field public List ETableViewMode [0]

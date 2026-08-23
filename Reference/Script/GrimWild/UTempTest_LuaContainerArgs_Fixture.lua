@@ -1,3 +1,4 @@
+---@meta
 ---Containers, native entry points and the Lua-to-C++ result channel used by UTempTest_LuaContainerArgs.
 ---Deliberately a plain UObject: the suite must create no actors, components or tick sources.
 ---@class UTempTest_LuaContainerArgs_Fixture : UObject

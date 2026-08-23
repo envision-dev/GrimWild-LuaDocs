@@ -1,3 +1,4 @@
+---@meta
 ---@class EUINavigationRule
 ---@field public Escape EUINavigationRule [0] Allow the movement to continue in that direction, seeking the next navigable widget automatically.
 ---@field public Explicit EUINavigationRule [1] Move to a specific widget.

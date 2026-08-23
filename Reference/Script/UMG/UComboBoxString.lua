@@ -1,3 +1,4 @@
+---@meta
 ---The combobox allows you to display a list of options to the user in a dropdown menu for them to select one.
 ---@class UComboBoxString : UWidget
 ---@field private DefaultOptions TArray<string> @The default list of items to be displayed on the combobox.

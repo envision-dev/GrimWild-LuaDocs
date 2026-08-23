@@ -1,3 +1,4 @@
+---@meta
 ---@class UGSpinBox : UGSpinBoxBase
 UGSpinBox = {}
 

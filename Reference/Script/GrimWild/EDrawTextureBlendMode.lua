@@ -1,3 +1,4 @@
+---@meta
 ---TODO;
 ---@class EDrawTextureBlendMode
 ---@field public None EDrawTextureBlendMode [0] Don't update pixels. Value = OldValue

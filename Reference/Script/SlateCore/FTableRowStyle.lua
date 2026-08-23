@@ -1,5 +1,6 @@
+---@meta
 ---Represents the appearance of an STableRow
----@class FTableRowStyle : FSlateWidgetStyle
+---@class FTableRowStyle : FSlateWidgetStyle, Struct
 ---@field public SelectorFocusedBrush FSlateBrush @Brush used as a selector when a row is focused
 ---@field public ActiveHoveredBrush FSlateBrush @Brush used when a selected row is active and hovered
 ---@field public ActiveBrush FSlateBrush @Brush used when a selected row is active

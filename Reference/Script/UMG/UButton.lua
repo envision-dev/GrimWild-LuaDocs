@@ -1,8 +1,9 @@
+---@meta
 ---The button is a click-able primitive widget to enable basic interaction, you
 ---can place any other widget inside a button to make a more complex and
 ---interesting click-able element in your UI.
----* Single Child
----* Clickable
+---Single Child
+---Clickable
 ---@class UButton : UContentWidget
 ---@field public WidgetStyle FButtonStyle @The button style used at runtime
 ---@field public ColorAndOpacity FLinearColor @The color multiplier for the button content

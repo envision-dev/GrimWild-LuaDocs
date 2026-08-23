@@ -1,5 +1,6 @@
+---@meta
 ---Represent a Widget present in the Tree Widget of the UserWidget
----@class FWidgetChild
+---@class FWidgetChild : Struct
 ---@field private WidgetName string @This either the widget to focus, OR the name of the function to call.
 ---@field private WidgetPtr TWeakObjectPtr<UWidget>
 FWidgetChild = {}

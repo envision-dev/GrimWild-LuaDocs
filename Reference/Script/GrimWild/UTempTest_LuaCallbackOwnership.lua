@@ -1,3 +1,4 @@
+---@meta
 ---Pins who owns a delegate listener and what the upvalue sweep at module teardown reaches.
 ---The decision this suite encodes: a listener belongs to the module that defines the callback
 ---function, and nothing about the call site changes that. On top of that, a module's teardown also

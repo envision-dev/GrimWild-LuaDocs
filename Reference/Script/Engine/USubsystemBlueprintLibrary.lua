@@ -1,3 +1,4 @@
+---@meta
 ---@class USubsystemBlueprintLibrary : UBlueprintFunctionLibrary
 USubsystemBlueprintLibrary = {}
 

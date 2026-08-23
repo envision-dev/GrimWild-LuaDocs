@@ -1,3 +1,4 @@
+---@meta
 ---PlayerControllers are used by human players to control Pawns.
 ---ControlRotation (accessed via GetControlRotation()), determines the aiming
 ---orientation of the controlled Pawn.
@@ -19,7 +20,7 @@
 ---@field public LastSpectatorSyncLocation FVector @Last location synced on the server for a spectator.
 ---@field public LastSpectatorSyncRotation FRotator @Last rotation synced on the server for a spectator.
 ---@field public ClientCap integer @Cap set by server on bandwidth from client to server in bytes/sec (only has impact if >=2600)
----@field public CheatManager UCheatManager @Object that manages "cheat" commands. By default:       - In Shipping configurations, the manager is always disabled because UE_WITH_CHEAT_MANAGER is 0   - When playing in the editor, cheats are always enabled   - In other cases, cheats are enabled by default in single player games but can be forced on with the EnableCheats console command This behavior can be changed either by overriding APlayerController::EnableCheats or AGameModeBase::AllowCheats.
+---@field public CheatManager UCheatManager @Object that manages "cheat" commands. By default: - In Shipping configurations, the manager is always disabled because UE_WITH_CHEAT_MANAGER is 0 - When playing in the editor, cheats are always enabled - In other cases, cheats are enabled by default in single player games but can be forced on with the EnableCheats console command This behavior can be changed either by overriding APlayerController::EnableCheats or AGameModeBase::AllowCheats.
 ---@field public CheatClass TSubclassOf<UCheatManager> @Class of my CheatManager.
 ---@field public PlayerInput UPlayerInput @Object that manages player input.
 ---@field public ActiveForceFeedbackEffects TArray<FActiveForceFeedbackEffect>
@@ -169,13 +170,13 @@ function APlayerController:ClientMutePlayer(PlayerId) end
 function APlayerController:ClientPlayForceFeedback_Internal(ForceFeedbackEffect, Params) end
 
 ---Play sound client-side (so only the client will hear it)
----@param Sound USoundBase
+---@param Sound USoundBase @- Sound to play
 ---@param VolumeMultiplier number @- Volume multiplier to apply to the sound
 ---@param PitchMultiplier number @- Pitch multiplier to apply to the sound
 function APlayerController:ClientPlaySound(Sound, VolumeMultiplier, PitchMultiplier) end
 
 ---Play sound client-side at the specified location
----@param Sound USoundBase
+---@param Sound USoundBase @- Sound to play
 ---@param Location FVector @- Location to play the sound at
 ---@param VolumeMultiplier number @- Volume multiplier to apply to the sound
 ---@param PitchMultiplier number @- Pitch multiplier to apply to the sound
@@ -190,10 +191,10 @@ function APlayerController:ClientPrepareMapChange(LevelName, bFirst, bLast) end
 
 ---Forces the streaming system to disregard the normal logic for the specified duration and
 ---instead always load all mip-levels for all textures used by the specified actor.
----@param ForcedActor AActor
----@param ForceDuration number
----@param bEnableStreaming boolean
----@param CinematicTextureGroups integer
+---@param ForcedActor AActor @- The actor whose textures should be forced into memory.
+---@param ForceDuration number @- Number of seconds to keep all mip-levels in memory, disregarding the normal priority logic.
+---@param bEnableStreaming boolean @- Whether to start (true) or stop (false) streaming
+---@param CinematicTextureGroups integer @- Bitfield indicating which texture groups that use extra high-resolution mips
 function APlayerController:ClientPrestreamTextures(ForcedActor, ForceDuration, bEnableStreaming, CinematicTextureGroups) end
 
 ---send client localized message id
@@ -259,9 +260,9 @@ function APlayerController:ClientSetCinematicMode(bInCinematicMode, bAffectsMove
 
 ---Forces the streaming system to disregard the normal logic for the specified duration and
 ---instead always load all mip-levels for all textures used by the specified material.
----@param Material UMaterialInterface
----@param ForceDuration number
----@param CinematicTextureGroups integer
+---@param Material UMaterialInterface @- The material whose textures should be forced into memory.
+---@param ForceDuration number @- Number of seconds to keep all mip-levels in memory, disregarding the normal priority logic.
+---@param CinematicTextureGroups integer @- Bitfield indicating which texture groups that use extra high-resolution mips
 function APlayerController:ClientSetForceMipLevelsToBeResident(Material, ForceDuration, CinematicTextureGroups) end
 
 ---Set the client's class of HUD and spawns a new instance of it. If there was already a HUD active, it is destroyed.
@@ -288,7 +289,7 @@ function APlayerController:ClientSpawnGenericCameraLensEffect(LensEffectEmitterC
 ---@param Shake TSubclassOf<UCameraShakeBase> @- Camera shake animation to play
 ---@param Scale? number @[default: 1.000000] - Scalar defining how "intense" to play the anim
 ---@param PlaySpace? ECameraShakePlaySpace @[default: CameraLocal] - Which coordinate system to play the shake in (used for CameraAnims within the shake).
----@param UserPlaySpaceRot FRotator @- Matrix used when PlaySpace = CAPS_UserDefined
+---@param UserPlaySpaceRot? FRotator @[default: ""] - Matrix used when PlaySpace = CAPS_UserDefined
 function APlayerController:ClientStartCameraShake(Shake, Scale, PlaySpace, UserPlaySpaceRot) end
 
 ---Play Camera Shake localized to a given source
@@ -310,8 +311,8 @@ function APlayerController:ClientStopCameraShake(Shake, bImmediately) end
 function APlayerController:ClientStopCameraShakesFromSource(SourceComponent, bImmediately) end
 
 ---Stops a playing force feedback pattern
----@param ForceFeedbackEffect UForceFeedbackEffect
----@param Tag string
+---@param ForceFeedbackEffect UForceFeedbackEffect @If set only patterns from that effect will be stopped
+---@param Tag string @If not none only the pattern with this tag will be stopped
 function APlayerController:ClientStopForceFeedback(ForceFeedbackEffect, Tag) end
 
 ---
@@ -323,21 +324,21 @@ function APlayerController:ClientTeamMessage(SenderPlayerState, S, Type, MsgLife
 
 ---Travel to a different map or IP address. Calls the PreClientTravel event before doing anything.
 ---NOTE: This is implemented as a locally executed wrapper for ClientTravelInternal, to avoid API compatability breakage
----                                                     for the bSeamlesss parameter, this value must be TRAVEL_Relative.
----                                                     so it is only needed for clients
----@param URL string
+---for the bSeamlesss parameter, this value must be TRAVEL_Relative.
+---so it is only needed for clients
+---@param URL string @A string containing the mapname (or IP address) to travel to, along with option key/value pairs
 ---@param TravelType integer @specifies whether the client should append URL options used in previous travels; if true is specified
----@param bSeamless boolean
----@param MapPackageGuid FGuid
+---@param bSeamless boolean @Indicates whether to use seamless travel (requires TravelType of TRAVEL_Relative)
+---@param MapPackageGuid FGuid @The GUID of the map package to travel to - this is used to find the file when it has been autodownloaded,
 function APlayerController:ClientTravel(URL, TravelType, bSeamless, MapPackageGuid) end
 
 ---Internal clientside implementation of ClientTravel - use ClientTravel to call this
----                                                     for the bSeamlesss parameter, this value must be TRAVEL_Relative.
----                                                     so it is only needed for clients
----@param URL string
+---for the bSeamlesss parameter, this value must be TRAVEL_Relative.
+---so it is only needed for clients
+---@param URL string @A string containing the mapname (or IP address) to travel to, along with option key/value pairs
 ---@param TravelType integer @specifies whether the client should append URL options used in previous travels; if true is specified
----@param bSeamless boolean
----@param MapPackageGuid FGuid
+---@param bSeamless boolean @Indicates whether to use seamless travel (requires TravelType of TRAVEL_Relative)
+---@param MapPackageGuid FGuid @The GUID of the map package to travel to - this is used to find the file when it has been autodownloaded,
 function APlayerController:ClientTravelInternal(URL, TravelType, bSeamless, MapPackageGuid) end
 
 ---Tell the client to unmute a player for this controller
@@ -353,13 +354,13 @@ function APlayerController:ClientUnmutePlayers(PlayerIds) end
 ---@param bNewShouldBeLoaded boolean @- Whether the level should be loaded
 ---@param bNewShouldBeVisible boolean @- Whether the level should be visible if it is loaded
 ---@param bNewShouldBlockOnLoad boolean @- Whether we want to force a blocking load
----@param LODIndex integer
----@param TransactionId FNetLevelVisibilityTransactionId
+---@param LODIndex integer @- Current LOD index for a streaming level
+---@param TransactionId FNetLevelVisibilityTransactionId @- Optional parameter used when communicating LevelVisibility changes between server and client
 ---@param bNewShouldBlockOnUnload boolean @- Optional parameter used to force a blocking unload or not
 function APlayerController:ClientUpdateLevelStreamingStatus(PackageName, bNewShouldBeLoaded, bNewShouldBeVisible, bNewShouldBlockOnLoad, LODIndex, TransactionId, bNewShouldBlockOnUnload) end
 
 ---Replicated Update streaming status.  This version allows for the streaming state of many levels to be sent in a single RPC.
----@param LevelStatuses TArray<FUpdateLevelStreamingLevelStatus>
+---@param LevelStatuses TArray<FUpdateLevelStreamingLevelStatus> @The list of levels the client should have either streamed in or not, depending on state.
 function APlayerController:ClientUpdateMultipleLevelsStreamingStatus(LevelStatuses) end
 
 ---Tells the client that the server has all the information it needs and that it
@@ -413,9 +414,9 @@ function APlayerController:GetDeprecatedInputRollScale() end
 function APlayerController:GetDeprecatedInputYawScale() end
 
 ---Returns the location the PlayerController is focused on.
---- If there is a possessed Pawn, returns the Pawn's location.
---- If there is a spectator Pawn, returns that Pawn's location.
---- Otherwise, returns the PlayerController's spawn location (usually the last known Pawn location after it has died).
+---If there is a possessed Pawn, returns the Pawn's location.
+---If there is a spectator Pawn, returns that Pawn's location.
+---Otherwise, returns the PlayerController's spawn location (usually the last known Pawn location after it has died).
 ---@return FVector
 function APlayerController:GetFocalLocation() end
 
@@ -556,11 +557,11 @@ function APlayerController:IsInputKeyDown(Key) end
 function APlayerController:IsStreamingSourceEnabled() end
 
 ---Play a force feedback pattern on the player's controller
----@param ForceFeedbackEffect UForceFeedbackEffect
----@param Tag string
----@param bLooping boolean
----@param bIgnoreTimeDilation boolean
----@param bPlayWhilePaused boolean
+---@param ForceFeedbackEffect UForceFeedbackEffect @The force feedback pattern to play
+---@param Tag string @A tag that allows stopping of an effect.  If another effect with this Tag is playing, it will be stopped and replaced
+---@param bLooping boolean @Whether the pattern should be played repeatedly or be a single one shot
+---@param bIgnoreTimeDilation boolean @Whether the pattern should ignore time dilation
+---@param bPlayWhilePaused boolean @Whether the pattern should continue to play while the game is paused
 function APlayerController:K2_ClientPlayForceFeedback(ForceFeedbackEffect, Tag, bLooping, bIgnoreTimeDilation, bPlayWhilePaused) end
 
 ---Causes the client to travel to the given URL
@@ -580,19 +581,19 @@ function APlayerController:Pause() end
 ---Begins playing when Start is called.  Calling Update or Stop if the feedback is not active will have no effect.
 ---Completed will execute when Stop is called or the duration ends.
 ---When Update is called the Intensity, Duration, and affect values will be updated with the current inputs
----@param Intensity number
----@param Duration number
----@param bAffectsLeftLarge boolean
----@param bAffectsLeftSmall boolean
----@param bAffectsRightLarge boolean
----@param bAffectsRightSmall boolean
+---@param Intensity number @How strong the feedback should be.  Valid values are between 0.0 and 1.0
+---@param Duration number @How long the feedback should play for.  If the value is negative it will play until stopped
+---@param bAffectsLeftLarge boolean @Whether the intensity should be applied to the large left servo
+---@param bAffectsLeftSmall boolean @Whether the intensity should be applied to the small left servo
+---@param bAffectsRightLarge boolean @Whether the intensity should be applied to the large right servo
+---@param bAffectsRightSmall boolean @Whether the intensity should be applied to the small right servo
 ---@param Action integer
 function APlayerController:PlayDynamicForceFeedback(Intensity, Duration, bAffectsLeftLarge, bAffectsLeftSmall, bAffectsRightLarge, bAffectsRightSmall, Action) end
 
 ---Play a haptic feedback curve on the player's controller
----@param HapticEffect UHapticFeedbackEffect_Base
----@param Hand EControllerHand
----@param Scale? number @[default: 1.000000]
+---@param HapticEffect UHapticFeedbackEffect_Base @The haptic effect to play
+---@param Hand EControllerHand @Which hand to play the effect on
+---@param Scale? number @[default: 1.000000] Scale between 0.0 and 1.0 on the intensity of playback
 ---@param bLoop? boolean @[default: false]
 function APlayerController:PlayHapticEffect(HapticEffect, Hand, Scale, bLoop) end
 
@@ -696,12 +697,12 @@ function APlayerController:ServerUpdateCamera(CamLoc, CamPitchAndYaw) end
 ---Called when the client adds/removes a streamed level.
 ---The server will only replicate references to Actors in visible levels so that it's impossible to send references to
 ---Actors the client has not initialized.
----@param LevelVisibility FUpdateLevelVisibilityLevelInfo
+---@param LevelVisibility FUpdateLevelVisibilityLevelInfo @Visibility state for the level whose state changed.
 function APlayerController:ServerUpdateLevelVisibility(LevelVisibility) end
 
 ---Called when the client adds/removes a streamed level.  This version of the function allows you to pass the state of
 ---multiple levels at once, to reduce the number of RPC events that will be sent.
----@param LevelVisibilities TArray<FUpdateLevelVisibilityLevelInfo>
+---@param LevelVisibilities TArray<FUpdateLevelVisibilityLevelInfo> @Visibility state for each level whose state has changed
 function APlayerController:ServerUpdateMultipleLevelsVisibility(LevelVisibilities) end
 
 ---Used by client to request server to confirm current viewtarget (server will respond with ClientSetViewTarget() ).
@@ -729,15 +730,15 @@ function APlayerController:SetAudioListenerOverride(AttachToComponent, Location,
 
 ---Server/SP only function for changing whether the player is in cinematic mode.  Updates values of various state variables, then replicates the call to the client
 ---to sync the current cinematic mode.
----@param bInCinematicMode boolean
----@param bHidePlayer boolean
----@param bAffectsHUD boolean
----@param bAffectsMovement boolean
----@param bAffectsTurning boolean
+---@param bInCinematicMode boolean @specify true if the player is entering cinematic mode; false if the player is leaving cinematic mode.
+---@param bHidePlayer boolean @specify true to hide the player's pawn (only relevant if bInCinematicMode is true)
+---@param bAffectsHUD boolean @specify true if we should show/hide the HUD to match the value of bCinematicMode
+---@param bAffectsMovement boolean @specify true to disable movement in cinematic mode, enable it when leaving
+---@param bAffectsTurning boolean @specify true to disable turning in cinematic mode or enable it when leaving
 function APlayerController:SetCinematicMode(bInCinematicMode, bHidePlayer, bAffectsHUD, bAffectsMovement, bAffectsTurning) end
 
 ---Sets the light color of the player's controller
----@param Color FColor
+---@param Color FColor @The color for the light to be
 function APlayerController:SetControllerLightColor(Color) end
 
 ---@param NewValue number
@@ -750,14 +751,14 @@ function APlayerController:SetDeprecatedInputRollScale(NewValue) end
 function APlayerController:SetDeprecatedInputYawScale(NewValue) end
 
 ---Allows the player controller to disable all haptic requests from being fired, e.g. in the case of a level loading
----@param bNewDisabled boolean
+---@param bNewDisabled boolean @If TRUE, the haptics will stop and prevented from being enabled again until set to FALSE
 function APlayerController:SetDisableHaptics(bNewDisabled) end
 
 ---Sets the value of the haptics for the specified hand directly, using frequency and amplitude.  NOTE:  If a curve is already
 ---playing for this hand, it will be cancelled in favour of the specified values.
----@param Frequency number
----@param Amplitude number
----@param Hand EControllerHand
+---@param Frequency number @The normalized frequency [0.0, 1.0] to play through the haptics system
+---@param Amplitude number @The normalized amplitude [0.0, 1.0] to set the haptic feedback to
+---@param Hand EControllerHand @Which hand to play the effect on
 function APlayerController:SetHapticsByValue(Frequency, Amplitude, Hand) end
 
 ---@param bEnabled boolean
@@ -794,7 +795,7 @@ function APlayerController:SetVirtualJoystickVisibility(bVisible) end
 function APlayerController:StartFire(FireModeNum) end
 
 ---Stops a playing haptic feedback curve
----@param Hand EControllerHand
+---@param Hand EControllerHand @Which hand to stop the effect for
 function APlayerController:StopHapticEffect(Hand) end
 
 ---Whether the PlayerController streaming source should activate cells after loading.

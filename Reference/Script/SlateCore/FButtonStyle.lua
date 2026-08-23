@@ -1,5 +1,6 @@
+---@meta
 ---Represents the appearance of an SButton
----@class FButtonStyle : FSlateWidgetStyle
+---@class FButtonStyle : FSlateWidgetStyle, Struct
 ---@field public Normal FSlateBrush @Button appearance when the button is not hovered or pressed
 ---@field public Hovered FSlateBrush @Button appearance when hovered
 ---@field public Pressed FSlateBrush @Button appearance when pressed

@@ -1,5 +1,6 @@
+---@meta
 ---Settings for applying an outline to a font
----@class FFontOutlineSettings
+---@class FFontOutlineSettings : Struct
 ---@field public OutlineSize integer @Size of the outline in slate units (at 1.0 font scale this unit is a pixel)
 ---@field public bSeparateFillAlpha boolean @When enabled the outline will be completely translucent where the filled area will be.  This allows for a separate fill alpha value The trade off when enabling this is slightly worse quality for completely opaque fills where the inner outline border meets the fill area
 ---@field public bApplyOutlineToDropShadows boolean @When enabled the outline will be applied to any drop shadow that uses this font

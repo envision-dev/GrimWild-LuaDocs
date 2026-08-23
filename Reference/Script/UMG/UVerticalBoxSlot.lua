@@ -1,3 +1,4 @@
+---@meta
 ---The Slot for the UVerticalBox, contains the widget that is flowed vertically
 ---@class UVerticalBoxSlot : UPanelSlot
 ---@field public Size FSlateChildSize @How much space this slot should occupy in the direction of the panel.

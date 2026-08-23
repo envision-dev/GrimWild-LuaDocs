@@ -1,3 +1,4 @@
+---@meta
 ---Internal state flags for TCellBuffer.
 ---@class ECellBufferFlags
 ---@field public None ECellBufferFlags [0]

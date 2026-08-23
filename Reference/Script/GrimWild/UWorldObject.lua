@@ -1,3 +1,4 @@
+---@meta
 ---Correct lifecycle: create via UGameWorld::CreateNewObject(), not NewObject<>()!
 ---@class UWorldObject : UWorldObjectBase
 ---@field protected RuntimeState EWorldObjectRuntimeState @Runtime lifecycle state. Do not set directly.
@@ -69,7 +70,7 @@ function UWorldObject:Destroy() end
 
 ---Detaches a child by slot name. Works for any attachment type (strong, shared, COW-awaiting, static).
 ---@param ChildAttachmentName string
----@param bReAttaching? boolean @[default: true]
+---@param bReAttaching? boolean @[default: true] only useful for Strong Individual attachment
 function UWorldObject:DetachChild(ChildAttachmentName, bReAttaching) end
 
 ---Gets primary asset Id associated with this object
@@ -213,10 +214,10 @@ function UWorldObject:TryDetachFromParent(bReAttaching) end
 
 ---Detaches this object from a shared parent.
 ---@param SharedParent UWorldObject
----@param SharedAttachmentSlot string
+---@param SharedAttachmentSlot string @slot inside SharedParent that we're attached to
 function UWorldObject:TryDetachFromSharedParent(SharedParent, SharedAttachmentSlot) end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function UWorldObject:GatherDebugData() end
 

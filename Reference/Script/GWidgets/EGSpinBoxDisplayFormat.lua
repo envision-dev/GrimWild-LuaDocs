@@ -1,3 +1,4 @@
+---@meta
 ---@class EGSpinBoxDisplayFormat
 ---@field public Number EGSpinBoxDisplayFormat [0] Show data as number, e.g. 0.01 = "0.01".
 ---@field public Percent EGSpinBoxDisplayFormat [1] Show data as percent e.g. 0.01 = "1%"

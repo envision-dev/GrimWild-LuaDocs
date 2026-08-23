@@ -1,3 +1,4 @@
+---@meta
 ---@class UExpandableArea : UWidget
 ---@field public Style FExpandableAreaStyle
 ---@field public BorderBrush FSlateBrush

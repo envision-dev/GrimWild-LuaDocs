@@ -1,3 +1,4 @@
+---@meta
 ---@class UGGameInstance : UGameInstance
 UGGameInstance = {}
 

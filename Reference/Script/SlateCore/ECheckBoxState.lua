@@ -1,3 +1,4 @@
+---@meta
 ---Current state of the check box
 ---@class ECheckBoxState
 ---@field public Unchecked ECheckBoxState [0] Unchecked

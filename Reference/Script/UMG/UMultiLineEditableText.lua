@@ -1,3 +1,4 @@
+---@meta
 ---Editable text box widget
 ---@class UMultiLineEditableText : UTextLayoutWidget
 ---@field public Text string @The text content for this editable text box widget

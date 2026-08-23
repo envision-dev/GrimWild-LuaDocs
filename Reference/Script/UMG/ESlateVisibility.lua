@@ -1,3 +1,4 @@
+---@meta
 ---Is an entity visible?
 ---@class ESlateVisibility
 ---@field public Visible ESlateVisibility [0] Visible and hit-testable (can interact with cursor). Default value.

@@ -1,3 +1,4 @@
+---@meta
 ---Delegates and the Lua-to-C++ result channel used by UTempTest_LuaSparseDelegate.
 ---The delegate pair lives on a plain UObject so the two paths can be compared without a world;
 ---the actor slots exist separately, for the cases that need a delegate the engine itself declares.

@@ -1,5 +1,6 @@
+---@meta
 ---Struct containing mappings for legacy method of binding keys to exec commands.
----@class FKeyBind
+---@class FKeyBind : Struct
 ---@field public Key FKey @The key to be bound to the command
 ---@field public Command string @The command to execute when the key is pressed/released
 ---@field public Control boolean @Whether the control key needs to be held when the key event occurs

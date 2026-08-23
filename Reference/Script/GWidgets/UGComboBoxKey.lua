@@ -1,3 +1,4 @@
+---@meta
 ---By default, it generates visible text gathered from translation manager, using option IDs as Translation keys.
 ---To change this behavior, bind custom function to OnGenerateItemText delegate.
 ---@class UGComboBoxKey : UWidget

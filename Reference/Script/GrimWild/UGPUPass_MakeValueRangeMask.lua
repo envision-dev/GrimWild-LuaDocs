@@ -1,3 +1,4 @@
+---@meta
 ---Returns 1 if the pixel value is inside the selected range of min/max values,
 ---or 0 otherwise. Outputs into an R8 render target.
 ---@class UGPUPass_MakeValueRangeMask : UGPUPass

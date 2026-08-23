@@ -1,7 +1,8 @@
+---@meta
 ---A stack box widget is a layout panel allowing child widgets to be automatically laid out
 ---vertically or horizontally.
----* Many Children
----* Flows Vertical or Horizontal
+---Many Children
+---Flows Vertical or Horizontal
 ---@class UStackBox : UPanelWidget
 ---@field private Orientation integer @The orientation of the stack box.
 UStackBox = {}

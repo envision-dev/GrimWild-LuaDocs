@@ -1,3 +1,4 @@
+---@meta
 ---@class ETempTest_LuaBindingContract_Mood
 ---@field public Calm ETempTest_LuaBindingContract_Mood [0]
 ---@field public Restless ETempTest_LuaBindingContract_Mood [1]

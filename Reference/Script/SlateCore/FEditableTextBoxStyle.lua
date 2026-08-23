@@ -1,5 +1,6 @@
+---@meta
 ---Represents the appearance of an SEditableTextBox
----@class FEditableTextBoxStyle : FSlateWidgetStyle
+---@class FEditableTextBoxStyle : FSlateWidgetStyle, Struct
 ---@field public BackgroundImageNormal FSlateBrush @Border background image when the box is not hovered or focused
 ---@field public BackgroundImageHovered FSlateBrush @Border background image when the box is hovered
 ---@field public BackgroundImageFocused FSlateBrush @Border background image when the box is focused

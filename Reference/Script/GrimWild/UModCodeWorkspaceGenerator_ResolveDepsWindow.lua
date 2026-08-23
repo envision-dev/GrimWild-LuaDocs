@@ -1,3 +1,4 @@
+---@meta
 ---Fullscreen dialog shown by UModCodeWorkspaceGenerator when a dependency has more than one installed copy
 ---to point the mod author's IDE at. Only ambiguous dependencies are listed; a missing one is a log warning.
 ---The chosen paths are read back through GetResolvedChoices().

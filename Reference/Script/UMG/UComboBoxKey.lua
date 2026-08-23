@@ -1,3 +1,4 @@
+---@meta
 ---The combobox allows you to display a list of options to the user in a dropdown menu for them to select one.
 ---Use OnGenerateConentWidgetEvent to return a custom built widget.
 ---@class UComboBoxKey : UWidget

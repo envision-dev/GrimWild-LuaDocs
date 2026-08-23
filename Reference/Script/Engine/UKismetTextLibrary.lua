@@ -1,3 +1,4 @@
+---@meta
 ---@class UKismetTextLibrary : UBlueprintFunctionLibrary
 UKismetTextLibrary = {}
 
@@ -10,7 +11,7 @@ UKismetTextLibrary = {}
 ---@param MaximumIntegralDigits? integer @[default: 324]
 ---@param MinimumFractionalDigits? integer @[default: 0]
 ---@param MaximumFractionalDigits? integer @[default: 3]
----@param CurrencyCode string
+---@param CurrencyCode? string @[default: ""]
 ---@return string
 function UKismetTextLibrary.AsCurrency_Float(Value, RoundingMode, bAlwaysSign, bUseGrouping, MinimumIntegralDigits, MaximumIntegralDigits, MinimumFractionalDigits, MaximumFractionalDigits, CurrencyCode) end
 
@@ -23,7 +24,7 @@ function UKismetTextLibrary.AsCurrency_Float(Value, RoundingMode, bAlwaysSign, b
 ---@param MaximumIntegralDigits? integer @[default: 324]
 ---@param MinimumFractionalDigits? integer @[default: 0]
 ---@param MaximumFractionalDigits? integer @[default: 3]
----@param CurrencyCode string
+---@param CurrencyCode? string @[default: ""]
 ---@return string
 function UKismetTextLibrary.AsCurrency_Integer(Value, RoundingMode, bAlwaysSign, bUseGrouping, MinimumIntegralDigits, MaximumIntegralDigits, MinimumFractionalDigits, MaximumFractionalDigits, CurrencyCode) end
 
@@ -70,19 +71,19 @@ function UKismetTextLibrary.AsTimespan_Timespan(InTimespan) end
 
 ---Converts a passed in date & time to a text, formatted as a date using the given timezone (default is the local timezone). This will convert the given date & time from UTC to the given timezone (taking into account DST).
 ---@param InDateTime FDateTime
----@param InTimeZone string
+---@param InTimeZone? string @[default: ""]
 ---@return string
 function UKismetTextLibrary.AsTimeZoneDate_DateTime(InDateTime, InTimeZone) end
 
 ---Converts a passed in date & time to a text, formatted as a date & time using the given timezone (default is the local timezone). This will convert the given date & time from UTC to the given timezone (taking into account DST).
 ---@param InDateTime FDateTime
----@param InTimeZone string
+---@param InTimeZone? string @[default: ""]
 ---@return string
 function UKismetTextLibrary.AsTimeZoneDateTime_DateTime(InDateTime, InTimeZone) end
 
 ---Converts a passed in date & time to a text, formatted as a time using the given timezone (default is the local timezone). This will convert the given date & time from UTC to the given timezone (taking into account DST).
 ---@param InDateTime FDateTime
----@param InTimeZone string
+---@param InTimeZone? string @[default: ""]
 ---@return string
 function UKismetTextLibrary.AsTimeZoneTime_DateTime(InDateTime, InTimeZone) end
 
@@ -186,7 +187,7 @@ function UKismetTextLibrary.EqualEqual_TextText(A, B) end
 ---Attempts to find existing Text using the representation found in the loc tables for the specified namespace and key.
 ---@param Namespace string @The namespace of the text to find (if any).
 ---@param Key string @The key of the text to find.
----@param SourceString string @If set (not empty) then the found text must also have been created from this source string.
+---@param SourceString? string @[default: ""] If set (not empty) then the found text must also have been created from this source string.
 ---@return boolean
 ---@return string OutText
 function UKismetTextLibrary.FindTextInLocalizationTable(Namespace, Key, SourceString) end

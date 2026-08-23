@@ -1,3 +1,4 @@
+---@meta
 ---@class UFAQWindowContent : UUserWidget
 UFAQWindowContent = {}
 

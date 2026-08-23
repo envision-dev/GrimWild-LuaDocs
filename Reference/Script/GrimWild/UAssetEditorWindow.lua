@@ -1,3 +1,4 @@
+---@meta
 ---Mod Editor window for editing a single asset.
 ---@class UAssetEditorWindow : UModEditorWindowBase
 ---@field public Asset UGAssetBase @Asset we're applying changes to and saving delta changes (from OriginalAsset) to disk

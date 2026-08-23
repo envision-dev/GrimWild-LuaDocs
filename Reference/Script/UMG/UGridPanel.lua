@@ -1,5 +1,6 @@
+---@meta
 ---A table-like panel that retains the width of every column throughout the table.
----* Many Children
+---Many Children
 ---@class UGridPanel : UPanelWidget
 ---@field public ColumnFill TArray<number> @The column fill rules
 ---@field public RowFill TArray<number> @The row fill rules

@@ -1,3 +1,4 @@
+---@meta
 ---Player pawn class used in Game Map
 ---@class AGPlayerPawn : AGPlayerPawnBase
 ---@field protected Camera UCameraComponent
@@ -67,6 +68,6 @@ function AGPlayerPawn:Test_BindAction(ActionName) end
 function AGPlayerPawn:Test_ExecuteAction(Event) end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function AGPlayerPawn:GatherDebugData() end
 

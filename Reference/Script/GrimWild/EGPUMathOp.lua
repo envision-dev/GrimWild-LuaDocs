@@ -1,3 +1,4 @@
+---@meta
 ---@class EGPUMathOp
 ---@field public Abs EGPUMathOp [0] ---- x1 (single input A) ----
 ---@field public Frac EGPUMathOp [1]

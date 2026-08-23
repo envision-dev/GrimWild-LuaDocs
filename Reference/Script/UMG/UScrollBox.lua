@@ -1,3 +1,4 @@
+---@meta
 ---An arbitrary scrollable collection of widgets.  Great for presenting 10-100 widgets in a list.  Doesn't support virtualization.
 ---@class UScrollBox : UPanelWidget
 ---@field public WidgetStyle FScrollBoxStyle @The style

@@ -1,3 +1,4 @@
+---@meta
 ---Stylized UListView wrapper with Envision color style support.
 ---@class UGListView : UListView
 UGListView = {}

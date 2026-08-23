@@ -1,3 +1,4 @@
+---@meta
 ---The Slot for the UStackBox, contains the widget that is flowed vertically or horizontally.
 ---@class UStackBoxSlot : UPanelSlot
 ---@field private Padding FMargin @The padding area between the slot and the content it contains.

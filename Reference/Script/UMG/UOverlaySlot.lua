@@ -1,3 +1,4 @@
+---@meta
 ---Slot for the UOverlay panel.  Allows content to be hover above other content.
 ---@class UOverlaySlot : UPanelSlot
 ---@field public Padding FMargin @The padding area between the slot and the content it contains.

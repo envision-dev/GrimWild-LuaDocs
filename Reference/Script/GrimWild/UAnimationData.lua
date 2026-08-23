@@ -1,3 +1,4 @@
+---@meta
 ---Animations for Static Sprites.
 ---Note for Curves: they all should start from 0.0 time. Negative time values are not supported.
 ---@class UAnimationData : UGAssetBase
@@ -14,6 +15,6 @@ UAnimationData = {}
 function UAnimationData:EvaluateElement(InTime, InElementName, OutTransform) end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function UAnimationData:GatherDebugData() end
 

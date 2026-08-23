@@ -1,3 +1,4 @@
+---@meta
 ---Enumerates vertical alignment options, i.e. for widget slots.
 ---@class EVerticalAlignment
 ---@field public VAlign_Fill EVerticalAlignment [0] Fill the entire height.

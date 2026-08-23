@@ -1,3 +1,4 @@
+---@meta
 ---Why we haven't exposed the loading screen to the standalone module, loading at early phase:
 ---TL;DR: It was just quick to develop and debug; Moving to another module now can break everything.
 ---Long story: in LS, we use UMG widget and DeveloperSettings to store its reference. This probably won't work at game init.

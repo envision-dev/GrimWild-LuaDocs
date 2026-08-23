@@ -1,3 +1,4 @@
+---@meta
 ---Stores user settings for a game (for example graphics and sound settings), with the ability to save and load to and from a file.
 ---@class UGameUserSettings : UObject
 ---@field public bUseVSync boolean @Whether to use VSync or not. (public to allow UI to connect to it)
@@ -8,7 +9,7 @@
 ---@field protected LastUserConfirmedResolutionSizeY integer @Game screen resolution height, in pixels.
 ---@field protected WindowPosX integer @Window PosX
 ---@field protected WindowPosY integer @Window PosY
----@field protected FullscreenMode integer @Game window fullscreen mode      0 = Fullscreen      1 = Windowed fullscreen      2 = Windowed
+---@field protected FullscreenMode integer @Game window fullscreen mode 0 = Fullscreen 1 = Windowed fullscreen 2 = Windowed
 ---@field protected LastConfirmedFullscreenMode integer @Last user confirmed fullscreen mode setting.
 ---@field protected PreferredFullscreenMode integer @Fullscreen mode to use when toggling between windowed and fullscreen. Same values as r.FullScreenMode.
 ---@field protected Version integer @All settings will be wiped and set to default if the serialized version differs from UE_GAMEUSERSETTINGS_VERSION.

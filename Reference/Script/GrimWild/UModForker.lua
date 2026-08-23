@@ -1,4 +1,5 @@
----Forks a discovered mod (any source) into an editable project folder under ModProjects/ or ModPackProjects/.
+---@meta
+---Forks a discovered mod (any source) into an editable project folder under ModProjects/.
 ---The id is not changed: a fork keeps the original id by design.
 ---Created via NewObject, configured via its UPROPERTY fields, then TryFork() is called once.
 ---@class UModForker : UObject

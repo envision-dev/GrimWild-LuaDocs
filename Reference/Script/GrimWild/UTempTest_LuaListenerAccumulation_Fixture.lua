@@ -1,3 +1,4 @@
+---@meta
 ---Channel between the generated Lua modules and the suite.
 ---Subscription is driven from here rather than by calling an exported function: the pattern under
 ---test is a module resubscribing from OnConstruct on every reload, and reproducing it any other way

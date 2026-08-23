@@ -1,5 +1,5 @@
+---@meta
 ---Imported spreadsheet table as curves.
 ---@class UCurveTable : UObject
----@field public AssetImportData UAssetImportData
 UCurveTable = {}
 

@@ -1,5 +1,6 @@
+---@meta
 ---Configurable properties for control axes.
----@class FInputAxisConfigEntry
+---@class FInputAxisConfigEntry : Struct
 ---@field public AxisKeyName string @Axis Key these properties apply to
 ---@field public AxisProperties FInputAxisProperties @Properties for the Axis Key
 FInputAxisConfigEntry = {}

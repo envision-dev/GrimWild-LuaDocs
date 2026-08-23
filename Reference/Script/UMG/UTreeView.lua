@@ -1,3 +1,4 @@
+---@meta
 ---Similar to ListView, but can display a hierarchical tree of elements.
 ---The base items source for the tree identifies the root items, each of which can have n associated child items.
 ---There is no hard limit to the nesting - child items can have children and so on

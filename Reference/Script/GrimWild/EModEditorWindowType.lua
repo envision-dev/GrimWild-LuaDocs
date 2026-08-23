@@ -1,3 +1,4 @@
+---@meta
 ---@class EModEditorWindowType
 ---@field public None EModEditorWindowType [0]
 ---@field public Hub EModEditorWindowType [1]

@@ -1,3 +1,4 @@
+---@meta
 ---@class USpriteData : UGAssetBase
 ---@field protected Type ESpriteDataType
 ---@field protected Sprites TArray<FObjectSprite>
@@ -8,7 +9,7 @@ function USpriteData:GenerateTileMap() end
 
 ---Gets ObjectSprite non-const reference from the given Index. Allows us to edit sprite contents.
 ---Note: this will crash if the target Index sprite is not found. To check this, use IsValidIndex()
----@param SpriteIndex? integer @[default: 0]
+---@param SpriteIndex? integer @[default: 0] leave 0 for non-directional sprites.
 ---@return FObjectSprite
 function USpriteData:GetSprite(SpriteIndex) end
 
@@ -17,7 +18,7 @@ function USpriteData:GetSprites() end
 
 ---For tile sets only. Returns the sprite index of the tile that meets the given conditions.
 ---Bit order: from North, clockwise (N, NE, E, SE, S, SW, W, NW).
----@param ConditionMask integer
+---@param ConditionMask integer @sequence of bits, each representing neighbor state (0 = free, 1 = occupied by another tile).
 ---@param bWarnIfNotFound? boolean @[default: true]
 ---@return integer
 function USpriteData:GetTileIndex(ConditionMask, bWarnIfNotFound) end
@@ -26,7 +27,7 @@ function USpriteData:GetTileIndex(ConditionMask, bWarnIfNotFound) end
 function USpriteData:GetType() end
 
 ---Checks whether this SpriteData object contains a valid sprite index.
----@param SpriteIndex? integer @[default: 0]
+---@param SpriteIndex? integer @[default: 0] Leave 0 to check for the Main sprite
 ---@return boolean
 function USpriteData:IsValidSpriteIndex(SpriteIndex) end
 
@@ -34,6 +35,6 @@ function USpriteData:IsValidSpriteIndex(SpriteIndex) end
 function USpriteData:SetType(NewType) end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function USpriteData:GatherDebugData() end
 

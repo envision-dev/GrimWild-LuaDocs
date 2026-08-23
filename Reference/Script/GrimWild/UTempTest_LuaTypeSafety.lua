@@ -1,3 +1,4 @@
+---@meta
 ---First execution of four Lua-layer changes that have landed but never run: the object-property value
 ---classifier and the four write paths that route through it, UClass.Load and UObject.Load raising
 ---instead of answering nil, and the removal of Length from TArray, TMap and TSet.

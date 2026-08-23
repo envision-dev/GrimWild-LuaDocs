@@ -1,3 +1,4 @@
+---@meta
 ---Properties, native entry points and the Lua-to-C++ result channel used by UTempTest_LuaPropertyConversion.
 ---Deliberately a plain UObject: the suite must create no actors, components or tick sources.
 ---Every case is offered twice, once as a field and once as a UFUNCTION parameter of the same type, so

@@ -1,3 +1,4 @@
+---@meta
 ---Pawn is the base class of all actors that can be possessed by players or AI.
 ---They are the physical representations of players and creatures in a level.
 ---@class APawn : AActor
@@ -39,9 +40,9 @@ function APawn:AddControllerYawInput(Val) end
 
 ---Add movement input along the given world direction vector (usually normalized) scaled by 'ScaleValue'. If ScaleValue < 0, movement will be in the opposite direction.
 ---Base Pawn classes won't automatically apply movement, it's up to the user to do so in a Tick event. Subclasses such as Character and DefaultPawn automatically handle this input and move.
----@param WorldDirection FVector
----@param ScaleValue? number @[default: 1.000000]
----@param bForce? boolean @[default: false]
+---@param WorldDirection FVector @Direction in world space to apply input
+---@param ScaleValue? number @[default: 1.000000] Scale to apply to input. This can be used for analog input, ie a value of 0.5 applies half the normal value, while -1.0 would reverse the direction.
+---@param bForce? boolean @[default: false] If true always add the input, ignoring the result of IsMoveInputIgnored().
 function APawn:AddMovementInput(WorldDirection, ScaleValue, bForce) end
 
 ---Returns the pending input vector and resets it to zero.

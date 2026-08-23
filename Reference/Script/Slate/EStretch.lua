@@ -1,3 +1,4 @@
+---@meta
 ---@class EStretch
 ---@field public None EStretch [0] Does not scale the content.
 ---@field public Fill EStretch [1] Scales the content non-uniformly filling the entire space of the area.

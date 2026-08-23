@@ -1,3 +1,4 @@
+---@meta
 ---STRONG and SHARED Attachment:
 ---Valid only for IndividualCopy attachment (we can get non-const version of it).
 ---Valid only for World Instances (attachment subjects and objects are all WIs), placed in the same World.
@@ -8,7 +9,7 @@
 ---Shared = just referring to someone else's attached object (like Shared Component). We're not its Parent, we're not responsible for its saving and loading.
 ---This means that we cannot hold a hard reference to it (there is no strict loading order between us, and we might spawn when there is no referenced object yet).
 ---So, instead of holding a pointer here, we just refer to its World Instance Id.
---- //Note: not using BP Bitmasks, because it ruins delegate signature creation
+---//Note: not using BP Bitmasks, because it ruins delegate signature creation
 ---@class EObjectAttachmentFlags
 ---@field public None EObjectAttachmentFlags [0]
 ---@field public ADDED EObjectAttachmentFlags [1] These properties are valid in SaveGame or RawData disk file only (FSavedAttachment)

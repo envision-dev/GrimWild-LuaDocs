@@ -1,3 +1,4 @@
+---@meta
 ---@class UGPUWorkBase : UObject
 UGPUWorkBase = {}
 

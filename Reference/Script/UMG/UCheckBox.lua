@@ -1,8 +1,9 @@
+---@meta
 ---The checkbox widget allows you to display a toggled state of 'unchecked', 'checked' and
 ---'indeterminable.  You can use the checkbox for a classic checkbox, or as a toggle button,
 ---or as radio buttons.
----* Single Child
----* Toggle
+---Single Child
+---Toggle
 ---@class UCheckBox : UContentWidget
 ---@field public CheckedState ECheckBoxState @Whether the check box is currently in a checked state
 ---@field public CheckedStateDelegate Delegate|fun(): ECheckBoxState @A bindable delegate for the IsChecked.

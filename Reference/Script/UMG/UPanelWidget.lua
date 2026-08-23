@@ -1,3 +1,4 @@
+---@meta
 ---The base class for all UMG panel widgets.  Panel widgets layout a collection of child widgets.
 ---@class UPanelWidget : UWidget
 ---@field protected Slots TArray<UPanelSlot> @The slots in the widget holding the child widgets of this panel.

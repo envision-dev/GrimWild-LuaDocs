@@ -1,3 +1,4 @@
+---@meta
 ---Mouse cursor types (mirrored from ICursor.h)
 ---@class EMouseCursor
 ---@field public None EMouseCursor [0] Causes no mouse cursor to be visible.

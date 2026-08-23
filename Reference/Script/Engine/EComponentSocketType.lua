@@ -1,3 +1,4 @@
+---@meta
 ---Type of a socket on a scene component.
 ---@class EComponentSocketType
 ---@field public Invalid EComponentSocketType [0] Not a valid socket or bone name.

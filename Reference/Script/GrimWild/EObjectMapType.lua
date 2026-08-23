@@ -1,3 +1,4 @@
+---@meta
 ---/ Object Map
 ---@class EObjectMapType
 ---@field public None EObjectMapType [0]

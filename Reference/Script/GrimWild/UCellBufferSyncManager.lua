@@ -1,3 +1,4 @@
+---@meta
 ---Owns and drives the cell buffer sync pipeline for a single UGameWorld.
 ---Separated from UGameWorld to isolate buffer-specific logic.
 ---@class UCellBufferSyncManager : UObject

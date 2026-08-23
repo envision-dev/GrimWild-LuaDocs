@@ -1,3 +1,4 @@
+---@meta
 ---@class UGSpinBoxVectorBase : UWidget
 ---@field public DisplayFormat EGSpinBoxDisplayFormat
 ---@field public MinFractionalDigits integer

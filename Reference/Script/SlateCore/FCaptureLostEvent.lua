@@ -1,2 +1,3 @@
----@class FCaptureLostEvent
+---@meta
+---@class FCaptureLostEvent : Struct
 FCaptureLostEvent = {}

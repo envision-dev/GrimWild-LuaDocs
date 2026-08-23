@@ -1,3 +1,4 @@
+---@meta
 ---@class AGPlayerControllerBase : APlayerController
 AGPlayerControllerBase = {}
 

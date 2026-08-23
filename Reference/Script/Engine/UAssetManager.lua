@@ -1,3 +1,4 @@
+---@meta
 ---A singleton UObject that is responsible for loading and unloading PrimaryAssets, and maintaining game-specific asset references
 ---Games should override this class and change the class reference
 ---@class UAssetManager : UObject

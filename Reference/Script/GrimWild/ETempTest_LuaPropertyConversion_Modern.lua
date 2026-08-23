@@ -1,3 +1,4 @@
+---@meta
 ---Reaches FEnumPropertyDesc, because UHT emits an FEnumProperty for an enum class.
 ---@class ETempTest_LuaPropertyConversion_Modern
 ---@field public Zero ETempTest_LuaPropertyConversion_Modern [0]

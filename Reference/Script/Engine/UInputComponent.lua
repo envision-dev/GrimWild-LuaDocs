@@ -1,3 +1,4 @@
+---@meta
 ---Implement an Actor component for input bindings.
 ---An Input Component is a transient component that enables an Actor to bind various forms of input events to delegate functions.
 ---Input components are processed from a stack managed by the PlayerController and processed by the PlayerInput.

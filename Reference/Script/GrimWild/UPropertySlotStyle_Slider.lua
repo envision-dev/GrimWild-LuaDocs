@@ -1,3 +1,4 @@
+---@meta
 ---@class UPropertySlotStyle_Slider : UPropertySlotStyle
 ---@field public MinValue number
 ---@field public MaxValue number

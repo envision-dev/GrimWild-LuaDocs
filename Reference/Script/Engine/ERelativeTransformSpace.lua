@@ -1,3 +1,4 @@
+---@meta
 ---The space for the transform
 ---@class ERelativeTransformSpace
 ---@field public RTS_World ERelativeTransformSpace [0] World space transform.

@@ -1,3 +1,4 @@
+---@meta
 ---@class UWidgetNavigation : UObject
 ---@field public Up FWidgetNavigationData @Happens when the user presses up arrow, joystick, d-pad.
 ---@field public Down FWidgetNavigationData @Happens when the user presses down arrow, joystick, d-pad.

@@ -1,7 +1,8 @@
+---@meta
 ---A widget that allows you to specify the size it reports to have and desire.  Not all widgets report a desired size
 ---that you actually desire.  Wrapping them in a SizeBox lets you have the Size Box force them to be a particular size.
----* Single Child
----* Fixed Size
+---Single Child
+---Fixed Size
 ---@class USizeBox : UContentWidget
 ---@field public WidthOverride number @When specified, ignore the content's desired size and report the WidthOverride as the Box's desired width.
 ---@field public HeightOverride number @When specified, ignore the content's desired size and report the HeightOverride as the Box's desired height.

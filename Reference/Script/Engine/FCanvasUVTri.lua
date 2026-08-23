@@ -1,5 +1,6 @@
+---@meta
 ---Simple 2d triangle with UVs
----@class FCanvasUVTri
+---@class FCanvasUVTri : Struct
 ---@field public V0_Pos FVector2D @Position of first vertex
 ---@field public V0_UV FVector2D @UV of first vertex
 ---@field public V0_Color FLinearColor @Color of first vertex

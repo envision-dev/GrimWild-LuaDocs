@@ -1,3 +1,4 @@
+---@meta
 ---A SceneComponent has a transform and supports attachment, but has no rendering or collision capabilities.
 ---Useful as a 'dummy' component in the hierarchy to offset others.
 ---@class USceneComponent : UActorComponent
@@ -27,11 +28,9 @@
 ---@field public bComputeBoundsOnceForGame boolean @If true, this component will cache its bounds during cooking or in PIE and never recompute it again. This is for components that are known to be static.
 ---@field public bComputedBoundsOnceForGame boolean @If true, this component has already cached its bounds during cooking or in PIE and will never recompute it again.
 ---@field public bIsNotRenderAttachmentRoot boolean @If true, this component stops the the walk up the attachment chain in GetActorPositionForRenderer(). Instead this component's child will be used as the attachment root.
----@field public bVisualizeComponent boolean @This component should create a sprite component for visualization in the editor
 ---@field public Mobility integer @How often this component is allowed to move, used to make various optimizations. Only safe to set in constructor.
 ---@field public DetailMode integer @If detail mode is >= system detail mode, primitive won't be rendered.
 ---@field public PhysicsVolumeChangedDelegate MulticastDelegate|fun(NewVolume: APhysicsVolume) @Delegate that will be called when PhysicsVolume has been changed *
----@field public ReplacementSceneComponent USceneComponent @ In World Partition Levels loaded actors are Registered in an atomic fashion meaning we register all their components and then call RerunConstructionScripts before loading the next actor. This means that a Parent can be Reconstructed and trash its components without notifying its attached actors. In Non World Partition Levels when adding actors to world we sort all actors based on hierarchy, register all actors and then RerunConstructionScripts on all actors which allows handling of Attachments as attached actors are already registered when the parent gets reconstructed and so attachment is preserved. ReplacementSceneComponent is there as a temp solution to allow finding of the replacement component of a trashed scene component.
 USceneComponent = {}
 
 ---@param bMaintainWorldPosition? boolean @[default: false]
@@ -132,97 +131,97 @@ function USceneComponent:IsSimulatingPhysics(BoneName) end
 function USceneComponent:IsVisible() end
 
 ---Adds a delta to the location of the component in its local reference frame
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
----@param DeltaLocation FVector
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
+---@param DeltaLocation FVector @Change in location of the component in its local reference frame.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_AddLocalOffset(DeltaLocation, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the rotation of the component in its local reference frame
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----@param DeltaRotation FRotator
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---@param DeltaRotation FRotator @Change in rotation of the component in its local reference frame.
+---@param bSweep boolean @Whether we sweep to the destination (currently not supported for rotation).
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_AddLocalRotation(DeltaRotation, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the transform of the component in its local reference frame. Scale is unchanged.
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
----@param DeltaTransform FTransform
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
+---@param DeltaTransform FTransform @Change in transform of the component in its local reference frame. Scale is unchanged.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_AddLocalTransform(DeltaTransform, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the translation of the component relative to its parent
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
----@param DeltaLocation FVector
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
+---@param DeltaLocation FVector @Change in location of the component relative to its parent
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_AddRelativeLocation(DeltaLocation, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta the rotation of the component relative to its parent
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----@param DeltaRotation FRotator
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---@param DeltaRotation FRotator @Change in rotation of the component relative to is parent.
+---@param bSweep boolean @Whether we sweep to the destination (currently not supported for rotation).
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_AddRelativeRotation(DeltaRotation, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the location of the component in world space.
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
----@param DeltaLocation FVector
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
+---@param DeltaLocation FVector @Change in location in world space for the component.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_AddWorldOffset(DeltaLocation, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the rotation of the component in world space.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
----@param DeltaRotation FRotator
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
+---@param DeltaRotation FRotator @Change in rotation in world space for the component.
+---@param bSweep boolean @Whether we sweep to the destination (currently not supported for rotation).
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_AddWorldRotation(DeltaRotation, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the transform of the component in world space. Ignores scale and sets it to (1,1,1).
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
----@param DeltaTransform FTransform
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
+---@param DeltaTransform FTransform @Change in transform in world space for the component. Scale is ignored.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_AddWorldTransform(DeltaTransform, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the transform of the component in world space. Scale is unchanged.
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
----@param DeltaTransform FTransform
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
+---@param DeltaTransform FTransform @Change in transform in world space for the component. Scale is ignored since we preserve the original scale.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_AddWorldTransformKeepScale(DeltaTransform, bSweep, SweepHitResult, bTeleport) end
 
 ---@param InParent USceneComponent
@@ -233,20 +232,20 @@ function USceneComponent:K2_AddWorldTransformKeepScale(DeltaTransform, bSweep, S
 function USceneComponent:K2_AttachTo(InParent, InSocketName, AttachType, bWeldSimulatedBodies) end
 
 ---Attach this component to another scene component, optionally at a named socket. It is valid to call this on components whether or not they have been Registered.
----@param Parent USceneComponent
----@param SocketName string
----@param LocationRule EAttachmentRule
----@param RotationRule EAttachmentRule
----@param ScaleRule EAttachmentRule
----@param bWeldSimulatedBodies boolean
+---@param Parent USceneComponent @Parent to attach to.
+---@param SocketName string @Optional socket to attach to on the parent.
+---@param LocationRule EAttachmentRule @How to handle translation when attaching.
+---@param RotationRule EAttachmentRule @How to handle rotation when attaching.
+---@param ScaleRule EAttachmentRule @How to handle scale when attaching.
+---@param bWeldSimulatedBodies boolean @Whether to weld together simulated physics bodies.
 ---@return boolean
 function USceneComponent:K2_AttachToComponent(Parent, SocketName, LocationRule, RotationRule, ScaleRule, bWeldSimulatedBodies) end
 
 ---Detach this component from whatever it is attached to. Automatically unwelds components that are welded together (See WeldTo)
----@param LocationRule? EDetachmentRule @[default: KeepRelative]
----@param RotationRule? EDetachmentRule @[default: KeepRelative]
----@param ScaleRule? EDetachmentRule @[default: KeepRelative]
----@param bCallModify? boolean @[default: true]
+---@param LocationRule? EDetachmentRule @[default: KeepRelative] How to handle translations when detaching.
+---@param RotationRule? EDetachmentRule @[default: KeepRelative] How to handle rotation when detaching.
+---@param ScaleRule? EDetachmentRule @[default: KeepRelative] How to handle scales when detaching.
+---@param bCallModify? boolean @[default: true] If true, call Modify() on the component and the current attach parent component
 function USceneComponent:K2_DetachFromComponent(LocationRule, RotationRule, ScaleRule, bCallModify) end
 
 ---Return location of the component, in world space
@@ -266,92 +265,88 @@ function USceneComponent:K2_GetComponentScale() end
 function USceneComponent:K2_GetComponentToWorld() end
 
 ---Set the location of the component relative to its parent
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
----@param NewLocation FVector
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
+---@param NewLocation FVector @New location of the component relative to its parent.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_SetRelativeLocation(NewLocation, bSweep, SweepHitResult, bTeleport) end
 
 ---Set the location and rotation of the component relative to its parent
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
----@param NewLocation FVector
----@param NewRotation FRotator
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
+---@param NewLocation FVector @New location of the component relative to its parent.
+---@param NewRotation FRotator @New rotation of the component relative to its parent.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_SetRelativeLocationAndRotation(NewLocation, NewRotation, bSweep, SweepHitResult, bTeleport) end
 
 ---Set the rotation of the component relative to its parent
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----@param NewRotation FRotator
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---@param NewRotation FRotator @New rotation of the component relative to its parent
+---@param bSweep boolean @Whether we sweep to the destination (currently not supported for rotation).
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_SetRelativeRotation(NewRotation, bSweep, SweepHitResult, bTeleport) end
 
 ---Set the transform of the component relative to its parent
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----@param NewTransform FTransform
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---@param NewTransform FTransform @New transform of the component relative to its parent.
+---@param bSweep boolean @Whether we sweep to the destination (currently not supported for rotation).
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_SetRelativeTransform(NewTransform, bSweep, SweepHitResult, bTeleport) end
 
 ---Put this component at the specified location in world space. Updates relative location to achieve the final world location.
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
----@param NewLocation FVector
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
+---@param NewLocation FVector @New location in world space for the component.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_SetWorldLocation(NewLocation, bSweep, SweepHitResult, bTeleport) end
 
 ---Set the relative location and rotation of the component to put it at the supplied pose in world space.
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
----@param NewLocation FVector
----@param NewRotation FRotator
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
+---@param NewLocation FVector @New location in world space for the component.
+---@param NewRotation FRotator @New rotation in world space for the component.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_SetWorldLocationAndRotation(NewLocation, NewRotation, bSweep, SweepHitResult, bTeleport) end
 
----* Put this component at the specified rotation in world space. Updates relative rotation to achieve the final world rotation.
----* @@param NewRotation           New rotation in world space for the component.
----* @@param SweepHitResult        Hit result from any impact if sweep is true.
----* @@param bSweep                        Whether we sweep to the destination (currently not supported for rotation).
----* @@param bTeleport                     Whether we teleport the physics state (if physics collision is enabled for this object).
----*                                                      If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----*                                                      If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----*                                                      If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
----@param NewRotation FRotator
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Put this component at the specified rotation in world space. Updates relative rotation to achieve the final world rotation.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
+---@param NewRotation FRotator @New rotation in world space for the component.
+---@param bSweep boolean @Whether we sweep to the destination (currently not supported for rotation).
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_SetWorldRotation(NewRotation, bSweep, SweepHitResult, bTeleport) end
 
 ---Set the transform of the component in world space.
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
----@param NewTransform FTransform
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire sweep volume.
+---@param NewTransform FTransform @New transform in world space for the component.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] Hit result from any impact if sweep is true.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function USceneComponent:K2_SetWorldTransform(NewTransform, bSweep, SweepHitResult, bTeleport) end
 
 function USceneComponent:OnRep_AttachChildren() end
@@ -397,7 +392,7 @@ function USceneComponent:SetShouldUpdatePhysicsVolume(bInShouldUpdatePhysicsVolu
 function USceneComponent:SetVisibility(bNewVisibility, bPropagateToChildren) end
 
 ---Set the relative scale of the component to put it at the supplied scale in world space.
----@param NewScale FVector
+---@param NewScale FVector @New scale in world space for this component.
 function USceneComponent:SetWorldScale3D(NewScale) end
 
 ---Toggle visibility of the component

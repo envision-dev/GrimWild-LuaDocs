@@ -1,3 +1,4 @@
+---@meta
 ---The Slot for the UBorderSlot, contains the widget displayed in a border's single slot
 ---@class UBorderSlot : UPanelSlot
 ---@field protected Padding FMargin @The padding area between the slot and the content it contains.

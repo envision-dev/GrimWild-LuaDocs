@@ -1,3 +1,4 @@
+---@meta
 ---A numerical entry box that allows for direct entry of the number or allows the user to click and slide the number.
 ---@class UGSpinBoxBase : UWidget
 ---@field public Value number @Value stored in this spin box

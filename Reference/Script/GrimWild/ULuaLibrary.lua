@@ -1,3 +1,4 @@
+---@meta
 ---Blueprint function library exposing utility functions for Lua scripting.
 ---@class ULuaLibrary : UBlueprintFunctionLibrary
 ULuaLibrary = {}

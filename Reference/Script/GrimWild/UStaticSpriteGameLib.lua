@@ -1,3 +1,4 @@
+---@meta
 ---Game-side functions for Static Sprites module
 ---@class UStaticSpriteGameLib : UBlueprintFunctionLibrary
 UStaticSpriteGameLib = {}

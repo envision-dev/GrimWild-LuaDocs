@@ -1,3 +1,4 @@
+---@meta
 ---/ Text Block
 ---@class ETextType
 ---@field public Body ETextType [0]

@@ -1,3 +1,4 @@
+---@meta
 ---@class UColorPicker : UDraggableWindow
 ---@field public OnColorCommitted MulticastDelegate|fun(Color: FLinearColor)
 ---@field public OnColorChangedByInput MulticastDelegate|fun(Color: FLinearColor)

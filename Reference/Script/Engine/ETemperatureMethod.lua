@@ -1,3 +1,4 @@
+---@meta
 ---Used by FPostProcessSettings to determine Temperature calculation method.
 ---@class ETemperatureMethod
 ---@field public TEMP_WhiteBalance ETemperatureMethod [0]

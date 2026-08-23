@@ -1,2 +1,3 @@
----@class FWorkProviderHandle
+---@meta
+---@class FWorkProviderHandle : Struct
 FWorkProviderHandle = {}

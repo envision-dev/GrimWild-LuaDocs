@@ -1,3 +1,4 @@
+---@meta
 ---A game viewport (FViewport) is a high-level abstract interface for the
 ---platform specific rendering, audio, and input subsystems.
 ---GameViewportClient is the engine's interface to a game viewport.

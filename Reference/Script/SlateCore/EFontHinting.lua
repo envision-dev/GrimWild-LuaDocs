@@ -1,3 +1,4 @@
+---@meta
 ---@class EFontHinting
 ---@field public Default EFontHinting [0] Use the default hinting specified in the font.
 ---@field public Auto EFontHinting [1] Force the use of an automatic hinting algorithm.

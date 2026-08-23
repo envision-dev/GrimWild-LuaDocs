@@ -1,3 +1,4 @@
+---@meta
 ---ActorComponent is the base class for components that define reusable behavior that can be added to different types of Actors.
 ---ActorComponents that have a transform are known as SceneComponents and those that can be rendered are PrimitiveComponents.
 ---@class UActorComponent : UObject
@@ -13,8 +14,6 @@
 ---@field public bEditableWhenInherited boolean @True if this component can be modified when it was inherited from a parent actor class
 ---@field protected bCanEverAffectNavigation boolean @Whether this component can potentially influence navigation
 ---@field public bIsEditorOnly boolean @If true, the component will be excluded from non-editor builds
----@field private bIsVisualizationComponent boolean @True if this component is only used for visualization, usually a sprite or text
----@field private bNeedsUCSSerializationIndexEvaluted boolean @Marks this component pending kill once PostLoad occurs. Used to clean up old native default subobjects that were removed from code
 ---@field public CreationMethod EComponentCreationMethod @Describes how a component instance will be created
 ---@field public OnComponentActivated MulticastDelegate|fun(Component: UActorComponent, bReset: boolean) @Called when the component has been activated, with parameter indicating if it was from a reset
 ---@field public OnComponentDeactivated MulticastDelegate|fun(Component: UActorComponent) @Called when the component has been deactivated
@@ -106,11 +105,11 @@ function UActorComponent:SetAutoActivate(bNewAutoActivate) end
 function UActorComponent:SetComponentTickEnabled(bEnabled) end
 
 ---Sets the tick interval for this component's primary tick function. Does not enable the tick interval. Takes effect on next tick.
----@param TickInterval number
+---@param TickInterval number @The duration between ticks for this component's primary tick function
 function UActorComponent:SetComponentTickInterval(TickInterval) end
 
 ---Sets the tick interval for this component's primary tick function. Does not enable the tick interval. Takes effect imediately.
----@param TickInterval number
+---@param TickInterval number @The duration between ticks for this component's primary tick function
 function UActorComponent:SetComponentTickIntervalAndCooldown(TickInterval) end
 
 ---Enable or disable replication. This is the equivalent of RemoteRole for actors (only a bool is required for components)

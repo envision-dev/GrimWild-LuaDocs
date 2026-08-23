@@ -1,3 +1,4 @@
+---@meta
 ---A Material is an asset which can be applied to a mesh to control the visual look of the scene.
 ---When light from the scene hits the surface, the shading model of the material is used to calculate how that light interacts with the surface.
 ---Warning: Creating new materials directly increases shader compile times!  Consider creating a Material Instance off of an existing material instead.
@@ -15,7 +16,6 @@
 ---@field private ShadingModel integer @Determines how inputs are combined to create the material's final color.
 ---@field public bCastDynamicShadowAsMasked boolean @Whether the material should cast shadows as masked even though it has a translucent blend mode.
 ---@field private ShadingModels FMaterialShadingModelField
----@field private UsedShadingModels string @These are the shading models present in this material. Note that all these shading models might not be used in all feature levels and quality levels.
 ---@field public OpacityMaskClipValue number @If BlendMode is BLEND_Masked, the surface is not rendered where OpacityMask < OpacityMaskClipValue. If BlendMode is BLEND_Translucent, BLEND_Additive, or BLEND_Modulate, and "Output Depth and Velocity" is enabled, the object velocity is not rendered where Opacity < OpacityMaskClipValue.
 ---@field public bEnableResponsiveAA boolean @Indicates that the material should be rendered using responsive anti-aliasing. Improves sharpness of small moving particles such as sparks. Only use for small moving features because it will cause aliasing of the background.
 ---@field public bScreenSpaceReflections boolean @SSR on translucency
@@ -74,18 +74,14 @@
 ---@field public bMobileEnableHighQualityBRDF boolean @Use the high quality brdf functions on mobile to get better visual effects but adds GPU cost.
 ---@field public bUseAlphaToCoverage boolean @Use alpha to coverage for masked material on mobile, make sure MSAA is enabled as well.
 ---@field public bForwardRenderUsePreintegratedGFForSimpleIBL boolean @Forward (including mobile) renderer: use preintegrated GF lut for simple IBL, but will use one more sampler.
----@field public bUseHQForwardReflections boolean @* Forward renderer: enables multiple parallax-corrected reflection captures that blend together.
----@field public bForwardBlendsSkyLightCubemaps boolean @* Enables blending of sky light cubemap textures. When disabled, the secondary cubemap is only visible when the blend factor is 1.
+---@field public bUseHQForwardReflections boolean @Forward renderer: enables multiple parallax-corrected reflection captures that blend together.
+---@field public bForwardBlendsSkyLightCubemaps boolean @Enables blending of sky light cubemap textures. When disabled, the secondary cubemap is only visible when the blend factor is 1.
 ---@field public bUsePlanarForwardReflections boolean @Enables planar reflection when using the forward renderer or mobile. Enabling this setting reduces the number of samplers available to the material as one more sampler will be used for the planar reflection.
 ---@field public bNormalCurvatureToRoughness boolean @Reduce roughness based on screen space normal changes.
 ---@field public AllowTranslucentCustomDepthWrites boolean @Allows a translucent material to be used with custom depth writing by compiling additional shaders.
 ---@field public bAllowFrontLayerTranslucency boolean @Allows a translucent material to be used with Front Layer Translucency by compiling additional shaders. Useful for controlling what should be included in Front Layer Translucency.
 ---@field public Wireframe boolean @Enables a wireframe view of the mesh the material is applied to.
 ---@field public ShadingRate integer @Select what shading rate to apply, on platforms that support variable rate shading. Non-1x1 rates will reduce the rasterization fidelity for the material; they will not super-sample the material. This can save GPU performance on materials where reduced fidelity is acceptable.
----@field public EditorX integer
----@field public EditorY integer
----@field public EditorPitch integer
----@field public EditorYaw integer
 ---@field public bCanMaskedBeAssumedOpaque boolean @true if this Material can be assumed Opaque when set to masked.
 ---@field public bIsPreviewMaterial boolean @true if Material is the preview material used in the material editor.
 ---@field public bIsFunctionPreviewMaterial boolean @true if Material is the function preview material used in the material instance editor.
@@ -114,6 +110,5 @@
 ---@field public MaxWorldPositionOffsetDisplacement number @Specifies the max world position offset of the material. Use this value to resolve issues with culling and self-occlusion caused by World Position Offset, and/or to restrict how much offset is permitted (i.e. values are clamped on each axis). NOTE: A value of 0.0 effectively means "no maximum", and will not clamp the offsets, however it will also not extend culling bounds.
 ---@field public bAlwaysEvaluateWorldPositionOffset boolean @Forces World Position Offset to always be evaluated for this material, even if the primitive it's applied to has disabled it via "Evaluate World Position Offset" or "World Position Offset Disable Distance".
 ---@field public StateId FGuid @Guid that uniquely identifies this material. Any changes to the state of the material that do not appear separately in the shadermap DDC keys must cause this guid to be regenerated! For example, a modification to the Expressions array. Code changes that cause the guid to be regenerated on load should be avoided, as that requires a resave of the content to stop recompiling every load.
----@field private ReferencedTextureGuids TArray<FGuid>
 UMaterial = {}
 

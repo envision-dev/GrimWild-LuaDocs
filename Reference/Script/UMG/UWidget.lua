@@ -1,3 +1,4 @@
+---@meta
 ---This is the base class for all wrapped Slate controls that are exposed to UObjects.
 ---@class UWidget : UVisual
 ---@field public Slot UPanelSlot @The parent slot of the UWidget.  Allows us to easily inline edit the layout controlling this widget.
@@ -14,18 +15,7 @@
 ---@field public bCreatedByConstructionScript boolean @Flag if the Widget was created from a blueprint
 ---@field public bIsEnabled boolean @Sets whether this widget can be modified interactively by the user
 ---@field public bOverride_Cursor boolean
----@field public bOverrideAccessibleDefaults boolean @Override all of the default accessibility behavior and text for this widget.
----@field public bCanChildrenBeAccessible boolean @Whether or not children of this widget can appear as distinct accessible widgets.
----@field public AccessibleBehavior ESlateAccessibleBehavior @Whether or not the widget is accessible, and how to describe it. If set to custom, additional customization options will appear.
----@field public AccessibleSummaryBehavior ESlateAccessibleBehavior @How to describe this widget when it's being presented through a summary of a parent widget. If set to custom, additional customization options will appear.
----@field public AccessibleText string @When AccessibleBehavior is set to Custom, this is the text that will be used to describe the widget.
----@field public AccessibleTextDelegate Delegate|fun(): string @An optional delegate that may be assigned in place of AccessibleText for creating a TAttribute
----@field public AccessibleSummaryText string @When AccessibleSummaryBehavior is set to Custom, this is the text that will be used to describe the widget.
----@field public AccessibleSummaryTextDelegate Delegate|fun(): string @An optional delegate that may be assigned in place of AccessibleSummaryText for creating a TAttribute
 ---@field protected bIsVolatile boolean @If true prevents the widget or its child's geometry or layout information from being cached.  If this widget changes every frame, but you want it to still be in an invalidation panel you should make it as volatile instead of invalidating it every frame, which would prevent the invalidation panel from actually ever caching anything.
----@field public bHiddenInDesigner boolean @Stores the design time flag setting if the widget is hidden inside the designer
----@field public bExpandedInDesigner boolean @Stores the design time flag setting if the widget is expanded inside the designer
----@field public bLockedInDesigner boolean @Stores the design time flag setting if the widget is locked inside the designer
 ---@field public Cursor integer @The cursor to show when the mouse is over the widget
 ---@field public Clipping EWidgetClipping @Controls how the clipping behavior of this widget.  Normally content that overflows the bounds of the widget continues rendering.  Enabling clipping prevents that overflowing content from being seen. NOTE: Elements in different clipping spaces can not be batched together, and so there is a performance cost to clipping.  Do not enable clipping unless a panel actually needs to prevent content from showing up outside its bounds.
 ---@field public Visibility ESlateVisibility @The visibility of the widget
@@ -34,9 +24,6 @@
 ---@field private AccessibleWidgetData USlateAccessibleWidgetData @A custom set of accessibility rules for this widget. If null, default rules for the widget are used.
 ---@field public Navigation UWidgetNavigation @The navigation object for this widget is optionally created if the user has configured custom navigation rules for this widget in the widget designer.  Those rules determine how navigation transitions can occur between widgets.
 ---@field protected NativeBindings TArray<UPropertyBinding> @Native property bindings.
----@field private DesignerFlags integer @Any flags used by the designer at edit time.
----@field private DisplayLabel string @The friendly name for this widget displayed in the designer and BP graph.
----@field private CategoryName string @Category name used in the widget designer for sorting purpose
 UWidget = {}
 
 ---Forces a pre-pass.  A pre-pass caches the desired size of the widget hierarchy owned by this widget.
@@ -68,8 +55,8 @@ function UWidget:GetAccessibleSummaryText() end
 function UWidget:GetAccessibleText() end
 
 ---Common Bindings - If you add any new common binding, you must provide a UPropertyBinding for it.
----                  all primitive binding in UMG goes through native binding evaluators to prevent
----                  thunking through the VM.
+---all primitive binding in UMG goes through native binding evaluators to prevent
+---thunking through the VM.
 ---@return boolean
 function UWidget:GetBool__DelegateSignature() end
 
@@ -91,7 +78,7 @@ function UWidget:GetClipping() end
 
 ---Gets the widgets desired size.
 ---NOTE: The underlying Slate widget must exist and be valid, also at least one pre-pass must
----      have occurred before this value will be of any use.
+---have occurred before this value will be of any use.
 ---@return FVector2D
 function UWidget:GetDesiredSize() end
 
@@ -176,9 +163,6 @@ function UWidget:HasKeyboardFocus() end
 function UWidget:HasMouseCapture() end
 
 ---Checks to see if this widget is the current mouse captor
----     @@param User index to check for capture
----     @@param Optional pointer index to check for capture
----     @@return  True if this widget has captured the mouse with given user and pointer
 ---@param UserIndex integer
 ---@param PointerIndex? integer @[default: -1]
 ---@return boolean

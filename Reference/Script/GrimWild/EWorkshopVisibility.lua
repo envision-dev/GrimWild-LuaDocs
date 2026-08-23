@@ -1,3 +1,4 @@
+---@meta
 ---Mirrors ERemoteStoragePublishedFileVisibility, plus Unset so the field can be left alone (skip-empty semantics).
 ---@class EWorkshopVisibility
 ---@field public Unset EWorkshopVisibility [0]

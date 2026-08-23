@@ -1,3 +1,4 @@
+---@meta
 ---@class EMouseCaptureMode
 ---@field public NoCapture EMouseCaptureMode [0] Do not capture the mouse at all
 ---@field public CapturePermanently EMouseCaptureMode [1] Capture the mouse permanently when the viewport is clicked, and consume the initial mouse down that caused the capture so it isn't processed by player input

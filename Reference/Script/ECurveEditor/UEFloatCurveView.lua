@@ -1,3 +1,4 @@
+---@meta
 ---@class UEFloatCurveView : UWidget
 ---@field public InitialCurve FEFloatCurve @----------------------------------------------------------------- properties
 ---@field public ViewStyle FEFloatCurveViewStyle

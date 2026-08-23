@@ -1,3 +1,4 @@
+---@meta
 ---TODO Rename
 ---@class UUserInterfaceUtils : UBlueprintFunctionLibrary
 UUserInterfaceUtils = {}

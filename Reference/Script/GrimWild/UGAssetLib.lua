@@ -1,3 +1,4 @@
+---@meta
 ---Blueprint function library for GAsset management: loading, unloading, event binding.
 ---@class UGAssetLib : UBlueprintFunctionLibrary
 UGAssetLib = {}

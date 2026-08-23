@@ -1,3 +1,4 @@
+---@meta
 ---Supported windowing modes (mirrored from GenericWindow.h)
 ---@class EWindowMode
 ---@field public Fullscreen EWindowMode [0] The window is in true fullscreen mode

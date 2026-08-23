@@ -1,3 +1,4 @@
+---@meta
 ---Determines search direction for string operations.
 ---@class ESearchDir
 ---@field public FromStart ESearchDir [0]

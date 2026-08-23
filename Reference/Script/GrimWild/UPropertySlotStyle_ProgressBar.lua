@@ -1,3 +1,4 @@
+---@meta
 ---@class UPropertySlotStyle_ProgressBar : UPropertySlotStyle
 ---@field public Emphasis EWidgetEmphasis
 ---@field public bRounded boolean

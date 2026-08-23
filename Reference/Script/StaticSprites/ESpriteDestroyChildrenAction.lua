@@ -1,3 +1,4 @@
+---@meta
 ---What to do with the Children of the Sprite Instance we're about to destroy
 ---@class ESpriteDestroyChildrenAction
 ---@field public Destroy ESpriteDestroyChildrenAction [0]

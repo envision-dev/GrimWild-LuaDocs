@@ -1,3 +1,4 @@
+---@meta
 ---Rules for attaching components - needs to be kept synced to EDetachmentRule
 ---@class EAttachmentRule
 ---@field public KeepRelative EAttachmentRule [0] Keeps current relative transform as the relative transform to the new parent.

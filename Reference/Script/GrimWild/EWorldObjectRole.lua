@@ -1,3 +1,4 @@
+---@meta
 ---Whether the object is a Native Template, a Template Copy, or a World Instance.
 ---@class EWorldObjectRole
 ---@field public NativeTemplate EWorldObjectRole [0]

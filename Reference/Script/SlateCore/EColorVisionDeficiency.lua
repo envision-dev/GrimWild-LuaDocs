@@ -1,3 +1,4 @@
+---@meta
 ---Enumerates color vision deficiency types.
 ---@class EColorVisionDeficiency
 ---@field public NormalVision EColorVisionDeficiency [0]

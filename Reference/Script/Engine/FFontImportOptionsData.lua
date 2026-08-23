@@ -1,5 +1,6 @@
+---@meta
 ---Font import options
----@class FFontImportOptionsData
+---@class FFontImportOptionsData : Struct
 ---@field public FontName string @Name of the typeface for the font to import
 ---@field public Height number @Height of font (point size)
 ---@field public bEnableAntialiasing boolean @Whether the font should be antialiased or not.  Usually you should leave this enabled.

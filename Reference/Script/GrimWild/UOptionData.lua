@@ -1,3 +1,4 @@
+---@meta
 ---Holds one game option only.
 ---OptionName == this.PrimaryAssetName. It allows us to exclude option name collision. Also, we can refer to any Option's parent asset from anywhere.
 ---Logic chain on in-game option edit: Option Window -> GameOptions Property -> OptionData::OnChanged -> Custom Logic.
@@ -55,6 +56,6 @@ function UOptionData:SetOptionValue(NewValue) end
 function UOptionData:SetOptionValue_Listener() end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function UOptionData:GatherDebugData() end
 

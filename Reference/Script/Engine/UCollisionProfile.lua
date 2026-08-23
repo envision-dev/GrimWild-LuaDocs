@@ -1,3 +1,4 @@
+---@meta
 ---Set up and modify collision settings.
 ---@class UCollisionProfile : UDeveloperSettings
 ---@field private Profiles TArray<FCollisionResponseTemplate> @List of all profiles, engine and game-specific

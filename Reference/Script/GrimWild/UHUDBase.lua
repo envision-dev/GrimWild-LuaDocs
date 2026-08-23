@@ -1,3 +1,4 @@
+---@meta
 ---Base class for creating UI windows.
 ---Subclassed for GameMap and MainMenu maps.
 ---@class UHUDBase : UUserWidget

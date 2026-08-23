@@ -1,3 +1,4 @@
+---@meta
 ---Subset of EPixelFormat exposed to UTextureRenderTarget2D
 ---@class ETextureRenderTargetFormat
 ---@field public RTF_R8 ETextureRenderTargetFormat [0] R channel, 8 bit per channel fixed point, range [0, 1].

@@ -1,3 +1,4 @@
+---@meta
 ---@class UCurveVector : UCurveBase
 ---@field public FloatCurves FRichCurve @Keyframe data, one curve for X, Y and Z
 UCurveVector = {}

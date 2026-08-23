@@ -1,3 +1,4 @@
+---@meta
 ---@class UCanvasPanelSlot : UPanelSlot
 ---@field public LayoutData FAnchorData @The anchoring information for the slot
 ---@field public bAutoSize boolean @When AutoSize is true we use the widget's desired size

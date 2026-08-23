@@ -1,3 +1,4 @@
+---@meta
 ---@class UGSpinBox_Vector : UGSpinBoxVectorBase
 ---@field public Value FVector
 ---@field public OnValueChanged MulticastDelegate|fun(Value: FVector)

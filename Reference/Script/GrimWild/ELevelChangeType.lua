@@ -1,3 +1,4 @@
+---@meta
 ---@class ELevelChangeType
 ---@field public None ELevelChangeType [0]
 ---@field public Distortion ELevelChangeType [1]

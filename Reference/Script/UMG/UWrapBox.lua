@@ -1,7 +1,8 @@
+---@meta
 ---Arranges widgets left-to-right or top-to-bottom dependently of the orientation.  When the widgets exceed the wrapSize it will place widgets on the next line.
----* Many Children
----* Flows
----* Wraps
+---Many Children
+---Flows
+---Wraps
 ---@class UWrapBox : UPanelWidget
 ---@field public InnerSlotPadding FVector2D @The inner slot padding goes between slots sharing borders
 ---@field public WrapSize number @When this size is exceeded, elements will start appearing on the next line.

@@ -1,9 +1,14 @@
+---@meta
 ---Developer-facing settings for mod project creation.
 ---@class UModDeveloperSettings : UDeveloperSettings
 ---@field public MainLuaTemplate string @Written into a new project's main.lua by UModCreator.
 ---@field public ModProjectGitignoreContent string @Written into a new mod project's .gitignore by UModCreator and UModForker.
 ---@field public ModsWindowClass TSoftClassPtr<UModsWindow>
 ---@field public ModSlotClass TSoftClassPtr<UModSlot>
+---@field public ModPackSlotClass TSoftClassPtr<UModPackSlot>
+---@field public WorkshopItemSlotClass TSoftClassPtr<UWorkshopItemSlot>
+---@field public ModPacksWindowClass TSoftClassPtr<UModPacksWindow>
+---@field public SaveModListAsPackWindowClass TSoftClassPtr<USaveModListAsPackWindow>
 ---@field public ModProjectsWindowClass TSoftClassPtr<UModProjectsWindow>
 ---@field public CreateNewModWindowClass TSoftClassPtr<UCreateNewModWindow>
 ---@field public ForkModOptionsWindowClass TSoftClassPtr<UForkModOptionsWindow>
@@ -18,5 +23,10 @@
 ---@field public ForkerOverwriteForeignConfirmText FEText @{0} = target dir, {1} = occupant mod id or <unreadable>
 ---@field public ForceApplyConfirmText FEText @{0} = issue count
 ---@field public ResetDraftConfirmText FEText @No arguments.
+---@field public CloseDraftConfirmText FEText @No arguments.
+---@field public ReplaceDraftWithPackConfirmText FEText @{0} = mod pack name
+---@field public DeleteModPackConfirmText FEText @{0} = mod pack name
+---@field public OverwriteModPackConfirmText FEText @{0} = mod pack name
+---@field public DisableAllModsConfirmText FEText @No arguments.
 UModDeveloperSettings = {}
 

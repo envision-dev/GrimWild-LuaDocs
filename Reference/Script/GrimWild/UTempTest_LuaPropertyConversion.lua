@@ -1,3 +1,4 @@
+---@meta
 ---First execution of the unified value conversion in PropertyDesc.cpp: one predicate per property type,
 ---shared by the field assignment path through CheckWritable and by the argument path through
 ---CheckPropertyType, and one set of conversion helpers shared by every write that gets past it.

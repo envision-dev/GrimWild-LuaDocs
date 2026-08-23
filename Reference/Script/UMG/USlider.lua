@@ -1,5 +1,6 @@
+---@meta
 ---A simple widget that shows a sliding bar with a handle that allows you to control the value in a user define range (between 0..1 by default).
----* No Children
+---No Children
 ---@class USlider : UWidget
 ---@field public Value number @The volume value to display.
 ---@field public ValueDelegate Delegate|fun(): number @A bindable delegate to allow logic to drive the value of the widget

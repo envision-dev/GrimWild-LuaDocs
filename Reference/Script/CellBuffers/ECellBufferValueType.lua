@@ -1,3 +1,4 @@
+---@meta
 ---Value type stored in a cell buffer. Determines the render target format and how values are interpreted.
 ---@class ECellBufferValueType
 ---@field public None ECellBufferValueType [0]

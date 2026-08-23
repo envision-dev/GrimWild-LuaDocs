@@ -1,5 +1,6 @@
+---@meta
 ---Payload data describing an individual font in a typeface. Keep this lean as it's also used as a key!
----@class FFontData
+---@class FFontData : Struct
 ---@field private FontFilename string @The filename of the font to use. This variable is ignored if we have a font face asset, and is set to the .ufont file in a cooked build.
 ---@field private Hinting EFontHinting @The hinting algorithm to use with the font. This variable is ignored if we have a font face asset, and is synchronized with the font face asset on load in a cooked build.
 ---@field private LoadingPolicy EFontLoadingPolicy @Enum controlling how this font should be loaded at runtime. See the enum for more explanations of the options. This variable is ignored if we have a font face asset, and is synchronized with the font face asset on load in a cooked build.

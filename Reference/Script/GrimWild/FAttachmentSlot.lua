@@ -1,5 +1,6 @@
+---@meta
 ---Declares an attachment slot with optional class filtering.
----@class FAttachmentSlot
+---@class FAttachmentSlot : Struct
 ---@field public AcceptedClasses TArray<TSubclassOf<UWorldObject>> @If empty, any UWorldObject subclass is accepted.
 ---@field public Flags EAttachmentSlotFlags
 FAttachmentSlot = {}

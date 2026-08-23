@@ -1,3 +1,4 @@
+---@meta
 ---@class EFlowDirectionPreference
 ---@field public Inherit EFlowDirectionPreference [0] Inherits the flow direction set by the parent widget.
 ---@field public Culture EFlowDirectionPreference [1] Begins laying out widgets using the current cultures layout direction preference, flipping the directionality of flows.

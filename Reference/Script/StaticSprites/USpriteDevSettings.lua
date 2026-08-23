@@ -1,3 +1,4 @@
+---@meta
 ---Developer settings for the Static Sprites system.
 ---@class USpriteDevSettings : UDeveloperSettings
 ---@field public DefaultMaterial TSoftObjectPtr<UMaterialInterface> @Default material used for all sprites if the sprite instance does not override it.

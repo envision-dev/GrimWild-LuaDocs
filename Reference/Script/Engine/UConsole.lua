@@ -1,3 +1,4 @@
+---@meta
 ---A basic command line console that accepts most commands.
 ---@class UConsole : UObject
 ---@field public ConsoleTargetPlayer ULocalPlayer @The player which the next console command should be executed in the context of.  If nullptr, execute in the viewport.

@@ -1,3 +1,4 @@
+---@meta
 ---Enum used to describe what type of collision is enabled on a body.
 ---@class ECollisionEnabled
 ---@field public NoCollision ECollisionEnabled [0] Will not create any representation in the physics engine. Cannot be used for spatial queries (raycasts, sweeps, overlaps) or simulation (rigid body, constraints). Best performance possible (especially for moving objects)

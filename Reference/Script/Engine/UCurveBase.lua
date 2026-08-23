@@ -1,6 +1,6 @@
+---@meta
 ---Defines a curve of interpolated points to evaluate over a given range
 ---@class UCurveBase : UObject
----@field public AssetImportData UAssetImportData
 UCurveBase = {}
 
 ---Get the time range across all curves

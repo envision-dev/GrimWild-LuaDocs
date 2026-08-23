@@ -1,3 +1,4 @@
+---@meta
 ---Fully custom widget slot — bind all delegates before InitializeProperty is called.
 ---Use AddUniqueDynamic() to avoid double-binding during PIE restarts.
 ---@class UPropertySlotStyle_Custom : UPropertySlotStyle

@@ -1,3 +1,4 @@
+---@meta
 ---Player controller used in Game Map
 ---@class AGPlayerController : AGPlayerControllerBase
 ---@field protected GameHUDClass TSoftClassPtr<UGameHUD>
@@ -46,13 +47,13 @@ function AGPlayerController:Test_GetTemplate(AssetId, MainFilePath) end
 function AGPlayerController:Test_ImportColorPalette(Filename) end
 
 ---Uploads and submits a Workshop item update. Leave desired fields empty to skip updating them.
----        //TODO: used in Lua example
----@param PublishedFileId integer
----@param ContentFolderPath string
----@param PreviewImagePath string
----@param Title string
----@param ChangeNote string
----@param OnComplete fun(bSuccess: boolean)
+---//TODO: used in Lua example
+---@param PublishedFileId integer @the item's ID (number from the Workshop URL)
+---@param ContentFolderPath string @absolute path to the folder containing mod files
+---@param PreviewImagePath string @absolute path to the preview image (PNG/JPG)
+---@param Title string @item title
+---@param ChangeNote string @update changelog note
+---@param OnComplete fun(bSuccess: boolean) @callback, receives bool bSuccess
 function AGPlayerController.Test_UploadWorkshopItem(PublishedFileId, ContentFolderPath, PreviewImagePath, Title, ChangeNote, OnComplete) end
 
 function AGPlayerController:TryExecuteLuaSingleCastDelegateTest() end

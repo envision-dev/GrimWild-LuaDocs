@@ -1,5 +1,6 @@
+---@meta
 ---Possible options for rounded box brush image
----@class FSlateBrushOutlineSettings
+---@class FSlateBrushOutlineSettings : Struct
 ---@field public CornerRadii FVector4 @Radius in Slate Units applied to the outline at each corner. X = Top Left, Y = Top Right, Z = Bottom Right, W = Bottom Left
 ---@field public Color FSlateColor @Tinting applied to the border outline.
 ---@field public Width number @Line width in Slate Units applied to the border outline.

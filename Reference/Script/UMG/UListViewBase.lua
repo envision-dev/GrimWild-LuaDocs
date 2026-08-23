@@ -1,3 +1,4 @@
+---@meta
 ---Bare-bones base class to make creating custom UListView widgets easier.
 ---Child classes should also inherit from ITypedUMGListView<T> to get a basic public ListView API for free.
 ---Child classes will own the actual SListView<T> widgets, but this provides some boilerplate functionality for generating entries.
@@ -7,8 +8,8 @@
 ---Example:
 ---class UMyUserWidget : public UUserWidget
 ---{
----            UPROPERTY(BindWidget, meta = (EntryClass = MyListEntryWidget))
----            UListView* ListView_InventoryItems;
+---UPROPERTY(BindWidget, meta = (EntryClass = MyListEntryWidget))
+---UListView* ListView_InventoryItems;
 ---}
 ---@class UListViewBase : UWidget
 ---@field protected BP_OnEntryGenerated MulticastDelegate|fun(Widget: UUserWidget) @Called when a row widget is generated for a list item
@@ -21,7 +22,6 @@
 ---@field protected FixedLineScrollOffset number @Optional fixed offset (in lines) to always apply to the top/left (depending on orientation) of the list. If provided, all non-inertial means of scrolling will settle with exactly this offset of the topmost entry. Ex: A value of 0.25 would cause the topmost full entry to be offset down by a quarter length of the preceeding entry.
 ---@field protected bAllowDragging boolean @True to allow dragging of row widgets in the list
 ---@field protected BP_OnEntryReleased MulticastDelegate|fun(Widget: UUserWidget) @Called when a row widget is released by the list (i.e. when it no longer represents a list item)
----@field private NumDesignerPreviewEntries integer @The number of dummy item entry widgets to preview in the widget designer
 ---@field private EntryWidgetPool FUserWidgetPool
 UListViewBase = {}
 

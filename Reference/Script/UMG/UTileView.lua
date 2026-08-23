@@ -1,3 +1,4 @@
+---@meta
 ---A ListView that presents the contents as a set of tiles all uniformly sized.
 ---To make a widget usable as an entry in a TileView, it must inherit from the IUserObjectListEntry interface.
 ---@class UTileView : UListView

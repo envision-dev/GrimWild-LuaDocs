@@ -1,3 +1,4 @@
+---@meta
 ---@class ETickMode
 ---@field public Disabled ETickMode [0] The component tick is disabled until re-enabled.
 ---@field public Enabled ETickMode [1] The component is always ticked

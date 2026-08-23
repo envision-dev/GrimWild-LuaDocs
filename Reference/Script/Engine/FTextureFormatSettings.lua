@@ -1,5 +1,6 @@
+---@meta
 ---Collection of values that contribute to pixel format chosen for texture
----@class FTextureFormatSettings
+---@class FTextureFormatSettings : Struct
 ---@field public CompressionSettings integer
 ---@field public CompressionNoAlpha boolean
 ---@field public CompressionForceAlpha boolean

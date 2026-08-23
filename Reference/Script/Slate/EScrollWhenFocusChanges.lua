@@ -1,3 +1,4 @@
+---@meta
 ---Set behavior when user focus changes inside this scroll box
 ---@class EScrollWhenFocusChanges
 ---@field public NoScroll EScrollWhenFocusChanges [0] Don't automatically scroll, navigation or child widget will handle this

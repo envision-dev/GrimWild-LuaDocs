@@ -1,3 +1,4 @@
+---@meta
 ---This enum controls the rendering order of objects placed inside World.
 ---Previously, it had controlled logical layers. Note: now they're replaced with FEntityId::Type
 ---@class EWorldRenderLayer

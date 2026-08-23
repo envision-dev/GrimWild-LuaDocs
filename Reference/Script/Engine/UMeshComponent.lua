@@ -1,3 +1,4 @@
+---@meta
 ---MeshComponent is an abstract base for any component that is an instance of a renderable collection of triangles.
 ---@class UMeshComponent : UPrimitiveComponent
 ---@field public OverrideMaterials TArray<UMaterialInterface> @Material overrides.
@@ -29,9 +30,9 @@ function UMeshComponent:GetOverlayMaterialMaxDrawDistance() end
 function UMeshComponent:IsMaterialSlotNameValid(MaterialSlotName) end
 
 ---Tell the streaming system to start loading all textures with all mip-levels.
----@param Seconds number
----@param bPrioritizeCharacterTextures boolean
----@param CinematicTextureGroups? integer @[default: 0]
+---@param Seconds number @Number of seconds to force all mip-levels to be resident
+---@param bPrioritizeCharacterTextures boolean @Whether character textures should be prioritized for a while by the streaming system
+---@param CinematicTextureGroups? integer @[default: 0] Bitfield indicating which texture groups that use extra high-resolution mips
 function UMeshComponent:PrestreamTextures(Seconds, bPrioritizeCharacterTextures, CinematicTextureGroups) end
 
 ---Change the overlay material used by this instance

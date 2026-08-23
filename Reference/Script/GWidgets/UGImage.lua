@@ -1,3 +1,4 @@
+---@meta
 ---Stylized UImage wrapper with optional Envision color style tinting.
 ---@class UGImage : UImage
 ---@field public bApplyColorStyle boolean

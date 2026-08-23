@@ -1,3 +1,4 @@
+---@meta
 ---@class UFAQWindow : UUserWidget
 ---@field protected B_Close UGButton
 ---@field protected SearchBox USearchBox

@@ -1,6 +1,7 @@
+---@meta
 ---Container for indicating a set of collision channels that this object will collide with.
----@class FCollisionResponseContainer
----@field public WorldStatic integer @Reserved Engine Trace Channels Note -        If you change this (add/remove/modify)                       you should make sure it matches with ECollisionChannel (including DisplayName)                       They has to be mirrored if serialized
+---@class FCollisionResponseContainer : Struct
+---@field public WorldStatic integer @Reserved Engine Trace Channels Note -        If you change this (add/remove/modify) you should make sure it matches with ECollisionChannel (including DisplayName) They has to be mirrored if serialized
 ---@field public WorldDynamic integer @0
 ---@field public Pawn integer @1.
 ---@field public Visibility integer @2

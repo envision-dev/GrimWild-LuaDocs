@@ -1,3 +1,4 @@
+---@meta
 ---@class EWorldSeasons
 ---@field public Winter EWorldSeasons [0]
 ---@field public Spring EWorldSeasons [1]

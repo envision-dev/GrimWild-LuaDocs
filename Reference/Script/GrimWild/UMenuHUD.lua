@@ -1,3 +1,4 @@
+---@meta
 ---Main UI window used in Main Menu
 ---@class UMenuHUD : UHUDBase
 ---@field protected NewGameWindowClass TSoftClassPtr<UNewGameWindow>

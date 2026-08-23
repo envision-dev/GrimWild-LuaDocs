@@ -1,3 +1,4 @@
+---@meta
 ---@class ULoadGameWindow : UUserWidget
 ---@field protected B_Close UGButton
 ULoadGameWindow = {}

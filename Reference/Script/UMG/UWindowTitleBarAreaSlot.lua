@@ -1,3 +1,4 @@
+---@meta
 ---The Slot for the UWindowTitleBarArea
 ---@class UWindowTitleBarAreaSlot : UPanelSlot
 ---@field protected Padding FMargin @The padding area between the slot and the content it contains.

@@ -1,3 +1,4 @@
+---@meta
 ---@class USafeZoneSlot : UPanelSlot
 ---@field public bIsTitleSafe boolean
 ---@field public SafeAreaScale FMargin

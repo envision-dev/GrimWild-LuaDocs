@@ -1,3 +1,4 @@
+---@meta
 ---@class UGPUPass_MathOp : UGPUPass
 ---@field public Operation EGPUMathOp
 ---@field public InputA FBPMathInput

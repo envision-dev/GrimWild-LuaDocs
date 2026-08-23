@@ -1,3 +1,4 @@
+---@meta
 ---Establishes what a Lua subscription to a sparse multicast delegate does, both on a delegate this
 ---suite declares and on AActor::OnDestroyed, which the engine declares. Reports rather than presumes
 ---- which metatable the userdata carries, which Add call shape is accepted, which handler class ends

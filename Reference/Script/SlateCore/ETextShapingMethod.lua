@@ -1,3 +1,4 @@
+---@meta
 ---Methods that can be used to shape text.
 ---@class ETextShapingMethod
 ---@field public Auto ETextShapingMethod [0] Automatically picks the fastest possible shaping method (either KerningOnly or FullShaping) based on the reading direction of the text. Left-to-right text uses the KerningOnly method, and right-to-left text uses the FullShaping method.

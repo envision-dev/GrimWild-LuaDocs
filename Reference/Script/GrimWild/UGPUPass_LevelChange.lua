@@ -1,3 +1,4 @@
+---@meta
 ---@class UGPUPass_LevelChange : UGPUPass
 ---@field public Type ELevelChangeType
 ---@field public Noise_LF UTexture @Low-frequency Perlin, RGB channels with different seeds. //Keeping a strong reference to the texture loaded from the GPUPass creation time

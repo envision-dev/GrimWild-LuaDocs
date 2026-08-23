@@ -1,5 +1,6 @@
+---@meta
 ---Editable font parameter.
----@class FFontParameterValue
+---@class FFontParameterValue : Struct
 ---@field public ParameterInfo FMaterialParameterInfo
 ---@field public FontValue UFont
 ---@field public FontPage integer

@@ -1,3 +1,4 @@
+---@meta
 ---Delegates and the Lua-to-C++ result channel used by UTempTest_LuaDelegateBaseline.
 ---Deliberately a plain UObject: the suite must create no actors, components or tick sources.
 ---@class UTempTest_LuaDelegateBaseline_Fixture : UObject

@@ -1,3 +1,4 @@
+---@meta
 ---Additional information about a text committal
 ---@class ETextCommit
 ---@field public Default ETextCommit [0] Losing focus or similar event caused implicit commit

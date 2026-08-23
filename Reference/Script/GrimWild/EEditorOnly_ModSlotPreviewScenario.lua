@@ -1,0 +1,21 @@
+---@meta
+---Named presets rather than exposing FModSlotVisualState directly, so only vetted field combinations can be picked.
+---@class EEditorOnly_ModSlotPreviewScenario
+---@field public None EEditorOnly_ModSlotPreviewScenario [0]
+---@field public Discovered_Normal EEditorOnly_ModSlotPreviewScenario [1]
+---@field public Discovered_Selected EEditorOnly_ModSlotPreviewScenario [2]
+---@field public Enabled_Normal EEditorOnly_ModSlotPreviewScenario [3]
+---@field public Enabled_Selected EEditorOnly_ModSlotPreviewScenario [4]
+---@field public Enabled_Warning EEditorOnly_ModSlotPreviewScenario [5]
+---@field public Enabled_OrderingIssue EEditorOnly_ModSlotPreviewScenario [6]
+---@field public Project_Normal EEditorOnly_ModSlotPreviewScenario [7]
+---@field public Project_Selected EEditorOnly_ModSlotPreviewScenario [8]
+---@field public ForkCandidate_Normal EEditorOnly_ModSlotPreviewScenario [9]
+---@field public ForkCandidate_Selected EEditorOnly_ModSlotPreviewScenario [10]
+---@field public Informational EEditorOnly_ModSlotPreviewScenario [11]
+---@field public Missing_Discovered EEditorOnly_ModSlotPreviewScenario [12]
+---@field public Missing_Enabled EEditorOnly_ModSlotPreviewScenario [13]
+---@field public Downloading EEditorOnly_ModSlotPreviewScenario [14]
+---@field public Source_Local EEditorOnly_ModSlotPreviewScenario [15]
+---@field public Source_Project EEditorOnly_ModSlotPreviewScenario [16]
+EEditorOnly_ModSlotPreviewScenario = {}

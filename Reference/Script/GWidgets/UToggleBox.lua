@@ -1,3 +1,4 @@
+---@meta
 ---Enforces single selection across UGButton children.
 ---Automatically detects UGButton children added in designer or at runtime and binds to their clicks.
 ---@class UToggleBox : UHorizontalBox

@@ -1,3 +1,4 @@
+---@meta
 ---The interaction source for the widget interaction component, e.g. where do we try and
 ---trace from to try to find a widget under a virtual pointer device.
 ---@class EWidgetInteractionSource

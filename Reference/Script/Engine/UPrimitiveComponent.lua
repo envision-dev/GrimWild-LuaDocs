@@ -1,3 +1,4 @@
+---@meta
 ---PrimitiveComponents are SceneComponents that contain or generate some sort of geometry, generally to be rendered or used as collision data.
 ---There are several subclasses for the various types of geometry, but the most common by far are the ShapeComponents (Capsule, Sphere, Box), StaticMeshComponent, and SkeletalMeshComponent.
 ---ShapeComponents generate geometry that is used for collision detection but are not rendered, while StaticMeshComponents and SkeletalMeshComponents contain pre-built geometry that is rendered, but can also be used for collision detection.
@@ -33,7 +34,6 @@
 ---@field public bTreatAsBackgroundForOcclusion boolean @Treat this primitive as part of the background for occlusion purposes. This can be used as an optimization to reduce the cost of rendering skyboxes, large ground planes that are part of the vista, etc.
 ---@field public bUseAsOccluder boolean @Whether to render the primitive in the depth only pass. This should generally be true for all objects, and let the renderer make decisions about whether to render objects in the depth only pass.
 ---@field public bSelectable boolean @If this is True, this component can be selected in the editor.
----@field public bConsiderForActorPlacementWhenHidden boolean @If true, this component will be considered for placement when dragging and placing items in the editor even if it is not visible, such as in the case of hidden collision meshes
 ---@field public bForceMipStreaming boolean @If true, forces mips for textures used by this component to be resident when this component's level is loaded.
 ---@field public bHasPerInstanceHitProxies boolean @If true a hit-proxy will be generated for each instance of instanced static meshes
 ---@field public CastShadow boolean @Controls whether the primitive component should cast a shadow or not.
@@ -59,7 +59,7 @@
 ---@field public bIgnoreRadialImpulse boolean @Will ignore radial impulses applied to this component.
 ---@field public bIgnoreRadialForce boolean @Will ignore radial forces applied to this component.
 ---@field public bApplyImpulseOnDamage boolean @True for damage to this component to apply physics impulse, false to opt out of these impulses.
----@field public bReplicatePhysicsToAutonomousProxy boolean @True if physics should be replicated to autonomous proxies. This should be true for               server-authoritative simulations, and false for client authoritative simulations.
+---@field public bReplicatePhysicsToAutonomousProxy boolean @True if physics should be replicated to autonomous proxies. This should be true for server-authoritative simulations, and false for client authoritative simulations.
 ---@field public bFillCollisionUnderneathForNavmesh boolean @If set, navmesh will not be generated under the surface of the geometry
 ---@field public AlwaysLoadOnClient boolean @If this is True, this component must always be loaded on clients, even if Hidden and CollisionEnabled is NoCollision.
 ---@field public AlwaysLoadOnServer boolean @If this is True, this component must always be loaded on servers, even if Hidden and CollisionEnabled is NoCollision
@@ -72,7 +72,6 @@
 ---@field protected bHasNoStreamableTextures boolean
 ---@field protected bStaticWhenNotMoveable boolean @When false, the underlying physics body will contain all sim data (mass, inertia tensor, etc) even if mobility is not set to Moveable
 ---@field public bHasCustomNavigableGeometry integer @If true then DoCustomNavigableGeometryExport will be called to collect navigable geometry of this component.
----@field public HitProxyPriority integer
 ---@field public CanCharacterStepUpOn integer @Determine whether a Character can step up onto this component. This controls whether they can try to step up on it when they bump in to it, not whether they can walk on it after landing on it.
 ---@field public LightingChannels FLightingChannels @Channels that this component should be in.  Lights with matching channels will affect the component. These channels only apply to opaque materials, direct lighting, and dynamic lighting and shadowing.
 ---@field public RayTracingGroupId integer @Defines run-time groups of components. For example allows to assemble multiple parts of a building at runtime. -1 means that component doesn't belong to any group.
@@ -113,81 +112,81 @@ UPrimitiveComponent = {}
 
 ---Add an angular impulse to a single rigid body. Good for one time instant burst.
 ---@param Impulse FVector
----@param BoneName? string @[default: None]
----@param bVelChange? boolean @[default: false]
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to apply angular impulse to. 'None' indicates root body.
+---@param bVelChange? boolean @[default: false] If true, the Strength is taken as a change in angular velocity instead of an impulse (ie. mass will have no effect).
 function UPrimitiveComponent:AddAngularImpulseInDegrees(Impulse, BoneName, bVelChange) end
 
 ---Add an angular impulse to a single rigid body. Good for one time instant burst.
 ---@param Impulse FVector
----@param BoneName? string @[default: None]
----@param bVelChange? boolean @[default: false]
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to apply angular impulse to. 'None' indicates root body.
+---@param bVelChange? boolean @[default: false] If true, the Strength is taken as a change in angular velocity instead of an impulse (ie. mass will have no effect).
 function UPrimitiveComponent:AddAngularImpulseInRadians(Impulse, BoneName, bVelChange) end
 
 ---Add a force to a single rigid body.
 ---This is like a 'thruster'. Good for adding a burst over some (non zero) time. Should be called every frame for the duration of the force.
----@param Force FVector
----@param BoneName? string @[default: None]
+---@param Force FVector @Force vector to apply. Magnitude indicates strength of force.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to apply force to. 'None' indicates root body.
 ---@param bAccelChange? boolean @[default: false] If true, Force is taken as a change in acceleration instead of a physical force (i.e. mass will have no effect).
 function UPrimitiveComponent:AddForce(Force, BoneName, bAccelChange) end
 
 ---Add a force to a single rigid body at a particular location in world space.
 ---This is like a 'thruster'. Good for adding a burst over some (non zero) time. Should be called every frame for the duration of the force.
----@param Force FVector
----@param Location FVector
----@param BoneName? string @[default: None]
+---@param Force FVector @Force vector to apply. Magnitude indicates strength of force.
+---@param Location FVector @Location to apply force, in world space.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to apply force to. 'None' indicates root body.
 function UPrimitiveComponent:AddForceAtLocation(Force, Location, BoneName) end
 
 ---Add a force to a single rigid body at a particular location. Both Force and Location should be in body space.
 ---This is like a 'thruster'. Good for adding a burst over some (non zero) time. Should be called every frame for the duration of the force.
----@param Force FVector
----@param Location FVector
----@param BoneName? string @[default: None]
+---@param Force FVector @Force vector to apply. Magnitude indicates strength of force.
+---@param Location FVector @Location to apply force, in component space.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to apply force to. 'None' indicates root body.
 function UPrimitiveComponent:AddForceAtLocationLocal(Force, Location, BoneName) end
 
 ---Add an impulse to a single rigid body. Good for one time instant burst.
----@param Impulse FVector
----@param BoneName? string @[default: None]
----@param bVelChange? boolean @[default: false]
+---@param Impulse FVector @Magnitude and direction of impulse to apply.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to apply impulse to. 'None' indicates root body.
+---@param bVelChange? boolean @[default: false] If true, the Strength is taken as a change in velocity instead of an impulse (ie. mass will have no effect).
 function UPrimitiveComponent:AddImpulse(Impulse, BoneName, bVelChange) end
 
 ---Add an impulse to a single rigid body at a specific location.
----@param Impulse FVector
----@param Location FVector
----@param BoneName? string @[default: None]
+---@param Impulse FVector @Magnitude and direction of impulse to apply.
+---@param Location FVector @Point in world space to apply impulse at.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of bone to apply impulse to. 'None' indicates root body.
 function UPrimitiveComponent:AddImpulseAtLocation(Impulse, Location, BoneName) end
 
 ---Add a force to all bodies in this component, originating from the supplied world-space location.
----@param Origin FVector
----@param Radius number
----@param Strength number
----@param Falloff integer
+---@param Origin FVector @Origin of force in world space.
+---@param Radius number @Radius within which to apply the force.
+---@param Strength number @Strength of force to apply.
+---@param Falloff integer @Allows you to control the strength of the force as a function of distance from Origin.
 ---@param bAccelChange? boolean @[default: false] If true, Strength is taken as a change in acceleration instead of a physical force (i.e. mass will have no effect).
 function UPrimitiveComponent:AddRadialForce(Origin, Radius, Strength, Falloff, bAccelChange) end
 
 ---Add an impulse to all rigid bodies in this component, radiating out from the specified position.
----@param Origin FVector
----@param Radius number
----@param Strength number
----@param Falloff integer
----@param bVelChange? boolean @[default: false]
+---@param Origin FVector @Point of origin for the radial impulse blast, in world space
+---@param Radius number @Size of radial impulse. Beyond this distance from Origin, there will be no affect.
+---@param Strength number @Maximum strength of impulse applied to body.
+---@param Falloff integer @Allows you to control the strength of the impulse as a function of distance from Origin.
+---@param bVelChange? boolean @[default: false] If true, the Strength is taken as a change in velocity instead of an impulse (ie. mass will have no effect).
 function UPrimitiveComponent:AddRadialImpulse(Origin, Radius, Strength, Falloff, bVelChange) end
 
 ---Add a torque to a single rigid body.
----@param Torque FVector
----@param BoneName? string @[default: None]
+---@param Torque FVector @Torque to apply. Direction is axis of rotation and magnitude is strength of torque.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to apply torque to. 'None' indicates root body.
 ---@param bAccelChange? boolean @[default: false] If true, Torque is taken as a change in angular acceleration instead of a physical torque (i.e. mass will have no effect).
 function UPrimitiveComponent:AddTorqueInDegrees(Torque, BoneName, bAccelChange) end
 
 ---Add a torque to a single rigid body.
----@param Torque FVector
----@param BoneName? string @[default: None]
+---@param Torque FVector @Torque to apply. Direction is axis of rotation and magnitude is strength of torque.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to apply torque to. 'None' indicates root body.
 ---@param bAccelChange? boolean @[default: false] If true, Torque is taken as a change in angular acceleration instead of a physical torque (i.e. mass will have no effect).
 function UPrimitiveComponent:AddTorqueInRadians(Torque, BoneName, bAccelChange) end
 
 ---Add an impulse to a single rigid body at a specific location. The Strength is taken as a change in angular velocity instead of an impulse (ie. mass will have no effect).
----@param Impulse FVector
----@param Location FVector
----@param BoneName? string @[default: None]
+---@param Impulse FVector @Magnitude and direction of impulse to apply.
+---@param Location FVector @Point in world space to apply impulse at.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of bone to apply impulse to. 'None' indicates root body.
 function UPrimitiveComponent:AddVelocityChangeImpulseAtLocation(Impulse, Location, BoneName) end
 
 ---Return true if the given Pawn can step up onto this component.
@@ -233,24 +232,24 @@ function UPrimitiveComponent:CreateDynamicMaterialInstance(ElementIndex, SourceM
 function UPrimitiveComponent:GetAngularDamping() end
 
 ---Returns BodyInstanceAsyncPhysicsTickHandle of the component. For use in the Async Physics Tick event
----@param BoneName? string @[default: None]
----@param bGetWelded? boolean @[default: true]
----@param Index? integer @[default: -1]
+---@param BoneName? string @[default: None] Used to get body associated with specific bone. NAME_None automatically gets the root most body
+---@param bGetWelded? boolean @[default: true] If the component has been welded to another component and bGetWelded is true we return the single welded BodyInstance that is used in the simulation
+---@param Index? integer @[default: -1] Index used in Components with multiple body instances
 ---@return FBodyInstanceAsyncPhysicsTickHandle
 function UPrimitiveComponent:GetBodyInstanceAsyncPhysicsTickHandle(BoneName, bGetWelded, Index) end
 
 ---Get the center of mass of a single body. In the case of a welded body this will return the center of mass of the entire welded body (including its parent and children)
 ---Objects that are not simulated return (0,0,0) as they do not have COM
----@param BoneName? string @[default: None]
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to get center of mass of. 'None' indicates root body.
 ---@return FVector
 function UPrimitiveComponent:GetCenterOfMass(BoneName) end
 
 ---Returns the distance and closest point to the collision surface.
 ---Component must have simple collision to be queried for closest point.
----                              If returns < 0.f, this primitive does not have collsion
----@param Point FVector
----@param OutPointOnBody FVector @[out, modified in place]
----@param BoneName? string @[default: None]
+---If returns < 0.f, this primitive does not have collsion
+---@param Point FVector @World 3D vector
+---@param OutPointOnBody FVector @[out, modified in place] Point on the surface of collision closest to Point
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to set center of mass of. 'None' indicates root body.
 ---@return number
 function UPrimitiveComponent:GetClosestPointOnCollision(Point, OutPointOnBody, BoneName) end
 
@@ -272,12 +271,12 @@ function UPrimitiveComponent:GetCollisionProfileName() end
 function UPrimitiveComponent:GetCollisionResponseToChannel(Channel) end
 
 ---Gets the index of the scalar parameter for the custom primitive data array
----@param ParameterName string
+---@param ParameterName string @The parameter name of the custom primitive
 ---@return integer
 function UPrimitiveComponent:GetCustomPrimitiveDataIndexForScalarParameter(ParameterName) end
 
 ---Gets the index of the vector parameter for the custom primitive data array
----@param ParameterName string
+---@param ParameterName string @The parameter name of the custom primitive
 ---@return integer
 function UPrimitiveComponent:GetCustomPrimitiveDataIndexForVectorParameter(ParameterName) end
 
@@ -318,12 +317,9 @@ function UPrimitiveComponent:GetMassScale(BoneName) end
 function UPrimitiveComponent:GetMaterial(ElementIndex) end
 
 ---Try and retrieve the material applied to a particular collision face of mesh. Used with face index returned from collision trace.
----     @@param  FaceIndex               Face index from hit result that was hit by a trace
----     @@param  SectionIndex    Section of the mesh that the face belongs to
----     @@return                                 Material applied to section that the hit face belongs to
----@param FaceIndex integer
+---@param FaceIndex integer @Face index from hit result that was hit by a trace
 ---@return UMaterialInterface
----@return integer SectionIndex
+---@return integer SectionIndex @Section of the mesh that the face belongs to
 function UPrimitiveComponent:GetMaterialFromCollisionFaceIndex(FaceIndex) end
 
 ---Return number of material elements in this primitive
@@ -331,8 +327,8 @@ function UPrimitiveComponent:GetMaterialFromCollisionFaceIndex(FaceIndex) end
 function UPrimitiveComponent:GetNumMaterials() end
 
 ---Returns a list of actors that this component is overlapping.
----@param OverlappingActors TArray<AActor> @[out, modified in place]
----@param ClassFilter? TSubclassOf<AActor> @[default: None]
+---@param OverlappingActors TArray<AActor> @[out, modified in place] [out] Returned list of overlapping actors
+---@param ClassFilter? TSubclassOf<AActor> @[default: None] [optional] If set, only returns actors of this class or subclasses
 function UPrimitiveComponent:GetOverlappingActors(OverlappingActors, ClassFilter) end
 
 ---Returns unique list of components this component is overlapping.
@@ -340,23 +336,23 @@ function UPrimitiveComponent:GetOverlappingActors(OverlappingActors, ClassFilter
 function UPrimitiveComponent:GetOverlappingComponents(OutOverlappingComponents) end
 
 ---Get the angular velocity of a single body, in degrees per second.
----@param BoneName? string @[default: None]
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to get velocity of. 'None' indicates root body.
 ---@return FVector
 function UPrimitiveComponent:GetPhysicsAngularVelocityInDegrees(BoneName) end
 
 ---Get the angular velocity of a single body, in radians per second.
----@param BoneName? string @[default: None]
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to get velocity of. 'None' indicates root body.
 ---@return FVector
 function UPrimitiveComponent:GetPhysicsAngularVelocityInRadians(BoneName) end
 
 ---Get the linear velocity of a single body.
----@param BoneName? string @[default: None]
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to get velocity of. 'None' indicates root body.
 ---@return FVector
 function UPrimitiveComponent:GetPhysicsLinearVelocity(BoneName) end
 
 ---Get the linear velocity of a point on a single body.
----@param Point FVector
----@param BoneName? string @[default: None]
+---@param Point FVector @Point is specified in world space.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to get velocity of. 'None' indicates root body.
 ---@return FVector
 function UPrimitiveComponent:GetPhysicsLinearVelocityAtPoint(Point, BoneName) end
 
@@ -473,7 +469,7 @@ function UPrimitiveComponent:K2_SphereOverlapComponent(InSphereCentre, InSphereR
 function UPrimitiveComponent:K2_SphereTraceComponent(TraceStart, TraceEnd, SphereRadius, bTraceComplex, bShowTrace, bPersistentShowTrace, HitLocation, HitNormal, OutHit) end
 
 ---Force a single body back to sleep.
----@param BoneName? string @[default: None]
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to put to sleep. 'None' indicates root body.
 function UPrimitiveComponent:PutRigidBodyToSleep(BoneName) end
 
 ---Scales the given vector by the world space moment of inertia. Useful for computing the torque needed to rotate an object.
@@ -499,18 +495,18 @@ function UPrimitiveComponent:SetAffectIndirectLightingWhileHidden(bNewAffectIndi
 function UPrimitiveComponent:SetAllMassScale(InMassScale) end
 
 ---Set the angular velocity of all bodies in this component.
----@param NewAngVel FVector
----@param bAddToCurrent? boolean @[default: false]
+---@param NewAngVel FVector @New angular velocity to apply to physics, in degrees per second.
+---@param bAddToCurrent? boolean @[default: false] If true, NewAngVel is added to the existing angular velocity of all bodies.
 function UPrimitiveComponent:SetAllPhysicsAngularVelocityInDegrees(NewAngVel, bAddToCurrent) end
 
 ---Set the angular velocity of all bodies in this component.
----@param NewAngVel FVector
----@param bAddToCurrent? boolean @[default: false]
+---@param NewAngVel FVector @New angular velocity to apply to physics, in radians per second.
+---@param bAddToCurrent? boolean @[default: false] If true, NewAngVel is added to the existing angular velocity of all bodies.
 function UPrimitiveComponent:SetAllPhysicsAngularVelocityInRadians(NewAngVel, bAddToCurrent) end
 
 ---Set the linear velocity of all bodies in this component.
----@param NewVel FVector
----@param bAddToCurrent? boolean @[default: false]
+---@param NewVel FVector @New linear velocity to apply to physics.
+---@param bAddToCurrent? boolean @[default: false] If true, NewVel is added to the existing velocity of the body.
 function UPrimitiveComponent:SetAllPhysicsLinearVelocity(NewVel, bAddToCurrent) end
 
 ---Set whether all bodies in this component should use Continuous Collision Detection
@@ -543,8 +539,8 @@ function UPrimitiveComponent:SetCastShadow(NewCastShadow) end
 
 ---Set the center of mass of a single body. This will offset the physx-calculated center of mass.
 ---Note that in the case where multiple bodies are attached together, the center of mass will be set for the entire group.
----@param CenterOfMassOffset FVector
----@param BoneName? string @[default: None]
+---@param CenterOfMassOffset FVector @User specified offset for the center of mass of this object, from the calculated location.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to set center of mass of. 'None' indicates root body.
 function UPrimitiveComponent:SetCenterOfMass(CenterOfMassOffset, BoneName) end
 
 ---Controls what kind of collision is enabled for this body
@@ -572,7 +568,7 @@ function UPrimitiveComponent:SetCollisionResponseToAllChannels(NewResponse) end
 function UPrimitiveComponent:SetCollisionResponseToChannel(Channel, NewResponse) end
 
 ---Sets the constraint mode of the component.
----@param ConstraintMode integer
+---@param ConstraintMode integer @The type of constraint to use.
 function UPrimitiveComponent:SetConstraintMode(ConstraintMode) end
 
 ---Changes the value of CullDistance.
@@ -713,35 +709,35 @@ function UPrimitiveComponent:SetOwnerNoSee(bNewOwnerNoSee) end
 
 ---Set the angular velocity of a single body.
 ---This should be used cautiously - it may be better to use AddTorque or AddImpulse.
----@param NewAngVel FVector
----@param bAddToCurrent? boolean @[default: false]
----@param BoneName? string @[default: None]
+---@param NewAngVel FVector @New angular velocity to apply to body, in degrees per second.
+---@param bAddToCurrent? boolean @[default: false] If true, NewAngVel is added to the existing angular velocity of the body.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to modify angular velocity of. 'None' indicates root body.
 function UPrimitiveComponent:SetPhysicsAngularVelocityInDegrees(NewAngVel, bAddToCurrent, BoneName) end
 
 ---Set the angular velocity of a single body.
 ---This should be used cautiously - it may be better to use AddTorque or AddImpulse.
----@param NewAngVel FVector
----@param bAddToCurrent? boolean @[default: false]
----@param BoneName? string @[default: None]
+---@param NewAngVel FVector @New angular velocity to apply to body, in radians per second.
+---@param bAddToCurrent? boolean @[default: false] If true, NewAngVel is added to the existing angular velocity of the body.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to modify angular velocity of. 'None' indicates root body.
 function UPrimitiveComponent:SetPhysicsAngularVelocityInRadians(NewAngVel, bAddToCurrent, BoneName) end
 
 ---Set the linear velocity of a single body.
 ---This should be used cautiously - it may be better to use AddForce or AddImpulse.
----@param NewVel FVector
----@param bAddToCurrent? boolean @[default: false]
----@param BoneName? string @[default: None]
+---@param NewVel FVector @New linear velocity to apply to physics.
+---@param bAddToCurrent? boolean @[default: false] If true, NewVel is added to the existing velocity of the body.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to modify velocity of. 'None' indicates root body.
 function UPrimitiveComponent:SetPhysicsLinearVelocity(NewVel, bAddToCurrent, BoneName) end
 
 ---Set the maximum angular velocity of a single body.
----@param NewMaxAngVel number
----@param bAddToCurrent? boolean @[default: false]
----@param BoneName? string @[default: None]
+---@param NewMaxAngVel number @New maximum angular velocity to apply to body, in degrees per second.
+---@param bAddToCurrent? boolean @[default: false] If true, NewMaxAngVel is added to the existing maximum angular velocity of the body.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to modify maximum angular velocity of. 'None' indicates root body.
 function UPrimitiveComponent:SetPhysicsMaxAngularVelocityInDegrees(NewMaxAngVel, bAddToCurrent, BoneName) end
 
 ---Set the maximum angular velocity of a single body.
----@param NewMaxAngVel number
----@param bAddToCurrent? boolean @[default: false]
----@param BoneName? string @[default: None]
+---@param NewMaxAngVel number @New maximum angular velocity to apply to body, in radians per second.
+---@param bAddToCurrent? boolean @[default: false] If true, NewMaxAngVel is added to the existing maximum angular velocity of the body.
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to modify maximum angular velocity of. 'None' indicates root body.
 function UPrimitiveComponent:SetPhysicsMaxAngularVelocityInRadians(NewMaxAngVel, bAddToCurrent, BoneName) end
 
 ---Changes the current PhysMaterialOverride for this component.
@@ -767,18 +763,18 @@ function UPrimitiveComponent:SetRenderInDepthPass(bValue) end
 function UPrimitiveComponent:SetRenderInMainPass(bValue) end
 
 ---Set a scalar parameter for custom primitive data. This sets the run-time data only, so it doesn't serialize.
----@param ParameterName string
----@param Value number
+---@param ParameterName string @The parameter name of the custom primitive
+---@param Value number @The new value of the custom primitive
 function UPrimitiveComponent:SetScalarParameterForCustomPrimitiveData(ParameterName, Value) end
 
 ---Set a scalar parameter for default custom primitive data. This will be serialized and is useful in construction scripts.
----@param ParameterName string
----@param Value number
+---@param ParameterName string @The parameter name of the custom primitive
+---@param Value number @The new value of the custom primitive
 function UPrimitiveComponent:SetScalarParameterForDefaultCustomPrimitiveData(ParameterName, Value) end
 
 ---Sets whether or not a single body should use physics simulation, or should be 'fixed' (kinematic).
 ---Note that if this component is currently attached to something, beginning simulation will detach it.
----@param bSimulate boolean
+---@param bSimulate boolean @New simulation state for single body
 function UPrimitiveComponent:SetSimulatePhysics(bSimulate) end
 
 ---Changes the value of bSingleSampleShadowFromStationaryLights.
@@ -802,13 +798,13 @@ function UPrimitiveComponent:SetTranslucentSortPriority(NewTranslucentSortPriori
 function UPrimitiveComponent:SetUseCCD(InUseCCD, BoneName) end
 
 ---Set a vector parameter for custom primitive data. This sets the run-time data only, so it doesn't serialize.
----@param ParameterName string
----@param Value FVector4
+---@param ParameterName string @The parameter name of the custom primitive
+---@param Value FVector4 @The new value of the custom primitive
 function UPrimitiveComponent:SetVectorParameterForCustomPrimitiveData(ParameterName, Value) end
 
 ---Set a vector parameter for default custom primitive data. This will be serialized and is useful in construction scripts.
----@param ParameterName string
----@param Value FVector4
+---@param ParameterName string @The parameter name of the custom primitive
+---@param Value FVector4 @The new value of the custom primitive
 function UPrimitiveComponent:SetVectorParameterForDefaultCustomPrimitiveData(ParameterName, Value) end
 
 ---Changes the value of bIsVisibleInRayTracing.
@@ -827,7 +823,7 @@ function UPrimitiveComponent:SetWalkableSlopeOverride(NewOverride) end
 function UPrimitiveComponent:WakeAllRigidBodies() end
 
 ---'Wake' physics simulation for a single body.
----@param BoneName? string @[default: None]
+---@param BoneName? string @[default: None] If a SkeletalMeshComponent, name of body to wake. 'None' indicates root body.
 function UPrimitiveComponent:WakeRigidBody(BoneName) end
 
 ---Returns true if this component has been rendered "recently", with a tolerance in seconds to define what "recent" means.

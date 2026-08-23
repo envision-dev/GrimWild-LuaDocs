@@ -1,3 +1,4 @@
+---@meta
 ---@class EGDirection
 ---@field public None EGDirection [0]
 ---@field public South EGDirection [1]

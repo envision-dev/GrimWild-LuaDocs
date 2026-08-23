@@ -1,2 +1,3 @@
----@class FSpriteCachedData
+---@meta
+---@class FSpriteCachedData : Struct
 FSpriteCachedData = {}

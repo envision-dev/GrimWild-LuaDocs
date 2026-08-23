@@ -1,3 +1,4 @@
+---@meta
 ---The different states of pixel snapping a widget can be in.
 ---@class EWidgetPixelSnapping
 ---@field public Inherit EWidgetPixelSnapping [0] Inherits the snapping method set by the parent widget.

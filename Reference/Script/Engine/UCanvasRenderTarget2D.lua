@@ -1,3 +1,4 @@
+---@meta
 ---CanvasRenderTarget2D is 2D render target which exposes a Canvas interface to allow you to draw elements onto
 ---it directly.  Use CreateCanvasRenderTarget2D() to create a render target texture by unique name, then
 ---bind a function to the OnCanvasRenderTargetUpdate delegate which will be called when the render target is
@@ -11,22 +12,22 @@
 UCanvasRenderTarget2D = {}
 
 ---Creates a new canvas render target and initializes it to the specified dimensions
----@param WorldContextObject UObject
----@param CanvasRenderTarget2DClass TSubclassOf<UCanvasRenderTarget2D>
----@param Width? integer @[default: 1024]
----@param Height? integer @[default: 1024]
+---@param WorldContextObject UObject @The world where this render target will be rendered for
+---@param CanvasRenderTarget2DClass TSubclassOf<UCanvasRenderTarget2D> @Class of the render target.  Unless you want to use a special sub-class, you can simply pass UCanvasRenderTarget2D::StaticClass() here.
+---@param Width? integer @[default: 1024] Width of the render target.
+---@param Height? integer @[default: 1024] Height of the render target.
 ---@return UCanvasRenderTarget2D
 function UCanvasRenderTarget2D.CreateCanvasRenderTarget2D(WorldContextObject, CanvasRenderTarget2DClass, Width, Height) end
 
 ---Gets a specific render target's size from the global map of canvas render targets.
----@return integer Width
----@return integer Height
+---@return integer Width @Output variable for the render target's width
+---@return integer Height @Output variable for the render target's height
 function UCanvasRenderTarget2D:GetSize() end
 
 ---Allows a Blueprint to implement how this Canvas Render Target 2D should be updated.
----@param Canvas UCanvas
----@param Width integer
----@param Height integer
+---@param Canvas UCanvas @Canvas object that can be used to paint to the render target
+---@param Width integer @Width of the render target.
+---@param Height integer @Height of the render target.
 function UCanvasRenderTarget2D:ReceiveUpdate(Canvas, Width, Height) end
 
 ---Updates the the canvas render target texture's resource. This is where the render target will create or

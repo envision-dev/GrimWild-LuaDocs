@@ -1,3 +1,4 @@
+---@meta
 ---Represents an isolated grid of cells.
 ---Usage: Levels and Planets
 ---@class UGameLevel : UWorldObject
@@ -25,10 +26,10 @@ function UGameLevel:GetSize() end
 function UGameLevel:Init(SizeX, SizeY) end
 
 ---Used to get all neighbor states for tiles.
----@param BufferName string
----@param CellIndex integer
----@param BitIndex integer
----@param bDefaultState boolean
+---@param BufferName string @tile buffer name (of uint8 type)
+---@param CellIndex integer @target cell index
+---@param BitIndex integer @target bit index inside masked tile uint8 value
+---@param bDefaultState boolean @value to use if the neighbor is out of buffer bounds
 ---@return integer
 function UGameLevel:Test_GetTileNeighborMask(BufferName, CellIndex, BitIndex, bDefaultState) end
 
@@ -59,6 +60,6 @@ function UGameLevel:GetCellBuffer_Color(BufferName) end
 function UGameLevel:GetCellBuffer_Byte(BufferName) end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function UGameLevel:GatherDebugData() end
 

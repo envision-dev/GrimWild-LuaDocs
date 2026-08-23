@@ -1,3 +1,4 @@
+---@meta
 ---Defines available strategies for handling the case where an actor is spawned in such a way that it penetrates blocking collision.
 ---@class ESpawnActorCollisionHandlingMethod
 ---@field public Undefined ESpawnActorCollisionHandlingMethod [0] Fall back to default settings.

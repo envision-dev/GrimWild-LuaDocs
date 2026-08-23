@@ -1,3 +1,4 @@
+---@meta
 ---Game-thread wrapper for FLightBounceCS.
 ---Applies multi-step secondary bounce light to RT_LocalLight in-place
 ---using an internal ping-pong pattern.

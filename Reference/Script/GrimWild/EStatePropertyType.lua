@@ -1,3 +1,4 @@
+---@meta
 ---@class EStatePropertyType
 ---@field public None EStatePropertyType [0]
 ---@field public Numeric EStatePropertyType [1]

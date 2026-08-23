@@ -1,3 +1,4 @@
+---@meta
 ---Developer console window.
 ---@class UDevConsole : UDraggableWindow
 ---@field protected B_Close UButton

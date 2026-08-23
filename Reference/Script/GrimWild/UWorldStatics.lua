@@ -1,3 +1,4 @@
+---@meta
 ---@class UWorldStatics : UBlueprintFunctionLibrary
 UWorldStatics = {}
 

@@ -1,3 +1,4 @@
+---@meta
 ---@class UAssetViewEntryObject : UObject
 ---@field public AssetId FPrimaryAssetId
 ---@field public Format EGAssetFormat

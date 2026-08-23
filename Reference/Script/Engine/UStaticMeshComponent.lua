@@ -1,3 +1,4 @@
+---@meta
 ---StaticMeshComponent is used to create an instance of a UStaticMesh.
 ---A static mesh is a piece of geometry that consists of a static set of polygons.
 ---@class UStaticMeshComponent : UMeshComponent
@@ -13,11 +14,6 @@
 ---@field public bWorldPositionOffsetWritesVelocity boolean @Whether world position offset turns on velocity writes. If the WPO isn't static then setting false may give incorrect motion vectors. But if we know that the WPO is static then setting false may save performance.
 ---@field public bEvaluateWorldPositionOffsetInRayTracing boolean @Whether to evaluate World Position Offset for ray tracing. This is only used when running with r.RayTracing.Geometry.StaticMeshes.WPO=1
 ---@field public WorldPositionOffsetDisableDistance integer @Distance at which to disable World Position Offset for an entire instance (0 = Never disable WPO).
----@field public SelectedEditorSection integer @The section currently selected in the Editor. Used for highlighting
----@field public SelectedEditorMaterial integer @The material currently selected in the Editor. Used for highlighting
----@field public SectionIndexPreview integer @Index of the section to preview. If set to INDEX_NONE, all section will be rendered. Used for isolating in Static Mesh Tool *
----@field public MaterialIndexPreview integer @Index of the material to preview. If set to INDEX_NONE, all section will be rendered. Used for isolating in Static Mesh Tool *
----@field public StaticMeshImportVersion integer @* The import version of the static mesh when it was assign this is update when: * - The user assign a new staticmesh to the component * - The component is serialize (IsSaving) * - Default value is BeforeImportStaticMeshVersionWasAdded * * If when the component get load (PostLoad) the version of the attach staticmesh is newer * then this value, we will remap the material override because the order of the materials list * in the staticmesh can be changed. Hopefully there is a remap table save in the staticmesh.
 ---@field public bOverrideWireframeColor boolean @If true, WireframeColorOverride will be used. If false, color is determined based on mobility and physics simulation settings
 ---@field public bOverrideMinLOD boolean @Whether to override the MinLOD setting of the static mesh asset with the MinLOD of this component.
 ---@field public bOverrideNavigationExport boolean @If true, bForceNavigationObstacle flag will take priority over navigation data stored in StaticMesh
@@ -29,10 +25,6 @@
 ---@field public bOverrideDistanceFieldSelfShadowBias boolean @Whether to override the DistanceFieldSelfShadowBias setting of the static mesh asset with the DistanceFieldSelfShadowBias of this component.
 ---@field public bUseSubDivisions boolean @Whether to use subdivisions or just the triangle's vertices.
 ---@field public bUseDefaultCollision boolean @Use the collision profile specified in the StaticMesh asset.
----@field public bCustomOverrideVertexColorPerLOD boolean @The component has some custom painting on LODs or not.
----@field public bDisplayVertexColors boolean
----@field public bDisplayPhysicalMaterialMasks boolean
----@field public bDisplayNaniteFallbackMesh boolean @For Nanite enabled meshes, we'll only show the proxy mesh if this is true
 ---@field public bSortTriangles boolean @Enable dynamic sort mesh's triangles to remove ordering issue when rendered with a translucent material
 ---@field public bReverseCulling boolean @Controls whether the static mesh component's backface culling should be reversed
 ---@field public OverriddenLightMapRes integer @Light map resolution to use on this component, used if bOverrideLightMapRes is true and there is a valid StaticMesh.
@@ -41,8 +33,6 @@
 ---@field public StreamingDistanceMultiplier number @Allows adjusting the desired resolution of streaming textures that uses UV 0.  1.0 is the default, whereas a higher value increases the streamed-in resolution.
 ---@field public LODData TArray<FStaticMeshComponentLODInfo> @Static mesh LOD data.  Contains static lighting data along with instanced mesh vertex colors.
 ---@field public StreamingTextureData TArray<FStreamingTextureBuildInfo> @The list of texture, bounds and scales. As computed in the texture streaming build process.
----@field public StaticMeshDerivedDataKey string @Derived data key of the static mesh, used to determine if an update from the source static mesh is required.
----@field public MaterialStreamingRelativeBoxes TArray<integer> @Material Bounds used for texture streaming.
 ---@field public LightmassSettings FLightmassPrimitiveSettings @The Lightmass settings for this object.
 UStaticMeshComponent = {}
 

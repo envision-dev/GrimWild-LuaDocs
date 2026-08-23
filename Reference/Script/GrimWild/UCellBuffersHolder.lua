@@ -1,3 +1,4 @@
+---@meta
 ---@class UCellBuffersHolder : UInterface
 UCellBuffersHolder = {}
 

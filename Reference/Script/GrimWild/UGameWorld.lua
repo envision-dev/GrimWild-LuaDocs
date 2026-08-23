@@ -1,3 +1,4 @@
+---@meta
 ---Game World is a singleton that represents the place where all gameplay logic happens.
 ---In-game objects (items, pawns, quests, planets) existing inside it are called "World Instances" (in contrast to "Template" objects from Assets).
 ---@class UGameWorld : UTickableWorldSubsystem
@@ -35,13 +36,13 @@ function UGameWorld:CopyWorldInstance(ObjectToCopy, bAttachToWorld) end
 ---Creates a new WorldInstance object from the corresponding asset.
 ---The object must be attached to something to work properly.
 ---@param AssetId FPrimaryAssetId
----@param Params FObjectCreationParams
+---@param Params FObjectCreationParams @Creation parameters (attachment, transient override).
 ---@return UWorldObject
 function UGameWorld:CreateNewObject(AssetId, Params) end
 
 ---Detaches a WorldInstance object from the world (removes it as a Top-Level Object).
 ---@param ObjectToDetach UWorldObject
----@param bReAttaching boolean
+---@param bReAttaching boolean @only useful for Strong Individual attachment
 function UGameWorld:DetachObject(ObjectToDetach, bReAttaching) end
 
 ---Lua
@@ -96,6 +97,6 @@ function UGameWorld:SetGameSpeed(InNewSpeed) end
 function UGameWorld:SetVisualGameTime(InValue) end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function UGameWorld:GatherDebugData() end
 

@@ -1,3 +1,4 @@
+---@meta
 ---Provides different easing functions that can be used in blueprints
 ---@class EEasingFunc
 ---@field public Linear EEasingFunc [0] Simple linear interpolation.

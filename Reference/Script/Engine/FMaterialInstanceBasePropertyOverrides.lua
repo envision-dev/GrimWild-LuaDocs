@@ -1,5 +1,6 @@
+---@meta
 ---Properties from the base material that can be overridden in material instances.
----@class FMaterialInstanceBasePropertyOverrides
+---@class FMaterialInstanceBasePropertyOverrides : Struct
 ---@field public bOverride_OpacityMaskClipValue boolean @Enables override of the opacity mask clip value.
 ---@field public bOverride_BlendMode boolean @Enables override of the blend mode.
 ---@field public bOverride_ShadingModel boolean @Enables override of the shading model.

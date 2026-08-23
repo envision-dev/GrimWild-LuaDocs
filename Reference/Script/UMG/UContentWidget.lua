@@ -1,3 +1,4 @@
+---@meta
 ---@class UContentWidget : UPanelWidget
 UContentWidget = {}
 

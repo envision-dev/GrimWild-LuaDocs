@@ -1,3 +1,4 @@
+---@meta
 ---Provides rounding modes for converting numbers into localized text
 ---@class ERoundingMode
 ---@field public HalfToEven ERoundingMode [0] Rounds to the nearest place, equidistant ties go to the value which is closest to an even value: 1.5 becomes 2, 0.5 becomes 0

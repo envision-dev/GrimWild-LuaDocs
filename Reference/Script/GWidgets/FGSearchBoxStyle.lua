@@ -1,4 +1,5 @@
----@class FGSearchBoxStyle
+---@meta
+---@class FGSearchBoxStyle : Struct
 ---@field public HintText FEText
 ---@field public BorderBrush FSlateBrush
 ---@field public IconSlotPadding FMargin

@@ -1,3 +1,4 @@
+---@meta
 ---Copied from UInputKeySelector (the original works terrible with Global Invalidation)
 ---@class UGInputKeySelector : UWidget
 ---@field public TextType ETextType

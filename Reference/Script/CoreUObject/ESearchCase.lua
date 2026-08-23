@@ -1,3 +1,4 @@
+---@meta
 ---Determines case sensitivity options for string comparisons.
 ---@class ESearchCase
 ---@field public CaseSensitive ESearchCase [0]

@@ -1,3 +1,4 @@
+---@meta
 ---This does not correspond to bit positions. For example, Albedo Alpha channel occupies a custom amount of bits
 ---@class ECompositeTextureChannel
 ---@field public Albedo ECompositeTextureChannel [0] Color (RGB) + Alpha (N bits, defined in CompositeTextureBuilder.cpp file)

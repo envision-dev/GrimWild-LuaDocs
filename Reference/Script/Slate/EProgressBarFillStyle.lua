@@ -1,3 +1,4 @@
+---@meta
 ---SProgressBar Fill Style
 ---@class EProgressBarFillStyle
 ---@field public Mask EProgressBarFillStyle [0] a mask is used to paint the fill image

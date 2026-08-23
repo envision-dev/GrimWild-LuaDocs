@@ -1,4 +1,5 @@
----@class FMinimalViewInfo
+---@meta
+---@class FMinimalViewInfo : Struct
 ---@field public Location FVector @Location
 ---@field public Rotation FRotator @Rotation
 ---@field public FOV number @The horizontal field of view (in degrees) in perspective mode (ignored in orthographic mode).

@@ -1,12 +1,10 @@
+---@meta
 ---The World is the top level object representing a map or a sandbox in which Actors and Components will exist and be rendered.
 ---A World can be a single Persistent Level with an optional list of streaming levels that are loaded and unloaded via volumes and blueprint functions
 ---or it can be a collection of levels organized with a World Composition.
 ---In a standalone game, generally only a single World exists except during seamless area transitions when both a destination and current world exists.
 ---In the editor many Worlds exist: The level being edited, each PIE instance, each editor tool which has an interactive rendered viewport, and many more.
 ---@class UWorld : UObject
----@field public Layers TArray<ULayer> @List of all the layers referenced by the world's actors
----@field public ActiveGroupActors TArray<AActor> @Group actors currently "active"
----@field public ThumbnailInfo UThumbnailInfo @Information for thumbnail rendering
 ---@field public PersistentLevel ULevel @Persistent level containing the world info, default brush and actors spawned during gameplay among other things
 ---@field public NetDriver UNetDriver @The NAME_GameNetDriver game connection(s) for client/server communication
 ---@field public LineBatcher ULineBatchComponent @Line Batchers. All lines to be drawn in the world.
@@ -33,18 +31,15 @@
 ---@field private AvoidanceManager UAvoidanceManager @RVO avoidance manager used by game
 ---@field private Levels TArray<ULevel> @Array of levels currently in this world. Not serialized to disk to avoid hard references.
 ---@field private LevelCollections TArray<FLevelCollection> @Array of level collections currently in this world.
----@field private CurrentLevel ULevel @Pointer to the current level being edited. Level has to be in the Levels array and == PersistentLevel in the game.
 ---@field private OwningGameInstance UGameInstance
 ---@field private ParameterCollectionInstances TArray<UMaterialParameterCollectionInstance> @Parameter collection instances that hold parameter overrides for this world.
 ---@field private CanvasForRenderingToTarget UCanvas @Canvas object used for drawing to render targets from blueprint functions eg DrawMaterialToRenderTarget. This is cached as UCanvas creation takes >100ms.
 ---@field private CanvasForDrawMaterialToRenderTarget UCanvas
----@field public EditorViews TArray<FLevelViewportInfo> @Saved editor viewport states - one for each view type. Indexed using ELevelViewportType from UnrealEdTypes.h.
 ---@field public PhysicsField UPhysicsFieldComponent @Physics Field component.
 ---@field public LWILastAssignedUID integer @Tracks the last assigned unique id for light weight instances in this world.
 ---@field private ComponentsThatNeedPreEndOfFrameSync TSet<UActorComponent> @Array of components that need to wait on tasks before end of frame updates
 ---@field private ComponentsThatNeedEndOfFrameUpdate TArray<UActorComponent> @Array of components that need updates at the end of the frame
 ---@field private ComponentsThatNeedEndOfFrameUpdate_OnGameThread TArray<UActorComponent> @Array of components that need game thread updates at the end of the frame
----@field private SelectedLevels TArray<ULevel> @Array of selected levels currently in this world. Not serialized to disk to avoid hard references.
 ---@field public WorldComposition UWorldComposition @All levels information from which our world is composed
 ---@field public ContentBundleManager UContentBundleManager
 ---@field private PSCPool FWorldPSCPool
@@ -61,6 +56,30 @@ function UWorld:HandleTimelineScrubbed() end
 ---@return AWorldSettings
 function UWorld:K2_GetWorldSettings() end
 
-
+---Seconds this world has been running, which does not advance while the game is paused.
 ---@return number
 function UWorld:GetTimeSeconds() end
+
+---Spawns an actor of the given class. Every argument after the class may be left off.
+---SpawnActorEx takes the same spawn settings as one FActorSpawnParameters instead.
+---@param Class UClass
+---@param Transform? FTransform @Where to spawn it. Omitted, the actor is spawned at the origin with no rotation.
+---@param CollisionHandlingOverride? ESpawnActorCollisionHandlingMethod @What to do when the actor would be spawned inside something.
+---@param Owner? AActor @Must belong to this world.
+---@param Instigator? AActor @The pawn answerable for damage the actor does. An actor that is not a pawn contributes its own instigator.
+---@param ModuleName? string @Require path of a script module to bind the spawned actor to.
+---@param Initializer? table @Passed to the bound module's Initialize function. Of no use without ModuleName.
+---@param Level? ULevel @Level to spawn into, which becomes the actor's outer.
+---@param Name? string @Name to give the actor. Omitted, a name is generated.
+---@return AActor
+function UWorld:SpawnActor(Class, Transform, CollisionHandlingOverride, Owner, Instigator, ModuleName, Initializer, Level, Name) end
+
+---Spawns an actor of the given class, taking the spawn settings as one FActorSpawnParameters.
+---The module path and the initializer table are in the opposite order to SpawnActor.
+---@param Class UClass
+---@param Transform? FTransform @Where to spawn it. Omitted, the actor is spawned at the origin with no rotation.
+---@param Initializer? table @Passed to the bound module's Initialize function. Of no use without ModuleName.
+---@param ModuleName? string @Require path of a script module to bind the spawned actor to.
+---@param SpawnParameters? FActorSpawnParameters
+---@return AActor
+function UWorld:SpawnActorEx(Class, Transform, Initializer, ModuleName, SpawnParameters) end

@@ -1,3 +1,4 @@
+---@meta
 ---A Throbber widget that shows several zooming circles in a row.
 ---@class UThrobber : UWidget
 ---@field public NumberOfPieces integer @How many pieces there are

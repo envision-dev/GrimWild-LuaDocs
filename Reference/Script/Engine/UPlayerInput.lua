@@ -1,3 +1,4 @@
+---@meta
 ---Object within PlayerController that processes player input.
 ---Only exists on the client in network games.
 ---@class UPlayerInput : UObject

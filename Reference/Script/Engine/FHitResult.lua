@@ -1,5 +1,6 @@
+---@meta
 ---Structure containing information about one hit of a trace, such as point of impact and surface normal at that point.
----@class FHitResult
+---@class FHitResult : Struct
 ---@field public FaceIndex integer @Face index we hit (for complex hits with triangle meshes).
 ---@field public Time number @'Time' of impact along trace direction (ranging from 0.0 to 1.0) if there is a hit, indicating time between TraceStart and TraceEnd. For swept movement (but not queries) this may be pulled back slightly from the actual time of impact, to prevent precision problems with adjacent geometry.
 ---@field public Distance number @The distance from the TraceStart to the Location in world space. This value is 0 if there was an initial overlap (trace started inside another colliding object).

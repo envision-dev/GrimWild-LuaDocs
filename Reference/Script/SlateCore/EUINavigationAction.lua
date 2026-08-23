@@ -1,3 +1,4 @@
+---@meta
 ---Generic UI navigation action that are usually bound to a gamepad or other input device
 ---@class EUINavigationAction
 ---@field public Accept EUINavigationAction [0] Accept, normally acts like a mouse click. Corresponds to Virtual_Accept key

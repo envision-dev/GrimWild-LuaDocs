@@ -1,3 +1,4 @@
+---@meta
 ---@class UScrollBar : UWidget
 ---@field public WidgetStyle FScrollBarStyle @Style of the scrollbar
 ---@field public bAlwaysShowScrollbar boolean

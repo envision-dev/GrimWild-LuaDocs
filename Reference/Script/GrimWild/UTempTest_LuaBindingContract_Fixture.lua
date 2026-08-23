@@ -1,3 +1,4 @@
+---@meta
 ---Properties, native entry points and the Lua-to-C++ result channel used by UTempTest_LuaBindingContract.
 ---Deliberately a plain UObject: the suite must create no actors, components or tick sources.
 ---The object-typed properties are the dangerous ones. A write the binding layer refuses but performs

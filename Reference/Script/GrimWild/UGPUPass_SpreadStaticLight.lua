@@ -1,3 +1,4 @@
+---@meta
 ---Game-thread wrapper for FSpreadStaticLightCS.
 ---Dispatched only when static lights change (dirty-triggered, not every frame).
 ---CapturePass() calls Owner->BuildStaticGPUArray() to obtain the current

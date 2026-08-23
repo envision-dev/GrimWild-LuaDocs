@@ -1,7 +1,8 @@
+---@meta
 ---A border is a container widget that can contain one child widget, providing an opportunity
 ---to surround it with a background image and adjustable padding.
----* Single Child
----* Image
+---Single Child
+---Image
 ---@class UBorder : UContentWidget
 ---@field public HorizontalAlignment integer @The alignment of the content horizontally.
 ---@field public VerticalAlignment integer @The alignment of the content vertically.

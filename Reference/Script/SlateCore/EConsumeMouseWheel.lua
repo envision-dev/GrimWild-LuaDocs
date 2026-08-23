@@ -1,3 +1,4 @@
+---@meta
 ---Used to determine how we should handle mouse wheel input events when someone scrolls.
 ---@class EConsumeMouseWheel
 ---@field public WhenScrollingPossible EConsumeMouseWheel [0] Only consume the mouse wheel event when we actually scroll some amount.

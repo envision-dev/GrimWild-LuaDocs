@@ -1,3 +1,4 @@
+---@meta
 ---Game-thread wrapper for FMergeLocalLightCS.
 ---Sums the three intermediate accumulators (static, dynamic, cell glow)
 ---into the final RT_LocalLight render target.

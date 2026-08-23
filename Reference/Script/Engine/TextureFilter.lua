@@ -1,3 +1,4 @@
+---@meta
 ---@class TextureFilter
 ---@field public TF_Nearest TextureFilter [0]
 ---@field public TF_Bilinear TextureFilter [1]

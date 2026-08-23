@@ -1,3 +1,4 @@
+---@meta
 ---Enumerates horizontal alignment options, i.e. for widget slots.
 ---@class EHorizontalAlignment
 ---@field public HAlign_Fill EHorizontalAlignment [0] Fill the entire width.

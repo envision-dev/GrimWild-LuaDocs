@@ -1,3 +1,4 @@
+---@meta
 ---Player task object. Used as template object in UPlayerTaskData. Instantiated for in-game use.
 ---@class UPlayerTask : UWorldObject
 ---@field public CurrentStatus boolean
@@ -24,6 +25,6 @@ function UPlayerTask:K2_OnTick(DeltaTime) end
 function UPlayerTask:OnTick(DeltaTime) end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function UPlayerTask:GatherDebugData() end
 

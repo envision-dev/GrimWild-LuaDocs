@@ -1,3 +1,4 @@
+---@meta
 ---@class UKismetMathLibrary : UBlueprintFunctionLibrary
 UKismetMathLibrary = {}
 
@@ -341,10 +342,10 @@ function UKismetMathLibrary.BreakVector_NetQuantize100(InVec) end
 function UKismetMathLibrary.BreakVector_NetQuantizeNormal(InVec) end
 
 ---Interpolate Linear Color from Current to Target. Scaled by distance to Target, so it has a strong start speed and ease out.
----@param Current FLinearColor
----@param Target FLinearColor
----@param DeltaTime number
----@param InterpSpeed number
+---@param Current FLinearColor @Current Color
+---@param Target FLinearColor @Target Color
+---@param DeltaTime number @Time since last tick
+---@param InterpSpeed number @Interpolation speed, if the speed given is 0, then jump to the target.
 ---@return FLinearColor
 function UKismetMathLibrary.CInterpTo(Current, Target, DeltaTime, InterpSpeed) end
 
@@ -357,8 +358,8 @@ function UKismetMathLibrary.Clamp(Value, Min, Max) end
 
 ---Clamps an arbitrary angle to be between the given angles.  Will clamp to nearest boundary.
 ---@param AngleDegrees number
----@param MinAngleDegrees number
----@param MaxAngleDegrees number
+---@param MinAngleDegrees number @"from" angle that defines the beginning of the range of valid angles (sweeping clockwise)
+---@param MaxAngleDegrees number @"to" angle that defines the end of the range of valid angles
 ---@return number
 function UKismetMathLibrary.ClampAngle(AngleDegrees, MinAngleDegrees, MaxAngleDegrees) end
 
@@ -389,7 +390,7 @@ function UKismetMathLibrary.ClampInt64(Value, Min, Max) end
 function UKismetMathLibrary.ClampVectorSize(A, Min, Max) end
 
 ---Determine if a class is a child of another class.
----                     the value for either parameter is 'None'.
+---the value for either parameter is 'None'.
 ---@param TestClass TSubclassOf<UObject>
 ---@param ParentClass TSubclassOf<UObject>
 ---@return boolean
@@ -1049,16 +1050,16 @@ function UKismetMathLibrary.FFloor(A) end
 function UKismetMathLibrary.FFloor64(A) end
 
 ---Find the closest point on an infinite line to a given point.
----@param Point FVector
----@param LineOrigin FVector
+---@param Point FVector @Point for which we find the closest point on the line.
+---@param LineOrigin FVector @Point of reference on the line.
 ---@param LineDirection FVector @Direction of the line. Not required to be normalized.
 ---@return FVector
 function UKismetMathLibrary.FindClosestPointOnLine(Point, LineOrigin, LineDirection) end
 
 ---Find the closest point on a segment to a given point.
----@param Point FVector
----@param SegmentStart FVector
----@param SegmentEnd FVector
+---@param Point FVector @Point for which we find the closest point on the segment.
+---@param SegmentStart FVector @Start of the segment.
+---@param SegmentEnd FVector @End of the segment.
 ---@return FVector
 function UKismetMathLibrary.FindClosestPointOnSegment(Point, SegmentStart, SegmentEnd) end
 
@@ -1069,12 +1070,12 @@ function UKismetMathLibrary.FindClosestPointOnSegment(Point, SegmentStart, Segme
 function UKismetMathLibrary.FindLookAtRotation(Start, Target) end
 
 ---Find closest points between 2 segments.
----@param Segment1Start FVector
----@param Segment1End FVector
----@param Segment2Start FVector
----@param Segment2End FVector
----@param Segment1Point FVector @[out, modified in place]
----@param Segment2Point FVector @[out, modified in place]
+---@param Segment1Start FVector @Start of the 1st segment.
+---@param Segment1End FVector @End of the 1st segment.
+---@param Segment2Start FVector @Start of the 2nd segment.
+---@param Segment2End FVector @End of the 2nd segment.
+---@param Segment1Point FVector @[out, modified in place] Closest point on segment 1 to segment 2.
+---@param Segment2Point FVector @[out, modified in place] Closest point on segment 2 to segment 1.
 function UKismetMathLibrary.FindNearestPointsOnLineSegments(Segment1Start, Segment1End, Segment2Start, Segment2End, Segment1Point, Segment2Point) end
 
 ---Find a local rotation (range of [-180, 180]) for an object with StartTransform to point at TargetLocation.
@@ -1093,18 +1094,18 @@ function UKismetMathLibrary.FindRelativeLookAtRotation(StartTransform, TargetLoc
 function UKismetMathLibrary.FInterpEaseInOut(A, B, Alpha, Exponent) end
 
 ---Tries to reach Target based on distance from Current position, giving a nice smooth feeling when tracking a position.
----@param Current number
----@param Target number
----@param DeltaTime number
----@param InterpSpeed number
+---@param Current number @Actual position
+---@param Target number @Target position
+---@param DeltaTime number @Time since last tick
+---@param InterpSpeed number @Interpolation speed, if the speed given is 0, then jump to the target.
 ---@return number
 function UKismetMathLibrary.FInterpTo(Current, Target, DeltaTime, InterpSpeed) end
 
 ---Tries to reach Target at a constant rate.
----@param Current number
----@param Target number
----@param DeltaTime number
----@param InterpSpeed number
+---@param Current number @Actual position
+---@param Target number @Target position
+---@param DeltaTime number @Time since last tick
+---@param InterpSpeed number @Interpolation speed
 ---@return number
 function UKismetMathLibrary.FInterpTo_Constant(Current, Target, DeltaTime, InterpSpeed) end
 
@@ -1232,7 +1233,7 @@ function UKismetMathLibrary.GetAbsMax2D(A) end
 function UKismetMathLibrary.GetAxes(A, X, Y, Z) end
 
 ---Breaks a direction vector apart into Azimuth (Yaw) and Elevation (Pitch) rotation values given in degrees. (non-clamped)
----       Relative to the provided reference frame (an Actor's WorldTransform for example)
+---Relative to the provided reference frame (an Actor's WorldTransform for example)
 ---@param InDirection FVector
 ---@param ReferenceFrame FTransform
 ---@return number Azimuth
@@ -1340,16 +1341,16 @@ function UKismetMathLibrary.GetMonth(A) end
 function UKismetMathLibrary.GetPI() end
 
 ---Find the distance from a point to the closest point on an infinite line.
----@param Point FVector
----@param LineOrigin FVector
----@param LineDirection FVector
+---@param Point FVector @Point for which we find the distance to the closest point on the line.
+---@param LineOrigin FVector @Point of reference on the line.
+---@param LineDirection FVector @Direction of the line. Not required to be normalized.
 ---@return number
 function UKismetMathLibrary.GetPointDistanceToLine(Point, LineOrigin, LineDirection) end
 
 ---Find the distance from a point to the closest point on a segment.
----@param Point FVector
----@param SegmentStart FVector
----@param SegmentEnd FVector
+---@param Point FVector @Point for which we find the distance to the closest point on the segment.
+---@param SegmentStart FVector @Start of the segment.
+---@param SegmentEnd FVector @End of the segment.
 ---@return number
 function UKismetMathLibrary.GetPointDistanceToSegment(Point, SegmentStart, SegmentEnd) end
 
@@ -1382,9 +1383,9 @@ function UKismetMathLibrary.GetSecond(A) end
 function UKismetMathLibrary.GetSeconds(A) end
 
 ---Returns Slope Pitch and Roll angles in degrees based on the following information:
----@param MyRightYAxis FVector
----@param FloorNormal FVector
----@param UpVector FVector
+---@param MyRightYAxis FVector @Right (Y) direction unit vector of Actor standing on Slope.
+---@param FloorNormal FVector @Floor Normal (unit) vector.
+---@param UpVector FVector @UpVector of reference frame.
 ---@return number OutSlopePitchDegreeAngle
 ---@return number OutSlopeRollDegreeAngle
 function UKismetMathLibrary.GetSlopeDegreeAngles(MyRightYAxis, FloorNormal, UpVector) end
@@ -1523,7 +1524,7 @@ function UKismetMathLibrary.GreaterEqual_TimespanTimespan(A, B) end
 function UKismetMathLibrary.GreaterGreater_VectorRotator(A, B) end
 
 ---Snaps a value to the nearest grid multiple. E.g.,
----            Location = 5.1, GridSize = 10.0 : return value = 10.0
+---Location = 5.1, GridSize = 10.0 : return value = 10.0
 ---If GridSize is 0 Location is returned
 ---if GridSize is very small precision issues may occur.
 ---@param Location number
@@ -1635,7 +1636,7 @@ function UKismetMathLibrary.InverseTransformRotation(T, Rotation) end
 
 ---Returns the inverse of the given transform T.
 ---Example: Given a LocalToWorld transform, WorldToLocal will be returned.
----@param T FTransform
+---@param T FTransform @The transform you wish to invert
 ---@return FTransform
 function UKismetMathLibrary.InvertTransform(T) end
 
@@ -1661,28 +1662,28 @@ function UKismetMathLibrary.IsMorning(A) end
 function UKismetMathLibrary.IsNearlyZero2D(A, Tolerance) end
 
 ---Determines whether the given point is in a box. Includes points on the box.
----@param Point FVector
----@param BoxOrigin FVector
----@param BoxExtent FVector
+---@param Point FVector @Point to test
+---@param BoxOrigin FVector @Origin of the box
+---@param BoxExtent FVector @Extents of the box (distance in each axis from origin)
 ---@return boolean
 function UKismetMathLibrary.IsPointInBox(Point, BoxOrigin, BoxExtent) end
 
 ---Determines whether the given point is in a box. Includes points on the box.
----@param Point FVector
----@param Box FBox
+---@param Point FVector @Point to test
+---@param Box FBox @Box to test against
 ---@return boolean
 function UKismetMathLibrary.IsPointInBox_Box(Point, Box) end
 
 ---Determines whether a given point is in a box with a given transform. Includes points on the box.
----@param Point FVector
----@param BoxWorldTransform FTransform
----@param BoxExtent FVector
+---@param Point FVector @Point to test
+---@param BoxWorldTransform FTransform @Component-to-World transform of the box.
+---@param BoxExtent FVector @Extents of the box (distance in each axis from origin), in component space.
 ---@return boolean
 function UKismetMathLibrary.IsPointInBoxWithTransform(Point, BoxWorldTransform, BoxExtent) end
 
 ---Determines whether a given point is in a box with a given transform. Includes points on the box.
----@param Point FVector
----@param BoxWorldTransform FTransform
+---@param Point FVector @Point to test
+---@param BoxWorldTransform FTransform @Component-to-World transform of the box.
 ---@param BoxExtent FBox
 ---@return boolean
 function UKismetMathLibrary.IsPointInBoxWithTransform_Box(Point, BoxWorldTransform, BoxExtent) end
@@ -1912,9 +1913,9 @@ function UKismetMathLibrary.LinearColor_Yellow() end
 function UKismetMathLibrary.LinearColorLerp(A, B, Alpha) end
 
 ---Linearly interpolates between two colors by the specified Alpha amount (100% of A when Alpha=0 and 100% of B when Alpha=1).  The interpolation is performed in HSV color space taking the shortest path to the new color's hue.  This can give better results than a normal lerp, but is much more expensive.  The incoming colors are in RGB space, and the output color will be RGB.  The alpha value will also be interpolated.
----@param A FLinearColor
----@param B FLinearColor
----@param Alpha number
+---@param A FLinearColor @The color and alpha to interpolate from as linear RGBA
+---@param B FLinearColor @The color and alpha to interpolate to as linear RGBA
+---@param Alpha number @Scalar interpolation amount (usually between 0.0 and 1.0 inclusive)
 ---@return FLinearColor
 function UKismetMathLibrary.LinearColorLerpUsingHSV(A, B, Alpha) end
 
@@ -1993,7 +1994,7 @@ function UKismetMathLibrary.MakeDateTime(Year, Month, Day, Hour, Minute, Second,
 function UKismetMathLibrary.MakeFrameRate(Numerator, Denominator) end
 
 ---Creates a plane with a facing direction of Normal at the given Point
----@param Point FVector
+---@param Point FVector @A point on the plane
 ---@param Normal FVector @The Normal of the plane at Point
 ---@return FPlane
 function UKismetMathLibrary.MakePlaneFromPointAndNormal(Point, Normal) end
@@ -2028,8 +2029,8 @@ function UKismetMathLibrary.MakeRandomStream(InitialSeed) end
 ---Computes a relative transform of one transform compared to another.
 ---Example: ChildOffset = MakeRelativeTransform(Child.GetActorTransform(), Parent.GetActorTransform())
 ---This computes the relative transform of the Child from the Parent.
----@param A FTransform
----@param RelativeTo FTransform
+---@param A FTransform @The object's transform
+---@param RelativeTo FTransform @The transform the result is relative to (in the same space as A)
 ---@return FTransform
 function UKismetMathLibrary.MakeRelativeTransform(A, RelativeTo) end
 
@@ -2271,7 +2272,6 @@ function UKismetMathLibrary.Matrix_GetInverse(M) end
 ---@return FMatrix
 function UKismetMathLibrary.Matrix_GetMatrixWithoutScale(M, Tolerance) end
 
----
 ---(Assumes Matrix represents a transform)
 ---@param M FMatrix
 ---@return number
@@ -2289,7 +2289,6 @@ function UKismetMathLibrary.Matrix_GetOrigin(InMatrix) end
 ---@return FRotator
 function UKismetMathLibrary.Matrix_GetRotator(M) end
 
----
 ---(Assumes Top Left 3x3 Submatrix represents a Rotation)
 ---@param M FMatrix
 ---@return number
@@ -2678,9 +2677,9 @@ function UKismetMathLibrary.NearlyEqual_FloatFloat(A, B, ErrorTolerance) end
 ---Returns true if transform A is nearly equal to B
 ---@param A FTransform
 ---@param B FTransform
----@param LocationTolerance? number @[default: 0.000100]
----@param RotationTolerance? number @[default: 0.000100]
----@param Scale3DTolerance? number @[default: 0.000100]
+---@param LocationTolerance? number @[default: 0.000100] How close position of transforms need to be to be considered equal
+---@param RotationTolerance? number @[default: 0.000100] How close rotations of transforms need to be to be considered equal
+---@param Scale3DTolerance? number @[default: 0.000100] How close scale of transforms need to be to be considered equal
 ---@return boolean
 function UKismetMathLibrary.NearlyEqual_TransformTransform(A, B, LocationTolerance, RotationTolerance, Scale3DTolerance) end
 
@@ -2928,7 +2927,7 @@ function UKismetMathLibrary.Percent_Int64Int64(A, B) end
 function UKismetMathLibrary.Percent_IntInt(A, B) end
 
 ---Generates a 1D Perlin noise from the given value.  Returns a continuous random value between -1.0 and 1.0.
----@param Value number
+---@param Value number @The input value that Perlin noise will be generated from.  This is usually a steadily incrementing time value.
 ---@return number
 function UKismetMathLibrary.PerlinNoise1D(Value) end
 
@@ -3164,13 +3163,13 @@ function UKismetMathLibrary.RandomBool() end
 function UKismetMathLibrary.RandomBoolFromStream(Stream) end
 
 ---Get a random chance with the specified weight. Range of weight is 0.0 - 1.0 E.g.,
----             Weight = .6 return value = True 60% of the time
+---Weight = .6 return value = True 60% of the time
 ---@param Weight number
 ---@return boolean
 function UKismetMathLibrary.RandomBoolWithWeight(Weight) end
 
 ---Get a random chance with the specified weight. Range of weight is 0.0 - 1.0 E.g.,
----              Weight = .6 return value = True 60% of the time
+---Weight = .6 return value = True 60% of the time
 ---@param RandomStream FRandomStream
 ---@param Weight number
 ---@return boolean
@@ -3278,62 +3277,62 @@ function UKismetMathLibrary.RandomUnitVector() end
 function UKismetMathLibrary.RandomUnitVectorFromStream(Stream) end
 
 ---Returns a random vector with length of 1, within the specified cone, with uniform random distribution.
----@param ConeDir FVector
----@param ConeHalfAngleInDegrees number
+---@param ConeDir FVector @The base "center" direction of the cone.
+---@param ConeHalfAngleInDegrees number @The half-angle of the cone (from ConeDir to edge), in degrees.
 ---@return FVector
 function UKismetMathLibrary.RandomUnitVectorInConeInDegrees(ConeDir, ConeHalfAngleInDegrees) end
 
 ---Returns a random vector with length of 1, within the specified cone, with uniform random distribution.
----@param Stream FRandomStream
----@param ConeDir FVector
----@param ConeHalfAngleInDegrees number
+---@param Stream FRandomStream @The random stream from which to obtain the vector.
+---@param ConeDir FVector @The base "center" direction of the cone.
+---@param ConeHalfAngleInDegrees number @The half-angle of the cone (from ConeDir to edge), in degrees.
 ---@return FVector
 function UKismetMathLibrary.RandomUnitVectorInConeInDegreesFromStream(Stream, ConeDir, ConeHalfAngleInDegrees) end
 
 ---Returns a random vector with length of 1, within the specified cone, with uniform random distribution.
----@param ConeDir FVector
----@param ConeHalfAngleInRadians number
+---@param ConeDir FVector @The base "center" direction of the cone.
+---@param ConeHalfAngleInRadians number @The half-angle of the cone (from ConeDir to edge), in radians.
 ---@return FVector
 function UKismetMathLibrary.RandomUnitVectorInConeInRadians(ConeDir, ConeHalfAngleInRadians) end
 
 ---Returns a random vector with length of 1, within the specified cone, with uniform random distribution.
----@param Stream FRandomStream
----@param ConeDir FVector
----@param ConeHalfAngleInRadians number
+---@param Stream FRandomStream @The random stream from which to obtain the vector.
+---@param ConeDir FVector @The base "center" direction of the cone.
+---@param ConeHalfAngleInRadians number @The half-angle of the cone (from ConeDir to edge), in radians.
 ---@return FVector
 function UKismetMathLibrary.RandomUnitVectorInConeInRadiansFromStream(Stream, ConeDir, ConeHalfAngleInRadians) end
 
 ---Returns a random vector with length of 1, within the specified cone, with uniform random distribution.
 ---The shape of the cone can be modified according to the yaw and pitch angles.
 ---@param ConeDir FVector
----@param MaxYawInDegrees number
----@param MaxPitchInDegrees number
+---@param MaxYawInDegrees number @The yaw angle of the cone (from ConeDir to horizontal edge), in degrees.
+---@param MaxPitchInDegrees number @The pitch angle of the cone (from ConeDir to vertical edge), in degrees.
 ---@return FVector
 function UKismetMathLibrary.RandomUnitVectorInEllipticalConeInDegrees(ConeDir, MaxYawInDegrees, MaxPitchInDegrees) end
 
 ---Returns a random vector with length of 1, within the specified cone, with uniform random distribution.
 ---The shape of the cone can be modified according to the yaw and pitch angles.
----@param Stream FRandomStream
+---@param Stream FRandomStream @The random stream from which to obtain the vector.
 ---@param ConeDir FVector
----@param MaxYawInDegrees number
----@param MaxPitchInDegrees number
+---@param MaxYawInDegrees number @The yaw angle of the cone (from ConeDir to horizontal edge), in degrees.
+---@param MaxPitchInDegrees number @The pitch angle of the cone (from ConeDir to vertical edge), in degrees.
 ---@return FVector
 function UKismetMathLibrary.RandomUnitVectorInEllipticalConeInDegreesFromStream(Stream, ConeDir, MaxYawInDegrees, MaxPitchInDegrees) end
 
 ---Returns a random vector with length of 1, within the specified cone, with uniform random distribution.
 ---The shape of the cone can be modified according to the yaw and pitch angles.
 ---@param ConeDir FVector
----@param MaxYawInRadians number
----@param MaxPitchInRadians number
+---@param MaxYawInRadians number @The yaw angle of the cone (from ConeDir to horizontal edge), in radians.
+---@param MaxPitchInRadians number @The pitch angle of the cone (from ConeDir to vertical edge), in radians.
 ---@return FVector
 function UKismetMathLibrary.RandomUnitVectorInEllipticalConeInRadians(ConeDir, MaxYawInRadians, MaxPitchInRadians) end
 
 ---Returns a random vector with length of 1, within the specified cone, with uniform random distribution.
 ---The shape of the cone can be modified according to the yaw and pitch angles.
----@param Stream FRandomStream
+---@param Stream FRandomStream @The random stream from which to obtain the vector.
 ---@param ConeDir FVector
----@param MaxYawInRadians number
----@param MaxPitchInRadians number
+---@param MaxYawInRadians number @The yaw angle of the cone (from ConeDir to horizontal edge), in radians.
+---@param MaxPitchInRadians number @The pitch angle of the cone (from ConeDir to vertical edge), in radians.
 ---@return FVector
 function UKismetMathLibrary.RandomUnitVectorInEllipticalConeInRadiansFromStream(Stream, ConeDir, MaxYawInRadians, MaxPitchInRadians) end
 
@@ -3383,18 +3382,18 @@ function UKismetMathLibrary.RGBToHSV(InColor) end
 function UKismetMathLibrary.RGBToHSV_Vector(RGB, HSV) end
 
 ---Tries to reach Target rotation based on Current rotation, giving a nice smooth feeling when rotating to Target rotation.
----@param Current FRotator
----@param Target FRotator
----@param DeltaTime number
----@param InterpSpeed number
+---@param Current FRotator @Actual rotation
+---@param Target FRotator @Target rotation
+---@param DeltaTime number @Time since last tick
+---@param InterpSpeed number @Interpolation speed, if the speed given is 0, then jump to the target.
 ---@return FRotator
 function UKismetMathLibrary.RInterpTo(Current, Target, DeltaTime, InterpSpeed) end
 
 ---Tries to reach Target rotation at a constant rate.
----@param Current FRotator
----@param Target FRotator
----@param DeltaTime number
----@param InterpSpeed number
+---@param Current FRotator @Actual rotation
+---@param Target FRotator @Target rotation
+---@param DeltaTime number @Time since last tick
+---@param InterpSpeed number @Interpolation speed
 ---@return FRotator
 function UKismetMathLibrary.RInterpTo_Constant(Current, Target, DeltaTime, InterpSpeed) end
 
@@ -3705,10 +3704,10 @@ function UKismetMathLibrary.TimespanRatio(A, B) end
 function UKismetMathLibrary.TimespanZeroValue() end
 
 ---Tries to reach Target transform based on distance from Current position, giving a nice smooth feeling when tracking a position.
----@param Current FTransform
----@param Target FTransform
----@param DeltaTime number
----@param InterpSpeed number
+---@param Current FTransform @Actual transform
+---@param Target FTransform @Target transform
+---@param DeltaTime number @Time since last tick
+---@param InterpSpeed number @Interpolation speed, if the speed given is 0, then jump to the target.
 ---@return FTransform
 function UKismetMathLibrary.TInterpTo(Current, Target, DeltaTime, InterpSpeed) end
 
@@ -3815,18 +3814,18 @@ function UKismetMathLibrary.Vector2D_Unit45Deg() end
 function UKismetMathLibrary.Vector2D_Zero() end
 
 ---Tries to reach Target based on distance from Current position, giving a nice smooth feeling when tracking a position.
----@param Current FVector2D
----@param Target FVector2D
----@param DeltaTime number
----@param InterpSpeed number
+---@param Current FVector2D @Actual position
+---@param Target FVector2D @Target position
+---@param DeltaTime number @Time since last tick
+---@param InterpSpeed number @Interpolation speed, if the speed given is 0, then jump to the target.
 ---@return FVector2D
 function UKismetMathLibrary.Vector2DInterpTo(Current, Target, DeltaTime, InterpSpeed) end
 
 ---Tries to reach Target at a constant rate.
----@param Current FVector2D
----@param Target FVector2D
----@param DeltaTime number
----@param InterpSpeed number
+---@param Current FVector2D @Actual position
+---@param Target FVector2D @Target position
+---@param DeltaTime number @Time since last tick
+---@param InterpSpeed number @Interpolation speed
 ---@return FVector2D
 function UKismetMathLibrary.Vector2DInterpTo_Constant(Current, Target, DeltaTime, InterpSpeed) end
 
@@ -4221,18 +4220,18 @@ function UKismetMathLibrary.Vector_Zero() end
 function UKismetMathLibrary.VectorSpringInterp(Current, Target, SpringState, Stiffness, CriticalDampingFactor, DeltaTime, Mass, TargetVelocityAmount, bClamp, MinValue, MaxValue, bInitializeFromTarget) end
 
 ---Tries to reach Target based on distance from Current position, giving a nice smooth feeling when tracking a position.
----@param Current FVector
----@param Target FVector
----@param DeltaTime number
----@param InterpSpeed number
+---@param Current FVector @Actual position
+---@param Target FVector @Target position
+---@param DeltaTime number @Time since last tick
+---@param InterpSpeed number @Interpolation speed, if the speed given is 0, then jump to the target.
 ---@return FVector
 function UKismetMathLibrary.VInterpTo(Current, Target, DeltaTime, InterpSpeed) end
 
 ---Tries to reach Target at a constant rate.
----@param Current FVector
----@param Target FVector
----@param DeltaTime number
----@param InterpSpeed number
+---@param Current FVector @Actual position
+---@param Target FVector @Target position
+---@param DeltaTime number @Time since last tick
+---@param InterpSpeed number @Interpolation speed
 ---@return FVector
 function UKismetMathLibrary.VInterpTo_Constant(Current, Target, DeltaTime, InterpSpeed) end
 

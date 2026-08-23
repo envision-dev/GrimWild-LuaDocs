@@ -1,3 +1,4 @@
+---@meta
 ---A widget for selecting a single key or a single key with a modifier.
 ---@class UInputKeySelector : UWidget
 ---@field public WidgetStyle FButtonStyle @The button style used at runtime

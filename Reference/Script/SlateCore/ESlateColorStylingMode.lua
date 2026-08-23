@@ -1,3 +1,4 @@
+---@meta
 ---Enumerates types of color values that can be held by Slate color.
 ---Should we use the specified color? If not, then which color from the style should we use.
 ---@class ESlateColorStylingMode

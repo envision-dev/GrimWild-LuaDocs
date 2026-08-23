@@ -1,3 +1,4 @@
+---@meta
 ---Controllers are non-physical actors that can possess a Pawn to control
 ---its actions.  PlayerControllers are used by human players to control pawns, while
 ---AIControllers implement the artificial intelligence for the pawns they control.
@@ -77,7 +78,7 @@ function AController:K2_GetPawn() end
 
 ---Checks line to center and top of other actor
 ---@param Other AActor @is the actor whose visibility is being checked.
----@param ViewPoint FVector @is eye position visibility is being checked from.  If vect(0,0,0) passed in, uses current viewtarget's eye position.
+---@param ViewPoint? FVector @[default: ""] is eye position visibility is being checked from.  If vect(0,0,0) passed in, uses current viewtarget's eye position.
 ---@param bAlternateChecks? boolean @[default: false] used only in AIController implementation
 ---@return boolean
 function AController:LineOfSightTo(Other, ViewPoint, bAlternateChecks) end
@@ -124,11 +125,11 @@ function AController:ResetIgnoreMoveInput() end
 function AController:SetControlRotation(NewRotation) end
 
 ---Locks or unlocks look input, consecutive calls stack up and require the same amount of calls to undo, or can all be undone using ResetIgnoreLookInput.
----@param bNewLookInput boolean
+---@param bNewLookInput boolean @If true, look input is ignored. If false, input is not ignored.
 function AController:SetIgnoreLookInput(bNewLookInput) end
 
 ---Locks or unlocks movement input, consecutive calls stack up and require the same amount of calls to undo, or can all be undone using ResetIgnoreMoveInput.
----@param bNewMoveInput boolean
+---@param bNewMoveInput boolean @If true, move input is ignored. If false, input is not ignored.
 function AController:SetIgnoreMoveInput(bNewMoveInput) end
 
 ---Set the initial location and rotation of the controller, as well as the control rotation. Typically used when the controller is first created.

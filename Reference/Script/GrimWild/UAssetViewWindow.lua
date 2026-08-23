@@ -1,3 +1,4 @@
+---@meta
 ---Window that displays a filterable list of primary assets loaded in the game.
 ---@class UAssetViewWindow : UDraggableWindow
 ---@field protected AssetViewEntries TArray<UAssetViewEntryObject> @All entries created, unfiltered

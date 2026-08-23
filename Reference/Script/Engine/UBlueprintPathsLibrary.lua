@@ -1,3 +1,4 @@
+---@meta
 ---Function library to expose FPaths to Blueprints and Python
 ---Function signatures are preserved for the most part with adjustments made to some
 ---signatures to better match Blueprints / Python workflow
@@ -33,9 +34,9 @@ function UBlueprintPathsLibrary.CloudDir() end
 ---Takes a fully pathed string and eliminates relative pathing (eg: annihilates ".." with the adjacent directory).
 ---Assumes all slashes have been converted to TEXT('/').
 ---For example, takes the string:
----      BaseDirectory/SomeDirectory/../SomeOtherDirectory/Filename.ext
+---BaseDirectory/SomeDirectory/../SomeOtherDirectory/Filename.ext
 ---and converts it to:
----      BaseDirectory/SomeOtherDirectory/Filename.ext
+---BaseDirectory/SomeOtherDirectory/Filename.ext
 ---@param InPath string
 ---@return boolean
 ---@return string OutPath
@@ -55,7 +56,7 @@ function UBlueprintPathsLibrary.ConvertFromSandboxPath(InPath, InSandboxName) en
 ---Converts a relative path name to a fully qualified name relative to the specified BasePath.
 ---BasePath will be the process BaseDir() if not BasePath is given
 ---@param InPath string
----@param InBasePath string
+---@param InBasePath? string @[default: ""]
 ---@return string
 function UBlueprintPathsLibrary.ConvertRelativePathToFull(InPath, InBasePath) end
 
@@ -67,7 +68,7 @@ function UBlueprintPathsLibrary.ConvertToSandboxPath(InPath, InSandboxName) end
 
 ---Creates a temporary filename with the specified prefix.
 ---@param Path string @The file pathname.
----@param Prefix string @The file prefix.
+---@param Prefix? string @[default: ""] The file prefix.
 ---@param Extension? string @[default: .tmp] File extension ('.' required).
 ---@return string
 function UBlueprintPathsLibrary.CreateTempFilename(Path, Prefix, Extension) end
@@ -183,7 +184,7 @@ function UBlueprintPathsLibrary.GetEngineLocalizationPaths() end
 
 ---Gets the extension for this filename.
 ---@param InPath string
----@param bIncludeDot? boolean @[default: false]
+---@param bIncludeDot? boolean @[default: false] if true, includes the leading dot in the result
 ---@return string
 function UBlueprintPathsLibrary.GetExtension(InPath, bIncludeDot) end
 
@@ -220,7 +221,7 @@ function UBlueprintPathsLibrary.GetRestrictedFolderNames() end
 ---@return TArray<string>
 function UBlueprintPathsLibrary.GetToolTipLocalizationPaths() end
 
----* Returns true if a writable directory for downloaded data that persists across play sessions is available
+---Returns true if a writable directory for downloaded data that persists across play sessions is available
 ---@return boolean
 function UBlueprintPathsLibrary.HasProjectPersistentDownloadDir() end
 
@@ -266,10 +267,10 @@ function UBlueprintPathsLibrary.MakePathRelativeTo(InPath, InRelativeTo) end
 function UBlueprintPathsLibrary.MakePlatformFilename(InPath) end
 
 ---Make fully standard "Unreal" pathname:
----   - Normalizes path separators [NormalizeFilename]
----   - Removes extraneous separators  [NormalizeDirectoryName, as well removing adjacent separators]
----   - Collapses internal ..'s
----   - Makes relative to Engine\Binaries\<Platform> (will ALWAYS start with ..\..\..)
+---- Normalizes path separators [NormalizeFilename]
+---- Removes extraneous separators  [NormalizeDirectoryName, as well removing adjacent separators]
+---- Collapses internal ..'s
+---- Makes relative to Engine\Binaries\<Platform> (will ALWAYS start with ..\..\..)
 ---@param InPath string
 ---@return string OutPath
 function UBlueprintPathsLibrary.MakeStandardFilename(InPath) end
@@ -278,7 +279,7 @@ function UBlueprintPathsLibrary.MakeStandardFilename(InPath) end
 ---GetInvalidFileSystemChars() are removed
 ---Optionally specify the character to replace invalid characters with
 ---@param InString string
----@param InReplacementChar string
+---@param InReplacementChar? string @[default: ""]
 ---@return string
 function UBlueprintPathsLibrary.MakeValidFileName(InString, InReplacementChar) end
 
@@ -325,7 +326,7 @@ function UBlueprintPathsLibrary.ProjectLogDir() end
 ---@return string
 function UBlueprintPathsLibrary.ProjectModsDir() end
 
----* Returns the writable directory for downloaded data that persists across play sessions.
+---Returns the writable directory for downloaded data that persists across play sessions.
 ---@return string
 function UBlueprintPathsLibrary.ProjectPersistentDownloadDir() end
 
@@ -344,9 +345,9 @@ function UBlueprintPathsLibrary.ProjectUserDir() end
 ---Removes duplicate slashes in paths.
 ---Assumes all slashes have been converted to TEXT('/').
 ---For example, takes the string:
----      BaseDirectory/SomeDirectory//SomeOtherDirectory////Filename.ext
+---BaseDirectory/SomeDirectory//SomeOtherDirectory////Filename.ext
 ---and converts it to:
----      BaseDirectory/SomeDirectory/SomeOtherDirectory/Filename.ext
+---BaseDirectory/SomeDirectory/SomeOtherDirectory/Filename.ext
 ---@param InPath string
 ---@return string OutPath
 function UBlueprintPathsLibrary.RemoveDuplicateSlashes(InPath) end

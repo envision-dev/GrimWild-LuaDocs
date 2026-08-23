@@ -1,3 +1,4 @@
+---@meta
 ---@class ESpriteDataType
 ---@field public Single ESpriteDataType [0] One sprite per variation
 ---@field public Double ESpriteDataType [1] Two sprites per variation: [0] = Horizontal and [1] = Vertical

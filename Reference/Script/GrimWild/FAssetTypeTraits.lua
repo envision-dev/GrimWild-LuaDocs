@@ -1,4 +1,5 @@
----@class FAssetTypeTraits
+---@meta
+---@class FAssetTypeTraits : Struct
 ---@field public DefaultTemplateClass TSubclassOf<UWorldObject>
 ---@field public bExposeToInGameWiki boolean
 ---@field public EditorWindowType EModEditorWindowType

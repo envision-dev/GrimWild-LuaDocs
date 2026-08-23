@@ -1,7 +1,8 @@
+---@meta
 ---The Menu Anchor allows you to specify an location that a popup menu should be anchored to,
 ---and should be summoned from.
----* Single Child
----* Popup
+---Single Child
+---Popup
 ---@class UMenuAnchor : UContentWidget
 ---@field public MenuClass TSubclassOf<UUserWidget> @The widget class to spawn when the menu is required.  Creates the widget freshly each time. If you want to customize the creation of the popup, you should bind a function to OnGetMenuContentEvent instead.
 ---@field public OnGetMenuContentEvent Delegate|fun(): UWidget

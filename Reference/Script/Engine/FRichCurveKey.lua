@@ -1,5 +1,6 @@
+---@meta
 ---One key in a rich, editable float curve
----@class FRichCurveKey
+---@class FRichCurveKey : Struct
 ---@field public InterpMode integer @Interpolation mode between this key and the next
 ---@field public TangentMode integer @Mode for tangents at this key
 ---@field public TangentWeightMode integer @If either tangent at this key is 'weighted'

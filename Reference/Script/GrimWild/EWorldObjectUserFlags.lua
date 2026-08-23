@@ -1,3 +1,4 @@
+---@meta
 ---Opt-out gameplay flags set by designers/code.
 ---@class EWorldObjectUserFlags
 ---@field public None EWorldObjectUserFlags [0]

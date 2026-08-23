@@ -1,3 +1,4 @@
+---@meta
 ---Enum indicating different type of objects for rigid-body collision purposes.
 ---@class ECollisionChannel
 ---@field public ECC_WorldStatic ECollisionChannel [0]

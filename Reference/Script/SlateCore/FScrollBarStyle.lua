@@ -1,5 +1,6 @@
+---@meta
 ---Represents the appearance of an SScrollBar
----@class FScrollBarStyle : FSlateWidgetStyle
+---@class FScrollBarStyle : FSlateWidgetStyle, Struct
 ---@field public HorizontalBackgroundImage FSlateBrush @Background image to use when the scrollbar is oriented horizontally
 ---@field public VerticalBackgroundImage FSlateBrush @Background image to use when the scrollbar is oriented vertically
 ---@field public VerticalTopSlotImage FSlateBrush @The image to use to represent the track above the thumb when the scrollbar is oriented vertically

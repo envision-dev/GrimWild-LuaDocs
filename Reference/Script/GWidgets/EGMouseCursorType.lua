@@ -1,3 +1,4 @@
+---@meta
 ---@class EGMouseCursorType
 ---@field public None EGMouseCursorType [0] Value = EMouseCursor::Type value
 ---@field public Default EGMouseCursorType [1]

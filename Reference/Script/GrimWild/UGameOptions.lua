@@ -1,3 +1,4 @@
+---@meta
 ---Storage of the player's option intent.
 ---Game thread only. If you need thread safety, connect the option value to a c++ console variable.
 ---Setting an option value from code or UI goes through UOptionData::SetOptionValue() only. Writing into the state

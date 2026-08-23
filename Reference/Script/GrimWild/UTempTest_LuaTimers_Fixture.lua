@@ -1,3 +1,4 @@
+---@meta
 ---Channel between the Lua under test and the suite.
 ---One ordered list of tags rather than a counter per case: half of what this suite asserts is the order
 ---two things happened in, and a set of counters could not answer that. Reporting through a call rather

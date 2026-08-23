@@ -1,3 +1,4 @@
+---@meta
 ---Lerps each cell's current atmosphere value toward TargetValue using LerpAlpha.
 ---Cells with the ROOF_BIT_INDEX bit set in CellFeaturesTexture are left unchanged.
 ---Used for heat and air atmosphere propagation.

@@ -1,3 +1,4 @@
+---@meta
 ---Ways in which touch interactions trigger a "Clicked" event.
 ---@class EButtonTouchMethod
 ---@field public DownAndUp EButtonTouchMethod [0] Most buttons behave this way.

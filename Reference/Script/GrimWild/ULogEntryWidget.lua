@@ -1,3 +1,4 @@
+---@meta
 ---/Widget
 ---@class ULogEntryWidget : UUserWidget
 ---@field protected B_Background UButton

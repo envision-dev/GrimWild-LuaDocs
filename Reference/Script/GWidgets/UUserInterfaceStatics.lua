@@ -1,3 +1,4 @@
+---@meta
 ---Some helpful UI-related blueprint-exposed methods for debugging and drawing shapes
 ---@class UUserInterfaceStatics : UBlueprintFunctionLibrary
 UUserInterfaceStatics = {}

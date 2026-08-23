@@ -1,3 +1,4 @@
+---@meta
 ---A panel that evenly divides up available space between all of its children.
 ---@class UUniformGridPanel : UPanelWidget
 ---@field public SlotPadding FMargin @Padding given to each slot

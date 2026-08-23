@@ -1,5 +1,6 @@
+---@meta
 ---Describes one specific point on an interpolation curve.
----@class FInterpCurvePointFloat
+---@class FInterpCurvePointFloat : Struct
 ---@field public InVal number @Float input value that corresponds to this key (eg. time).
 ---@field public OutVal number @Float output value type when input is equal to InVal.
 ---@field public ArriveTangent number @Tangent of curve arriving at this point.

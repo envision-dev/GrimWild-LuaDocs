@@ -1,3 +1,4 @@
+---@meta
 ---@class UTempTest_BorrowWindow_Fixture : UObject
 ---@field public OnPayload MulticastDelegate|fun(Payload: TArray<integer>)
 ---@field public OwnedArray TArray<integer>

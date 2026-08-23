@@ -1,5 +1,6 @@
+---@meta
 ---Represents the appearance of an SCheckBox
----@class FCheckBoxStyle : FSlateWidgetStyle
+---@class FCheckBoxStyle : FSlateWidgetStyle, Struct
 ---@field public CheckBoxType integer @The visual type of the checkbox
 ---@field public UncheckedImage FSlateBrush @CheckBox appearance when the CheckBox is unchecked (normal)
 ---@field public UncheckedHoveredImage FSlateBrush @CheckBox appearance when the CheckBox is unchecked and hovered

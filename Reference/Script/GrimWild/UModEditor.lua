@@ -1,3 +1,4 @@
+---@meta
 ---Root widget for the Mod Editor. Manages mod editor windows and tabs.
 ---@class UModEditor : UUserWidget
 ---@field protected B_Close UGButton

@@ -1,3 +1,4 @@
+---@meta
 ---Developer tool that shows the widget hierarchy of any widget as a tree view.
 ---@class UWidgetInspector : UDraggableWindow
 ---@field public TV_Content UTreeView

@@ -1,3 +1,4 @@
+---@meta
 ---A slot for UUniformGridPanel, these slots all share the same size as the largest slot
 ---in the grid.
 ---@class UUniformGridSlot : UPanelSlot

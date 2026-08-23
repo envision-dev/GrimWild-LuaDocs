@@ -1,3 +1,4 @@
+---@meta
 ---This is small structure to hold prerequisite tick functions
----@class FTickPrerequisite
+---@class FTickPrerequisite : Struct
 FTickPrerequisite = {}

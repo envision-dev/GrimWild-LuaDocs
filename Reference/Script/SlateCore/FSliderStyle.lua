@@ -1,5 +1,6 @@
+---@meta
 ---Represents the appearance of an SSlider
----@class FSliderStyle : FSlateWidgetStyle
+---@class FSliderStyle : FSlateWidgetStyle, Struct
 ---@field public NormalBarImage FSlateBrush @Image to use when the slider bar is in its normal state
 ---@field public HoveredBarImage FSlateBrush @Image to use when the slider bar is in its hovered state
 ---@field public DisabledBarImage FSlateBrush @Image to use when the slider bar is in its disabled state

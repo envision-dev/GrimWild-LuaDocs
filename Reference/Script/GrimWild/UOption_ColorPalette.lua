@@ -1,3 +1,4 @@
+---@meta
 ---Default palette = Empty value; Custom palette = absolute path to the JSON palette file.
 ---Note: Custom Palettes are Transient. We don't modify Config value of ColorStyle in WidgetSettings.
 ---The color palette value in Cfg stays default
@@ -8,6 +9,6 @@ UOption_ColorPalette = {}
 function UOption_ColorPalette:GetKnownPalettes() end
 
 ---Gathers all useful object instance debug data into string
----@return string DebugString
+---@return string DebugString @gathered debug data. Use Append() to support gathering from child subclasses
 function UOption_ColorPalette:GatherDebugData() end
 

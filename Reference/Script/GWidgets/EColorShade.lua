@@ -1,3 +1,4 @@
+---@meta
 ---Brightness (Value) of the Color tones.
 ---@class EColorShade
 ---@field public DarkMinus EColorShade [0]

@@ -1,3 +1,4 @@
+---@meta
 ---The GameModeBase defines the game being played. It governs the game rules, scoring, what actors
 ---are allowed to exist in this game type, and who may enter the game.
 ---It is only instanced on the server and will never exist on the client.
@@ -33,9 +34,9 @@ AGameModeBase = {}
 function AGameModeBase:CanSpectate(Viewer, ViewTarget) end
 
 ---Sets the name for a controller
----@param Controller AController
----@param NewName string
----@param bNameChange boolean
+---@param Controller AController @The controller of the player to change the name of
+---@param NewName string @The name to set the player to
+---@param bNameChange boolean @Whether the name is changing or if this is the first time it has been set
 function AGameModeBase:ChangeName(Controller, NewName, bNameChange) end
 
 ---Return the 'best' player start for this player to spawn from
@@ -88,14 +89,14 @@ function AGameModeBase:InitStartSpot(StartSpot, NewPlayer) end
 ---Return the specific player start actor that should be used for the next spawn
 ---This will either use a previously saved startactor, or calls ChoosePlayerStart
 ---@param Player AController @The AController for whom we are choosing a Player Start
----@param IncomingName string @Specifies the tag of a Player Start to use
+---@param IncomingName? string @[default: ""] Specifies the tag of a Player Start to use
 ---@return AActor
 function AGameModeBase:K2_FindPlayerStart(Player, IncomingName) end
 
 ---Overridable event for GameMode blueprint to respond to a change name call
 ---@param Other AController
----@param NewName string
----@param bNameChange boolean
+---@param NewName string @The name to set the player to
+---@param bNameChange boolean @Whether the name is changing or if this is the first time it has been set
 function AGameModeBase:K2_OnChangeName(Other, NewName, bNameChange) end
 
 ---Implementable event when a Controller with a PlayerState leaves the game.
@@ -148,7 +149,7 @@ function AGameModeBase:ReturnToMainMenuHost() end
 
 ---Overridable function to determine whether an Actor should have Reset called when the game has Reset called on it.
 ---Default implementation returns true
----                false if the GameMode will manually reset it or if the actor does not need to be reset
+---false if the GameMode will manually reset it or if the actor does not need to be reset
 ---@param ActorToReset AActor @The actor to make a determination for
 ---@return boolean
 function AGameModeBase:ShouldReset(ActorToReset) end

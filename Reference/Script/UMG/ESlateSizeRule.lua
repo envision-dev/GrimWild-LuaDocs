@@ -1,3 +1,4 @@
+---@meta
 ---The sizing options of UWidgets
 ---@class ESlateSizeRule
 ---@field public Automatic ESlateSizeRule [0] Only requests as much room as it needs based on the widgets desired size.

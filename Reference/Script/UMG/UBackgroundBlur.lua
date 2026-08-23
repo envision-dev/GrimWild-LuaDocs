@@ -1,7 +1,8 @@
+---@meta
 ---A background blur is a container widget that can contain one child widget, providing an opportunity
 ---to surround it with adjustable padding and apply a post-process Gaussian blur to all content beneath the widget.
----* Single Child
----* Blur Effect
+---Single Child
+---Blur Effect
 ---@class UBackgroundBlur : UContentWidget
 ---@field public Padding FMargin @The padding area between the slot and the content it contains.
 ---@field public HorizontalAlignment integer @The alignment of the content horizontally.

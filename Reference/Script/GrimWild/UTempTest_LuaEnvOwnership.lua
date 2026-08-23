@@ -1,3 +1,4 @@
+---@meta
 ---Fixes what unregistering a script env takes with it.
 ---The decision this suite encodes is the same one TempTest_LuaCallbackOwnership encodes at module
 ---level, applied to envs: a listener belongs to where its callback was written, so unregistering an

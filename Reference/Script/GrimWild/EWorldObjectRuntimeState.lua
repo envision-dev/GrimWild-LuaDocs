@@ -1,3 +1,4 @@
+---@meta
 ---Runtime lifecycle and attachment state flags. Managed internally, do not set directly.
 ---Replaces the old EWorldObjectFlags lifecycle section.
 ---@class EWorldObjectRuntimeState

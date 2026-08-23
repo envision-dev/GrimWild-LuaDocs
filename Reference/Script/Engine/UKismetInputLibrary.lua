@@ -1,3 +1,4 @@
+---@meta
 ---@class UKismetInputLibrary : UBlueprintFunctionLibrary
 UKismetInputLibrary = {}
 

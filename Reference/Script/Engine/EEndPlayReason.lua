@@ -1,3 +1,4 @@
+---@meta
 ---Specifies why an actor is being deleted/removed from a level
 ---@class EEndPlayReason
 ---@field public Destroyed EEndPlayReason [0] When the Actor or Component is explicitly destroyed.

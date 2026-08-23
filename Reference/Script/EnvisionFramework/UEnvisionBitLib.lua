@@ -1,3 +1,4 @@
+---@meta
 ---@class UEnvisionBitLib : UBlueprintFunctionLibrary
 UEnvisionBitLib = {}
 

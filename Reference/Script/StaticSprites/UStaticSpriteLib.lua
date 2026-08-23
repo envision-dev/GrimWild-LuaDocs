@@ -1,23 +1,24 @@
+---@meta
 ---Blueprint function library for Static Sprite Subsystem operations: sprite instance management, transform and tint control.
 ---=== Coordinate Unit Systems ===
 ---_TPX (Original Texture Pixels)
---- – Pixel dimensions of imported source textures. Stored in assets (UPROPERTY fields). TQ-agnostic: never changes.
---- – Convert to _UU: value * FStaticSpriteSettings::OriginalTextureSizeToUuRatio (= 100/256 ≈ 0.390625).
+---– Pixel dimensions of imported source textures. Stored in assets (UPROPERTY fields). TQ-agnostic: never changes.
+---– Convert to _UU: value * FStaticSpriteSettings::OriginalTextureSizeToUuRatio (= 100/256 ≈ 0.390625).
 ---_SPX (Scaled Pixels = TPX * TextureQuality)
---- – Runtime pixel size after the player's Texture Quality setting. Used for atlas allocation and GPU textures.
---- – Convert from _TPX: SPX = TPX * FStaticSpriteSettings::CurrentToOriginalTextureSizeRatio.
+---– Runtime pixel size after the player's Texture Quality setting. Used for atlas allocation and GPU textures.
+---– Convert from _TPX: SPX = TPX * FStaticSpriteSettings::CurrentToOriginalTextureSizeRatio.
 ---_UU  (Unreal Units, world space)
---- – Standard UE world space. 1 game cell = 100 UU. Sprite visual size does NOT change with TextureQuality.
---- – Convert from _TPX: value * FStaticSpriteSettings::OriginalTextureSizeToUuRatio.
+---– Standard UE world space. 1 game cell = 100 UU. Sprite visual size does NOT change with TextureQuality.
+---– Convert from _TPX: value * FStaticSpriteSettings::OriginalTextureSizeToUuRatio.
 ---UV  (no suffix, normalized 0..1)
---- – "UV" in a name always denotes source texture space (e.g. FObjectSprite::StartUV).
+---– "UV" in a name always denotes source texture space (e.g. FObjectSprite::StartUV).
 ---AtlasUV (normalized 0..1, runtime atlas texture space)
---- – "Atlas" prefix signals runtime texture atlas space. AtlasUV ≠ source UV:
----  atlas placement depends on runtime slot allocation, not on the source texture.
+---– "Atlas" prefix signals runtime texture atlas space. AtlasUV ≠ source UV:
+---atlas placement depends on runtime slot allocation, not on the source texture.
 ---FSpriteTransform suffix note:
---- When a method name carries a unit suffix (_TPX, _UU, etc.), the suffix describes
---- the coordinate space of FSpriteTransform::Location only.
---- Rotation is always in degrees; Scale is always a dimensionless multiplier.
+---When a method name carries a unit suffix (_TPX, _UU, etc.), the suffix describes
+---the coordinate space of FSpriteTransform::Location only.
+---Rotation is always in degrees; Scale is always a dimensionless multiplier.
 ---@class UStaticSpriteLib : UBlueprintFunctionLibrary
 UStaticSpriteLib = {}
 

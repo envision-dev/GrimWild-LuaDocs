@@ -1,3 +1,4 @@
+---@meta
 ---This is a component to allow interaction with the Widget Component.  This class allows you to
 ---simulate a sort of laser pointer device, when it hovers over widgets it will send the basic signals
 ---to show as if the mouse were moving on top of it.  You'll then tell the component to simulate key presses,
@@ -22,7 +23,6 @@
 ---@field protected bIsHoveredWidgetInteractable boolean @Are we hovering over any interactive widgets.
 ---@field protected bIsHoveredWidgetFocusable boolean @Are we hovering over any focusable widget?
 ---@field protected bIsHoveredWidgetHitTestVisible boolean @Are we hovered over a widget that is hit test visible?
----@field private ArrowComponent UArrowComponent @The arrow component we show at editor time.
 UWidgetInteractionComponent = {}
 
 ---Gets the last hit location on the widget in 2D, local pixel units of the render target.

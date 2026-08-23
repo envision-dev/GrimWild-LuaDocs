@@ -1,3 +1,4 @@
+---@meta
 ---/Ticks
----@class FSpritePoolProcessTick : FTickFunction
+---@class FSpritePoolProcessTick : FTickFunction, Struct
 FSpritePoolProcessTick = {}

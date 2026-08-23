@@ -1,3 +1,4 @@
+---@meta
 ---@class EGAssetFormat
 ---@field public None EGAssetFormat [0]
 ---@field public UAsset EGAssetFormat [1]

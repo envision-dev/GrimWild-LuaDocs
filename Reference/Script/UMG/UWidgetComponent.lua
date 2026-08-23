@@ -1,3 +1,4 @@
+---@meta
 ---The widget component provides a surface in the 3D environment on which to render widgets normally rendered to the screen.
 ---Widgets are first rendered to a render target, then that render target is displayed in the world.
 ---Material Properties set by this component on whatever material overrides the default.
@@ -14,7 +15,7 @@
 ---@field protected bRedrawRequested boolean @Has anyone requested we redraw?
 ---@field protected RedrawTime number @The time in between draws, if 0 - we would redraw every frame.  If 1, we would redraw every second. This will work with bManuallyRedraw as well.  So you can say, manually redraw, but only redraw at this maximum rate.
 ---@field protected CurrentDrawSize FIntPoint @The actual draw size, this changes based on DrawSize - or the desired size of the widget if bDrawAtDesiredSize is true.
----@field protected bDrawAtDesiredSize boolean @Causes the render target to automatically match the desired size. WARNING: If you change this every frame, it will be very expensive.  If you need    that effect, you should keep the outer widget's sized locked and dynamically    scale or resize some inner widget.
+---@field protected bDrawAtDesiredSize boolean @Causes the render target to automatically match the desired size. WARNING: If you change this every frame, it will be very expensive.  If you need that effect, you should keep the outer widget's sized locked and dynamically scale or resize some inner widget.
 ---@field protected Pivot FVector2D @The Alignment/Pivot point that the widget is placed at relative to the position.
 ---@field protected bReceiveHardwareInput boolean @Register with the viewport for hardware input from the true mouse and keyboard.  These widgets will more or less react like regular 2D widgets in the viewport, e.g. they can and will steal focus from the viewport. WARNING: If you are making a VR game, definitely do not change this to true.  This option should ONLY be used if you're making what would otherwise be a normal menu for a game, just in 3D.  If you also need the game to remain responsive and for the player to be able to interact with UI and move around the world (such as a keypad on a door), use the WidgetInteractionComponent instead.
 ---@field protected bWindowFocusable boolean @Is the virtual window created to host the widget focusable?
@@ -176,7 +177,7 @@ function UWidgetComponent:SetTintColorAndOpacity(NewTintColorAndOpacity) end
 function UWidgetComponent:SetTwoSided(bWantTwoSided) end
 
 ---Sets the widget to use directly. This function will keep track of the widget till the next time it's called
----    with either a newer widget or a nullptr
+---with either a newer widget or a nullptr
 ---@param Widget UUserWidget
 function UWidgetComponent:SetWidget(Widget) end
 

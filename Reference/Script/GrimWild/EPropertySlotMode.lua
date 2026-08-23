@@ -1,3 +1,4 @@
+---@meta
 ---@class EPropertySlotMode
 ---@field public Inline EPropertySlotMode [0]
 ---@field public Group EPropertySlotMode [1]

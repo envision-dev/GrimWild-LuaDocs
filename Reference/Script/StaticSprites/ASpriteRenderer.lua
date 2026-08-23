@@ -1,3 +1,4 @@
+---@meta
 ---There is only one Actor in the World.
 ---We attach all Static Sprites to it, and that allows us to use Sprite Pool to reuse the same sprite components
 ---for different game objects.

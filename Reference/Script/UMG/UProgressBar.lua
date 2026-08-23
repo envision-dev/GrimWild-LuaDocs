@@ -1,5 +1,6 @@
+---@meta
 ---The progress bar widget is a simple bar that fills up that can be restyled to fit any number of uses.
----* No Children
+---No Children
 ---@class UProgressBar : UWidget
 ---@field public WidgetStyle FProgressBarStyle @The progress bar style
 ---@field public Percent number @Used to determine the fill position of the progress bar ranging 0..1

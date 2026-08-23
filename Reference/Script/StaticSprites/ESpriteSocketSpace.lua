@@ -1,3 +1,4 @@
+---@meta
 ---Coordinate space for socket transform queries on UStaticSpriteComponent.
 ---Location in the returned FSpriteTransform is always in _UU (Unreal Units).
 ---@class ESpriteSocketSpace

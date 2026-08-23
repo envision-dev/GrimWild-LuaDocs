@@ -1,3 +1,4 @@
+---@meta
 ---@class USlateBlueprintLibrary : UBlueprintFunctionLibrary
 USlateBlueprintLibrary = {}
 

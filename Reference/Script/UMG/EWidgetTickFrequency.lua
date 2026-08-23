@@ -1,3 +1,4 @@
+---@meta
 ---Determines what strategy we use to determine when and if the widget ticks.
 ---@class EWidgetTickFrequency
 ---@field public Never EWidgetTickFrequency [0] This widget never ticks

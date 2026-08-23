@@ -1,3 +1,4 @@
+---@meta
 ---@class UWidgetBlueprintLib : UBlueprintFunctionLibrary
 UWidgetBlueprintLib = {}
 

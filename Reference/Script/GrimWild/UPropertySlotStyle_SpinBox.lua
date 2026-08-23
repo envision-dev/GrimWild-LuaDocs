@@ -1,3 +1,4 @@
+---@meta
 ---@class UPropertySlotStyle_SpinBox : UPropertySlotStyle
 ---@field public DeltaValue number
 ---@field public MinValue number

@@ -1,3 +1,4 @@
+---@meta
 ---This enum controls clipping of widgets in Slate.  By default all SWidgets do not need to clip their children.
 ---Most of the time, you don't need to clip, the only times it becomes important is when something might become hidden
 ---due to panning.  You should use this wisely, as Slate can not batch across clipping areas, so if widget A and widget B

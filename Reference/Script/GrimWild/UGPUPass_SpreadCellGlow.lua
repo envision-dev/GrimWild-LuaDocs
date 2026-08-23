@@ -1,3 +1,4 @@
+---@meta
 ---Game-thread wrapper for FSpreadCellGlowCS.
 ---Standalone pass — clears and writes RT_SpreadCellGlow (rgb = color, a = intensity).
 ---Created and destroyed by ULightManager::CreateCellGlowSupport() /

@@ -1,3 +1,4 @@
+---@meta
 ---Stylized search box.
 ---Composition of UGEditableTextBox + UGBorder/UGImage.
 ---@class USearchBox : UWidget

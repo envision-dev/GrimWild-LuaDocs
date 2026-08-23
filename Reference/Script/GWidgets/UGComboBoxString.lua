@@ -1,3 +1,4 @@
+---@meta
 ---Stylized combo box widget using FString options.
 ---Fully reimplemented from UWidget (not UComboBoxString) to support UpdateSelectedOption() — Data -> Widget sync.
 ---@class UGComboBoxString : UWidget

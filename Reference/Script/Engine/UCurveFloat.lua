@@ -1,3 +1,4 @@
+---@meta
 ---@class UCurveFloat : UCurveBase
 ---@field public FloatCurve FRichCurve @Keyframe data
 ---@field public bIsEventCurve boolean @Flag to represent event curve

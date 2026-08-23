@@ -1,3 +1,4 @@
+---@meta
 ---Base class for all mouse and keyevents.
----@class FInputEvent
+---@class FInputEvent : Struct
 FInputEvent = {}

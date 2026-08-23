@@ -1,3 +1,4 @@
+---@meta
 ---@class UPropertySlotWidget : UUserWidget
 ---@field protected DataBinding TScriptInterface<UPropertySlotDataBinding>
 ---@field protected SlotStyle UPropertySlotStyle

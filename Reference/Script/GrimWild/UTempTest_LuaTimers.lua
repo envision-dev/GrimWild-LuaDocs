@@ -1,3 +1,4 @@
+---@meta
 ---Pins the behaviour of the script-facing timer surface: SetTimer, Routine and Wait, the handle they
 ---hand back, what they refuse, which frame they fire on, and who owns an entry once it exists.
 ---The decision the last group encodes is the counterintuitive one: an entry belongs to the module that

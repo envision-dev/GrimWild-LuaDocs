@@ -1,3 +1,4 @@
+---@meta
 ---The Slot for the USizeBoxSlot, contains the widget displayed in a button's single slot
 ---@class USizeBoxSlot : UPanelSlot
 ---@field public Padding FMargin @The padding area between the slot and the content it contains.

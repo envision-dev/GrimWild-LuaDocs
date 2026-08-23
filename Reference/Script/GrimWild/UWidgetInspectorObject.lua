@@ -1,3 +1,4 @@
+---@meta
 ---@class UWidgetInspectorObject : UObject
 ---@field public Widget UWidget @The original widget we're inspecting
 ---@field public ParentTreeView UTreeView

@@ -1,3 +1,4 @@
+---@meta
 ---Covers the refusal of delegate assignment from Lua added to FDelegatePropertyDesc::CheckWritable and
 ---TMulticastDelegatePropertyDesc::CheckWritable, and - the part that matters more - the two paths that
 ---refusal was not allowed to touch: subscribing through :Bind/:Unbind/:Add/:Remove/:RemoveAll, and

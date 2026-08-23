@@ -1,3 +1,4 @@
+---@meta
 ---Tick function that calls UActorComponent::ConditionalTick
----@class FActorComponentTickFunction : FTickFunction
+---@class FActorComponentTickFunction : FTickFunction, Struct
 FActorComponentTickFunction = {}

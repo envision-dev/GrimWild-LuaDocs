@@ -1,9 +1,9 @@
+---@meta
 ---A component that spawns an Actor when registered, and destroys it when unregistered.
 ---@class UChildActorComponent : USceneComponent
 ---@field private ChildActorClass TSubclassOf<AActor> @The class of Actor to spawn
 ---@field private ChildActor AActor @The actor that we spawned and own
 ---@field private ChildActorTemplate AActor @Property to point to the template child actor for details panel purposes
----@field private EditorTreeViewVisualizationMode EChildActorComponentTreeViewVisualizationMode @Indicates how this component will be visualized for editing in a tree view. Users can change this setting per instance via the context menu in the Blueprint/SCS editor.
 ---@field private bChildActorIsTransient boolean @Should the spawned actor be marked as transient?
 UChildActorComponent = {}
 

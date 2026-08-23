@@ -1,3 +1,4 @@
+---@meta
 ---An asset describing how a texture can exist in slate's DPI-aware environment
 ---and how this texture responds to resizing. e.g. Scale9-stretching? Tiling?
 ---@class USlateBrushAsset : UObject

@@ -1,3 +1,4 @@
+---@meta
 ---Text transformation policy that can be applied to the text before displaying it.
 ---@class ETextTransformPolicy
 ---@field public None ETextTransformPolicy [0] No transform, just use the given text as-is

@@ -1,33 +1,34 @@
+---@meta
 ---Actor is the base class for an Object that can be placed or spawned in a level.
 ---Actors may contain a collection of ActorComponents, which can be used to control how actors move, how they are rendered, etc.
 ---The other main function of an Actor is the replication of properties and function calls across the network during play.
 ---Actor initialization has multiple steps, here's the order of important virtual functions that get called:
 ---- UObject::PostLoad: For actors statically placed in a level, the normal UObject PostLoad gets called both in the editor and during gameplay.
----                     This is not called for newly spawned actors.
+---This is not called for newly spawned actors.
 ---- UActorComponent::OnComponentCreated: When an actor is spawned in the editor or during gameplay, this gets called for any native components.
----                                       For blueprint-created components, this gets called during construction for that component.
----                                       This is not called for components loaded from a level.
+---For blueprint-created components, this gets called during construction for that component.
+---This is not called for components loaded from a level.
 ---- AActor::PreRegisterAllComponents: For statically placed actors and spawned actors that have native root components, this gets called now.
----                                    For blueprint actors without a native root component, these registration functions get called later during construction.
+---For blueprint actors without a native root component, these registration functions get called later during construction.
 ---- UActorComponent::RegisterComponent: All components are registered in editor and at runtime, this creates their physical/visual representation.
----                                      These calls may be distributed over multiple frames, but are always after PreRegisterAllComponents.
----                                      This may also get called later on after an UnregisterComponent call removes it from the world.
+---These calls may be distributed over multiple frames, but are always after PreRegisterAllComponents.
+---This may also get called later on after an UnregisterComponent call removes it from the world.
 ---- AActor::PostRegisterAllComponents: Called for all actors both in the editor and in gameplay, this is the last function that is called in all cases.
 ---- AActor::PostActorCreated: When an actor is created in the editor or during gameplay, this gets called right before construction.
----                            This is not called for components loaded from a level.
+---This is not called for components loaded from a level.
 ---- AActor::UserConstructionScript: Called for blueprints that implement a construction script.
 ---- AActor::OnConstruction: Called at the end of ExecuteConstruction, which calls the blueprint construction script.
----                          This is called after all blueprint-created components are fully created and registered.
----                          This is only called during gameplay for spawned actors, and may get rerun in the editor when changing blueprints.
+---This is called after all blueprint-created components are fully created and registered.
+---This is only called during gameplay for spawned actors, and may get rerun in the editor when changing blueprints.
 ---- AActor::PreInitializeComponents: Called before InitializeComponent is called on the actor's components.
----                                   This is only called during gameplay and in certain editor preview windows.
+---This is only called during gameplay and in certain editor preview windows.
 ---- UActorComponent::Activate: This will be called only if the component has bAutoActivate set.
----                             It will also got called later on if a component is manually activated.
+---It will also got called later on if a component is manually activated.
 ---- UActorComponent::InitializeComponent: This will be called only if the component has bWantsInitializeComponentSet.
----                                        This only happens once per gameplay session.
+---This only happens once per gameplay session.
 ---- AActor::PostInitializeComponents: Called after the actor's components have been initialized, only during gameplay and some editor previews.
 ---- AActor::BeginPlay: Called when the level starts ticking, only during actual gameplay.
----                     This normally happens right after PostInitializeComponents but can be delayed for networked or child actors.
+---This normally happens right after PostInitializeComponents but can be delayed for networked or child actors.
 ---@class AActor : UObject
 ---@field public PrimaryActorTick FActorTickFunction @Primary Actor tick function, which calls TickActor(). Tick functions can be configured to control whether ticking is enabled, at what time during a frame the update occurs, and to set up tick dependencies.
 ---@field public bNetTemporary boolean @If true, when the actor is spawned it will be sent to the client but receive no further replication updates from the server afterwards.
@@ -39,8 +40,6 @@
 ---@field private bHidden boolean @Allows us to only see this Actor in the Editor, and not in the actual game.
 ---@field private bTearOff boolean
 ---@field private bForceNetAddressable boolean @When set, indicates that external guarantees ensure that this actor's name is deterministic between server and client, and as such can be addressed by its full path
----@field private bIsInEditingLevelInstance boolean @Whether this actor belongs to a level instance which is currently being edited.
----@field public bIsMainWorldOnly boolean @If checked, this Actor will only get loaded in a main world (persistent level), it will not be loaded through Level Instances.
 ---@field public bExchangedRoles boolean @Whether we have already exchanged Role/RemoteRole on the client, as when removing then re-adding a streaming level. Causes all initialization to be performed again even though the actor may not have actually been reloaded.
 ---@field public bNetLoadOnClient boolean @This actor will be loaded on network clients during map load
 ---@field public bNetUseOwnerRelevancy boolean @If actor has valid Owner, call Owner's IsNetRelevantFor and GetNetPriority
@@ -71,7 +70,6 @@
 ---@field public CustomTimeDilation number @Allow each actor to run at a different time speed. The DeltaTime for a frame is multiplied by the global TimeDilation (in WorldSettings) and this CustomTimeDilation for this actor's tick.
 ---@field private RemoteRole integer @Describes how much control the remote machine has over the actor.
 ---@field private RayTracingGroupId integer @The RayTracingGroupId this actor and its components belong to. (For components that did not specify any)
----@field protected RuntimeGrid string @Determine in which partition grid this actor will be placed in the partition (if the world is partitioned). If None, the decision will be left to the partition.
 ---@field protected AttachmentReplication FRepAttachment @Used for replicating attachment of this actor's RootComponent to another actor. This is filled in via GatherCurrentMovement() when the RootComponent has an AttachParent.
 ---@field private ReplicatedMovement FRepMovement @Used for replication of our RootComponent's position and velocity
 ---@field public Owner AActor @Owner of this Actor, used primarily for replication (bNetUseOwnerRelevancy & bOnlyRelevantToOwner) and visibility (PrimitiveComponent bOwnerNoSee and bOnlyOwnerSee)
@@ -91,34 +89,8 @@
 ---@field private Instigator APawn @Pawn responsible for damage and other gameplay events caused by this actor.
 ---@field public Children TArray<AActor> @Array of all Actors whose Owner is this actor, these are not necessarily spawned by UChildActorComponent
 ---@field protected RootComponent USceneComponent @The component that defines the transform (location, rotation, scale) of this Actor in the world, all other components must be attached to this one somehow
----@field protected PivotOffset FVector @Local space pivot offset for the actor, only used in the editor
----@field private HLODLayer UHLODLayer @The UHLODLayer in which this actor should be included.
 ---@field public Layers TArray<string> @Layers the actor belongs to.  This is outside of the editoronly data to allow hiding of LD-specified layers at runtime for profiling.
 ---@field private ParentComponent TWeakObjectPtr<UChildActorComponent> @The UChildActorComponent that owns this Actor.
----@field protected ActorGuid FGuid @The GUID for this actor; this guid will be the same for actors from instanced streaming levels.                      See FActorDetails::AddActorCategory and EditorUtilities::CopySingleProperty for details.
----@field protected ActorInstanceGuid FGuid @The instance GUID for this actor; this guid will be unique for actors from instanced streaming levels.
----@field protected ContentBundleGuid FGuid @The GUID for this actor's content bundle.
----@field protected DataLayers TArray<FActorDataLayer> @DataLayers the actor belongs to.
----@field protected DataLayerAssets TArray<TSoftObjectPtr<UDataLayerAsset>>
----@field public GroupActor AActor @The editor-only group this actor is a part of.
----@field public SpriteScale number @The scale to apply to any billboard components in editor builds (happens in any WITH_EDITOR build, including non-cooked games).
----@field public HiddenEditorViews integer @Bitflag to represent which views this actor is hidden in, via per-view layer visibility.
----@field private ActorLabel string @The friendly name for this actor, displayed in the editor.  You should always use AActor::GetActorLabel() to access the actual label to display, and call AActor::SetActorLabel() or FActorLabelUtilities::SetActorLabelUnique() to change the label.  Never set the label directly.
----@field private FolderPath string @The folder path of this actor in the world. If the actor's level uses the actor folder objects feature, the path is computed using FolderGuid. If not, it contains the actual path (empty=root, / separated).
----@field private FolderGuid FGuid @If the actor's level uses the actor folder objects feature, contains the actor folder unique identifier (invalid=root).
----@field public bHiddenEd boolean @Whether this actor is hidden within the editor viewport.
----@field public bIsEditorPreviewActor boolean @True if this actor is the preview actor dragged out of the content browser
----@field public bHiddenEdLayer boolean @Whether this actor is hidden by the layer browser.
----@field public bHiddenEdLevel boolean @Whether this actor is hidden by the level browser.
----@field protected bLockLocation boolean @If true, prevents the actor from being moved in the editor viewport.
----@field protected bActorLabelEditable boolean @Is the actor label editable by the user?
----@field protected bEditable boolean @Whether the actor can be manipulated by editor operations.
----@field protected bListedInSceneOutliner boolean @Whether this actor should be listed in the scene outliner.
----@field protected bOptimizeBPComponentData boolean @Whether to cook additional data to speed up spawn events at runtime for any Blueprint classes based on this Actor. This option may slightly increase memory usage in a cooked build.
----@field protected bCanPlayFromHere boolean @Whether the actor can be used as a PlayFromHere origin (OnPlayFromHere() will be called on that actor)
----@field protected bIsSpatiallyLoaded boolean @Determine if this actor is spatially loaded when placed in a partitioned world.      If true, this actor will be loaded when in the range of any streaming sources and if (1) in no data layers, or (2) one or more of its data layers are enabled.      If false, this actor will be loaded if (1) in no data layers, or (2) one or more of its data layers are enabled.
----@field private bHiddenEdTemporary boolean @Whether this actor is temporarily hidden within the editor; used for show/hide/etc functionality w/o dirtying the actor.
----@field private bForceExternalActorLevelReferenceForPIE boolean
 ---@field public Tags TArray<string> @Array of tags that can be used for grouping and categorizing.
 ---@field public OnTakeAnyDamage MulticastDelegate|fun(DamagedActor: AActor, Damage: number, DamageType: UDamageType, InstigatedBy: AController, DamageCauser: AActor) @Called when the actor is damaged in any way.
 ---@field public OnTakePointDamage MulticastDelegate|fun(DamagedActor: AActor, Damage: number, InstigatedBy: AController, HitLocation: FVector, FHitComponent: UPrimitiveComponent, BoneName: string, ShotFromDirection: FVector, DamageType: UDamageType, DamageCauser: AActor) @Called when the actor is damaged by point damage.
@@ -151,11 +123,11 @@ function AActor:ActorHasTag(Tag) end
 ---root. When bManualAttachment is set, automatic attachment is
 ---skipped and it is up to the user to attach the resulting component (or
 ---set it up as the root) themselves.
----@param TemplateName string
----@param bManualAttachment boolean
----@param RelativeTransform FTransform
----@param ComponentTemplateContext UObject
----@param bDeferredFinish? boolean @[default: false]
+---@param TemplateName string @The name of the Component Template to use.
+---@param bManualAttachment boolean @Whether manual or automatic attachment is to be used
+---@param RelativeTransform FTransform @The relative transform between the new component and its attach parent (automatic only)
+---@param ComponentTemplateContext UObject @Optional UBlueprintGeneratedClass reference to use to find the template in. If null (or not a BPGC), component is sought in this Actor's class
+---@param bDeferredFinish? boolean @[default: false] Whether or not to immediately complete the creation and registration process for this component. Will be false if there are expose on spawn properties being set
 ---@return UActorComponent
 function AActor:AddComponent(TemplateName, bManualAttachment, RelativeTransform, ComponentTemplateContext, bDeferredFinish) end
 
@@ -165,10 +137,10 @@ function AActor:AddComponent(TemplateName, bManualAttachment, RelativeTransform,
 ---root. When bManualAttachment is set, automatic attachment is
 ---skipped and it is up to the user to attach the resulting component (or
 ---set it up as the root) themselves.
----@param Class TSubclassOf<UActorComponent>
----@param bManualAttachment boolean
----@param RelativeTransform FTransform
----@param bDeferredFinish boolean
+---@param Class TSubclassOf<UActorComponent> @The class of component to create
+---@param bManualAttachment boolean @Whether manual or automatic attachment is to be used
+---@param RelativeTransform FTransform @The relative transform between the new component and its attach parent (automatic only)
+---@param bDeferredFinish boolean @Whether or not to immediately complete the creation and registration process for this component. Will be false if there are expose on spawn properties being set
 ---@return UActorComponent
 function AActor:AddComponentByClass(Class, bManualAttachment, RelativeTransform, bDeferredFinish) end
 
@@ -207,9 +179,9 @@ function AActor:FindComponentByTag(ComponentClass, Tag) end
 
 ---Completes the creation of a new actor component. Called either from blueprint after
 ---expose on spawn properties are set, or directly from AddComponent
----@param Component UActorComponent
----@param bManualAttachment boolean
----@param RelativeTransform FTransform
+---@param Component UActorComponent @The component created in AddComponent to finish creation of
+---@param bManualAttachment boolean @Whether manual or automatic attachment is to be used
+---@param RelativeTransform FTransform @The relative transform between the new component and its attach parent (automatic only)
 function AActor:FinishAddComponent(Component, bManualAttachment, RelativeTransform) end
 
 ---Forces dormant actor to replicate but doesn't change NetDormancy state (i.e., they will go dormant again if left dormant)
@@ -219,10 +191,10 @@ function AActor:FlushNetDormancy() end
 function AActor:ForceNetUpdate() end
 
 ---Returns the bounding box of all components that make up this Actor (excluding ChildActorComponents).
----@param bOnlyCollidingComponents boolean
----@param Origin FVector @[out, modified in place]
----@param BoxExtent FVector @[out, modified in place]
----@param bIncludeFromChildActors? boolean @[default: false]
+---@param bOnlyCollidingComponents boolean @If true, will only return the bounding box for components with collision enabled.
+---@param Origin FVector @[out, modified in place] Set to the center of the actor in world space
+---@param BoxExtent FVector @[out, modified in place] Set to half the actor's size in 3d space
+---@param bIncludeFromChildActors? boolean @[default: false] If true then recurse in to ChildActor components
 function AActor:GetActorBounds(bOnlyCollidingComponents, Origin, BoxExtent, bIncludeFromChildActors) end
 
 ---Get current state of collision for the whole actor
@@ -241,11 +213,6 @@ function AActor:GetActorEyesViewPoint(OutLocation, OutRotation) end
 ---Get the forward (X) vector (length 1.0) from this Actor, in world space.
 ---@return FVector
 function AActor:GetActorForwardVector() end
-
----Returns this actor's current label.  Actor labels are only available in development builds.
----@param bCreateIfNone? boolean @[default: true]
----@return string
-function AActor:GetActorLabel(bCreateIfNone) end
 
 ---Return the actor's relative scale 3d
 ---@return FVector
@@ -308,10 +275,6 @@ function AActor:GetComponentsByInterface(Interface) end
 ---@return TArray<UActorComponent>
 function AActor:GetComponentsByTag(ComponentClass, Tag) end
 
----Returns this actor's default label (does not include any numeric suffix).  Actor labels are only available in development builds.
----@return string
-function AActor:GetDefaultActorLabel() end
-
 ---Returns the distance from this Actor to OtherActor.
 ---@param OtherActor AActor
 ---@return number
@@ -321,10 +284,6 @@ function AActor:GetDistanceTo(OtherActor) end
 ---@param OtherActor AActor
 ---@return number
 function AActor:GetDotProductTo(OtherActor) end
-
----Returns this actor's folder path. Actor folder paths are only available in development builds.
----@return string
-function AActor:GetFolderPath() end
 
 ---The number of seconds (in game time) since this Actor was created, relative to Get Game Time In Seconds.
 ---@return number
@@ -380,8 +339,8 @@ function AActor:GetLifeSpan() end
 function AActor:GetLocalRole() end
 
 ---Returns list of actors this actor is overlapping (any component overlapping any component). Does not return itself.
----@param OverlappingActors TArray<AActor> @[out, modified in place]
----@param ClassFilter? TSubclassOf<AActor> @[default: None]
+---@param OverlappingActors TArray<AActor> @[out, modified in place] [out] Returned list of overlapping actors
+---@param ClassFilter? TSubclassOf<AActor> @[default: None] [optional] If set, only returns actors of this class or subclasses
 function AActor:GetOverlappingActors(OverlappingActors, ClassFilter) end
 
 ---Returns list of components this actor is overlapping.
@@ -459,84 +418,63 @@ function AActor:IsActorTickEnabled() end
 ---@return boolean
 function AActor:IsChildActor() end
 
----Returns true if this actor is allowed to be displayed, selected and manipulated by the editor.
----@return boolean
-function AActor:IsEditable() end
-
----Returns true if this actor is hidden in the editor viewports, also checking temporary flags.
----@return boolean
-function AActor:IsHiddenEd() end
-
----Returns true if the actor is hidden upon editor startup/by default, false if it is not
----@return boolean
-function AActor:IsHiddenEdAtStartup() end
-
 ---Check whether any component of this Actor is overlapping any component of another Actor.
 ---@param Other AActor @The other Actor to test against
 ---@return boolean
 function AActor:IsOverlappingActor(Other) end
 
----Returns true if this actor can EVER be selected in a level in the editor.  Can be overridden by specific actors to make them unselectable.
----@return boolean
-function AActor:IsSelectable() end
-
----Returns whether or not this actor was explicitly hidden in the editor for the duration of the current editor session
----@param bIncludeParent? boolean @[default: false] - Whether to recurse up child actor hierarchy or not
----@return boolean
-function AActor:IsTemporarilyHiddenInEditor(bIncludeParent) end
-
 ---Adds a delta to the location of this component in its local reference frame.
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire swept volume.
 ---@param DeltaLocation FVector
----@param bSweep boolean
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
 ---@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function AActor:K2_AddActorLocalOffset(DeltaLocation, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the rotation of this component in its local reference frame
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
----@param DeltaRotation FRotator
----@param bSweep boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire swept volume.
+---@param DeltaRotation FRotator @The change in rotation in local space.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
 ---@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function AActor:K2_AddActorLocalRotation(DeltaRotation, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the transform of this component in its local reference frame
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
----@param NewTransform FTransform
----@param bSweep boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire swept volume.
+---@param NewTransform FTransform @The change in transform in local space.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
 ---@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function AActor:K2_AddActorLocalTransform(NewTransform, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the location of this actor in world space.
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
----@param DeltaLocation FVector
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire swept volume.
+---@param DeltaLocation FVector @The change in location.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] The hit result from the move if swept.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function AActor:K2_AddActorWorldOffset(DeltaLocation, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the rotation of this actor in world space.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
----@param DeltaRotation FRotator
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire swept volume.
+---@param DeltaRotation FRotator @The change in rotation.
+---@param bSweep boolean @Whether to sweep to the target rotation (not currently supported for rotation).
+---@param SweepHitResult FHitResult @[out, modified in place] The hit result from the move if swept.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function AActor:K2_AddActorWorldRotation(DeltaRotation, bSweep, SweepHitResult, bTeleport) end
 
 ---Adds a delta to the transform of this actor in world space. Ignores scale and sets it to (1,1,1).
@@ -566,22 +504,22 @@ function AActor:K2_AttachRootComponentTo(InParent, InSocketName, AttachLocationT
 function AActor:K2_AttachRootComponentToActor(InParentActor, InSocketName, AttachLocationType, bWeldSimulatedBodies) end
 
 ---Attaches the RootComponent of this Actor to the supplied actor, optionally at a named socket.
----@param ParentActor AActor
----@param SocketName string
----@param LocationRule EAttachmentRule
----@param RotationRule EAttachmentRule
----@param ScaleRule EAttachmentRule
----@param bWeldSimulatedBodies boolean
+---@param ParentActor AActor @Actor to attach this actor's RootComponent to
+---@param SocketName string @Socket name to attach to, if any
+---@param LocationRule EAttachmentRule @How to handle translation when attaching.
+---@param RotationRule EAttachmentRule @How to handle rotation when attaching.
+---@param ScaleRule EAttachmentRule @How to handle scale when attaching.
+---@param bWeldSimulatedBodies boolean @Whether to weld together simulated physics bodies.
 ---@return boolean
 function AActor:K2_AttachToActor(ParentActor, SocketName, LocationRule, RotationRule, ScaleRule, bWeldSimulatedBodies) end
 
 ---Attaches the RootComponent of this Actor to the supplied component, optionally at a named socket. It is not valid to call this on components that are not Registered.
----@param Parent USceneComponent
----@param SocketName string
----@param LocationRule EAttachmentRule
----@param RotationRule EAttachmentRule
----@param ScaleRule EAttachmentRule
----@param bWeldSimulatedBodies boolean
+---@param Parent USceneComponent @Parent to attach to.
+---@param SocketName string @Optional socket to attach to on the parent.
+---@param LocationRule EAttachmentRule @How to handle translation when attaching.
+---@param RotationRule EAttachmentRule @How to handle rotation when attaching.
+---@param ScaleRule EAttachmentRule @How to handle scale when attaching.
+---@param bWeldSimulatedBodies boolean @Whether to weld together simulated physics bodies.
 ---@return boolean
 function AActor:K2_AttachToComponent(Parent, SocketName, LocationRule, RotationRule, ScaleRule, bWeldSimulatedBodies) end
 
@@ -589,9 +527,9 @@ function AActor:K2_AttachToComponent(Parent, SocketName, LocationRule, RotationR
 function AActor:K2_DestroyActor() end
 
 ---Detaches the RootComponent of this Actor from any SceneComponent it is currently attached to.
----@param LocationRule? EDetachmentRule @[default: KeepRelative]
----@param RotationRule? EDetachmentRule @[default: KeepRelative]
----@param ScaleRule? EDetachmentRule @[default: KeepRelative]
+---@param LocationRule? EDetachmentRule @[default: KeepRelative] How to handle translation when detaching.
+---@param RotationRule? EDetachmentRule @[default: KeepRelative] How to handle rotation when detaching.
+---@param ScaleRule? EDetachmentRule @[default: KeepRelative] How to handle scale when detaching.
 function AActor:K2_DetachFromActor(LocationRule, RotationRule, ScaleRule) end
 
 ---Returns the location of the RootComponent of this Actor
@@ -625,80 +563,80 @@ function AActor:K2_OnEndViewTarget(PC) end
 function AActor:K2_OnReset() end
 
 ---Move the Actor to the specified location.
----                                             Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                             If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                             If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                             If CCD is on and not teleporting, this will affect objects along the entire swept volume.
----@param NewLocation FVector
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire swept volume.
+---@param NewLocation FVector @The new location to move the Actor to.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] The hit result from the move if swept.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 ---@return boolean
 function AActor:K2_SetActorLocation(NewLocation, bSweep, SweepHitResult, bTeleport) end
 
 ---Move the actor instantly to the specified location and rotation.
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
----@param NewLocation FVector
----@param NewRotation FRotator
----@param bSweep boolean
----@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire swept volume.
+---@param NewLocation FVector @The new location to teleport the Actor to.
+---@param NewRotation FRotator @The new rotation for the Actor.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
+---@param SweepHitResult FHitResult @[out, modified in place] The hit result from the move if swept.
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 ---@return boolean
 function AActor:K2_SetActorLocationAndRotation(NewLocation, NewRotation, bSweep, SweepHitResult, bTeleport) end
 
 ---Set the actor's RootComponent to the specified relative location.
----                                                             Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                             If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                             If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                             If CCD is on and not teleporting, this will affect objects along the entire swept volume.
----@param NewRelativeLocation FVector
----@param bSweep boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire swept volume.
+---@param NewRelativeLocation FVector @New relative location of the actor's root component
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
 ---@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function AActor:K2_SetActorRelativeLocation(NewRelativeLocation, bSweep, SweepHitResult, bTeleport) end
 
 ---Set the actor's RootComponent to the specified relative rotation
----                                                             Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                             If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                             If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                             If CCD is on and not teleporting, this will affect objects along the entire swept volume.
----@param NewRelativeRotation FRotator
----@param bSweep boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire swept volume.
+---@param NewRelativeRotation FRotator @New relative rotation of the actor's root component
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
 ---@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function AActor:K2_SetActorRelativeRotation(NewRelativeRotation, bSweep, SweepHitResult, bTeleport) end
 
 ---Set the actor's RootComponent to the specified relative transform
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
----@param NewRelativeTransform FTransform
----@param bSweep boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire swept volume.
+---@param NewRelativeTransform FTransform @New relative transform of the actor's root component
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
 ---@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 function AActor:K2_SetActorRelativeTransform(NewRelativeTransform, bSweep, SweepHitResult, bTeleport) end
 
 ---Set the Actor's rotation instantly to the specified rotation.
----                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----@param NewRotation FRotator
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---@param NewRotation FRotator @The new rotation for the Actor.
 ---@param bTeleportPhysics boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 ---@return boolean
 function AActor:K2_SetActorRotation(NewRotation, bTeleportPhysics) end
 
 ---Set the Actors transform to the specified one.
----                                                     Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
----                                                     If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
----                                                     If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
----                                                     If CCD is on and not teleporting, this will affect objects along the entire swept volume.
----@param NewTransform FTransform
----@param bSweep boolean
+---Only the root component is swept and checked for blocking collision, child components move without sweeping. If collision is off, this has no effect.
+---If true, physics velocity for this object is unchanged (so ragdoll parts are not affected by change in location).
+---If false, physics velocity is updated based on the change in position (affecting ragdoll parts).
+---If CCD is on and not teleporting, this will affect objects along the entire swept volume.
+---@param NewTransform FTransform @The new transform.
+---@param bSweep boolean @Whether we sweep to the destination location, triggering overlaps along the way and stopping short of the target if blocked by something.
 ---@param SweepHitResult FHitResult @[out, modified in place]
----@param bTeleport boolean
+---@param bTeleport boolean @Whether we teleport the physics state (if physics collision is enabled for this object).
 ---@return boolean
 function AActor:K2_SetActorTransform(NewTransform, bSweep, SweepHitResult, bTeleport) end
 
@@ -713,7 +651,7 @@ function AActor:K2_TeleportTo(DestLocation, DestRotation) end
 ---Senders of MakeNoise should have an Instigator if they are not pawns, or pass a NoiseInstigator.
 ---@param Loudness? number @[default: 1.000000] The relative loudness of this noise. Usual range is 0 (no noise) to 1 (full volume). If MaxRange is used, this scales the max range, otherwise it affects the hearing range specified by the sensor.
 ---@param NoiseInstigator? APawn @[default: None] Pawn responsible for this noise.  Uses the actor's Instigator if NoiseInstigator is null
----@param NoiseLocation FVector @Position of noise source.  If zero vector, use the actor's location.
+---@param NoiseLocation? FVector @[default: ""] Position of noise source.  If zero vector, use the actor's location.
 ---@param MaxRange? number @[default: 0.000000] Max range at which the sound may be heard. A value of 0 indicates no max range (though perception may have its own range). Loudness scales the range. (Note: not supported for legacy PawnSensingComponent, only for AIPerception)
 ---@param Tag? string @[default: None] Identifier for the noise.
 function AActor:MakeNoise(Loudness, NoiseInstigator, NoiseLocation, MaxRange, Tag) end
@@ -735,7 +673,7 @@ function AActor:OnRep_ReplicateMovement() end
 
 ---Calls PrestreamTextures() for all the actor's meshcomponents.
 ---@param Seconds number @- Number of seconds to force all mip-levels to be resident
----@param bEnableStreaming boolean
+---@param bEnableStreaming boolean @- Whether to start (true) or stop (false) streaming
 ---@param CinematicTextureGroups? integer @[default: 0] - Bitfield indicating which texture groups that use extra high-resolution mips
 function AActor:PrestreamTextures(Seconds, bEnableStreaming, CinematicTextureGroups) end
 
@@ -853,16 +791,11 @@ function AActor:RemoveTickPrerequisiteComponent(PrerequisiteComponent) end
 function AActor:SetActorEnableCollision(bNewActorEnableCollision) end
 
 ---Sets the actor to be hidden in the game
----@param bNewHidden boolean
+---@param bNewHidden boolean @Whether or not to hide the actor and all its components
 function AActor:SetActorHiddenInGame(bNewHidden) end
 
----Assigns a new label to this actor.  Actor labels are only available in development builds.
----@param NewActorLabel string
----@param bMarkDirty? boolean @[default: true]
-function AActor:SetActorLabel(NewActorLabel, bMarkDirty) end
-
 ---Set the actor's RootComponent to the specified relative scale 3d
----@param NewRelativeScale FVector
+---@param NewRelativeScale FVector @New scale to set the actor's RootComponent to
 function AActor:SetActorRelativeScale3D(NewRelativeScale) end
 
 ---Set the Actor's world-space scale.
@@ -871,23 +804,15 @@ function AActor:SetActorScale3D(NewScale3D) end
 
 ---Set this actor's tick functions to be enabled or disabled. Only has an effect if the function is registered
 ---This only modifies the tick function on actor itself
----@param bEnabled boolean
+---@param bEnabled boolean @Whether it should be enabled or not
 function AActor:SetActorTickEnabled(bEnabled) end
 
 ---Sets the tick interval of this actor's primary tick function. Will not enable a disabled tick function. Takes effect on next tick.
----@param TickInterval number
+---@param TickInterval number @The rate at which this actor should be ticking
 function AActor:SetActorTickInterval(TickInterval) end
 
 ---@param bVal boolean
 function AActor:SetAutoDestroyWhenFinished(bVal) end
-
----Assigns a new folder to this actor. Actor folder paths are only available in development builds.
----@param NewFolderPath string
-function AActor:SetFolderPath(NewFolderPath) end
-
----Explicitly sets whether or not this actor is hidden in the editor for the duration of the current editor session
----@param bIsHidden boolean
-function AActor:SetIsTemporarilyHiddenInEditor(bIsHidden) end
 
 ---Set the lifespan of this actor. When it expires the object will be destroyed. If requested lifespan is 0, the timer is cleared and the actor will not be destroyed.
 ---@param InLifespan number
@@ -898,7 +823,7 @@ function AActor:SetLifeSpan(InLifespan) end
 function AActor:SetNetDormancy(NewDormancy) end
 
 ---Set the owner of this Actor, used primarily for network replication.
----@param NewOwner AActor
+---@param NewOwner AActor @The Actor who takes over ownership of this Actor
 function AActor:SetOwner(NewOwner) end
 
 ---Set the physics replication mode of this body, via EPhysicsReplicationMode

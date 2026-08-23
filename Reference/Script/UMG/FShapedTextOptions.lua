@@ -1,6 +1,7 @@
+---@meta
 ---Common data for all widgets that use shaped text.
 ---Contains the common options that should be exposed for the underlying Slate widget.
----@class FShapedTextOptions
+---@class FShapedTextOptions : Struct
 ---@field public bOverride_TextShapingMethod boolean
 ---@field public bOverride_TextFlowDirection boolean
 ---@field public TextShapingMethod ETextShapingMethod @Which text shaping method should the text within this widget use? (unset to use the default returned by GetDefaultTextShapingMethod)

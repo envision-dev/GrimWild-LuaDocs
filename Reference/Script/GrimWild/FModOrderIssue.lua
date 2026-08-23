@@ -1,9 +1,10 @@
+---@meta
 ---A single validation finding. Stores only structured data (type, involved mod ids, offending version
 ---values); human-readable text is composed on demand by GetHumanReadableText, never cached.
----@class FModOrderIssue
+---@class FModOrderIssue : Struct
 ---@field public Type EModIssueType
 ---@field public ModId string @The mod the issue is about.
----@field public OtherModId string @The other mod involved, if any (dependency id, pack member id, duplicate id source, etc).
+---@field public OtherModId string @The other mod involved, if any (dependency id, duplicate id source, etc).
 ---@field public RequiredMinVersion string @Offending version values, as canonical strings. Empty when not applicable to this issue type.
 ---@field public RequiredMaxVersion string
 ---@field public ActualVersion string

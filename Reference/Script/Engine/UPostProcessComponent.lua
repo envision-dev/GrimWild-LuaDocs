@@ -1,5 +1,6 @@
+---@meta
 ---PostProcessComponent. Enables Post process controls for blueprints.
----   Will use a parent UShapeComponent to provide volume data if available.
+---Will use a parent UShapeComponent to provide volume data if available.
 ---@class UPostProcessComponent : USceneComponent
 ---@field public Settings FPostProcessSettings @Post process settings to use for this volume.
 ---@field public Priority number @Priority of this volume. In the case of overlapping volumes the one with the highest priority overrides the lower priority ones. The order is undefined if two or more overlapping volumes have the same priority.

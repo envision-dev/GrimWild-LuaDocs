@@ -1,5 +1,6 @@
+---@meta
 ---Represents the appearance of an SSpinBox
----@class FSpinBoxStyle : FSlateWidgetStyle
+---@class FSpinBoxStyle : FSlateWidgetStyle, Struct
 ---@field public BackgroundBrush FSlateBrush @Brush used to draw the background of the spinbox
 ---@field public ActiveBackgroundBrush FSlateBrush
 ---@field public HoveredBackgroundBrush FSlateBrush @Brush used to draw the background of the spinbox when it's hovered over

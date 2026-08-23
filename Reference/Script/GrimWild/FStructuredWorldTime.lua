@@ -1,6 +1,7 @@
+---@meta
 ---Structured world time.
 ---Values must be set in acceptable ranges.
----@class FStructuredWorldTime
+---@class FStructuredWorldTime : Struct
 ---@field public Year integer @(0..inf)
 ---@field public Season integer @(0..EWorldSeasons::NUM-1)
 ---@field public Day integer @(0..DAYS_IN_SEASON-1)

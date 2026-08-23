@@ -1,3 +1,4 @@
+---@meta
 ---Game-thread wrapper for FSunlightReachBounceCS.
 ---Applies multi-step secondary bounce to the SunlightReach (R8_UNORM) buffer in-place
 ---using an internal ping-pong pattern. Mirrors UGPUPass_LightBounce but operates on

@@ -1,3 +1,4 @@
+---@meta
 ---Same enumerators, declared the old way, so a TEnumAsByte of it becomes an FByteProperty instead.
 ---@class ETempTest_LuaPropertyConversion_Legacy
 ---@field public Zero ETempTest_LuaPropertyConversion_Legacy [0]

@@ -1,3 +1,4 @@
+---@meta
 ---A panel for defining a region of the UI that should allow users to drag the window on desktop platforms.
 ---@class UWindowTitleBarArea : UContentWidget
 ---@field public bWindowButtonsEnabled boolean @Should the title bar area diaplay window minimize/maximize/close buttons.

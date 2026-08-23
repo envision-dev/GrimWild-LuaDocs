@@ -1,3 +1,4 @@
+---@meta
 ---If the list panel is arranging items as tiles, this enum dictates how the items should be aligned (basically, where any extra space is placed)
 ---@class EListItemAlignment
 ---@field public EvenlyDistributed EListItemAlignment [0] Items are distributed evenly along the line (any extra space is added as padding between the items)

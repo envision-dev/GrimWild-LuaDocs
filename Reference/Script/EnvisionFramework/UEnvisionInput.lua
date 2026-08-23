@@ -1,3 +1,4 @@
+---@meta
 ---@class UEnvisionInput : UBlueprintFunctionLibrary
 UEnvisionInput = {}
 

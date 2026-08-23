@@ -1,9 +1,10 @@
+---@meta
 ---Version and matcher in one type: major.minor.patch[-state[number]][+build].
 ---A value can be fully concrete (a running game build) or partial (a mod's target,
 ---e.g. "0.15" meaning any 0.15.x). Precision records how deep the definition goes;
 ---the comparison operators are precision-aware, which is what makes matching work
 ---without a separate spec type.
----@class FEVersion
+---@class FEVersion : Struct
 ---@field public Major integer
 ---@field public Minor integer
 ---@field public Patch integer

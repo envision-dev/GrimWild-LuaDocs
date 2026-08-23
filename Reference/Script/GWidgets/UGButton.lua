@@ -1,3 +1,4 @@
+---@meta
 ---@class UGButton : UButton
 ---@field public WidgetColorStyle FWidgetColorStyle
 ---@field public OnStyleApplied MulticastDelegate|fun()

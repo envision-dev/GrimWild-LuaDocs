@@ -1,6 +1,7 @@
+---@meta
 ---The rich text block
----* Fancy Text
----* No Children
+---Fancy Text
+---No Children
 ---@class URichTextBlock : UTextLayoutWidget
 ---@field protected Text string @The text to display
 ---@field protected TextStyleSet UDataTable
@@ -45,7 +46,7 @@ function URichTextBlock:SetAutoWrapText(InAutoTextWrap) end
 function URichTextBlock:SetDecorators(InDecoratorClasses) end
 
 ---Sets the color and opacity of the default text in this rich text block
----@param InColorAndOpacity FSlateColor
+---@param InColorAndOpacity FSlateColor @The new text color and opacity
 function URichTextBlock:SetDefaultColorAndOpacity(InColorAndOpacity) end
 
 ---Dynamically set the default font info for this rich text block
@@ -57,11 +58,11 @@ function URichTextBlock:SetDefaultMaterial(InMaterial) end
 
 ---Sets the color and opacity of the default text drop shadow
 ---Note: if opacity is zero no shadow will be drawn
----@param InShadowColorAndOpacity FLinearColor
+---@param InShadowColorAndOpacity FLinearColor @The new drop shadow color and opacity
 function URichTextBlock:SetDefaultShadowColorAndOpacity(InShadowColorAndOpacity) end
 
 ---Sets the offset that the default text drop shadow should be drawn at
----@param InShadowOffset FVector2D
+---@param InShadowOffset FVector2D @The new offset
 function URichTextBlock:SetDefaultShadowOffset(InShadowOffset) end
 
 ---Dynamically set the default strike brush for this rich text block

@@ -1,3 +1,4 @@
+---@meta
 ---Controls which derived worlds/assets receive an individual copy of a template object.
 ---@class ETemplateCopyPolicy
 ---@field public None ETemplateCopyPolicy [0]

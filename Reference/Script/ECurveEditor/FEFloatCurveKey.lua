@@ -1,4 +1,5 @@
----@class FEFloatCurveKey
+---@meta
+---@class FEFloatCurveKey : Struct
 ---@field public Time number
 ---@field public Value number
 ---@field public InterpMode EEFloatCurveInterp

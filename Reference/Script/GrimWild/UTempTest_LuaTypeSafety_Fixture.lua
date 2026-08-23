@@ -1,3 +1,4 @@
+---@meta
 ---Properties, native entry points and the Lua-to-C++ result channel used by UTempTest_LuaTypeSafety.
 ---Deliberately a plain UObject: the suite must create no actors, components or tick sources, and
 ---borrows the pawn and game mode the running session already has instead of spawning its own.
